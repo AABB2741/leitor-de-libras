@@ -19,6 +19,9 @@ const FONTS: Fonts[] = [{
 }, {
     name: "button",
     fontFamily: "Exo-2"
+}, {
+    name: "subtitle",
+    fontFamily: "Ubuntu"
 }];
 
 interface Props extends TextProps {

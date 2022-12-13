@@ -6,9 +6,10 @@ import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 import Order from "../../@types/Order";
 
+import Filter from "../../components/Filter";
+import Header from "../../components/Header";
 import Font from "../../components/Font";
 
-import Filter from "../../components/Filter";
 
 import createStyles from "./styles";
 
@@ -20,9 +21,12 @@ export default function Translations() {
     const [order, setOrder] = useState<Order>("asc");
 
     return (
-        <View style={styles.container}>
-            <Font preset="title" style={styles.title}>{lang.translations.title}</Font>
-            <Filter filterPlaceholder={lang.translations.filter} order={order} onOrderChange={order => setOrder(order)} />
-        </View>
+        <>
+            <Header title={lang.translations.title} />
+            <View style={styles.container}>
+                <Font preset="title" style={styles.title}>{lang.translations.title}</Font>
+                <Filter filterPlaceholder={lang.translations.filter} order={order} onOrderChange={order => setOrder(order)} />
+            </View>
+        </>
     );
 }
