@@ -17,6 +17,9 @@ const FONTS: Fonts[] = [{
     fontFamily: "Inter-Bold",
     fontWeight: "300"
 }, {
+    name: "text",
+    fontFamily: "Inter-Regular"
+}, {
     name: "button",
     fontFamily: "Exo-2"
 }, {

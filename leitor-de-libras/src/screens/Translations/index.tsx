@@ -34,7 +34,7 @@ const FILES: FileProps[] = [{
 }, {
     thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
     title: "Teste dois da tradução",
-    date: new Date()
+    date: new Date("2020/01/02 01:01:01")
 }, {
     thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
     title: "Teste dois da tradução",

@@ -16,5 +16,13 @@ export default ({ colors }: Props) => StyleSheet.create({
         width: "100%",
         height: 75,
         borderRadius: 16
+    },
+    title: {
+        marginVertical: 5,
+        fontSize: 12
+    },
+    date: {
+        color: colors.desc,
+        fontSize: 10
     }
 });
