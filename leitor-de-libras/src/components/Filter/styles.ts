@@ -16,7 +16,7 @@ export default ({ colors }: Props) => StyleSheet.create({
         alignItems: "center"
     },
     filterInput: {
-        marginLeft: 10
+        marginHorizontal: 10
     },
     sort: {
         flexDirection: "row",
