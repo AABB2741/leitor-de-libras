@@ -8,7 +8,7 @@ interface Props {
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
         flexDirection: "row",
-        marginVertical: 20
+        marginTop: 20
     },
     filter: {
         flex: 1,

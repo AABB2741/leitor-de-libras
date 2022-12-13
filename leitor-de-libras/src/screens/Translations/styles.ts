@@ -8,10 +8,16 @@ interface Props {
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         backgroundColor: colors.background
+    },
+    top: {
+        padding: 20
     },
     title: {
         fontSize: 18
+    },
+    files: {
+        flex: 1,
+        justifyContent: "flex-start"
     }
 });
