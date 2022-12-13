@@ -9,11 +9,11 @@ interface Props {
     children: React.ReactNode;
 }
 
-const ColorsContext = createContext<Theme>(dark);
+const ColorsContext = createContext<Theme>(light);
 
 export default function ColorsProvider({ children }: Props) {
     return (
-        <ColorsContext.Provider value={dark}>
+        <ColorsContext.Provider value={light}>
             {children}
         </ColorsContext.Provider>
     );

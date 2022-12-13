@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
     FlatList,
     View,
+    TouchableOpacity,
     RefreshControl
 } from "react-native";
 import { useColors } from "../../contexts/Colors";
@@ -19,7 +20,7 @@ import createStyles from "./styles";
 import { FileProps } from "./File";
 
 import FILES from "../../constants/recordings";
-import { CircleWavyQuestion, HandWaving, MagnifyingGlass } from "phosphor-react-native";
+import { CircleWavyQuestion, HandWaving, MagnifyingGlass, Plus } from "phosphor-react-native";
 
 export default function Translations() {
     const lang = useLang();
@@ -34,10 +35,15 @@ export default function Translations() {
         <>
             <Header title={lang.translations.title} />
             <View style={styles.top}>
-                <Font
-                    preset="title"
-                    style={styles.title}
-                >{lang.translations.title}</Font>
+                <View style={styles.presentation}>
+                    <Font
+                        preset="title"
+                        style={styles.title}
+                    >{lang.translations.title}</Font>
+                    <TouchableOpacity style={styles.create}>
+                        <Plus color={colors.font2} size={16} />
+                    </TouchableOpacity>
+                </View>
                 <Filter
                     filter={search}
                     filterPlaceholder={lang.translations.filter}
@@ -63,14 +69,14 @@ export default function Translations() {
                                 icon={props => <MagnifyingGlass {...props} />}
                                 title={lang.translations.empty_search.title}
                                 desc={lang.translations.empty_search.desc}
-                                contentContainerStyle={{ paddingHorizontal: 10 }}
+                                contentContainerStyle={{ marginHorizontal: 10 }}
                             />
                         ) : (
                             <Empty
                                 icon={props => <HandWaving {...props} />}
                                 title={lang.translations.empty_files.title}
                                 desc={lang.translations.empty_files.desc}
-                                contentContainerStyle={{ paddingHorizontal: 10 }}
+                                contentContainerStyle={{ marginHorizontal: 10 }}
                                 options={[{
                                     label: lang.translations.empty_files.create_option,
                                     accent: true

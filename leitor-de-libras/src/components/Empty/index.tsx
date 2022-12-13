@@ -9,10 +9,7 @@ import { useLang } from "../../contexts/Lang";
 
 import Font from "../Font";
 
-import Theme from "../../@types/Theme";
-
 import createStyles from "./styles";
-import IconWeight from "../../@types/IconWeight";
 
 interface OptionProps {
     label?: string;
@@ -23,7 +20,6 @@ interface OptionProps {
 interface IconProps {
     color?: string;
     size?: number;
-    weight?: IconWeight;
 }
 
 interface Props {
@@ -41,7 +37,7 @@ export default function Empty({ icon, title, desc, options, contentContainerStyl
     
     return (
         <View style={[styles.container, contentContainerStyle]}>
-            { icon ? icon({ color: colors.desc3, weight: "duotone", size: 36}) : <MagnifyingGlassMinus color={colors.desc3} weight="fill" size={36} /> }
+            { icon ? icon({ color: colors.desc3, size: 36}) : <MagnifyingGlassMinus color={colors.desc3} weight="fill" size={36} /> }
             <Font preset="subtitle" style={styles.title}>{title ?? lang.empty.title}</Font>
             <Font preset="desc" style={styles.desc}>{desc ?? lang.empty.desc}</Font>
             <View style={styles.options}>
