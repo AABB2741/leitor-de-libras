@@ -12,6 +12,7 @@ import Filter from "../../components/Filter";
 import Header from "../../components/Header";
 import Font from "../../components/Font";
 
+import normalize from "../../utils/normalize";
 import createStyles from "./styles";
 import { FileProps } from "./File";
 
@@ -66,6 +67,7 @@ export default function Translations() {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
 
     return (
@@ -74,13 +76,19 @@ export default function Translations() {
             <View style={styles.container}>
                 <View style={styles.top}>
                     <Font preset="title" style={styles.title}>{lang.translations.title}</Font>
-                    <Filter filterPlaceholder={lang.translations.filter} order={order} onOrderChange={order => setOrder(order)} />
+                    <Filter
+                        filter={search}
+                        filterPlaceholder={lang.translations.filter}
+                        order={order}
+                        onFilterChange={src => setSearch(src)}
+                        onOrderChange={order => setOrder(order)}
+                    />
                 </View>
                 <FlatList
                     numColumns={3}
                     columnWrapperStyle={styles.files}
                     contentContainerStyle={{ paddingHorizontal: 10 }}
-                    data={FILES}
+                    data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
                     renderItem={({ item, index }) => <File { ...item } key={index} />}
                 />
             </View>
