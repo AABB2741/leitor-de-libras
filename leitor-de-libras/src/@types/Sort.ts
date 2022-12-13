@@ -1,2 +1,2 @@
-declare type Sort = "date" | "name" | "length";
+type Sort = "date" | "name" | "length";
 export default Sort;

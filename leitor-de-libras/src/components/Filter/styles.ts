@@ -17,5 +17,8 @@ export default ({ colors }: Props) => StyleSheet.create({
     },
     filterInput: {
         marginLeft: 10
+    },
+    sort: {
+        flexDirection: "row"
     }
 });
