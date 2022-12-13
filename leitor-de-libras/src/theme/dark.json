@@ -2,7 +2,10 @@
     "font": "#fff",
     "font2": "#fff",
     "desc": "#c9c9c9",
+    "desc2": "#c9c9c9",
+    "desc3": "#585858",
     "background": "#000",
     "background2": "#242424",
-    "header": "#242424"
+    "header": "#242424",
+    "accent": "#1e90ff"
 }

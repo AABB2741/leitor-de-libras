@@ -10,8 +10,22 @@
             "length": "Comprimento"
         }
     },
+    "empty": {
+        "title": "Tudo está vazio...",
+        "desc": "Parece que não há conteúdo a ser exibido."
+    },
     "translations": {
         "title": "Minhas traduções",
-        "filter": "Procurar traduções..."
+        "filter": "Procurar traduções...",
+        "empty_search": {
+            "title": "Sem resultados",
+            "desc": "Não encontramos traduções com o nome inserido. Verifique se você digitou corretamente e tente novamente."
+        },
+        "empty_files": {
+            "title": "Você ainda não tem traduções",
+            "desc": "Comece a traduzir pressionando \"+\" para criar ou importar gravações.",
+            "send_option": "Enviar vídeo",
+            "create_option": "Criar vídeo"
+        }
     }
 }

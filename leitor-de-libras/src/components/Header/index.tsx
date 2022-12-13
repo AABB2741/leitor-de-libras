@@ -33,7 +33,7 @@ export default function Header({ hideBackButton, title, leftOptions, rightOption
                         <ArrowLeft size={24} color={colors.font} />
                     </TouchableOpacity>
                 ) }
-                <Font preset="subtitle" style={styles.title}>{title}</Font>
+                <Font preset="subtitle" style={styles.title} numberOfLines={1}>{title}</Font>
             </View>
             <View style={styles.headerRight}></View>
         </View>
