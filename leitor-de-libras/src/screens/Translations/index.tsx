@@ -1,7 +1,7 @@
 import {
-    Text,
     View
 } from "react-native";
+import Font from "../../components/Font";
 import { useColors } from "../../contexts/Colors";
 
 import createStyles from "./styles";
@@ -12,7 +12,7 @@ export default function Translations() {
 
     return (
         <View style={styles.container}>
-            <Text>Traduções</Text>
+            <Font preset="title" style={styles.title}>Bolsonaro no vasco</Font>
         </View>
     );
 }

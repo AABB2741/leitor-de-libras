@@ -8,6 +8,10 @@ interface Props {
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
         flex: 1,
+        padding: 20,
         backgroundColor: colors.background
+    },
+    title: {
+        fontSize: 18
     }
 });
