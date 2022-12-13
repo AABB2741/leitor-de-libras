@@ -18,7 +18,7 @@ export default function Translations() {
     return (
         <View style={styles.container}>
             <Font preset="title" style={styles.title}>{lang.translations.title}</Font>
-            <Filter />
+            <Filter filterPlaceholder={lang.translations.filter} />
         </View>
     );
 }

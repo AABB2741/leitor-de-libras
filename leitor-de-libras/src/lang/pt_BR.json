@@ -1,5 +1,6 @@
 {
     "general": {
+        "filter": "Procurar...",
         "order": {
             "date": "Data",
             "name": "Nome",
@@ -7,6 +8,7 @@
         }
     },
     "translations": {
-        "title": "Minhas traduções"
+        "title": "Minhas traduções",
+        "filter": "Procurar traduções..."
     }
 }

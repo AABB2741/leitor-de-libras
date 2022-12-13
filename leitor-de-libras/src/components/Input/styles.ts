@@ -6,16 +6,10 @@ interface Props {
 }
 
 export default ({ colors }: Props) => StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        marginVertical: 20
-    },
-    filter: {
+    input: {
+        color: colors.font,
+        fontFamily: "Rubik",
         flex: 1,
-        flexDirection: "row",
-        alignItems: "center"
-    },
-    filterInput: {
-        marginLeft: 10
+        fontSize: 14
     }
 });
