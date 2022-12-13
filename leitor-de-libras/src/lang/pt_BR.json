@@ -1,4 +1,11 @@
 {
+    "general": {
+        "order": {
+            "date": "Data",
+            "name": "Nome",
+            "length": "Comprimento"
+        }
+    },
     "translations": {
         "title": "Minhas traduções"
     }
