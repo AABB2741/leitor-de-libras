@@ -85,5 +85,6 @@ const FILES: FileProps[] = [{
     title: "Teste tessfasfs da tradução",
     date: new Date()
 }];
-// export default FILES;
-export default [];
+
+export default FILES;
+// export default [];
