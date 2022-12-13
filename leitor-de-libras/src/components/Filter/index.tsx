@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import {
+    TouchableOpacity,
+    View,
+    ViewStyle
+} from "react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 import { ArrowDown, ArrowUp, MagnifyingGlass, X } from "phosphor-react-native";
@@ -11,19 +15,20 @@ import Input from "../Input";
 import createStyles from "./styles";
 import Font from "../Font";
 
-interface Props {
+interface Props extends ViewStyle {
     filter?: string;
     filterPlaceholder?: string;
     filterClearHidden?: boolean;
     filterAutoSubmit?: boolean;
     sort?: Sort;
     order?: Order;
+    contentContainerStyle?: ViewStyle;
     onFilterChange?: (filter: string) => void;
     onSortChange?: (sort: Sort) => void;
     onOrderChange?: (order: Order) => void;
 }
 
-export default function Filter({ filter, filterPlaceholder, filterClearHidden, filterAutoSubmit, order, onFilterChange, onOrderChange }: Props) {
+export default function Filter({ filter, filterPlaceholder, filterClearHidden, filterAutoSubmit, order, onFilterChange, onOrderChange, contentContainerStyle }: Props) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -35,7 +40,7 @@ export default function Filter({ filter, filterPlaceholder, filterClearHidden, f
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, contentContainerStyle]}>
             <View style={styles.filter}>
                 {(filterState && !filterClearHidden) ? (
                     <TouchableOpacity onPress={() => {

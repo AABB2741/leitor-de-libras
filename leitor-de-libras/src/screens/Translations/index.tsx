@@ -58,6 +58,46 @@ const FILES: FileProps[] = [{
     date: new Date()
 }, {
     thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
+    title: "Teste dois da tradução",
+    date: new Date()
+}, {
+    thumbnail: require("../../../assets/thumbnails/default-thumbnail.jpg"),
     title: "Teste tessfasfs da tradução",
     date: new Date()
 }]
@@ -73,24 +113,28 @@ export default function Translations() {
     return (
         <>
             <Header title={lang.translations.title} />
+            <View style={styles.top}>
+                <Font
+                    preset="title"
+                    style={styles.title}
+                >{lang.translations.title}</Font>
+                <Filter
+                    filter={search}
+                    filterPlaceholder={lang.translations.filter}
+                    order={order}
+                    onFilterChange={src => setSearch(src)}
+                    onOrderChange={order => setOrder(order)}
+                />
+            </View>
             <View style={styles.container}>
-                <View style={styles.top}>
-                    <Font preset="title" style={styles.title}>{lang.translations.title}</Font>
-                    <Filter
-                        filter={search}
-                        filterPlaceholder={lang.translations.filter}
-                        order={order}
-                        onFilterChange={src => setSearch(src)}
-                        onOrderChange={order => setOrder(order)}
-                    />
-                </View>
                 <FlatList
                     numColumns={3}
                     columnWrapperStyle={styles.files}
                     contentContainerStyle={{ paddingHorizontal: 10 }}
                     data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
                     renderItem={({ item, index }) => <File { ...item } key={index} />}
-                />
+                >   
+                </FlatList>
             </View>
         </>
     );

@@ -11,7 +11,8 @@ export default ({ colors }: Props) => StyleSheet.create({
         backgroundColor: colors.background
     },
     top: {
-        padding: 20
+        padding: 20,
+        backgroundColor: colors.background
     },
     title: {
         fontSize: 18
