@@ -19,6 +19,13 @@ export default ({ colors }: Props) => StyleSheet.create({
         marginLeft: 10
     },
     sort: {
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    order: {
+        paddingLeft: 10,
+        marginLeft: 10,
+        borderLeftWidth: 1,
+        borderLeftColor: colors.desc
     }
 });

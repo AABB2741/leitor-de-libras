@@ -16,6 +16,9 @@ const FONTS: Fonts[] = [{
     name: "title",
     fontFamily: "Inter-Bold",
     fontWeight: "300"
+}, {
+    name: "button",
+    fontFamily: "Exo-2"
 }];
 
 interface Props extends TextProps {

@@ -8,6 +8,7 @@ import Order from "../../@types/Order";
 import Input from "../Input";
 
 import createStyles from "./styles";
+import Font from "../Font";
 
 interface Props {
     filterPlaceholder?: string;
@@ -29,7 +30,8 @@ export default function Filter({ filterPlaceholder, order, onOrderChange }: Prop
                 <Input style={styles.filterInput} placeholder={filterPlaceholder ?? lang.general.filter} />
             </View>
             <View style={styles.sort}>
-                <TouchableOpacity onPress={() => onOrderChange?.(order == "desc" ? "asc" : "desc")}>
+                <Font preset="button">Data</Font>
+                <TouchableOpacity onPress={() => onOrderChange?.(order == "desc" ? "asc" : "desc")} style={styles.order}>
                     { order == "desc" ? <ArrowDown color={colors.font} size={24} /> : <ArrowUp color={colors.font} size={24} /> }
                 </TouchableOpacity>
             </View>
