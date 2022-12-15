@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Order from "../../@types/Order";
 
 import Header from "../../components/Header";
@@ -22,7 +23,9 @@ import { FileProps } from "./File";
 import FILES from "../../constants/recordings";
 import { CircleWavyQuestion, HandWaving, MagnifyingGlass, Plus } from "phosphor-react-native";
 
-export default function Translations() {
+type Props = NativeStackScreenProps<RootStackParamList, "Translations">;
+
+export default function Translations({ navigation }: Props) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -40,7 +43,7 @@ export default function Translations() {
                         preset="title"
                         style={styles.title}
                     >{lang.translations.title}</Font>
-                    <TouchableOpacity style={styles.create}>
+                    <TouchableOpacity style={styles.create} onPress={() => navigation.navigate("Camera")}>
                         <Plus color={colors.font2} size={16} />
                     </TouchableOpacity>
                 </View>

@@ -5,7 +5,9 @@ import { View } from 'react-native';
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import Translations from "./src/screens/Translations";
+import { NavigationContainer } from "@react-navigation/native";
+
+import AppRoutes from "./src/routes/app.routes";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,8 +33,10 @@ export default function App() {
 
 	return (
 		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-			<StatusBar barStyle="light-content" />
-			<Translations />
+			<NavigationContainer>
+				<StatusBar barStyle="light-content" />
+				<AppRoutes />
+			</NavigationContainer>
 		</View>
 	);
 }
