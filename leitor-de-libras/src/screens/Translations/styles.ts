@@ -14,9 +14,6 @@ export default ({ colors }: Props) => StyleSheet.create({
         padding: 20,
         backgroundColor: colors.background
     },
-    title: {
-        fontSize: 18
-    },
     presentation: {
         flexDirection: "row",
         alignItems: "center",

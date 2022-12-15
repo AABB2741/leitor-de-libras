@@ -21,7 +21,7 @@ import createStyles from "./styles";
 import { FileProps } from "./File";
 
 import FILES from "../../constants/recordings";
-import { CircleWavyQuestion, HandWaving, MagnifyingGlass, Plus } from "phosphor-react-native";
+import { CircleWavyQuestion, HandWaving, List, MagnifyingGlass, Plus } from "phosphor-react-native";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Translations">;
 
@@ -39,10 +39,7 @@ export default function Translations({ navigation }: Props) {
             <Header title={lang.translations.title} />
             <View style={styles.top}>
                 <View style={styles.presentation}>
-                    <Font
-                        preset="title"
-                        style={styles.title}
-                    >{lang.translations.title}</Font>
+                    <Font preset="title" >{lang.translations.title}</Font>
                     <TouchableOpacity style={styles.create} onPress={() => navigation.navigate("Camera")}>
                         <Plus color={colors.font2} size={16} />
                     </TouchableOpacity>
@@ -61,34 +58,35 @@ export default function Translations({ navigation }: Props) {
                     columnWrapperStyle={styles.files}
                     contentContainerStyle={{ paddingHorizontal: 10 }}
                     data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
-                    renderItem={({ item, index }) => <File { ...item } key={index} />}
+                    renderItem={({ item, index }) => <File {...item} key={index} />}
                     refreshControl={(
                         <RefreshControl
                             refreshing={refreshing}
                         />
                     )}
                     ListEmptyComponent={search ? (
-                            <Empty
-                                icon={props => <MagnifyingGlass {...props} />}
-                                title={lang.translations.empty_search.title}
-                                desc={lang.translations.empty_search.desc}
-                                contentContainerStyle={{ marginHorizontal: 10 }}
-                            />
-                        ) : (
-                            <Empty
-                                icon={props => <HandWaving {...props} />}
-                                title={lang.translations.empty_files.title}
-                                desc={lang.translations.empty_files.desc}
-                                contentContainerStyle={{ marginHorizontal: 10 }}
-                                options={[{
-                                    label: lang.translations.empty_files.create_option,
-                                    accent: true
-                                }, {
-                                    label: lang.translations.empty_files.send_option
-                                }]}
-                            />
+                        <Empty
+                            icon={props => <MagnifyingGlass {...props} />}
+                            title={lang.translations.empty_search.title}
+                            desc={lang.translations.empty_search.desc}
+                            contentContainerStyle={{ marginHorizontal: 10 }}
+                        />
+                    ) : (
+                        <Empty
+                            icon={props => <HandWaving {...props} />}
+                            title={lang.translations.empty_files.title}
+                            desc={lang.translations.empty_files.desc}
+                            contentContainerStyle={{ marginHorizontal: 10 }}
+                            options={[{
+                                label: lang.translations.empty_files.create_option,
+                                accent: true,
+                                onPress: () => navigation.navigate("Camera")
+                            }, {
+                                label: lang.translations.empty_files.send_option
+                            }]}
+                        />
                     )}
-                >   
+                >
                 </FlatList>
             </View>
         </>

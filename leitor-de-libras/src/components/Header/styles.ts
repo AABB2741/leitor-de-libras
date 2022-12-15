@@ -12,6 +12,10 @@ export default ({ colors }: Props) => StyleSheet.create({
         justifyContent: "space-between",
         backgroundColor: colors.header
     },
+    headerPadding: {
+        paddingHorizontal: 20,
+        paddingVertical: 12.5
+    },
     headerLeft: {
         flexDirection: "row",
         alignItems: "center"

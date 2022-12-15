@@ -15,7 +15,8 @@ interface Fonts extends TextStyle {
 const FONTS: Fonts[] = [{
     name: "title",
     fontFamily: "Inter-Bold",
-    fontWeight: "300"
+    fontWeight: "300",
+    fontSize: 18
 }, {
     name: "desc",
     fontFamily: "PT-Sans"

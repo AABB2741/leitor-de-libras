@@ -2,7 +2,8 @@ import { MagnifyingGlassMinus } from "phosphor-react-native";
 import {
     View,
     ViewStyle,
-    TouchableOpacity
+    TouchableOpacity,
+    TouchableOpacityProps
 } from "react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
@@ -11,10 +12,9 @@ import Font from "../Font";
 
 import createStyles from "./styles";
 
-interface OptionProps {
+interface OptionProps extends TouchableOpacityProps {
     label?: string;
     accent?: boolean;
-    onPress?: () => void;
 }
 
 interface IconProps {
@@ -34,16 +34,16 @@ export default function Empty({ icon, title, desc, options, contentContainerStyl
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-    
+
     return (
         <View style={[styles.container, contentContainerStyle]}>
-            { icon ? icon({ color: colors.desc3, size: 36}) : <MagnifyingGlassMinus color={colors.desc3} weight="fill" size={36} /> }
+            {icon ? icon({ color: colors.desc3, size: 36 }) : <MagnifyingGlassMinus color={colors.desc3} weight="fill" size={36} />}
             <Font preset="subtitle" style={styles.title}>{title ?? lang.empty.title}</Font>
             <Font preset="desc" style={styles.desc}>{desc ?? lang.empty.desc}</Font>
             <View style={styles.options}>
-                {options?.map((o, i) => (
-                    <TouchableOpacity style={[styles.option, o.accent && { backgroundColor: colors.accent }]} key={i}>
-                        <Font preset="button" style={[styles.optionLabel, { color: o.accent ? colors.font2 : colors.accent }]}>{o.label}</Font>
+                {options?.map(({ accent, label, ...rest }, i) => (
+                    <TouchableOpacity style={[styles.option, accent && { backgroundColor: colors.accent }]} key={i} {...rest}>
+                        <Font preset="button" style={[styles.optionLabel, { color: accent ? colors.font2 : colors.accent }]}>{label}</Font>
                     </TouchableOpacity>
                 ))}
             </View>
