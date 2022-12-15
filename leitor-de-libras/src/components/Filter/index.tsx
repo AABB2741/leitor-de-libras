@@ -6,14 +6,14 @@ import {
 } from "react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
-import { ArrowDown, ArrowUp, MagnifyingGlass, X } from "phosphor-react-native";
+import { MagnifyingGlass, SortAscending, SortDescending, X } from "phosphor-react-native";
 
 import Sort from "../../@types/Sort";
 import Order from "../../@types/Order";
 import Input from "../Input";
 
 import createStyles from "./styles";
-import Font from "../Font";
+import Select from "../Select";
 
 interface Props extends ViewStyle {
     filter?: string;
@@ -61,9 +61,14 @@ export default function Filter({ filter, filterPlaceholder, filterClearHidden, f
                 />
             </View>
             <View style={styles.sort}>
-                <Font preset="button">Data</Font>
+                <Select
+                    label="Data"
+                    value="Vasco"
+                    options={[]}
+                    disableStyles
+                />
                 <TouchableOpacity onPress={() => onOrderChange?.(order == "desc" ? "asc" : "desc")} style={styles.order}>
-                    { order == "desc" ? <ArrowDown color={colors.font} size={24} /> : <ArrowUp color={colors.font} size={24} /> }
+                    { order == "desc" ? <SortAscending color={colors.font} size={24} /> : <SortDescending color={colors.font} size={24} /> }
                 </TouchableOpacity>
             </View>
         </View>
