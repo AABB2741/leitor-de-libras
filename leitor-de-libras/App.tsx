@@ -19,7 +19,8 @@ export default function App() {
 		"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
 		"Rubik": require("./assets/fonts/Rubik-Regular.ttf"),
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
-		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf")
+		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
+		"PT-Sans-Bold": require("./assets/fonts/PTSans-Bold.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {

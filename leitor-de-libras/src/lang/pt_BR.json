@@ -36,7 +36,12 @@
     },
     "dashboard": {
         "signed_welcome": "Bem-vindo(a) ao Libras, %s!",
-        "welcome": "Bem-vindo(a) ao Libras!"
+        "welcome": "Bem-vindo(a) ao Libras!",
+        "tips": {
+            "curiosity": "Você sabia?",
+            "tip": "Dica:",
+            "learn_more": "Saiba mais"
+        }
     },
     "translations": {
         "options": {

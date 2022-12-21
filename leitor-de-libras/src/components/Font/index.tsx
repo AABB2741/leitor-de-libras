@@ -21,6 +21,9 @@ const FONTS: Fonts[] = [{
     name: "desc",
     fontFamily: "PT-Sans"
 }, {
+    name: "desc-bold",
+    fontFamily: "PT-Sans-Bold"
+}, {
     name: "text",
     fontFamily: "Inter-Regular"
 }, {
