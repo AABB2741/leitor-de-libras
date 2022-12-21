@@ -1,5 +1,7 @@
 type RootStackParamList = {
     Dashboard: undefined;
-    Camera: undefined;
     Translations: undefined;
+    Camera: undefined;
+    Learn: undefined;
+    Profile: undefined;
 }
