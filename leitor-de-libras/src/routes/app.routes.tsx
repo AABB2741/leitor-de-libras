@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Books, House, Translate, Camera as CameraIcon } from "phosphor-react-native";
+import { Books, House, Translate, Camera as CameraIcon, UserCirclePlus, UserCircle } from "phosphor-react-native";
 import { useColors } from "../contexts/Colors";
 
 import Dashboard from "../screens/Dashboard";
@@ -54,13 +54,17 @@ export default function AppRoutes() {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon: ({ focused, size }) => <Image source={user.avatar} style={{
-                        width: size,
-                        height: size,
-                        borderRadius: size,
-                        borderWidth: 2,
-                        borderColor: focused ? colors.accent : "transparent"
-                    }} />
+                    tabBarIcon: ({ focused, size }) => user.signed ? (
+                        <Image source={user.avatar} style={{
+                            width: size,
+                            height: size,
+                            borderRadius: size,
+                            borderWidth: 2,
+                            borderColor: focused ? colors.accent : "transparent"
+                        }} />
+                    ) : (
+                        <UserCircle color={focused ? colors.accent : colors.font} weight={focused ? "fill" : "regular"} size={size} />
+                    )
                 }}
             />
         </Tab.Navigator>
