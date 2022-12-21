@@ -1,4 +1,9 @@
-import { ArrowSquareOut, Heart, Shuffle } from "phosphor-react-native";
+import {
+    ArrowSquareOut,
+    Heart,
+    ShareNetwork,
+    Shuffle
+} from "phosphor-react-native";
 import { TouchableOpacity, View } from "react-native";
 import Font from "../../../components/Font";
 import { useColors } from "../../../contexts/Colors";
@@ -25,6 +30,9 @@ export default function Tips() {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button}>
                         <Heart size={24} color={colors.font} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button}>
+                        <ShareNetwork size={24} color={colors.font} />
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.visit}>

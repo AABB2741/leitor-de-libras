@@ -2,9 +2,19 @@ import { useState } from "react";
 import {
     FlatList,
     View,
-    TouchableOpacity,
     RefreshControl
 } from "react-native";
+import {
+    Archive,
+    CloudCheck,
+    DotsThreeVertical,
+    Download,
+    Export,
+    HandWaving,
+    MagnifyingGlass,
+    PlusCircle,
+    Trash
+} from "phosphor-react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -19,10 +29,8 @@ import Font from "../../components/Font";
 
 import normalize from "../../utils/normalize";
 import createStyles from "./styles";
-import { FileProps } from "./File";
 
 import FILES from "../../constants/recordings";
-import { Archive, CircleWavyQuestion, CloudCheck, DotsThreeVertical, Download, Export, HandWaving, List, MagnifyingGlass, Plus, PlusCircle, Trash } from "phosphor-react-native";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Translations">;
 
