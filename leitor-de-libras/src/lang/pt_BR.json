@@ -55,5 +55,15 @@
             "send_option": "Enviar vídeo",
             "create_option": "Criar vídeo"
         }
+    },
+    "camera": {
+        "presentation": {
+            "title": "Diga \"X\"!"
+        },
+        "request_permission": {
+            "title": "Permita-nos acessar a sua câmera.",
+            "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
+            "learn_more": "Saiba como usamos seus dados"
+        }
     }
 }

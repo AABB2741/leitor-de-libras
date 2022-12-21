@@ -11,15 +11,10 @@ export default ({ colors }: Props) => StyleSheet.create({
         flex: 1
     },
     camera: {
-        width: "100%",
-        height: "100%"
+        flex: 1
     },
     overlay: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        flex: 1,
         flexDirection: "column",
         justifyContent: "space-between",
         zIndex: 1
