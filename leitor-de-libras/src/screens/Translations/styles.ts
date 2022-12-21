@@ -16,7 +16,7 @@ export default ({ colors }: Props) => StyleSheet.create({
         backgroundColor: colors.background
     },
     optionsContainer: {
-        width: "100%",
+        flex: 1,
         backgroundColor: colors.background
     },
     options: {
@@ -26,6 +26,7 @@ export default ({ colors }: Props) => StyleSheet.create({
     },
     files: {
         flex: 1,
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        paddingHorizontal: 10
     }
 });

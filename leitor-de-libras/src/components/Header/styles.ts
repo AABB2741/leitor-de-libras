@@ -24,7 +24,8 @@ export default ({ colors }: Props) => StyleSheet.create({
         fontSize: 14
     },
     headerRight: {
-
+        flexDirection: "row",
+        alignItems: "center"
     },
     headerOption: {
         padding: 10

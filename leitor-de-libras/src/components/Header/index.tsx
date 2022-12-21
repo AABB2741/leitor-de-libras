@@ -47,13 +47,14 @@ export default function Header({ hideBackButton, title, leftOptions, rightOption
                     </TouchableOpacity>
                 )) }
                 <Font preset="subtitle" style={styles.title} numberOfLines={1}>{title}</Font>
+            </View>
+            <View style={styles.headerRight}>
                 { rightOptions?.map(({ icon, ...rest }, i) => (
                     <TouchableOpacity { ...rest } style={styles.headerOption} key={i}>
                         { icon({ color: colors.font, size: 24 }) }
                     </TouchableOpacity>
                 )) }
             </View>
-            <View style={styles.headerRight}></View>
         </View>
     );
 }
