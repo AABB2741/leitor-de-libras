@@ -4,7 +4,7 @@ type User = {
     id?: number;
     token?: string;
     avatar?: ImageSourcePropType;
-    nickname?: string;
+    name?: string;
     email?: string;
     signed: boolean;
 }

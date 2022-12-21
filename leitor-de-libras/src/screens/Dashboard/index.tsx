@@ -1,7 +1,9 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { PencilSimpleLine } from "phosphor-react-native";
 import {
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from "react-native";
 
 import Font from "../../components/Font";
@@ -10,6 +12,8 @@ import { useLang } from "../../contexts/Lang";
 import { useUser } from "../../contexts/User";
 
 import createStyles from "./styles";
+
+import Infos from "./Infos";
 
 interface Props {
     navigation: NativeStackNavigationProp<RootStackParamList, "Dashboard">;
@@ -23,7 +27,8 @@ export default function Dashboard({ navigation }: Props) {
     
     return (
         <View style={styles.container}>
-            <Font preset="title">{user.signed ? lang.dashboard.signed_welcome.replace("%s", user.nickname ?? "") : lang.dashboard.welcome}</Font>
+            <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s", user.name ?? "") : lang.dashboard.welcome}</Font>
+            <Infos />
         </View>
     );
 }

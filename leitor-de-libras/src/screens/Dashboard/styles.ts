@@ -10,5 +10,8 @@ export default ({ colors }: Props) => StyleSheet.create({
         padding: 20,
         backgroundColor: colors.background,
         flex: 1
+    },
+    welcome: {
+        fontSize: 20
     }
 })
