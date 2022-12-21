@@ -15,15 +15,15 @@ export default function AppRoutes() {
     const colors = useColors();
 
     return (
-        <Tab.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false, tabBarStyle: {
+        <Tab.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarStyle: {
             backgroundColor: colors.header,
-            borderTopWidth: 0
+            borderTopWidth: 0,
+            shadowColor: "transparent"
         } }}>
             <Tab.Screen
                 name="Dashboard"
                 component={Dashboard}
                 options={{
-                    tabBarShowLabel: false,
                     tabBarIcon: ({ focused, size }) => focused ? <House weight="fill" size={size} color={colors.accent} /> : <House size={size} color={colors.font} />
                 }}
             />
@@ -31,7 +31,6 @@ export default function AppRoutes() {
                 name="Translations"
                 component={Translations}
                 options={{
-                    tabBarShowLabel: false,
                     tabBarIcon: ({ focused, size }) => focused ? <Translate weight="fill" size={size} color={colors.accent} /> : <Translate size={size} color={colors.font} />
                 }}
             />
@@ -39,7 +38,6 @@ export default function AppRoutes() {
                 name="Camera"
                 component={Camera}
                 options={{
-                    tabBarShowLabel: false,
                     tabBarIcon: ({ focused, size }) => focused ? <CameraIcon weight="fill" size={size} color={colors.accent} /> : <CameraIcon size={size} color={colors.font} />
                 }}
             />
@@ -47,7 +45,6 @@ export default function AppRoutes() {
                 name="Learn"
                 component={Learn}
                 options={{
-                    tabBarShowLabel: false,
                     tabBarIcon: ({ focused, size }) => focused ? <Books weight="fill" size={size} color={colors.accent} /> : <Books size={size} color={colors.font} />
                 }}
             />
@@ -55,7 +52,6 @@ export default function AppRoutes() {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarShowLabel: false,
                     tabBarIcon: ({ focused, size }) => <Image source={require("../../assets/profile-picture.jpg")} style={{
                         width: size,
                         height: size,

@@ -71,9 +71,6 @@ export default function Translations({ navigation }: Props) {
                 />
             </View>
             <View style={styles.top}>
-                <View style={styles.presentation}>
-                    <Font preset="title" >{lang.translations.title}</Font>
-                </View>
                 <Filter
                     filter={search}
                     filterPlaceholder={lang.translations.filter}

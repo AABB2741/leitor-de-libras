@@ -12,6 +12,7 @@ export default ({ colors }: Props) => StyleSheet.create({
     },
     top: {
         padding: 20,
+        paddingTop: 0,
         backgroundColor: colors.background
     },
     optionsContainer: {
@@ -22,11 +23,6 @@ export default ({ colors }: Props) => StyleSheet.create({
         padding: 20,
         paddingRight: 13,
         paddingBottom: 0
-    },
-    presentation: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
     },
     files: {
         flex: 1,
