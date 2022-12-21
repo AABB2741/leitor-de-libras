@@ -6,5 +6,8 @@ interface Props {
 }
 
 export default ({ colors }: Props) => StyleSheet.create({
-
+    container: {
+        flex: 1,
+        backgroundColor: colors.background
+    }
 });
