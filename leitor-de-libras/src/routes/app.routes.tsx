@@ -56,7 +56,13 @@ export default function AppRoutes() {
                 component={Profile}
                 options={{
                     tabBarShowLabel: false,
-                    tabBarIcon: ({ focused, size }) => <Image source={require("../../assets/profile-picture.jpg")} style={{ width: size, height: size, borderRadius: size }} />
+                    tabBarIcon: ({ focused, size }) => <Image source={require("../../assets/profile-picture.jpg")} style={{
+                        width: size,
+                        height: size,
+                        borderRadius: size,
+                        borderWidth: 2,
+                        borderColor: focused ? colors.accent : "transparent"
+                    }} />
                 }}
             />
         </Tab.Navigator>
