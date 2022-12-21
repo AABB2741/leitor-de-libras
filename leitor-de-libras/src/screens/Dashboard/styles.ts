@@ -7,6 +7,7 @@ interface Props {
 
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
+        padding: 20,
         backgroundColor: colors.background,
         flex: 1
     }

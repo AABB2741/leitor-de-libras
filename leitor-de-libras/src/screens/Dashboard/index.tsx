@@ -6,6 +6,7 @@ import {
 
 import Font from "../../components/Font";
 import { useColors } from "../../contexts/Colors";
+import { useLang } from "../../contexts/Lang";
 
 import createStyles from "./styles";
 
@@ -14,14 +15,13 @@ interface Props {
 }
 
 export default function Dashboard({ navigation }: Props) {
+    const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
     
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-                <Font preset="button">Ir para camera</Font>
-            </TouchableOpacity>
+            <Font preset="title">{lang.dashboard.welcome.replace("%s", "Jorge Henrique")}</Font>
         </View>
     );
 }

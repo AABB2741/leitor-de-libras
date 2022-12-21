@@ -8,10 +8,12 @@ import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
 import Profile from "../screens/Profile";
 import { Image } from "react-native";
+import { useUser } from "../contexts/User";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export default function AppRoutes() {
+    const user = useUser();
     const colors = useColors();
 
     return (
@@ -52,7 +54,7 @@ export default function AppRoutes() {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon: ({ focused, size }) => <Image source={require("../../assets/profile-picture.jpg")} style={{
+                    tabBarIcon: ({ focused, size }) => <Image source={user.avatar} style={{
                         width: size,
                         height: size,
                         borderRadius: size,

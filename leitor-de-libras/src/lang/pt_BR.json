@@ -34,6 +34,9 @@
         "title": "Tudo está vazio...",
         "desc": "Parece que não há conteúdo a ser exibido."
     },
+    "dashboard": {
+        "welcome": "Bem-vindo(a) ao Libras, %s!"
+    },
     "translations": {
         "options": {
             "create": "Criar tradução",
