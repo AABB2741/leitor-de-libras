@@ -1,4 +1,5 @@
 import {
+    ImageBackground,
     View
 } from "react-native";
 import { useColors } from "../../contexts/Colors";
@@ -13,7 +14,15 @@ export default function Camera() {
 
     return (
         <View style={styles.container}>
-            <Font preset="text">Bolsonaro no Vasco</Font>
+            <View style={styles.overlay}>
+                <View style={styles.top}>
+                    <Font preset="title">Opções superiores</Font>
+                </View>
+                <View style={styles.bottom}>
+
+                </View>
+            </View>
+            <ImageBackground source={require("../../../assets/camera-example.png")} style={styles.camera} />
         </View>
     );
 }
