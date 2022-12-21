@@ -14,15 +14,19 @@ export default ({ colors }: Props) => StyleSheet.create({
         padding: 20,
         backgroundColor: colors.background
     },
+    optionsContainer: {
+        width: "100%",
+        backgroundColor: colors.background
+    },
+    options: {
+        padding: 20,
+        paddingRight: 13,
+        paddingBottom: 0
+    },
     presentation: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
-    },
-    create: {
-        backgroundColor: colors.accent,
-        padding: 5,
-        borderRadius: 50
     },
     files: {
         flex: 1,

@@ -35,6 +35,14 @@
         "desc": "Parece que não há conteúdo a ser exibido."
     },
     "translations": {
+        "options": {
+            "create": "Criar tradução",
+            "delete": "Excluir",
+            "import": "Importar",
+            "export": "Exportar",
+            "archive": "Arquivar",
+            "load": "Carregar"
+        },
         "title": "Minhas traduções",
         "filter": "Procurar traduções...",
         "empty_search": {

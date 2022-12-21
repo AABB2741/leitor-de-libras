@@ -9,6 +9,7 @@ import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Order from "../../@types/Order";
+import Option, { Props as OptionProps } from "./Option";
 
 import Header from "../../components/Header";
 import Empty from "../../components/Empty";
@@ -21,7 +22,7 @@ import createStyles from "./styles";
 import { FileProps } from "./File";
 
 import FILES from "../../constants/recordings";
-import { CircleWavyQuestion, HandWaving, List, MagnifyingGlass, Plus } from "phosphor-react-native";
+import { Archive, CircleWavyQuestion, CloudCheck, Download, Export, HandWaving, List, MagnifyingGlass, Plus, PlusCircle, Trash } from "phosphor-react-native";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Translations">;
 
@@ -34,15 +35,44 @@ export default function Translations({ navigation }: Props) {
     const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
 
+    const OPTIONS: OptionProps[] = [{
+        icon: ({ color, size }) => <PlusCircle color={color} size={size} />,
+        label: lang.translations.options.create
+    }, {
+        icon: ({ color, size }) => <Trash color={color} size={size} />,
+        label: lang.translations.options.delete
+    }, {
+        icon: ({ color, size }) => <Download color={color} size={size} />,
+        label: lang.translations.options.import
+    }, {
+        icon: ({ color, size }) => <Export color={color} size={size} />,
+        label: lang.translations.options.export
+    }, {
+        icon: ({ color, size }) => <Archive color={color} size={size} />,
+        label: lang.translations.options.archive
+    }, {
+        icon: ({ color, size }) => <CloudCheck color={color} size={size} />,
+        label: lang.translations.options.load
+    }];
+
     return (
         <>
             <Header title={lang.translations.title} />
+            <View>
+                <FlatList
+                    style={styles.optionsContainer}
+                    contentContainerStyle={styles.options}
+                    data={OPTIONS}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({ item, index }) => (
+                        <Option { ...item } key={index} />
+                    )}
+                />
+            </View>
             <View style={styles.top}>
                 <View style={styles.presentation}>
                     <Font preset="title" >{lang.translations.title}</Font>
-                    <TouchableOpacity style={styles.create} onPress={() => navigation.navigate("Camera")}>
-                        <Plus color={colors.font2} size={16} />
-                    </TouchableOpacity>
                 </View>
                 <Filter
                     filter={search}
