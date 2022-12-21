@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Books, House, Translate, Camera as CameraIcon, UserCirclePlus, UserCircle } from "phosphor-react-native";
+import { Books, House, Translate, Camera as CameraIcon, UserCirclePlus, UserCircle, Plus } from "phosphor-react-native";
 import { useColors } from "../contexts/Colors";
 
 import Dashboard from "../screens/Dashboard";
@@ -7,7 +7,7 @@ import Translations from "../screens/Translations";
 import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
 import Profile from "../screens/Profile";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import { useUser } from "../contexts/User";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
@@ -40,7 +40,11 @@ export default function AppRoutes() {
                 name="Camera"
                 component={Camera}
                 options={{
-                    tabBarIcon: ({ focused, size }) => focused ? <CameraIcon weight="fill" size={size} color={colors.accent} /> : <CameraIcon size={size} color={colors.font} />
+                    tabBarIcon: () => (
+                        <View style={{ padding: 12, backgroundColor: colors.accent2, marginBottom: 32, borderRadius: 28 }}>
+                            <Plus size={32} color={colors.font2} />
+                        </View>
+                    )
                 }}
             />
             <Tab.Screen
