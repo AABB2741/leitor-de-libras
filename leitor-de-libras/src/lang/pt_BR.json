@@ -41,6 +41,15 @@
             "curiosity": "Você sabia?",
             "tip": "Dica:",
             "learn_more": "Saiba mais"
+        },
+        "what_to_do": {
+            "title": "O que fazer?",
+            "create": "Criar nova tradução",
+            "view_translations": "Ver suas traduções",
+            "import": "Importar traduções",
+            "export": "Exportar traduções",
+            "delete": "Excluir traduções",
+            "archived": "Traduções arquivadas"
         }
     },
     "translations": {

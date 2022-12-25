@@ -3,8 +3,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
-        marginTop: 20,
-        flex: 1
+        marginTop: 20
     },
     top: {
         flexDirection: "row",
@@ -12,6 +11,7 @@ export default StyleSheet.create({
         justifyContent: "space-between"
     },
     title: {
+        marginBottom: 10,
         fontSize: 14,
         flex: 1
     }

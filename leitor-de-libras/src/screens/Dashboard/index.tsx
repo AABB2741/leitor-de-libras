@@ -1,9 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { PencilSimpleLine } from "phosphor-react-native";
 import {
-    View,
-    TouchableOpacity,
-    Image
+    View
 } from "react-native";
 
 import Font from "../../components/Font";
@@ -15,7 +12,8 @@ import createStyles from "./styles";
 
 import Infos from "./Infos";
 import Tips from "./Tips";
-import Category from "./Category";
+import Category from "../../components/Category";
+import WhatToDo from "./WhatToDo";
 
 interface Props {
     navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
@@ -32,13 +30,7 @@ export default function Dashboard({ navigation }: Props) {
             <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s", user.name ?? "") : lang.dashboard.welcome}</Font>
             <Infos navigation={navigation} />
             <Tips />
-            <Category
-                title="Vasco na grama"
-                data={[]}
-                renderItem={() => (
-                    <></>
-                )}
-            />
+            <WhatToDo />
         </View>
     );
 }
