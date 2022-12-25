@@ -15,7 +15,6 @@ export default ({ colors }: Props) => StyleSheet.create({
         marginTop: 10,
         marginBottom: 5,
         fontSize: 16,
-        color: colors.font,
         textAlign: "center"
     },
     desc: {

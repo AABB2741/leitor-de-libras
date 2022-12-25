@@ -17,7 +17,6 @@ export default ({ colors }: Props) => StyleSheet.create({
         justifyContent: "space-between"
     },
     label: {
-        color: colors.font,
         fontSize: 14
     },
     indicator: {
