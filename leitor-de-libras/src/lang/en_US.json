@@ -1,21 +1,21 @@
 {
-    "name": "Português (Brasil)",
-    "locale": "pt",
+    "name": "English (US)",
+    "locale": "en",
     "formats": {
         
     },
     "general": {
-        "filter": "Procurar...",
+        "filter": "Search...",
         "order": {
-            "date": "Data",
-            "name": "Nome",
-            "length": "Comprimento"
+            "date": "Date",
+            "name": "Name",
+            "length": "Length"
         },
         "unity": {
-            "future": "em %d",
-            "past": "há %s",
-            "s": "alguns segundos",
-            "ss": "seg",
+            "future": "in %d",
+            "past": "%s ago",
+            "s": "few seconds",
+            "ss": "sec",
             "m": "1min",
             "mm": "%dmin",
             "h": "1h",
@@ -31,55 +31,55 @@
         }
     },
     "empty": {
-        "title": "Tudo está vazio...",
-        "desc": "Parece que não há conteúdo a ser exibido."
+        "title": "Everything is empty...",
+        "desc": "Looks like there's no content to be displayed."
     },
     "dashboard": {
-        "signed_welcome": "Bem-vindo(a) ao Libras, %s!",
-        "welcome": "Bem-vindo(a) ao Libras!",
+        "signed_welcome": "Welcome to Libras, %s!",
+        "welcome": "Welcome to Libras!",
         "tips": {
-            "curiosity": "Você sabia?",
-            "tip": "Dica:",
-            "learn_more": "Saiba mais"
+            "curiosity": "Did you know?",
+            "tip": "Tip:",
+            "learn_more": "Learn more"
         },
         "what_to_do": {
-            "title": "O que fazer?",
-            "create": "Criar nova tradução",
-            "view_translations": "Ver suas traduções",
-            "import": "Importar traduções",
-            "export": "Exportar traduções",
-            "delete": "Excluir traduções",
-            "archived": "Traduções arquivadas"
+            "title": "What to do?",
+            "create": "Create new translation",
+            "view_translations": "See your translations",
+            "import": "Import translations",
+            "export": "Export translations",
+            "delete": "Delete translations",
+            "archived": "Archived translations"
         }
     },
     "translations": {
         "options": {
-            "create": "Criar tradução",
-            "delete": "Excluir",
-            "import": "Importar",
-            "export": "Exportar",
-            "archive": "Arquivar",
-            "load": "Carregar"
+            "create": "Create translation",
+            "delete": "Delete",
+            "import": "Import",
+            "export": "Export",
+            "archive": "Archive",
+            "load": "Load"
         },
-        "title": "Minhas traduções",
-        "filter": "Procurar traduções...",
+        "title": "My translations",
+        "filter": "Search translations...",
         "empty_search": {
-            "title": "Sem resultados",
-            "desc": "Não encontramos traduções com o nome inserido. Verifique se você digitou corretamente e tente novamente."
+            "title": "No results",
+            "desc": "We didn't find translations with the given name. Check if you spelled it correctly and try again."
         },
         "empty_files": {
-            "title": "Você ainda não tem traduções",
-            "desc": "Comece a traduzir pressionando \"+\" para criar ou importar gravações.",
-            "send_option": "Enviar vídeo",
-            "create_option": "Criar vídeo"
+            "title": "You don't have translations yet",
+            "desc": "Create or import translations by pressing \"%s\" button.",
+            "send_option": "Send video",
+            "create_option": "Create video"
         }
     },
     "camera": {
         "presentation": {
-            "title": "Diga \"X\"!"
+            "title": "Say \"Cheese\"!"
         },
         "request_permission": {
-            "title": "Permita-nos acessar a sua câmera.",
+            "title": "Let us access your camera.",
             "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
             "learn_more": "Saiba como usamos seus dados"
         }

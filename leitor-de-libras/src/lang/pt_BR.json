@@ -69,7 +69,7 @@
         },
         "empty_files": {
             "title": "Você ainda não tem traduções",
-            "desc": "Comece a traduzir pressionando \"+\" para criar ou importar gravações.",
+            "desc": "Comece a traduzir pressionando \"%s\" para criar ou importar gravações.",
             "send_option": "Enviar vídeo",
             "create_option": "Criar vídeo"
         }

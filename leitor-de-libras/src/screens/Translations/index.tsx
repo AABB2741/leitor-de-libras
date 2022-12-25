@@ -110,7 +110,7 @@ export default function Translations({ navigation }: Props) {
                             refreshing={refreshing}
                         />
                     )}
-                    ListEmptyComponent={search ? (
+                    ListEmptyComponent={(search && FILES.length > 0) ? (
                         <Empty
                             icon={props => <MagnifyingGlass {...props} />}
                             title={lang.translations.empty_search.title}
@@ -121,7 +121,7 @@ export default function Translations({ navigation }: Props) {
                         <Empty
                             icon={props => <HandWaving {...props} />}
                             title={lang.translations.empty_files.title}
-                            desc={lang.translations.empty_files.desc}
+                            desc={lang.translations.empty_files.desc.replace("%s", lang.translations.options.create)}
                             contentContainerStyle={{ marginHorizontal: 20 }}
                             options={[{
                                 label: lang.translations.empty_files.create_option,
