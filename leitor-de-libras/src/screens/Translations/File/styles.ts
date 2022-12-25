@@ -18,7 +18,7 @@ export default ({ colors }: Props) => StyleSheet.create({
         borderRadius: 16
     },
     title: {
-        marginVertical: 5,
+        marginTop: 5,
         fontSize: 12
     },
     date: {

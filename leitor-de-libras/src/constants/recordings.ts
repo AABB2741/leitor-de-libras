@@ -82,7 +82,7 @@ const FILES: FileProps[] = [{
     length: Math.round(Math.random() * 10000)
 }, {
     thumbnail: require("../../assets/thumbnails/default-thumbnail.jpg"),
-    title: "Teste dois da tradução",
+    title: "TesteASDs dois da tradução",
     date: new Date(`${String(Math.round(Math.random() * 2022)).padStart(4, "0")}-${String(Math.round(Math.random() * 12)+1).padStart(2, "0")}-${String(Math.round(Math.random() * 28) + 1).padStart(2, "0")}`),
     length: Math.round(Math.random() * 10000)
 }, {
