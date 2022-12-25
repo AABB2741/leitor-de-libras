@@ -31,7 +31,7 @@ export default function Infos({ navigation }: Props) {
                 </View>
             </View>
             <View style={styles.buttons}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Customize")}>
                     <PencilSimpleLine color={colors.font} size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}>
