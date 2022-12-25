@@ -1,6 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Books, House, Translate, UserCircle, Plus } from "phosphor-react-native";
+import {
+    Books,
+    House,
+    Translate,
+    UserCircle,
+    Plus
+} from "phosphor-react-native";
 import { useColors } from "../contexts/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 
 import DashboardRoutes from "./dashboard.routes";
 import Translations from "../screens/Translations";
@@ -43,7 +50,11 @@ export default function AppRoutes() {
                     name="Camera"
                     component={Camera}
                     options={{
-                        tabBarIcon: () => (
+                        tabBarIcon: ({ focused }) => focused ? (
+                            <LinearGradient colors={[ colors.accent2, colors.accent ]} locations={[0, 1]} style={{ padding: 12, marginBottom: 32, borderRadius: 28 }}>
+                                <Plus size={32} color={colors.font2} />
+                            </LinearGradient>
+                        ) : (
                             <View style={{ padding: 12, backgroundColor: colors.accent2, marginBottom: 32, borderRadius: 28 }}>
                                 <Plus size={32} color={colors.font2} />
                             </View>
