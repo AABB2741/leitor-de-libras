@@ -6,6 +6,9 @@ interface Props {
 }
 
 export default ({ colors }: Props) => StyleSheet.create({
+    container: {
+        paddingHorizontal: 20
+    },
     content: {
         fontSize: 16
     },

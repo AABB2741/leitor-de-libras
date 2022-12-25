@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import Font from "../Font";
 import { useColors } from "../../contexts/Colors";
+
 import styles from "./styles";
 
 interface Props<T> extends FlatListProps<T> {
@@ -14,6 +15,7 @@ interface Props<T> extends FlatListProps<T> {
     pressable?: boolean;
 }
 
+// Colocar margin-right de 10 pixels para cada elemento da lista
 export default function Category<T>({ title, pressable, ...rest }: Props<T>) {
     const colors = useColors();
 
@@ -26,6 +28,7 @@ export default function Category<T>({ title, pressable, ...rest }: Props<T>) {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingLeft: 20, paddingRight: 10 }}
                 {...rest}
             />
         </View>

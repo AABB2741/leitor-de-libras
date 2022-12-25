@@ -7,6 +7,7 @@ interface Props {
 
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
+        paddingHorizontal: 20,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",

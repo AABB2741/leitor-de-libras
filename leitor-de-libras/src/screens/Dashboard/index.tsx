@@ -12,7 +12,6 @@ import createStyles from "./styles";
 
 import Infos from "./Infos";
 import Tips from "./Tips";
-import Category from "../../components/Category";
 import WhatToDo from "./WhatToDo";
 
 interface Props {

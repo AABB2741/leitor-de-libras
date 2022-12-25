@@ -7,10 +7,14 @@ interface Props {
 
 export default ({ colors }: Props) => StyleSheet.create({
     container: {
-        padding: 20,
+        padding: 15,
+        width: 100,
+        height: 100,
+        marginRight: 10,
         backgroundColor: colors.background2,
         alignItems: "center",
-        borderRadius: 16
+        borderRadius: 16,
+        justifyContent: "space-between"
     },
     label: {
         fontSize: 12,

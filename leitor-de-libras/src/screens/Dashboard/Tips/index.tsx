@@ -19,7 +19,7 @@ export default function Tips() {
     const styles = createStyles({ colors });
 
     return (
-        <View>
+        <View style={styles.container}>
             <View>
                 <Font preset="desc-bold" style={styles.content}>{lang.dashboard.tips.curiosity} <Font preset="desc">Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.</Font></Font>
             </View>
