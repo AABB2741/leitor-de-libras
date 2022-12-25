@@ -8,8 +8,7 @@ import Font from "../Font";
 
 import createStyles from "./styles";
 
-interface Props {
-    children?: string;
+interface Props extends TouchableOpacityProps {
     label?: string;
     highlight?: boolean;
     accentColor?: string,
@@ -17,12 +16,12 @@ interface Props {
     labelStyle?: TextStyle;
 }
 
-export default function Button({ children, label, highlight, accentColor, style, labelStyle }: Props) {
+export default function Button({ children, label, highlight, accentColor, style, labelStyle, ...rest }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors, accentColor });
 
     return (
-        <TouchableOpacity style={[styles.container, highlight && styles.highlight, style]}>
+        <TouchableOpacity { ...rest } style={[styles.container, highlight && styles.highlight, style]}>
             <Font preset="button" style={[styles.label, highlight && styles.labelHighlight, labelStyle]}>{children ?? label}</Font>
         </TouchableOpacity>  
     );

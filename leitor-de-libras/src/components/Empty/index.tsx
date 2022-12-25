@@ -42,18 +42,14 @@ export default function Empty({ icon, title, desc, options, contentContainerStyl
             <Font preset="subtitle" style={styles.title}>{title ?? lang.empty.title}</Font>
             <Font preset="desc" style={styles.desc}>{desc ?? lang.empty.desc}</Font>
             <View style={styles.options}>
-                {options?.map(({ highlight, label }, i) => (
+                {options?.map(({ highlight, label, ...rest }, i) => (
                     <Button
                         highlight={highlight}
                         label={label}
                         key={i}
+                        { ...rest }
                     />
                 ))}
-                {/* {options?.map(({ accent, label, ...rest }, i) => (
-                    <TouchableOpacity style={[styles.option, accent && { backgroundColor: colors.accent }]} key={i} {...rest}>
-                        <Font preset="button" style={[styles.optionLabel, { color: accent ? colors.font2 : colors.accent }]}>{label}</Font>
-                    </TouchableOpacity>
-                ))} */}
             </View>
         </View>
     );
