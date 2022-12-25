@@ -17,7 +17,7 @@ import Infos from "./Infos";
 import Tips from "./Tips";
 
 interface Props {
-    navigation: NativeStackNavigationProp<RootStackParamList, "Dashboard">;
+    navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
 }
 
 export default function Dashboard({ navigation }: Props) {
@@ -29,7 +29,7 @@ export default function Dashboard({ navigation }: Props) {
     return (
         <View style={styles.container}>
             <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s", user.name ?? "") : lang.dashboard.welcome}</Font>
-            <Infos />
+            <Infos navigation={navigation} />
             <Tips />
         </View>
     );

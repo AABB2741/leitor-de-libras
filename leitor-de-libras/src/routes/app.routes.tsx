@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Books, House, Translate, Camera as CameraIcon, UserCirclePlus, UserCircle, Plus } from "phosphor-react-native";
 import { useColors } from "../contexts/Colors";
 
-import Dashboard from "../screens/Dashboard";
+import DashboardRoutes from "./dashboard.routes";
 import Translations from "../screens/Translations";
 import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
@@ -24,7 +24,7 @@ export default function AppRoutes() {
         } }}>
             <Tab.Screen
                 name="Dashboard"
-                component={Dashboard}
+                component={DashboardRoutes}
                 options={{
                     tabBarIcon: ({ focused, size }) => focused ? <House weight="fill" size={size} color={colors.accent} /> : <House size={size} color={colors.font} />
                 }}

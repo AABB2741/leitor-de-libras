@@ -10,8 +10,13 @@ import { useUser } from "../../../contexts/User";
 import createStyles from "./styles";
 
 import Font from "../../../components/Font";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function Infos() {
+interface Props {
+    navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
+}
+
+export default function Infos({ navigation }: Props) {
     const user = useUser();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -29,7 +34,7 @@ export default function Infos() {
                 <TouchableOpacity style={styles.button}>
                     <PencilSimpleLine color={colors.font} size={24} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}>
                     <Gear color={colors.font} size={24} />
                 </TouchableOpacity>
             </View>

@@ -5,3 +5,9 @@ type RootStackParamList = {
     Learn: undefined;
     Profile: undefined;
 }
+
+type DashboardParamList = {
+    Home: undefined;
+    Settings: undefined;
+    Customize: undefined;
+}
