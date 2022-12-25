@@ -77,7 +77,7 @@ export default function Translations({ navigation }: Props) {
                 <FlatList
                     ListHeaderComponent={(
                         <>
-                            <View>
+                            <View style={{ flex: 1 }}>
                                 <FlatList
                                     style={styles.optionsContainer}
                                     contentContainerStyle={styles.options}
