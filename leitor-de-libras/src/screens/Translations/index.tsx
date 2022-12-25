@@ -115,14 +115,14 @@ export default function Translations({ navigation }: Props) {
                             icon={props => <MagnifyingGlass {...props} />}
                             title={lang.translations.empty_search.title}
                             desc={lang.translations.empty_search.desc}
-                            contentContainerStyle={{ marginHorizontal: 10 }}
+                            contentContainerStyle={{ marginHorizontal: 20 }}
                         />
                     ) : (
                         <Empty
                             icon={props => <HandWaving {...props} />}
                             title={lang.translations.empty_files.title}
                             desc={lang.translations.empty_files.desc}
-                            contentContainerStyle={{ marginHorizontal: 10 }}
+                            contentContainerStyle={{ marginHorizontal: 20 }}
                             options={[{
                                 label: lang.translations.empty_files.create_option,
                                 accent: true,
