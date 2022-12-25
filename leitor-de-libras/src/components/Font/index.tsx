@@ -41,8 +41,8 @@ interface Props extends TextProps {
 export default function Font({ preset, style, ...rest }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
-
+    
     return (
-        <Text style={[{ ...FONTS.find(f => f.name == preset) }, styles.text, style]} {...rest} />
+        <Text {...rest} style={[styles.text, { ...FONTS.find(f => f.name == preset) }, Array.isArray(style) ? [...style] : style]} />
     );
 }

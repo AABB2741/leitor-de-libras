@@ -107,5 +107,5 @@ const FILES: FileProps[] = [{
     length: Math.round(Math.random() * 10000)
 }];
 
-export default FILES;
-// export default [];
+// export default FILES;
+export default [] as FileProps[];

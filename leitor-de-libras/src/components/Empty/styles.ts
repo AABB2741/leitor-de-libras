@@ -24,16 +24,5 @@ export default ({ colors }: Props) => StyleSheet.create({
     },
     options: {
         marginTop: 10
-    },
-    option: {
-        paddingVertical: 5,
-        paddingHorizontal: 20,
-        borderRadius: 50,
-        marginTop: 10,
-        alignItems: "center"
-    },
-    optionLabel: {
-        fontSize: 14,
-        textAlign: "center"
     }
 });

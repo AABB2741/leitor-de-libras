@@ -21,7 +21,7 @@ export default function Tips() {
     return (
         <View>
             <View>
-                <Font preset="desc-bold" style={styles.content}>{lang.dashboard.tips.curiosity} <Font preset="desc">Libras não utiliza somente sinais com a mão para fazer comunicação, mas também outros parâmetros, como expressões faciais.</Font></Font>
+                <Font preset="desc-bold" style={styles.content}>{lang.dashboard.tips.curiosity} <Font preset="desc">Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.</Font></Font>
             </View>
             <View style={styles.options}>
                 <View style={styles.buttons}>

@@ -125,7 +125,7 @@ export default function Translations({ navigation }: Props) {
                             contentContainerStyle={{ marginHorizontal: 20 }}
                             options={[{
                                 label: lang.translations.empty_files.create_option,
-                                accent: true,
+                                highlight: true,
                                 onPress: () => navigation.navigate("Camera")
                             }, {
                                 label: lang.translations.empty_files.send_option
