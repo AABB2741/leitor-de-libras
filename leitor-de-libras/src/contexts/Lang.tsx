@@ -7,7 +7,7 @@ import LangProps from "../@types/LangProps";
 
 const ln = merge(pt_BR, en_US);
 
-const LangContext = createContext<LangProps>(ln);
+const LangContext = createContext<LangProps>(pt_BR);
 
 interface Props {
     children: React.ReactNode;
@@ -15,7 +15,7 @@ interface Props {
 
 export default function LangProvider({ children }: Props) {
     return (
-        <LangContext.Provider value={ln}>
+        <LangContext.Provider value={pt_BR}>
             {children}
         </LangContext.Provider>
     );

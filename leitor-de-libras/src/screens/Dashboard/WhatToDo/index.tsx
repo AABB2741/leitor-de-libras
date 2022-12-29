@@ -52,7 +52,7 @@ export default function WhatToDo() {
             data={WHAT_TO_DO}
             renderItem={({ item, index }) => (
                 <TouchableOpacity style={styles.container} key={index}>
-                    {item.icon({ color: colors.font, size: 24 })}
+                    {item.icon({ color: colors.font, size: 28 })}
                     <Font preset="subtitle" style={styles.label} numberOfLines={2}>{item.label}</Font>
                 </TouchableOpacity>
             )}

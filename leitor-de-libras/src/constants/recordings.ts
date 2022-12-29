@@ -1,6 +1,8 @@
 import { FileProps } from "../screens/Translations/File";
 
-const FILES: FileProps[] = [{
+type ImportantFileProps = Omit<FileProps, "index">;
+
+const FILES: ImportantFileProps[] = [{
     thumbnail: require("../../assets/thumbnails/default-thumbnail.jpg"),
     title: "Tradução de teste 1. Boa noite!",
     date: new Date(`${String(Math.round(Math.random() * 2022)).padStart(4, "0")}-${String(Math.round(Math.random() * 12)+1).padStart(2, "0")}-${String(Math.round(Math.random() * 28) + 1).padStart(2, "0")}`),
@@ -107,5 +109,5 @@ const FILES: FileProps[] = [{
     length: Math.round(Math.random() * 10000)
 }];
 
-// export default FILES;
-export default [] as FileProps[];
+export default FILES;
+// export default [] as FileProps[];

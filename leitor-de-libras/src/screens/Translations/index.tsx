@@ -104,7 +104,7 @@ export default function Translations({ navigation }: Props) {
                     columnWrapperStyle={styles.files}
                     ListHeaderComponentStyle={{ padding: 0 }}
                     data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
-                    renderItem={({ item, index }) => <File {...item} key={index} />}
+                    renderItem={({ item, index }) => <File {...item} index={index} key={index} />}
                     refreshControl={(
                         <RefreshControl
                             refreshing={refreshing}
