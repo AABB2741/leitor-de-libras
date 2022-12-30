@@ -15,6 +15,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
 	const [fontsLoaded] = useFonts({
 		"Exo-2": require("./assets/fonts/Exo2-Bold.ttf"),
+		"Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
 		"Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
 		"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
 		"Rubik": require("./assets/fonts/Rubik-Regular.ttf"),

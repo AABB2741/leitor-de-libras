@@ -67,6 +67,7 @@ export default function Translations({ navigation }: Props) {
         <>
             <Header
                 title={lang.translations.title}
+                hideBackButton
                 rightOptions={[{
                     icon: props => <MagnifyingGlass { ...props } />
                 }, {

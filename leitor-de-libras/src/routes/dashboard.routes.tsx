@@ -19,5 +19,5 @@ export default function DashboardRoutes() {
                 <Stack.Screen name="Customize" component={Customize} />
             </Stack.Navigator>
         </View>
-    )
+    );
 }

@@ -52,6 +52,9 @@
             "archived": "Traduções arquivadas"
         }
     },
+    "settings": {
+        "title": "Configurações"
+    },
     "translations": {
         "options": {
             "create": "Criar tradução",

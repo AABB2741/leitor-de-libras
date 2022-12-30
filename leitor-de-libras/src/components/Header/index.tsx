@@ -1,6 +1,7 @@
-import { ArrowLeft } from "phosphor-react-native";
+import { CaretLeft } from "phosphor-react-native";
 import {
     View,
+    ViewProps,
     TouchableOpacity,
     TouchableOpacityProps
 } from "react-native";
@@ -20,25 +21,27 @@ export interface HeaderOptionProps extends TouchableOpacityProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
 }
 
-interface Props {
+interface Props extends ViewProps {
     hideBackButton?: boolean;
     title?: string;
     leftOptions?: HeaderOptionProps[];
     rightOptions?: HeaderOptionProps[];
+    opacity?: number;
 }
 
-export default function Header({ hideBackButton, title, leftOptions, rightOptions }: Props) {
+export default function Header({ hideBackButton, title, leftOptions, rightOptions, opacity, ...rest }: Props) {
     const navigation = useNavigation();
 
     const colors = useColors();
     const styles = createStyles({ colors });
 
     return (
-        <View style={styles.container}>
+        <View {...rest} style={[styles.container, Array.isArray(rest.style) ? [ ...rest.style ] : rest.style]}>
+            <View style={[styles.background, { opacity }]} />
             <View style={[styles.headerLeft, (!navigation.canGoBack() && !leftOptions?.length && !rightOptions?.length) && styles.headerPadding]}>
                 { (!hideBackButton && navigation.canGoBack()) && (
                     <TouchableOpacity style={styles.headerOption} onPress={navigation.goBack}>
-                        <ArrowLeft size={24} color={colors.font} />
+                        <CaretLeft size={24} color={colors.font} />
                     </TouchableOpacity>
                 ) }
                 { leftOptions?.map(({ icon, ...rest }, i) => (
@@ -46,7 +49,7 @@ export default function Header({ hideBackButton, title, leftOptions, rightOption
                         { icon({ color: colors.font, size: 24 }) }
                     </TouchableOpacity>
                 )) }
-                <Font preset="subtitle" style={styles.title} numberOfLines={1}>{title}</Font>
+                <Font preset="subtitle" style={[styles.title, hideBackButton && { paddingLeft: 20 }, { opacity }]} numberOfLines={1}>{title}</Font>
             </View>
             <View style={styles.headerRight}>
                 { rightOptions?.map(({ icon, ...rest }, i) => (
