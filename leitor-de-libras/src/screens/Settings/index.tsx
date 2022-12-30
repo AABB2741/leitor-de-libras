@@ -27,7 +27,6 @@ export default function Settings() {
             stickyHeaderIndices={[1]}
             onScroll={e => {
                 const { y } = e.nativeEvent.contentOffset;
-                console.log(`Y: ${y.toFixed(2)} - headerY: ${headerY.toFixed(2)} - Opacity: ${(y / headerY).toFixed(2)}`);
                 setOpacity(y / headerY);
             }}
         >
