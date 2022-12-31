@@ -14,7 +14,7 @@ export default function Appearance() {
 
     return (
         <View>
-            <Font preset="text">Appearance</Font>
+            
         </View>
     )
 }
