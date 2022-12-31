@@ -72,57 +72,7 @@ export default function Configure({ navigation, route }: Props) {
                     icon: ({ color, size }) => <Eraser color={color} size={size} weight="fill" />
                 }]}
             />
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
-            <Font preset="text">TETSETA</Font>
+            {setting.content}
         </ScrollView>
     )
 }
