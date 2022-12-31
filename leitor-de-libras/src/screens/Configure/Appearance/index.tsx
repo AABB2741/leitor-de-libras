@@ -5,6 +5,7 @@ import {
 import {
     BatteryChargingVertical,
     MoonStars,
+    Palette,
     Sun
 } from "phosphor-react-native";
 import FixedCategory from "../../../components/FixedCategory";
@@ -35,7 +36,7 @@ export default function Appearance() {
                 desc={lang.settings.display.appearance.theme.desc.replace("%s", lang.appName)}
             >
                 <ThemeOption
-                    icon={({ color, size, weight }) => <Sun color={color} size={size} weight={weight} />}
+                    icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.auto.name}
                     example={lang.settings.display.appearance.theme.auto.example}
                     sample={amoled}
