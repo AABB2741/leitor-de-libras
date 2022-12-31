@@ -19,10 +19,9 @@ export default function SettingsProvider({ children }: Props) {
     const [settings, setSettings] = useState(Settings);
 
     useEffect(() => {
-        Storage.getItem<typeof Settings>("@settings", true).then(data => {
-            // console.log(data.display.appearance);
-            // setSettings(merge(data, Settings))
-        })
+        Storage.getItem<typeof Settings>("@settings").then(data => {
+            setSettings(merge(data ?? {}, Settings));
+        });
     }, []);
 
     return (

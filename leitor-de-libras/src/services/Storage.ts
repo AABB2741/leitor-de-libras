@@ -7,12 +7,12 @@ function log(msg: string) {
 }
 
 export async function getItem<T = Object>(key: Saves, tab?: boolean): Promise<T | null> {
-    log(`${tab ? "\t↳ " : ""}Obtendo itens de ${key}`);
+    log(`${tab ? "\t↳ " : ""}Obtendo itens de "${key}"`);
     const data = await AsyncStorage.default.getItem(key);
     return data ? JSON.parse(data) : null;
 }
 
 export async function setItem(key: Saves, value: Object, tab?: boolean): Promise<void> {
-    log(`${tab ? "\t↳ " : ""}Definindo itens em ${key}`);
+    log(`${tab ? "\t↳ " : ""}Definindo itens em "${key}"`);
     AsyncStorage.default.setItem(key, JSON.stringify(value));
 }
