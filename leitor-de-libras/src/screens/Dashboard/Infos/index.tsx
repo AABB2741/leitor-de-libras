@@ -3,7 +3,7 @@ import {
     Image,
     TouchableOpacity
 } from "react-native";
-import { Gear, PencilSimpleLine } from "phosphor-react-native";
+import { GearSix, PencilSimpleLine } from "phosphor-react-native";
 import { useColors } from "../../../contexts/Colors";
 import { useUser } from "../../../contexts/User";
 
@@ -35,7 +35,7 @@ export default function Infos({ navigation }: Props) {
                     <PencilSimpleLine color={colors.font} size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}>
-                    <Gear color={colors.font} size={24} />
+                    <GearSix color={colors.font} size={24} />
                 </TouchableOpacity>
             </View>
         </View>

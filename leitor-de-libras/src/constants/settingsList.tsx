@@ -1,12 +1,12 @@
 import {
     Atom,
-    Flask,
+    PaintBrush,
     TestTube
 } from "phosphor-react-native";
 import { LangProps } from "../contexts/Lang";
 
 type Setting = {
-    icon: ({ color, size }: { color: string, size: number }) => React.ReactNode;
+    icon: ({ color, size, weight }: { color: string, size: number, weight?: "regular" | "fill" }) => React.ReactNode;
     title: string;
     desc?: string;
 }
@@ -22,11 +22,11 @@ interface Props {
 
 export default function getSettings({ lang }: Props) {
     const settingsList: Category[] = [{
-        title: "Categoria de teste",
+        title: lang.settings.display.title,
         settings: [{
-            title: "Opção teste 1",
-            desc: "Config 1 ∙ Config 2 ∙ Config 3 ∙ Config 4",
-            icon: ({ color, size }) => <Flask color={color} size={size} />
+            title: lang.settings.display.theme.title,
+            desc: lang.settings.display.theme.desc,
+            icon: ({ color, size, weight }) => <PaintBrush color={color} size={size} weight={weight} />
         }]
     }, {
         title: "Segunda categoria de teste",

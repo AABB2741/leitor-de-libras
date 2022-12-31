@@ -52,6 +52,21 @@
             "archived": "Archived translations"
         }
     },
+    "settings": {
+        "title": "Settings",
+        "tips": {
+            "settings_sync": "Você pode fazer login para salvar suas configurações online e sincronizar com outros dispositivos.",
+            "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
+            "lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
+        },
+        "display": {
+            "title": "Display",
+            "theme": {
+                "title": "Theme",
+                "desc": "Change the way the app is displayed."
+            }
+        }
+    },
     "translations": {
         "options": {
             "create": "Create translation",

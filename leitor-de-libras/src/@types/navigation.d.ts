@@ -9,5 +9,8 @@ type RootStackParamList = {
 type DashboardParamList = {
     Home: undefined;
     Settings: undefined;
+    Configure: {
+        location: string;
+    };
     Customize: undefined;
 }

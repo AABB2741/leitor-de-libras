@@ -13,7 +13,6 @@ interface Props extends Category {
 export default function ConfigSection({ title, settings }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
-    console.log(settings);
 
     return (
         <View style={styles.container}>
