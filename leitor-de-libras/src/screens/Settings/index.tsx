@@ -3,6 +3,7 @@ import {
     View,
     ScrollView
 } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { GearSix, MagnifyingGlass } from "phosphor-react-native";
 
 import getSettings from "../../constants/settingsList";
@@ -16,7 +17,11 @@ import Header from "../../components/Header";
 import createStyles from "./styles";
 import ConfigSection from "./ConfigSection";
 
-export default function Settings() {
+interface Props {
+    navigation: NativeStackNavigationProp<DashboardParamList, "Settings">;
+}
+
+export default function Settings({ navigation }: Props) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -45,7 +50,7 @@ export default function Settings() {
                     icon: ({ color, size }) => <MagnifyingGlass color={color} size={size} />
                 }]}
             />
-            {settingsList.map((props, index) => <ConfigSection { ...props } key={index} />)}
+            {settingsList.map((props, index) => <ConfigSection { ...props } navigation={navigation} key={index} />)}
         </ScrollView>
     );
 }

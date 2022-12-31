@@ -5,21 +5,22 @@ import createStyles from "./styles";
 
 import { Category } from "../../../constants/settingsList";
 import { CaretRight } from "phosphor-react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface Props extends Category {
-
+    navigation: NativeStackNavigationProp<DashboardParamList, "Settings">;
 }
 
-export default function ConfigSection({ title, settings }: Props) {
+export default function ConfigSection({ navigation, category, title, settings }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
-
+    
     return (
         <View style={styles.container}>
             <Font preset="subtitle" numberOfLines={1}>{title}</Font>
             <View style={styles.configs}>
-                {settings.map(({ icon, title, desc }, index) => (
-                    <TouchableOpacity style={styles.config} key={index}>
+                {settings.map(({ icon, location, title, desc }, index) => (
+                    <TouchableOpacity style={styles.config} onPress={() => navigation.navigate("Configure", { category, location })} key={index}>
                         {icon({ color: colors.font, size: 24 })}
                         <View style={styles.configInfos}>
                             <Font preset="button" numberOfLines={1}>{title}</Font>

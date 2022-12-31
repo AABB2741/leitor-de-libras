@@ -9,5 +9,10 @@ export default ({ colors }: Props) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background
+    },
+    emptyContainer: {
+        flex: 1,
+        backgroundColor: colors.background,
+        padding: 20
     }
 });

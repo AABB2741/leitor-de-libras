@@ -10,7 +10,8 @@ type DashboardParamList = {
     Home: undefined;
     Settings: undefined;
     Configure: {
-        location: string;
+        category: "display" | "test";
+        location: "theme";
     };
     Customize: undefined;
 }

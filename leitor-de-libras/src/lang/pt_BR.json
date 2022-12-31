@@ -59,6 +59,11 @@
             "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
             "lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
         },
+        "not_found": {
+            "title": "Configuração não encontrada",
+            "desc": "Desculpe, não encontramos a configuração solicitada.",
+            "back": "Voltar"
+        },
         "display": {
             "title": "Exibição",
             "theme": {
