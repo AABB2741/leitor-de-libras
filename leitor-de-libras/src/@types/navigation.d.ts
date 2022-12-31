@@ -11,7 +11,7 @@ type DashboardParamList = {
     Settings: undefined;
     Configure: {
         category: "display" | "test";
-        location: "theme" | "lang";
+        location: "theme" | "lang" | "test2" | "test3";
     };
     Customize: undefined;
 }

@@ -14,10 +14,12 @@ export default ({ colors }: Props) => StyleSheet.create({
         backgroundColor: colors.background2,
         borderRadius: 12,
         marginTop: 10,
-        overflow: "hidden"
+        overflow: "hidden",
+        paddingBottom: 20
     },
     config: {
         padding: 20,
+        paddingBottom: 0,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
