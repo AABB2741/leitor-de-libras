@@ -7,6 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { NavigationContainer } from "@react-navigation/native";
 
+import SettingsProvider from "./src/contexts/Settings";
 import ColorsProvider from "./src/contexts/Colors";
 import AppRoutes from "./src/routes/app.routes";
 
@@ -36,12 +37,14 @@ export default function App() {
 
 	return (
 		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-			<ColorsProvider>
-				<NavigationContainer>
-					<StatusBar barStyle="light-content" />
-					<AppRoutes />
-				</NavigationContainer>
-			</ColorsProvider>
+			<SettingsProvider>
+				<ColorsProvider>
+					<NavigationContainer>
+						<StatusBar barStyle="light-content" />
+						<AppRoutes />
+					</NavigationContainer>
+				</ColorsProvider>
+			</SettingsProvider>
 		</View>
 	);
 }

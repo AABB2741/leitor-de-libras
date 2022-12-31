@@ -1,6 +1,7 @@
 import { useState, createContext, useContext } from "react";
-import Settings from "../constants/settings";
-import SettingsProps from "../@types/SettingsProps";
+import Settings from "../data/settings.json";
+
+type SettingsProps = typeof Settings;
 
 interface Props {
     children: React.ReactNode;

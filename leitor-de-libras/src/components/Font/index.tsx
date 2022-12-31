@@ -3,10 +3,11 @@ import {
     TextProps,
     TextStyle
 } from "react-native";
-import FontName from "../../@types/FontName";
 import { useColors } from "../../contexts/Colors";
 
 import createStyles from "./styles";
+
+type FontName = "title" | "subtitle" | "text" | "desc" | "desc-bold" | "input" | "button"
 
 interface Fonts extends TextStyle {
     name: FontName;
