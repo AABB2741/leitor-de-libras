@@ -1,12 +1,14 @@
 import {
     Atom,
+    Globe,
+    GlobeStand,
     PaintBrush,
     TestTube
 } from "phosphor-react-native";
 import { LangProps } from "../contexts/Lang";
 
 export type SettingsCategory = "display" | "test";
-export type SettingsLocation = "theme";
+export type SettingsLocation = "theme" | "lang" | "test2" | "test3";
 
 type Setting = {
     icon: ({ color, size, weight }: { color: string, size: number, weight?: "regular" | "fill" }) => React.ReactNode;
@@ -34,19 +36,24 @@ export default function getSettings({ lang }: Props) {
             title: lang.settings.display.theme.title,
             desc: lang.settings.display.theme.desc,
             icon: ({ color, size, weight }) => <PaintBrush color={color} size={size} weight={weight} />
+        }, {
+            location: "lang",
+            title: lang.settings.display.lang.title,
+            desc: lang.settings.display.lang.desc,
+            icon: ({ color, size, weight }) => <GlobeStand color={color} size={size} weight={weight} />
         }]
     }, {
         category: "test",
         title: "Segunda categoria de teste",
         settings: [{
-            location: "theme",
+            location: "test2",
             title: "Opção teste 2",
-            icon: ({ color, size }) => <TestTube color={color} size={size} />
+            icon: ({ color, size, weight }) => <TestTube color={color} size={size} weight={weight} />
         }, {
-            location: "theme",
+            location: "test3",
             title: "Opção teste 3",
             desc: "Config 5 ∙ Config 6",
-            icon: ({ color, size }) => <Atom color={color} size={size} />
+            icon: ({ color, size, weight }) => <Atom color={color} size={size} weight={weight} />
         }]
     }];
     return settingsList;

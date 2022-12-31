@@ -1,7 +1,9 @@
+import { useState } from "react";
 import {
-    View
+    View,
+    ScrollView
 } from "react-native";
-import { Wrench } from "phosphor-react-native";
+import { Eraser, Wrench } from "phosphor-react-native";
 import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 
@@ -13,6 +15,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import getSettings from "../../constants/settingsList";
 import Empty from "../../components/Empty";
+import Header from "../../components/Header";
 
 interface Props {
     navigation: NativeStackNavigationProp<DashboardParamList, "Configure">;
@@ -27,7 +30,10 @@ export default function Configure({ navigation, route }: Props) {
     const styles = createStyles({ colors });
     const settingsList = getSettings({ lang });
     const setting = settingsList.find(s => s.category == route.params.category)?.settings.find(s => s.location == route.params.location);
-    console.log(route.params)
+
+    const [headerY, setHeaderY] = useState(0);
+    const [opacity, setOpacity] = useState(0);
+
     if (!setting) {
         return (
             <View style={styles.emptyContainer}>
@@ -46,8 +52,77 @@ export default function Configure({ navigation, route }: Props) {
     }
 
     return (
-        <View style={styles.container}>
-            <Font preset="title">{setting.title}</Font>
-        </View>
+        <ScrollView
+            style={styles.container}
+            stickyHeaderIndices={[1]}
+            onScroll={e => {
+                const { y } = e.nativeEvent.contentOffset;
+                setOpacity(y / headerY);
+            }}
+        >
+            <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
+                {setting.icon({ color: colors.font, size: 36, weight: "fill" })}
+                <Font preset="title" style={styles.title}>{setting.title}</Font>
+                {setting.desc && <Font preset="desc" style={styles.desc}>{setting.desc}</Font>}
+            </View>
+            <Header
+                title={setting.title}
+                opacity={opacity}
+                rightOptions={[{
+                    icon: ({ color, size }) => <Eraser color={color} size={size} weight="fill" />
+                }]}
+            />
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+            <Font preset="text">TETSETA</Font>
+        </ScrollView>
     )
 }

@@ -68,7 +68,11 @@
             "title": "Exibição",
             "theme": {
                 "title": "Tema",
-                "desc": "Altere a maneira como o aplicativo é exibido."
+                "desc": "Altere a paleta de cores do aplicativo."
+            },
+            "lang": {
+                "title": "Idioma",
+                "desc": "Altere o idioma de exibição do aplicativo."
             }
         }
     },
