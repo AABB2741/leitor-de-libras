@@ -1,7 +1,8 @@
 import { useState, createContext, useContext } from "react";
 
 import light from "../theme/light.json";
-import dark from "../theme/dark.json";
+import dark from "../theme/dark.json"; // Mudar paleta
+import amoled from "../theme/amoled.json";
 
 import Theme from "../@types/Theme";
 
@@ -13,7 +14,7 @@ const ColorsContext = createContext<Theme>(dark);
 
 export default function ColorsProvider({ children }: Props) {
     return (
-        <ColorsContext.Provider value={dark}>
+        <ColorsContext.Provider value={amoled}>
             {children}
         </ColorsContext.Provider>
     );
