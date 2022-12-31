@@ -1,3 +1,6 @@
+type SettingsCategory = "display" | "test";
+type SettingsLocation = "appearance" | "lang" | "test2" | "test3";
+
 type RootStackParamList = {
     Dashboard: undefined;
     Translations: undefined;
@@ -10,8 +13,8 @@ type DashboardParamList = {
     Home: undefined;
     Settings: undefined;
     Configure: {
-        category: "display" | "test";
-        location: "theme" | "lang" | "test2" | "test3";
+        category: SettingsCategory;
+        location: SettingsLocation;
     };
     Customize: undefined;
 }

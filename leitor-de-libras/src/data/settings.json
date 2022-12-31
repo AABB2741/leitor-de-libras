@@ -1,6 +1,9 @@
 {
     "display": {
-        "lang": "auto",
-        "theme": "auto"
+        "appearance": {
+            "theme": "auto",
+            "custom_fonts": true
+        },
+        "lang": "auto"
     }
 }

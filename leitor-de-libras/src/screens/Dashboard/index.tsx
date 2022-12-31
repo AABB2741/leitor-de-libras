@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
-    View
+    ScrollView
 } from "react-native";
 
 import Font from "../../components/Font";
@@ -25,11 +25,11 @@ export default function Dashboard({ navigation }: Props) {
     const styles = createStyles({ colors });
     
     return (
-        <View style={styles.container}>
-            <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s", user.name ?? "") : lang.dashboard.welcome}</Font>
+        <ScrollView style={styles.container}>
+            <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s1", lang.appName).replace("%s2", user.name ?? "") : lang.dashboard.welcome.replace("%s", lang.appName)}</Font>
             <Infos navigation={navigation} />
             <Tips />
             <WhatToDo />
-        </View>
+        </ScrollView>
     );
 }

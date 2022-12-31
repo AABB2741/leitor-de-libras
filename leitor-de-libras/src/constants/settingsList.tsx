@@ -1,14 +1,10 @@
 import {
     Atom,
-    Globe,
     GlobeStand,
-    PaintBrush,
+    PaintBrushHousehold,
     TestTube
 } from "phosphor-react-native";
 import { LangProps } from "../contexts/Lang";
-
-export type SettingsCategory = "display" | "test";
-export type SettingsLocation = "theme" | "lang" | "test2" | "test3";
 
 type Setting = {
     icon: ({ color, size, weight }: { color: string, size: number, weight?: "regular" | "fill" }) => React.ReactNode;
@@ -32,10 +28,10 @@ export default function getSettings({ lang }: Props) {
         category: "display",
         title: lang.settings.display.title,
         settings: [{
-            location: "theme",
-            title: lang.settings.display.theme.title,
-            desc: lang.settings.display.theme.desc,
-            icon: ({ color, size, weight }) => <PaintBrush color={color} size={size} weight={weight} />
+            location: "appearance",
+            title: lang.settings.display.appearance.title,
+            desc: lang.settings.display.appearance.desc.replace("%s", lang.appName),
+            icon: ({ color, size, weight }) => <PaintBrushHousehold color={color} size={size} weight={weight} />
         }, {
             location: "lang",
             title: lang.settings.display.lang.title,
