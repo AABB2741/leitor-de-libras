@@ -69,7 +69,32 @@
             "title": "Exibição",
             "appearance": {
                 "title": "Aparência",
-                "desc": "Altere a maneira que o %s é exibido."
+                "desc": "Altere a maneira que o %s é exibido.",
+                "theme": {
+                    "title": "Tema",
+                    "desc": "Escolha a paleta de cores que será usada para apresentar o %s.",
+                    "hello_world": "Olá, mundo!",
+                    "auto": {
+                        "name": "Tema automático",
+                        "example": "Tema escolhido com base na configuração do seu dispositivo."
+                    },
+                    "light": {
+                        "name": "Tema claro",
+                        "example": "Este é o tema claro, ótimo para locais com alta luminosidade."
+                    },
+                    "dark": {
+                        "name": "Tema escuro",
+                        "example": "Este é o tema escuro, ótimo para locais com baixa luminosidade e para não forçar a vista."
+                    },
+                    "amoled": {
+                        "name": "Modo AMOLED",
+                        "example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
+                    }
+                },
+                "custom_fonts": {
+                    "title": "Fontes personalizadas",
+                    "label": "Permitir que o %s utilize fontes personalizadas"
+                }
             },
             "lang": {
                 "title": "Idioma",

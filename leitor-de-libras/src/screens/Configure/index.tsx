@@ -72,7 +72,9 @@ export default function Configure({ navigation, route }: Props) {
                     icon: ({ color, size }) => <Eraser color={color} size={size} weight="fill" />
                 }]}
             />
-            {setting.content}
+            <View style={styles.content}>
+                {setting.content}
+            </View>
         </ScrollView>
     )
 }

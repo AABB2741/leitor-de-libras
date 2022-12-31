@@ -1,4 +1,5 @@
 {
+    "appName": "Libras",
     "name": "English (US)",
     "locale": "en",
     "formats": {
@@ -35,8 +36,8 @@
         "desc": "Looks like there's no content to be displayed."
     },
     "dashboard": {
-        "signed_welcome": "Welcome to Libras, %s!",
-        "welcome": "Welcome to Libras!",
+        "signed_welcome": "Welcome to %s1, %s2!",
+        "welcome": "Welcome to %s!",
         "tips": {
             "curiosity": "Did you know?",
             "tip": "Tip:",
@@ -59,11 +60,45 @@
             "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
             "lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
         },
+        "not_found": {
+            "title": "Config not found",
+            "desc": "Sorry, we couldn't find the requested config.",
+            "back": "Back"
+        },
         "display": {
             "title": "Display",
-            "theme": {
-                "title": "Theme",
-                "desc": "Change the way the app is displayed."
+            "appearance": {
+                "title": "Appearance",
+                "desc": "Change the way %s is shown.",
+                "theme": {
+                    "title": "Theme",
+                    "desc": "Choose the color scheme that will be used to display %s.",
+                    "hello_world": "Hello, world!",
+                    "auto": {
+                        "name": "Auto",
+                        "example": "Theme selected based on your device's setting."
+                    },
+                    "light": {
+                        "name": "Light theme",
+                        "example": "This is the light theme, great for places with high light."
+                    },
+                    "dark": {
+                        "name": "Dark theme",
+                        "example": "This is the dark theme, great for places with low light."
+                    },
+                    "amoled": {
+                        "name": "AMOLED",
+                        "example": "This is the AMOLED mode. In compatible devices, this mode can help to save battery."
+                    }
+                },
+                "custom_fonts": {
+                    "title": "Custom fonts",
+                    "label": "Let %s use custom fonts"
+                }
+            },
+            "lang": {
+                "title": "Language",
+                "desc": "Change the display language."
             }
         }
     },
