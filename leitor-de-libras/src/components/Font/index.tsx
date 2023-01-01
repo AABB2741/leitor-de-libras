@@ -34,11 +34,11 @@ const FONTS: Fonts[] = [{
     fontFamily: "Ubuntu"
 }];
 
-interface Props extends TextProps {
+interface FontProps extends TextProps {
     preset: FontName;
 }
 
-export default function Font({ preset, style, ...rest }: Props) {
+export default function Font({ preset, style, ...rest }: FontProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
     

@@ -12,11 +12,11 @@ import Font from "../../components/Font";
 import createStyles from "./styles";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
-interface Props {
+interface CameraProps {
     navigation: BottomTabNavigationProp<RootStackParamList, "Camera">;
 }
 
-export default function Camera({ navigation, ...rest }: Props) {
+export default function Camera({ navigation, ...rest }: CameraProps) {
     const dimensions = useWindowDimensions();
     const colors = useColors();
     const styles = createStyles({ colors });

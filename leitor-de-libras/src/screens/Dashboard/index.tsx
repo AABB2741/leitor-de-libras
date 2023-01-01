@@ -14,11 +14,11 @@ import Infos from "./Infos";
 import Tips from "./Tips";
 import WhatToDo from "./WhatToDo";
 
-interface Props {
+interface DashboardProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
 }
 
-export default function Dashboard({ navigation }: Props) {
+export default function Dashboard({ navigation }: DashboardProps) {
     const user = useUser();
     const lang = useLang();
     const colors = useColors();

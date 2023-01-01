@@ -6,11 +6,11 @@ import { useColors } from "../../contexts/Colors";
 
 import createStyles from "./styles";
 
-interface Props {
+interface LearnProps {
     navigation: BottomTabNavigationProp<RootStackParamList, "Learn">;
 }
 
-export default function Profile({  }: Props) {
+export default function Profile({  }: LearnProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 

@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../../@types/Theme";
 
-interface Props {
+interface ConfigSectionStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: ConfigSectionStyle) => StyleSheet.create({
     container: {
         margin: 20,
         marginBottom: 0

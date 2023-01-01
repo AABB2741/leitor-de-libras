@@ -8,7 +8,7 @@ import Font from "../Font";
 
 import createStyles from "./styles";
 
-interface Props extends TouchableOpacityProps {
+interface ButtonProps extends TouchableOpacityProps {
     label?: string;
     highlight?: boolean;
     accentColor?: string,
@@ -16,7 +16,7 @@ interface Props extends TouchableOpacityProps {
     labelStyle?: TextStyle;
 }
 
-export default function Button({ children, label, highlight, accentColor, style, labelStyle, ...rest }: Props) {
+export default function Button({ children, label, highlight, accentColor, style, labelStyle, ...rest }: ButtonProps) {
     const colors = useColors();
     const styles = createStyles({ colors, accentColor });
 

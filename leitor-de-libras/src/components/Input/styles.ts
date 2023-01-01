@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import Theme from "../../@types/Theme"
 
-interface Props {
+interface InputStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: InputStyle) => StyleSheet.create({
     input: {
         color: colors.font,
         fontFamily: "Rubik",

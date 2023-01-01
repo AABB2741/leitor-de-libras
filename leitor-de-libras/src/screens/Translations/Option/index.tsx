@@ -12,13 +12,13 @@ interface IconProps {
     readonly size: number;
 }
 
-export interface Props {
+export interface OptionProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
     label: string;
     onPress?: () => void;
 }
 
-export default function Option({ icon, label }: Props) {
+export default function Option({ icon, label }: OptionProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 

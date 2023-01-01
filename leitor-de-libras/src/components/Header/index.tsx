@@ -21,7 +21,7 @@ export interface HeaderOptionProps extends TouchableOpacityProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
 }
 
-interface Props extends ViewProps {
+interface HeaderProps extends ViewProps {
     hideBackButton?: boolean;
     title?: string;
     leftOptions?: HeaderOptionProps[];
@@ -29,7 +29,7 @@ interface Props extends ViewProps {
     opacity?: number;
 }
 
-export default function Header({ hideBackButton, title, leftOptions, rightOptions, opacity, ...rest }: Props) {
+export default function Header({ hideBackButton, title, leftOptions, rightOptions, opacity, ...rest }: HeaderProps) {
     const navigation = useNavigation();
 
     const colors = useColors();

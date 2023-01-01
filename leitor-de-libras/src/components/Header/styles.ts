@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface HeaderStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: HeaderStyle) => StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",

@@ -23,7 +23,7 @@ interface IconProps {
     size?: number;
 }
 
-interface Props {
+interface EmptyProps {
     icon?: ({ color, size }: IconProps) => React.ReactNode;
     title?: string;
     desc?: string;
@@ -31,7 +31,7 @@ interface Props {
     contentContainerStyle?: ViewStyle;
 }
 
-export default function Empty({ icon, title, desc, options, contentContainerStyle }: Props) {
+export default function Empty({ icon, title, desc, options, contentContainerStyle }: EmptyProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });

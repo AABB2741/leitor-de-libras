@@ -8,12 +8,12 @@ import Font from "../Font";
 
 import styles from "./styles";
 
-interface Props extends ViewProps {
+interface FixedCategoryProps extends ViewProps {
     title?: string;
     desc?: string;
 }
 
-export default function FixedCategory({ title, desc, children, ...rest }: Props) {
+export default function FixedCategory({ title, desc, children, ...rest }: FixedCategoryProps) {
     const colors = useColors();
 
     return (

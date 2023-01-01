@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface ButtonStyle {
     colors: Theme;
     accentColor?: string;
 }
 
-export default ({ colors, accentColor }: Props) => StyleSheet.create({
+export default ({ colors, accentColor }: ButtonStyle) => StyleSheet.create({
     container: {
         paddingVertical: 5,
         paddingHorizontal: 20,

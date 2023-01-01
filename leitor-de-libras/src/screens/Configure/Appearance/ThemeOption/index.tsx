@@ -11,14 +11,14 @@ import Font from "../../../../components/Font";
 
 import createStyles from "./styles";
 
-interface Props {
+interface ThemeOptionProps {
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
     sample: Theme;
     name: string;
     example: string;
 }
 
-export default function ThemeOption({ icon, sample, name, example }: Props) {
+export default function ThemeOption({ icon, sample, name, example }: ThemeOptionProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors, sample });

@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from '../../@types/Theme';
 
-interface Props {
+interface FontStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: FontStyle) => StyleSheet.create({
     text: {
         color: colors.font
     }

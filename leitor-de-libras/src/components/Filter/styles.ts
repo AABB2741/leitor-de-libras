@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import Theme from "../../@types/Theme"
 
-interface Props {
+interface FilterStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: FilterStyle) => StyleSheet.create({
     container: {
         flexDirection: "row",
         marginTop: 20

@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface SelectStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: SelectStyle) => StyleSheet.create({
     container: {
         backgroundColor: colors.background2,
         paddingVertical: 5,

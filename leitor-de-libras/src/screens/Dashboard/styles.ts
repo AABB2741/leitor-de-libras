@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface DashboardStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: DashboardStyle) => StyleSheet.create({
     container: {
         paddingVertical: 20,
         backgroundColor: colors.background,

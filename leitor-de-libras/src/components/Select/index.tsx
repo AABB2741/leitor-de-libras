@@ -15,7 +15,7 @@ interface OptionProps {
     value: string;
 }
 
-interface Props {
+interface SelectProps {
     label?: string;
     labelIcon?: undefined;
     value: OptionProps["value"];
@@ -28,7 +28,7 @@ interface Props {
     onRequestClose?: () => void;
 }
 
-export default function Select({ label, value, options, disableStyles, disabled, useCustomModal, onValueChange, onPress, onRequestClose }: Props) {
+export default function Select({ label, value, options, disableStyles, disabled, useCustomModal, onValueChange, onPress, onRequestClose }: SelectProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 

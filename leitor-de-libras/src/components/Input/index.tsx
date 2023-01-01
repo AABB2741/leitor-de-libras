@@ -6,11 +6,11 @@ import { useColors } from "../../contexts/Colors";
 
 import createStyles from "./styles";
 
-interface Props extends TextInputProps {
+interface InputProps extends TextInputProps {
     
 }
 
-export default function Input({ style, ...rest }: Props) {
+export default function Input({ style, ...rest }: InputProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 

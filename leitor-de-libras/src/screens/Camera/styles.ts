@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface CameraStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: CameraStyle) => StyleSheet.create({
     container: {
         backgroundColor: colors.background,
         flex: 1

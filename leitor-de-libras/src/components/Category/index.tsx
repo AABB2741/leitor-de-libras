@@ -10,13 +10,13 @@ import { useColors } from "../../contexts/Colors";
 
 import styles from "./styles";
 
-interface Props<T> extends FlatListProps<T> {
+interface CategoryProps<T> extends FlatListProps<T> {
     title?: string;
     pressable?: boolean;
 }
 
 // Colocar margin-right de 10 pixels para cada elemento da lista
-export default function Category<T>({ title, pressable, ...rest }: Props<T>) {
+export default function Category<T>({ title, pressable, ...rest }: CategoryProps<T>) {
     const colors = useColors();
 
     return (

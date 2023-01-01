@@ -6,13 +6,13 @@ import amoled from "../theme/amoled.json";
 
 import Theme from "../@types/Theme";
 
-interface Props {
+interface ColorsProviderProps {
     children: React.ReactNode;
 }
 
 const ColorsContext = createContext<Theme>(dark);
 
-export default function ColorsProvider({ children }: Props) {
+export default function ColorsProvider({ children }: ColorsProviderProps) {
     return (
         <ColorsContext.Provider value={amoled}>
             {children}

@@ -12,11 +12,11 @@ import createStyles from "./styles";
 import Font from "../../../components/Font";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-interface Props {
+interface InfosProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
 }
 
-export default function Infos({ navigation }: Props) {
+export default function Infos({ navigation }: InfosProps) {
     const user = useUser();
     const colors = useColors();
     const styles = createStyles({ colors });

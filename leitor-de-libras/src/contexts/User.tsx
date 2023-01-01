@@ -2,13 +2,13 @@ import { useState, createContext, useContext } from "react";
 import User from "../@types/User";
 import USER from "../constants/user";
 
-interface Props {
+interface UserProviderProps {
     children: React.ReactNode;
 }
 
 const UserContext = createContext<User>(USER);
 
-export default function UserProvider({ children }: Props) {
+export default function UserProvider({ children }: UserProviderProps) {
     return (
         <UserContext.Provider value={USER}>
             {children}

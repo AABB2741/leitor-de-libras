@@ -19,7 +19,7 @@ import { useColors } from "../../contexts/Colors";
 import { useLang } from "../../contexts/Lang";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Order from "../../@types/Order";
-import Option, { Props as OptionProps } from "./Option";
+import Option, { OptionProps as OptionProps } from "./Option";
 
 import Header from "../../components/Header";
 import Empty from "../../components/Empty";

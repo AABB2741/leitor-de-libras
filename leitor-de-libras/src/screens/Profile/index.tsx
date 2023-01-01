@@ -6,11 +6,11 @@ import { useColors } from "../../contexts/Colors";
 
 import createStyles from "./styles";
 
-interface Props {
+interface ProfileProps {
     navigation: BottomTabNavigationProp<RootStackParamList, "Profile">;
 }
 
-export default function Profile({  }: Props) {
+export default function Profile({  }: ProfileProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 

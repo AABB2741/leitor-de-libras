@@ -15,7 +15,7 @@ import Input from "../Input";
 import createStyles from "./styles";
 import Select from "../Select";
 
-interface Props extends ViewStyle {
+interface FilterProps extends ViewStyle {
     filter?: string;
     filterPlaceholder?: string;
     filterClearHidden?: boolean;
@@ -28,7 +28,7 @@ interface Props extends ViewStyle {
     onOrderChange?: (order: Order) => void;
 }
 
-export default function Filter({ filter, filterPlaceholder, filterClearHidden, filterAutoSubmit, order, onFilterChange, onOrderChange, contentContainerStyle }: Props) {
+export default function Filter({ filter, filterPlaceholder, filterClearHidden, filterAutoSubmit, order, onFilterChange, onOrderChange, contentContainerStyle }: FilterProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });

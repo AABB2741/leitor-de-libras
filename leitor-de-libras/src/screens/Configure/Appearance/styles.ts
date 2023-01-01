@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../../@types/Theme";
 
-interface Props {
+interface AppearanceStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: AppearanceStyle) => StyleSheet.create({
 
 });

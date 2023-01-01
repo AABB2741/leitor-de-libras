@@ -17,11 +17,11 @@ import Header from "../../components/Header";
 import createStyles from "./styles";
 import ConfigSection from "./ConfigSection";
 
-interface Props {
+interface SettingsProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Settings">;
 }
 
-export default function Settings({ navigation }: Props) {
+export default function Settings({ navigation }: SettingsProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });

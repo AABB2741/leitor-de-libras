@@ -7,11 +7,11 @@ import { Category } from "../../../constants/settingsList";
 import { CaretRight } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-interface Props extends Category {
+interface ConfigSectionProps extends Category {
     navigation: NativeStackNavigationProp<DashboardParamList, "Settings">;
 }
 
-export default function ConfigSection({ navigation, category, title, settings }: Props) {
+export default function ConfigSection({ navigation, category, title, settings }: ConfigSectionProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
     

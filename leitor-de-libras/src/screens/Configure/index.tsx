@@ -17,12 +17,12 @@ import getSettings from "../../constants/settingsList";
 import Empty from "../../components/Empty";
 import Header from "../../components/Header";
 
-interface Props {
+interface ConfigureProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Configure">;
     route: RouteProp<DashboardParamList, "Configure">;
 }
 
-export default function Configure({ navigation, route }: Props) {
+export default function Configure({ navigation, route }: ConfigureProps) {
     const { location } = route.params;
 
     const lang = useLang();

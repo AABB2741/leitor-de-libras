@@ -9,13 +9,13 @@ type SettingsProps = {
     setSettings: React.Dispatch<React.SetStateAction<typeof Settings>> | (() => void);
 };
 
-interface Props {
+interface SettingsProviderProps {
     children: React.ReactNode;
 }
 
 const SettingsContext = createContext<SettingsProps>({ settings: Settings, setSettings: () => null });
 
-export default function SettingsProvider({ children }: Props) {
+export default function SettingsProvider({ children }: SettingsProviderProps) {
     const [settings, setSettings] = useState(Settings);
 
     useEffect(() => {

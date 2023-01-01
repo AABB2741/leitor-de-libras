@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import Theme from "../../@types/Theme";
 
-interface Props {
+interface EmptyStyle {
     colors: Theme;
 }
 
-export default ({ colors }: Props) => StyleSheet.create({
+export default ({ colors }: EmptyStyle) => StyleSheet.create({
     container: {
         flexDirection: "column",
         alignItems: "center",

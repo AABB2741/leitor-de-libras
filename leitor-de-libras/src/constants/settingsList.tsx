@@ -22,11 +22,11 @@ export type Category = {
     settings: Setting[];
 }
 
-interface Props {
+interface getSettingsProps {
     lang: LangProps
 }
 
-export default function getSettings({ lang }: Props) {
+export default function getSettings({ lang }: getSettingsProps) {
     const settingsList: Category[] = [{
         category: "display",
         title: lang.settings.display.title,
