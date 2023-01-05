@@ -98,7 +98,11 @@
             },
             "lang": {
                 "title": "Idioma",
-                "desc": "Altere o idioma de exibição."
+                "desc": "Altere o idioma de exibição.",
+                "lang": {
+                    "title": "Idioma de exibição",
+                    "desc": "Selecione o idioma que você deseja que o coteúdo seja exibido."
+                }
             }
         }
     },

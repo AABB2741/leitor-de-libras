@@ -73,7 +73,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
                 }]}
             />
             <View style={styles.content}>
-                {setting.content}
+                {setting.component()}
             </View>
         </ScrollView>
     )

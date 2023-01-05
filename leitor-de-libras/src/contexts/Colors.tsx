@@ -14,7 +14,7 @@ const ColorsContext = createContext<Theme>(dark);
 
 export default function ColorsProvider({ children }: ColorsProviderProps) {
     return (
-        <ColorsContext.Provider value={amoled}>
+        <ColorsContext.Provider value={light}>
             {children}
         </ColorsContext.Provider>
     );

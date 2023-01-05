@@ -15,7 +15,7 @@ const LangContext = createContext<LangProps>(pt_BR);
 
 export default function LangProvider({ children }: LangProviderProps) {
     return (
-        <LangContext.Provider value={ln}>
+        <LangContext.Provider value={pt_BR}>
             {children}
         </LangContext.Provider>
     );

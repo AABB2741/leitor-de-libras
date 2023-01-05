@@ -58,6 +58,8 @@ export default function Filter({ filter, filterPlaceholder, filterClearHidden, f
                     value={filterState}
                     onChangeText={text => filterAutoSubmit ? onFilterChange?.(text) : setFilterState(text)}
                     onSubmitEditing={() => onFilterChange?.(filterState)}
+                    transparent
+                    hideClearButton
                 />
             </View>
             <View style={styles.sort}>
