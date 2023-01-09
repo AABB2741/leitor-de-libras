@@ -17,7 +17,6 @@ export default ({ colors, transparent, value }: InputStyle) => StyleSheet.create
     content: {
         borderRadius: 12,
         backgroundColor: transparent ? "transparent" : colors.background2,
-        // flex: 1,
         flexDirection: "row",
         alignItems: "stretch",
         justifyContent: "space-between"

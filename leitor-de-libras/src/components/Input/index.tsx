@@ -24,7 +24,7 @@ export default function Input({ label, style, transparent, hideClearButton, onRe
     return (
         <View style={styles.container}>
             {label && (
-                <Font preset="subtitle" style={styles.label}>{label}</Font>
+                <Font preset="input" style={styles.label}>{label}</Font>
             )}
             <View style={styles.content}>
                 <TextInput style={[ styles.input, style ]} placeholderTextColor={colors.desc} value={value} {...rest} />
