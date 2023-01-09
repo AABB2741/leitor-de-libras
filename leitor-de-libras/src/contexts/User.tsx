@@ -3,7 +3,7 @@ import User from "../@types/User";
 import USER from "../constants/user";
 
 interface UserProviderProps {
-    children: React.ReactNode;
+    children: JSX.Element;
 }
 
 const UserContext = createContext<User>(USER);

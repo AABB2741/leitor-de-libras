@@ -6,7 +6,7 @@ import en_US from "../lang/en_US.json";
 export type LangProps = typeof pt_BR
 
 interface LangProviderProps {
-    children: React.ReactNode;
+    children: JSX.Element;
 }
 
 const ln = merge(pt_BR, en_US);

@@ -119,6 +119,10 @@
         },
         "title": "Minhas traduções",
         "filter": "Procurar traduções...",
+        "file": {
+            "downloading": "Baixando...",
+            "synching": "Sincronizando..."
+        },
         "empty_search": {
             "title": "Sem resultados",
             "desc": "Não encontramos traduções com o nome inserido. Verifique se você digitou corretamente e tente novamente."

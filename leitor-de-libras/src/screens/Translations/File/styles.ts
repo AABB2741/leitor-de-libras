@@ -11,6 +11,17 @@ export default ({ colors }: FileStyle) => StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 20
     },
+    indicators: {
+        marginBottom: 5,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    props: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end"
+    },
     thumbnail: {
         backgroundColor: colors.background2,
         width: "100%",

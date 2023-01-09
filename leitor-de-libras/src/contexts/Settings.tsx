@@ -10,7 +10,7 @@ type SettingsProps = {
 };
 
 interface SettingsProviderProps {
-    children: React.ReactNode;
+    children: JSX.Element;
 }
 
 const SettingsContext = createContext<SettingsProps>({ settings: Settings, setSettings: () => null });
