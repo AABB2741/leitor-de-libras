@@ -8,5 +8,9 @@
     "background2": "#121212",
     "header": "#1e1e1e",
     "accent": "#1e90ff",
-    "accent2": "#FF0454"
+    "accent2": "#FF0454",
+    "statusBar": {
+        "background": "#1e1e1e",
+        "foreground": "light-content"
+    }
 }
