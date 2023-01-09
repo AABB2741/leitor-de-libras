@@ -110,6 +110,8 @@
         "options": {
             "create": "Criar tradução",
             "delete": "Excluir",
+            "favorite": "Favorito",
+            "lock": "Bloquear",
             "import": "Importar",
             "export": "Exportar",
             "archive": "Arquivar",

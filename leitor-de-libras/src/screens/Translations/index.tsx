@@ -11,8 +11,10 @@ import {
     Download,
     Export,
     HandWaving,
+    Keyhole,
     MagnifyingGlass,
     PlusCircle,
+    Star,
     Trash
 } from "phosphor-react-native";
 import { useColors } from "../../contexts/Colors";
@@ -49,6 +51,12 @@ export default function Translations({ navigation }: Props) {
     }, {
         icon: props => <Trash { ...props } />,
         label: lang.translations.options.delete
+    }, {
+        icon: props => <Star {...props} />,
+        label: lang.translations.options.favorite
+    }, {
+        icon: props => <Keyhole {...props} />,
+        label: lang.translations.options.lock
     }, {
         icon: props => <Download { ...props } />,
         label: lang.translations.options.import
