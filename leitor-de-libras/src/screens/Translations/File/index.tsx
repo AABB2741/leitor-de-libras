@@ -1,7 +1,8 @@
 import {
     View,
     Image,
-    ImageSourcePropType
+    ImageSourcePropType,
+    TouchableOpacity
 } from "react-native";
 import Font from "../../../components/Font";
 import { useColors } from "../../../contexts/Colors";
@@ -41,19 +42,21 @@ export default function File({ state, favorited, archived, locked, disabled, thu
     });
 
     return (
-        <Animatable.View style={styles.container} animation="fadeInUp" delay={index * 50}>
-            <View style={styles.indicators}>
-                {getStateIcon({state, colors, lang})}
-                <View style={styles.props}>
-                    {(locked && !disabled) && <Keyhole color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
-                    {(archived && !disabled) && <Archive color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
-                    {(favorited && !disabled) && <Star color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
+        <TouchableOpacity style={styles.container} onLongPress={() => console.log("Vasco")}>
+            <Animatable.View style={{ flex: 1 }} animation="fadeInUp" delay={index * 50}>
+                <View style={styles.indicators}>
+                    {getStateIcon({state, colors, lang})}
+                    <View style={styles.props}>
+                        {(locked && !disabled) && <Keyhole color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
+                        {(archived && !disabled) && <Archive color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
+                        {(favorited && !disabled) && <Star color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
+                    </View>
                 </View>
-            </View>
-            <Image style={styles.thumbnail} source={thumbnail} />
-            <Font preset="text" style={styles.title} numberOfLines={1}>{title}</Font>
-            <Font preset="text" style={styles.date} numberOfLines={1}>{`15min ∙ ${moment(date).fromNow()}`}</Font>
-        </Animatable.View>
+                <Image style={styles.thumbnail} source={thumbnail} />
+                <Font preset="text" style={styles.title} numberOfLines={1}>{title}</Font>
+                <Font preset="text" style={styles.date} numberOfLines={1}>{`15min ∙ ${moment(date).fromNow()}`}</Font>
+            </Animatable.View>
+        </TouchableOpacity>
     );
 }
 
@@ -67,7 +70,7 @@ function getStateIcon({ state, colors, lang }: GetIconProps) {
     switch(state) {
         case "localStorage":
             return (
-                <DeviceMobileCamera color={colors.desc} size={14} />
+                <DeviceMobileCamera color={colors.desc} size={14} style={{ transform: [{ rotate: "180deg" }] }} />
             );
         case "cloud":
             return (

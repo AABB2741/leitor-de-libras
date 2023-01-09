@@ -41,6 +41,7 @@ export default function Translations({ navigation }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [selected, setSelected] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
