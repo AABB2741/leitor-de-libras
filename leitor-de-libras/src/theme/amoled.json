@@ -7,6 +7,7 @@
     "background": "#000",
     "background2": "#242424",
     "header": "#1e1e1e",
+    "disabled": "#585858",
     "accent": "#1e90ff",
     "accent2": "#FF0454",
     "statusBar": {

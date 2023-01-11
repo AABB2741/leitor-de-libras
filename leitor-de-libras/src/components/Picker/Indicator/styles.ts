@@ -1,12 +1,9 @@
 import { StyleSheet } from 'react-native';
-interface IndicatorStyle {
-    value: boolean;
-    activeColor: string;
-    inactiveColor: string;
-    size?: number;
-}
+import { IndicatorProps } from '.';
 
-export default ({ value, activeColor, inactiveColor, size }: IndicatorStyle) => StyleSheet.create({
+type IndicatorStyle = Omit<IndicatorProps, "onPress">;
+
+export default ({ value, disabled, activeColor, inactiveColor, disabledColor, size }: IndicatorStyle) => StyleSheet.create({
     border: {
         borderWidth: 2,
         padding: 3,

@@ -6,22 +6,24 @@ import { useColors } from "../../../contexts/Colors";
 
 import createStyles from "./styles";
 
-interface IndicatorProps {
+export interface IndicatorProps {
     value?: boolean;
+    disabled?: boolean;
     activeColor?: string;
     inactiveColor?: string;
+    disabledColor?: string;
     size?: number;
     onPress?: (newValue: boolean) => void;
 }
 
-export default function Indicator({ value, activeColor, inactiveColor, size, onPress }: IndicatorProps) {
-    console.log(`Ativo: ${value}`);
-
+export default function Indicator({ value, disabled, activeColor, inactiveColor, disabledColor, size, onPress }: IndicatorProps) {
     const colors = useColors();
     const styles = createStyles({
         value: value ? true : false,
+        disabled,
         activeColor: activeColor ?? colors.accent,
         inactiveColor: inactiveColor ?? colors.font,
+        disabledColor: disabledColor ?? colors.disabled,
         size
     });
 
