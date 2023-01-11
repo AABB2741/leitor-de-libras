@@ -15,7 +15,8 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
     },
     presentation: {
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     infos: {
         flexDirection: "row",

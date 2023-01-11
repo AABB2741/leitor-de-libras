@@ -26,8 +26,7 @@ export default function Appearance() {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    // const deviceTheme = useColorScheme();
-    // console.log(deviceTheme);
+    const scheme = useColorScheme();
 
     return (
         <View>
@@ -36,24 +35,28 @@ export default function Appearance() {
                 desc={lang.settings.display.appearance.theme.desc.replace("%s", lang.appName)}
             >
                 <ThemeOption
+                    id="auto"
                     icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.auto.name}
                     example={lang.settings.display.appearance.theme.auto.example}
-                    sample={amoled}
+                    sample={scheme == "light" ? light : dark}
                 />
                 <ThemeOption
+                    id="light"
                     icon={({ color, size, weight }) => <Sun color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.light.name}
                     example={lang.settings.display.appearance.theme.light.example}
                     sample={light}
                 />
                 <ThemeOption
+                    id="dark"
                     icon={({ color, size, weight }) => <MoonStars color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.dark.name}
                     example={lang.settings.display.appearance.theme.dark.example}
                     sample={dark}
                 />
                 <ThemeOption
+                    id="amoled"
                     icon={({ color, size, weight }) => <BatteryChargingVertical color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.amoled.name}
                     example={lang.settings.display.appearance.theme.amoled.example}
