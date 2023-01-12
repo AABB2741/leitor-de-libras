@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import { StyleSheet } from 'react-native';
 
 import { ThemeProps } from '../../theme/getTheme';
@@ -9,6 +10,7 @@ interface DashboardStyle {
 export default ({ colors }: DashboardStyle) => StyleSheet.create({
     container: {
         paddingVertical: 20,
+        paddingTop: Constants.statusBarHeight + 20,
         backgroundColor: colors.background,
         flex: 1
     },

@@ -3,13 +3,13 @@ import {
     ScrollView
 } from "react-native";
 
-import Font from "../../components/Font";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { useUser } from "../../contexts/user";
 
 import createStyles from "./styles";
 
+import Font from "../../components/Font";
 import Infos from "./Infos";
 import Tips from "./Tips";
 import WhatToDo from "./WhatToDo";

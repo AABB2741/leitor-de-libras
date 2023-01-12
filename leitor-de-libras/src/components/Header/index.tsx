@@ -27,6 +27,7 @@ interface HeaderProps extends ViewProps {
     leftOptions?: HeaderOptionProps[];
     rightOptions?: HeaderOptionProps[];
     opacity?: number;
+    disableTopSpacing?: boolean;
 }
 
 export default function Header({ hideBackButton, title, leftOptions, rightOptions, opacity, ...rest }: HeaderProps) {
