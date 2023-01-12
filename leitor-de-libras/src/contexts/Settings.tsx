@@ -41,7 +41,7 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
 
     if (!settings)
         return null;
-
+    console.log("Renderizando");
     return (
         <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings ?? {}) as SettingsProps, saveSettings }}>
             {children}

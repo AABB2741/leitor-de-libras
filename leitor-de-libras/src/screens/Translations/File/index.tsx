@@ -22,8 +22,8 @@ import moment from "moment";
 
 import createStyles from "./styles";
 
-import Theme from "../../../@types/Theme";
 import { LangProps } from "../../../lang/getLang";
+import { ThemeProps } from "../../../theme/getTheme";
 
 type FileState = "downloading" | "synching" | "localStorage" | "cloud";
 
@@ -72,7 +72,7 @@ export default function File({ state, favorited, archived, locked, disabled, thu
 
 interface GetIconProps {
     state: FileState;
-    colors: Theme;
+    colors: ThemeProps;
     lang: LangProps;
 }
 

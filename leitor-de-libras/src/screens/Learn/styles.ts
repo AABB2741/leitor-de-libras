@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
-import Theme from "../../@types/Theme";
+
+import { ThemeProps } from '../../theme/getTheme';
 
 interface LearnStyle {
-    colors: Theme;
+    colors: ThemeProps;
 }
 
 export default ({ colors }: LearnStyle) => StyleSheet.create({

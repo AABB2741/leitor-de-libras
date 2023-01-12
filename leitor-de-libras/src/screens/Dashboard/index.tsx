@@ -23,7 +23,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-    
+
     return (
         <ScrollView style={styles.container}>
             <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s1", lang.appName).replace("%s2", user.name ?? "") : lang.dashboard.welcome.replace("%s", lang.appName)}</Font>

@@ -8,7 +8,7 @@ import { useColors } from "../../../../contexts/colors";
 import Font from "../../../../components/Font";
 import Indicator from "../../../../components/Picker/Indicator";
 
-import Theme from "../../../../@types/Theme";
+import { ThemeProps } from "../../../../theme/getTheme";
 
 import createStyles from "./styles";
 import { useSettings } from "../../../../contexts/settings";
@@ -16,7 +16,7 @@ import { useSettings } from "../../../../contexts/settings";
 interface ThemeOptionProps {
     theme: "auto" | "light" | "dark" | "amoled" | "darkula";
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
-    sample: Theme;
+    sample: ThemeProps;
     name: string;
     example: string;
 }

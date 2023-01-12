@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
-import Theme from "../../../@types/Theme";
+
+import { ThemeProps } from '../../../theme/getTheme';
 
 interface ConfigSectionStyle {
-    colors: Theme;
+    colors: ThemeProps;
 }
 
 export default ({ colors }: ConfigSectionStyle) => StyleSheet.create({

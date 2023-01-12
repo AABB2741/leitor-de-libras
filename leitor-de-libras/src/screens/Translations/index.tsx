@@ -47,10 +47,10 @@ export default function Translations({ navigation }: Props) {
     const [order, setOrder] = useState<Order>("asc");
 
     const OPTIONS: OptionProps[] = [{
-        icon: props => <PlusCircle { ...props } />,
+        icon: props => <PlusCircle {...props} />,
         label: lang.translations.options.create
     }, {
-        icon: props => <Trash { ...props } />,
+        icon: props => <Trash {...props} />,
         label: lang.translations.options.delete
     }, {
         icon: props => <Star {...props} />,
@@ -59,16 +59,16 @@ export default function Translations({ navigation }: Props) {
         icon: props => <Keyhole {...props} />,
         label: lang.translations.options.lock
     }, {
-        icon: props => <Download { ...props } />,
+        icon: props => <Download {...props} />,
         label: lang.translations.options.import
     }, {
-        icon: props => <Export { ...props } />,
+        icon: props => <Export {...props} />,
         label: lang.translations.options.export
     }, {
-        icon: props => <Archive { ...props } />,
+        icon: props => <Archive {...props} />,
         label: lang.translations.options.archive
     }, {
-        icon: props => <CloudCheck { ...props } />,
+        icon: props => <CloudCheck {...props} />,
         label: lang.translations.options.load
     }];
 
@@ -78,9 +78,9 @@ export default function Translations({ navigation }: Props) {
                 title={lang.translations.title}
                 hideBackButton
                 rightOptions={[{
-                    icon: props => <MagnifyingGlass { ...props } />
+                    icon: props => <MagnifyingGlass {...props} />
                 }, {
-                    icon: props => <DotsThreeVertical { ...props } />
+                    icon: props => <DotsThreeVertical {...props} />
                 }]}
             />
             <View style={styles.container}>

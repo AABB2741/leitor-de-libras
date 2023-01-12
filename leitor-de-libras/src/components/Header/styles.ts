@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import Theme from "../../@types/Theme";
+import { ThemeProps } from '../../theme/getTheme';
 
 interface HeaderStyle {
-    colors: Theme;
+    colors: ThemeProps;
 }
 
 export default ({ colors }: HeaderStyle) => StyleSheet.create({

@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import Theme from '../../@types/Theme';
+import { ThemeProps } from '../../theme/getTheme';
 
 interface FontStyle {
-    colors: Theme;
+    colors: ThemeProps;
 }
 
 export default ({ colors }: FontStyle) => StyleSheet.create({

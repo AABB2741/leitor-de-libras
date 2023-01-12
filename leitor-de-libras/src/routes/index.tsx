@@ -6,7 +6,7 @@ import Constants from "expo-constants";
 
 export default function Routes() {
     const colors = useColors();
-
+    console.log("Renderizando Routes");
     return (
         <>
             <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={colors.statusBar.background} />

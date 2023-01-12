@@ -7,16 +7,16 @@ import dark from "../theme/dark.json"; // Mudar paleta
 import darkula from "../theme/darkula.json";
 import amoled from "../theme/amoled.json";
 
-import Theme from "../@types/Theme";
+import { ThemeProps } from "../theme/getTheme";
 
 interface ColorsProviderProps {
     children: JSX.Element;
 }
 
-const ColorsContext = createContext<Theme>(dark);
+const ColorsContext = createContext<ThemeProps>(dark);
 
 export default function ColorsProvider({ children }: ColorsProviderProps) {
-    const [theme, setTheme] = useState<Theme | null>(null);
+    const [theme, setTheme] = useState<ThemeProps | null>(null);
     const {settings} = useSettings();
     const deviceTheme = useColorScheme();
     const scheme = settings?.display?.appearance?.theme == "auto" ? deviceTheme : (settings.display.appearance.theme ?? "light");
@@ -27,6 +27,8 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
         } else if (scheme == "dark") {
             setTheme(dark);
         } else if (scheme == "darkula") {
+            setTheme(darkula);
+        } else {
             setTheme(light);
         }
     }, [deviceTheme, settings]);

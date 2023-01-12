@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
-import Theme from "../../../../@types/Theme";
+
+import { ThemeProps } from '../../../../theme/getTheme';
 
 interface ThemeOptionStyle {
-    colors: Theme;
-    sample: Theme;
+    colors: ThemeProps;
+    sample: ThemeProps;
 }
 
 export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({

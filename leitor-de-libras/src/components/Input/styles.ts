@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
-import Theme from "../../@types/Theme"
+
+import { ThemeProps } from './../../theme/getTheme';
 
 interface InputStyle {
-    colors: Theme;
+    colors: ThemeProps;
     transparent?: boolean;
     value?: string;
 }
