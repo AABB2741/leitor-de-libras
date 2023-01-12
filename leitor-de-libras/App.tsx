@@ -1,10 +1,12 @@
 // import { StatusBar } from 'expo-status-bar';
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { View } from 'react-native';
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import { NavigationContainer } from "@react-navigation/native";
+
+import log from "./src/utils/log";
 
 import SettingsProvider from "./src/contexts/settings";
 import LangProvider from "./src/contexts/lang";
@@ -14,6 +16,10 @@ import Routes from "./src/routes";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+	useEffect(() => {
+		log("Iniciando Li-libras", "fgGray");
+	}, []);
+
 	const [fontsLoaded] = useFonts({
 		"Exo-2": require("./assets/fonts/Exo2-Bold.ttf"),
 		"Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
@@ -28,15 +34,16 @@ export default function App() {
 	const onLayoutRootView = useCallback(async () => {
 		if (fontsLoaded) {
 			await SplashScreen.hideAsync();
+			log("Saindo da splash screen");
 		}
 	}, [fontsLoaded]);
 
 	if (!fontsLoaded) {
 		return null;
 	}
-
+	log("Li-libras iniciado!", "fgGreen");
 	return (
-		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+		<View style={{ flex: 1, backgroundColor: "#000" }} onLayout={onLayoutRootView}>
 			<SettingsProvider>
 				<LangProvider>
 					<ColorsProvider>

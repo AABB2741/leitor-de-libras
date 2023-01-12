@@ -52,7 +52,7 @@ export default function File({ state, favorited, archived, locked, disabled, thu
     });
 
     return (
-        <TouchableOpacity style={styles.container} onLongPress={() => console.log("Vasco")}>
+        <TouchableOpacity style={styles.container} onLongPress={() => console.log("Ação com botão direito")}>
             <Animatable.View style={{ flex: 1 }} animation="fadeInUp" delay={index * 50}>
                 <View style={styles.indicators}>
                     {getStateIcon({state, colors, lang})}

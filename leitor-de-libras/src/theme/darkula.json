@@ -1,13 +1,13 @@
 {
     "font": "#fff",
     "font2": "#fff",
-    "desc": "#c9c9c9",
+    "desc": "#9ca6d2",
     "desc2": "#c9c9c9",
-    "desc3": "#585858",
+    "desc3": "#6272a4",
     "background": "#282a36",
     "background2": "#21222c",
-    "header": "#1e1e1e",
-    "disabled": "#585858",
+    "header": "#191a21",
+    "disabled": "#6272a4",
     "accent": "#1e90ff",
     "accent2": "#FF0454",
     "statusBar": {

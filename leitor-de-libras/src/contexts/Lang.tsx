@@ -11,6 +11,8 @@ import {
 import { useSettings } from "./settings";
 import { LangProps } from "../lang/getLang";
 
+import log from "../utils/log";
+
 import merge from "ts-deepmerge";
 import pt_BR from "../lang/pt_BR.json";
 import en_US from "../lang/en_US.json";
@@ -26,6 +28,7 @@ export default function LangProvider({ children }: LangProviderProps) {
     const [lang, setLang] = useState<LangProps | null>(null);
 
     useEffect(() => {
+        log(`Atualizando idioma para "${lang?.langName ?? "default"}"`);
         setLang(pt_BR);
     }, [settings]);
 

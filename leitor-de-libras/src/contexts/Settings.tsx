@@ -8,7 +8,9 @@ import {
 import * as Storage from "../services/Storage";
 import SETTINGS from "../constants/settings.json";
 import { DeepPartial } from "../utils/DeepPartial";
+
 import merge from "ts-deepmerge";
+import log from "../utils/log";
 
 type SettingsProps = typeof SETTINGS;
 
@@ -27,21 +29,20 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
     const [settings, setSettings] = useState<DeepPartial<SettingsProps> | null>(null);
 
     async function saveSettings(config: DeepPartial<SettingsProps>) {
-        console.log("Salvando: " + JSON.stringify(config));
+        log(`Atualizando novas configurações: ${JSON.stringify(config)}`);
         const newSettings = merge(settings ?? {}, config);
         await Storage.setItem("@settings", newSettings);
         setSettings(newSettings);
     }
 
     useEffect(() => {
+        log("Carregando configurações...");
         Storage.getItem<DeepPartial<SettingsProps>>("@settings").then(data => {
             setSettings(data);
         });
+        log("Configurações carregadas!");
     }, []);
 
-    if (!settings)
-        return null;
-    console.log("Renderizando");
     return (
         <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings ?? {}) as SettingsProps, saveSettings }}>
             {children}

@@ -21,6 +21,8 @@ import dark from "../../../theme/dark.json";
 import amoled from "../../../theme/amoled.json";
 import darkula from "../../../theme/darkula.json";
 
+import { THEMES } from "../../../theme/getTheme";
+
 import createStyles from "./styles";
 
 export default function Appearance() {
@@ -43,34 +45,16 @@ export default function Appearance() {
                     example={lang.settings.display.appearance.theme.auto.example}
                     sample={scheme == "light" ? light : dark}
                 />
-                <ThemeOption
-                    theme="light"
-                    icon={({ color, size, weight }) => <Sun color={color} size={size} weight={weight} />}
-                    name={lang.settings.display.appearance.theme.light.name}
-                    example={lang.settings.display.appearance.theme.light.example}
-                    sample={light}
-                />
-                <ThemeOption
-                    theme="dark"
-                    icon={({ color, size, weight }) => <MoonStars color={color} size={size} weight={weight} />}
-                    name={lang.settings.display.appearance.theme.dark.name}
-                    example={lang.settings.display.appearance.theme.dark.example}
-                    sample={dark}
-                />
-                <ThemeOption
-                    theme="amoled"
-                    icon={({ color, size, weight }) => <BatteryChargingVertical color={color} size={size} weight={weight} />}
-                    name={lang.settings.display.appearance.theme.amoled.name}
-                    example={lang.settings.display.appearance.theme.amoled.example}
-                    sample={amoled}
-                />
-                <ThemeOption
-                    theme="darkula"
-                    icon={({ color, size, weight }) => <Drop color={color} size={size} weight={weight} />}
-                    name={lang.settings.display.appearance.theme.amoled.name}
-                    example={lang.settings.display.appearance.theme.amoled.example}
-                    sample={darkula}
-                />
+                {THEMES.map(t => (
+                    <ThemeOption
+                        theme={t.name}
+                        icon={t.icon}
+                        name={lang.settings.display.appearance.theme[t.name].name}
+                        example={lang.settings.display.appearance.theme[t.name].example}
+                        sample={t.theme}
+                        key={t.name}
+                    />
+                ))}
             </FixedCategory>
             <FixedCategory title={lang.settings.display.appearance.custom_fonts.title}>
 

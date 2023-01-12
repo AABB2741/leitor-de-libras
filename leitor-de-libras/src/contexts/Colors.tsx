@@ -2,6 +2,8 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { useColorScheme } from "react-native";
 import { useSettings } from "./settings";
 
+import log from "../utils/log";
+
 import light from "../theme/light.json";
 import dark from "../theme/dark.json"; // Mudar paleta
 import darkula from "../theme/darkula.json";
@@ -22,6 +24,7 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
     const scheme = settings?.display?.appearance?.theme == "auto" ? deviceTheme : (settings.display.appearance.theme ?? "light");
 
     useEffect(() => {
+        log(`Atualizando tema para "${scheme}"`)
         if (scheme == "amoled") {
             setTheme(amoled);
         } else if (scheme == "dark") {
