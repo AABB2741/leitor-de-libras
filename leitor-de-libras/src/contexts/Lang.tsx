@@ -30,7 +30,7 @@ export default function LangProvider({ children }: LangProviderProps) {
     }, [settings]);
 
     if (!lang)
-        return;
+        return null;
 
     return (
         <LangContext.Provider value={lang}>

@@ -4,6 +4,7 @@ import { useSettings } from "./settings";
 
 import light from "../theme/light.json";
 import dark from "../theme/dark.json"; // Mudar paleta
+import darkula from "../theme/darkula.json";
 import amoled from "../theme/amoled.json";
 
 import Theme from "../@types/Theme";
@@ -25,7 +26,7 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
             setTheme(amoled);
         } else if (scheme == "dark") {
             setTheme(dark);
-        } else {
+        } else if (scheme == "darkula") {
             setTheme(light);
         }
     }, [deviceTheme, settings]);

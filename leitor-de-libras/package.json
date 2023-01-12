@@ -29,7 +29,8 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
-    "ts-deepmerge": "^5.0.0"
+    "ts-deepmerge": "^5.0.0",
+    "expo-constants": "~14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

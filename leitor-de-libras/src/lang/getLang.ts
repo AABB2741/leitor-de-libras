@@ -15,7 +15,7 @@ export const LANGS: LangListItem[] = [{
 }, {
     name: "en_US",
     lang: en_US
-}]
+}];
 
 export default function getLang(name: LangName) {
     return merge(LANGS.find(l => l.name === name)?.lang ?? {}, pt_BR);

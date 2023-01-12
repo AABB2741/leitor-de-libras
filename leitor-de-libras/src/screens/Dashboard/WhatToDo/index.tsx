@@ -2,8 +2,10 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Archive,
+    Books,
     Download,
     Export,
+    HardDrives,
     PlusCircle,
     Translate,
     Trash
@@ -33,17 +35,14 @@ export default function WhatToDo() {
         icon: ({ color, size }) => <Translate color={color} size={size} />,
         label: lang.dashboard.what_to_do.view_translations
     }, {
-        icon: ({ color, size }) => <Download color={color} size={size} />,
-        label: lang.dashboard.what_to_do.import
-    }, {
-        icon: ({ color, size }) => <Export color={color} size={size} />,
-        label: lang.dashboard.what_to_do.export
-    }, {
-        icon: ({ color, size }) => <Trash color={color} size={size} />,
-        label: lang.dashboard.what_to_do.delete
+        icon: ({ color, size }) => <HardDrives color={color} size={size} />,
+        label: lang.dashboard.what_to_do.clear
     }, {
         icon: ({ color, size }) => <Archive color={color} size={size} />,
         label: lang.dashboard.what_to_do.archived
+    }, {
+        icon: ({ color, size }) => <Books color={color} size={size} />,
+        label: lang.dashboard.what_to_do.learn
     }];
 
     return (

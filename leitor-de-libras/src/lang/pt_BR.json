@@ -47,10 +47,9 @@
             "title": "O que fazer?",
             "create": "Criar nova tradução",
             "view_translations": "Ver suas traduções",
-            "import": "Importar traduções",
-            "export": "Exportar traduções",
-            "delete": "Excluir traduções",
-            "archived": "Traduções arquivadas"
+            "clear": "Apagar traduções",
+            "archived": "Traduções arquivadas",
+            "learn": "Aprender Libras"
         }
     },
     "settings": {
@@ -76,7 +75,7 @@
                     "hello_world": "Olá, mundo!",
                     "auto": {
                         "name": "Tema automático",
-                        "example": "Tema escolhido com base na configuração do seu dispositivo."
+                        "example": "Tema escolhido com base na configuração do seu dispositivo. Atualiza ao ativar ou desativar o modo noturno."
                     },
                     "light": {
                         "name": "Tema claro",
@@ -89,6 +88,10 @@
                     "amoled": {
                         "name": "Modo AMOLED",
                         "example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
+                    },
+                    "darkula": {
+                        "name": "Darkula",
+                        "example": "Este é o modo Darkula. Muito loko, né?"
                     }
                 },
                 "custom_fonts": {

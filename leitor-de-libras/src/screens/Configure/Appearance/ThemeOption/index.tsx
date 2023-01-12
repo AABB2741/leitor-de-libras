@@ -14,7 +14,7 @@ import createStyles from "./styles";
 import { useSettings } from "../../../../contexts/settings";
 
 interface ThemeOptionProps {
-    theme: "auto" | "light" | "dark" | "amoled";
+    theme: "auto" | "light" | "dark" | "amoled" | "darkula";
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
     sample: Theme;
     name: string;

@@ -4,6 +4,7 @@ import {
 } from "react-native";
 import {
     BatteryChargingVertical,
+    Drop,
     MoonStars,
     Palette,
     Sun
@@ -15,9 +16,10 @@ import { useLang } from "../../../contexts/lang";
 
 import ThemeOption from "./ThemeOption";
 
-import light from "../../../theme/light.json"
-import dark from "../../../theme/dark.json"
-import amoled from "../../../theme/amoled.json"
+import light from "../../../theme/light.json";
+import dark from "../../../theme/dark.json";
+import amoled from "../../../theme/amoled.json";
+import darkula from "../../../theme/darkula.json";
 
 import createStyles from "./styles";
 
@@ -61,6 +63,13 @@ export default function Appearance() {
                     name={lang.settings.display.appearance.theme.amoled.name}
                     example={lang.settings.display.appearance.theme.amoled.example}
                     sample={amoled}
+                />
+                <ThemeOption
+                    theme="darkula"
+                    icon={({ color, size, weight }) => <Drop color={color} size={size} weight={weight} />}
+                    name={lang.settings.display.appearance.theme.amoled.name}
+                    example={lang.settings.display.appearance.theme.amoled.example}
+                    sample={darkula}
                 />
             </FixedCategory>
             <FixedCategory title={lang.settings.display.appearance.custom_fonts.title}>
