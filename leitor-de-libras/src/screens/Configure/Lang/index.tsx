@@ -2,7 +2,7 @@ import {
     View
 } from "react-native";
 import FixedCategory from "../../../components/FixedCategory";
-import { useLang } from "../../../contexts/Lang";
+import { useLang } from "../../../contexts/lang";
 
 import styles from "./styles";
 

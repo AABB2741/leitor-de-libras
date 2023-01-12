@@ -3,7 +3,7 @@ import {
 } from "react-native";
 
 import createStyles from "./styles";
-import { useColors } from "../../../contexts/Colors";
+import { useColors } from "../../../contexts/colors";
 
 import Font from "../../../components/Font";
 

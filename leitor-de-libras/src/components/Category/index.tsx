@@ -6,7 +6,7 @@ import {
     FlatListProps
 } from "react-native";
 import Font from "../Font";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 
 import styles from "./styles";
 

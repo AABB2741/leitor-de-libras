@@ -2,7 +2,7 @@ import {
     View,
     Pressable
 } from "react-native";
-import { useColors } from "../../../contexts/Colors";
+import { useColors } from "../../../contexts/colors";
 
 import createStyles from "./styles";
 

@@ -2,8 +2,8 @@ import {
     View,
     Pressable
 } from "react-native";
-import { useLang } from "../../../../contexts/Lang";
-import { useColors } from "../../../../contexts/Colors";
+import { useLang } from "../../../../contexts/lang";
+import { useColors } from "../../../../contexts/colors";
 
 import Font from "../../../../components/Font";
 import Indicator from "../../../../components/Picker/Indicator";
@@ -11,32 +11,31 @@ import Indicator from "../../../../components/Picker/Indicator";
 import Theme from "../../../../@types/Theme";
 
 import createStyles from "./styles";
-import { useSettings } from "../../../../contexts/Settings";
+import { useSettings } from "../../../../contexts/settings";
 
 interface ThemeOptionProps {
-    id: "auto" | "light" | "dark" | "amoled";
+    theme: "auto" | "light" | "dark" | "amoled";
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
     sample: Theme;
     name: string;
     example: string;
 }
 
-export default function ThemeOption({ id, icon, sample, name, example }: ThemeOptionProps) {
-    const { settings } = useSettings();
+export default function ThemeOption({ theme, icon, sample, name, example }: ThemeOptionProps) {
+    const { settings, saveSettings } = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors, sample });
-    console.log(`Id: ${id}; selecionado: ${settings.display.appearance.theme}`)
 
     return (
-        <Pressable style={styles.container}>
+        <Pressable style={styles.container} onPress={() => saveSettings({display: {appearance: { theme }}})}>
             <View style={styles.presentation}>
                 <View style={styles.infos}>
                     {icon({ color: colors.font, size: 20, weight: "fill" })}
                     <Font preset="subtitle" style={styles.name}>{name}</Font>
                 </View>
                 <Indicator
-                    value={settings.display.appearance.theme == id}
+                    value={settings.display.appearance.theme == theme}
                 />
             </View>
             <View style={styles.preview}>

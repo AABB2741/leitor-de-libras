@@ -10,8 +10,8 @@ import {
 } from "phosphor-react-native";
 import FixedCategory from "../../../components/FixedCategory";
 import Font from "../../../components/Font";
-import { useColors } from "../../../contexts/Colors";
-import { useLang } from "../../../contexts/Lang";
+import { useColors } from "../../../contexts/colors";
+import { useLang } from "../../../contexts/lang";
 
 import ThemeOption from "./ThemeOption";
 
@@ -35,28 +35,28 @@ export default function Appearance() {
                 desc={lang.settings.display.appearance.theme.desc.replace("%s", lang.appName)}
             >
                 <ThemeOption
-                    id="auto"
+                    theme="auto"
                     icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.auto.name}
                     example={lang.settings.display.appearance.theme.auto.example}
                     sample={scheme == "light" ? light : dark}
                 />
                 <ThemeOption
-                    id="light"
+                    theme="light"
                     icon={({ color, size, weight }) => <Sun color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.light.name}
                     example={lang.settings.display.appearance.theme.light.example}
                     sample={light}
                 />
                 <ThemeOption
-                    id="dark"
+                    theme="dark"
                     icon={({ color, size, weight }) => <MoonStars color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.dark.name}
                     example={lang.settings.display.appearance.theme.dark.example}
                     sample={dark}
                 />
                 <ThemeOption
-                    id="amoled"
+                    theme="amoled"
                     icon={({ color, size, weight }) => <BatteryChargingVertical color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.amoled.name}
                     example={lang.settings.display.appearance.theme.amoled.example}

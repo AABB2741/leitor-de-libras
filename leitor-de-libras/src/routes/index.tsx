@@ -1,5 +1,5 @@
 import AppRoutes from "./app.routes";
-import { useColors } from "../contexts/Colors";
+import { useColors } from "../contexts/colors";
 import { StatusBar, StatusBarStyle } from "react-native";
 
 export default function Routes() {

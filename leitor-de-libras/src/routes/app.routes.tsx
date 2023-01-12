@@ -6,7 +6,7 @@ import {
     UserCircle,
     Plus
 } from "phosphor-react-native";
-import { useColors } from "../contexts/Colors";
+import { useColors } from "../contexts/colors";
 import { LinearGradient } from "expo-linear-gradient";
 
 import DashboardRoutes from "./dashboard.routes";
@@ -15,7 +15,7 @@ import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
 import Profile from "../screens/Profile";
 import { Image, View } from "react-native";
-import { useUser } from "../contexts/User";
+import { useUser } from "../contexts/user";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 

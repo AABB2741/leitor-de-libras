@@ -4,9 +4,9 @@ import {
 } from "react-native";
 
 import Font from "../../components/Font";
-import { useColors } from "../../contexts/Colors";
-import { useLang } from "../../contexts/Lang";
-import { useUser } from "../../contexts/User";
+import { useColors } from "../../contexts/colors";
+import { useLang } from "../../contexts/lang";
+import { useUser } from "../../contexts/user";
 
 import createStyles from "./styles";
 

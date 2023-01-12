@@ -5,8 +5,8 @@ import {
     TouchableOpacity
 } from "react-native";
 import Font from "../../../components/Font";
-import { useColors } from "../../../contexts/Colors";
-import { LangProps, useLang } from "../../../contexts/Lang";
+import { useColors } from "../../../contexts/colors";
+import { LangProps, useLang } from "../../../contexts/lang";
 import * as Animatable from "react-native-animatable";
 
 import moment from "moment";

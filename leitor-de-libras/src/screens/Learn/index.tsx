@@ -2,7 +2,7 @@ import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import {
     View
 } from "react-native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 
 import createStyles from "./styles";
 

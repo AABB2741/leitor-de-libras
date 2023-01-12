@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from "react-native";
 import Font from "../../../components/Font";
-import { useColors } from "../../../contexts/Colors";
+import { useColors } from "../../../contexts/colors";
 import createStyles from "./styles";
 
 import { Category } from "../../../constants/settingsList";

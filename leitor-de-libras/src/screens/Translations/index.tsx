@@ -17,8 +17,8 @@ import {
     Star,
     Trash
 } from "phosphor-react-native";
-import { useColors } from "../../contexts/Colors";
-import { useLang } from "../../contexts/Lang";
+import { useColors } from "../../contexts/colors";
+import { useLang } from "../../contexts/lang";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Order from "../../@types/Order";
 import Option, { OptionProps as OptionProps } from "./Option";

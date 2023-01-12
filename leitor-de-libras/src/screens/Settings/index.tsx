@@ -8,8 +8,8 @@ import { GearSix, MagnifyingGlass } from "phosphor-react-native";
 
 import getSettings from "../../constants/settingsList";
 
-import { useColors } from "../../contexts/Colors";
-import { useLang } from "../../contexts/Lang";
+import { useColors } from "../../contexts/colors";
+import { useLang } from "../../contexts/lang";
 
 import Font from "../../components/Font";
 import Header from "../../components/Header";

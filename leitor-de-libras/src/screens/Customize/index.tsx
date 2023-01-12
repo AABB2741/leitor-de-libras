@@ -1,7 +1,7 @@
 import {
     View
 } from "react-native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 import createStyles from "./styles";
 
 export default function Customize() {

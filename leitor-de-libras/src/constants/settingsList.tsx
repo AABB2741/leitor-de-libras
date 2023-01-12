@@ -4,7 +4,7 @@ import {
     PaintBrushHousehold,
     TestTube
 } from "phosphor-react-native";
-import { LangProps } from "../contexts/Lang";
+import { LangProps } from "../contexts/lang";
 
 import Appearance from "../screens/Configure/Appearance";
 import Lang from "../screens/Configure/Lang";

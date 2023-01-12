@@ -1,32 +1,49 @@
-import { useState, useEffect, createContext, useContext } from "react";
-import merge from "ts-deepmerge";
+import {
+    useState,
+    useEffect,
+    createContext,
+    useContext
+} from "react";
+
 import * as Storage from "../services/Storage";
+import SETTINGS from "../constants/settings.json";
+import { DeepPartial } from "../utils/DeepPartial";
+import merge from "ts-deepmerge";
 
-import Settings from "../data/settings.json";
+type SettingsProps = typeof SETTINGS;
 
-type SettingsProps = {
-    settings: typeof Settings;
-    setSettings: React.Dispatch<React.SetStateAction<typeof Settings>> | (() => void);
-};
+interface SettingsValue {
+    settings: SettingsProps;
+    saveSettings: (config: DeepPartial<SettingsProps>) => Promise<void>;
+}
 
 interface SettingsProviderProps {
     children: JSX.Element;
 }
 
-const SettingsContext = createContext<SettingsProps>({ settings: Settings, setSettings: () => null });
+const SettingsContext = createContext<SettingsValue>({} as SettingsValue);
 
 export default function SettingsProvider({ children }: SettingsProviderProps) {
-    const [settings, setSettings] = useState(Settings);
+    const [settings, setSettings] = useState<DeepPartial<SettingsProps> | null>(null);
+
+    async function saveSettings(config: DeepPartial<SettingsProps>) {
+        const newSettings = merge(settings ?? {}, config);
+        await Storage.setItem("@settings", newSettings);
+        setSettings(newSettings);
+    }
 
     useEffect(() => {
-        Storage.getItem<typeof Settings>("@settings").then(data => {
-            setSettings(merge(data ?? {}, Settings));
+        Storage.getItem<DeepPartial<SettingsProps>>("@settings").then(data => {
+            setSettings(data);
         });
     }, []);
 
+    if (!settings)
+        return null;
+    
     return (
-        <SettingsContext.Provider value={{ settings, setSettings }}>
-            { children }
+        <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings ?? {}) as SettingsProps, saveSettings }}>
+            {children}
         </SettingsContext.Provider>
     );
 }

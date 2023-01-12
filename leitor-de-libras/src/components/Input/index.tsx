@@ -5,7 +5,7 @@ import {
     TextInputProps,
     TouchableOpacity
 } from "react-native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 import Font from "../Font";
 
 import createStyles from "./styles";

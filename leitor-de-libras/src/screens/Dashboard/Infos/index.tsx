@@ -4,8 +4,8 @@ import {
     TouchableOpacity
 } from "react-native";
 import { GearSix, PencilSimpleLine } from "phosphor-react-native";
-import { useColors } from "../../../contexts/Colors";
-import { useUser } from "../../../contexts/User";
+import { useColors } from "../../../contexts/colors";
+import { useUser } from "../../../contexts/user";
 
 import createStyles from "./styles";
 

@@ -4,7 +4,7 @@ import {
     useWindowDimensions,
     View
 } from "react-native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 import { Camera as ExpoCamera, CameraType } from "expo-camera";
 
 import Font from "../../components/Font";

@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useColors } from "../contexts/Colors";
+import { useColors } from "../contexts/colors";
 
 import Dashboard from "../screens/Dashboard";
 import Settings from "../screens/Settings";

@@ -6,7 +6,7 @@ import {
     TouchableOpacityProps
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 
 import Font from "../Font";
 

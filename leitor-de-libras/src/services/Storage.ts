@@ -12,7 +12,8 @@ export async function getItem<T = Object>(key: Saves, tab?: boolean): Promise<T 
     return data ? JSON.parse(data) : null;
 }
 
-export async function setItem(key: Saves, value: Object, tab?: boolean): Promise<void> {
+export async function setItem<T = Object>(key: Saves, value: T, tab?: boolean): Promise<T> {
     log(`${tab ? "\t↳ " : ""}Definindo itens em "${key}"`);
-    AsyncStorage.default.setItem(key, JSON.stringify(value));
+    await AsyncStorage.default.setItem(key, JSON.stringify(value));
+    return value;
 }

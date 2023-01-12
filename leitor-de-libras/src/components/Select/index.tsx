@@ -3,7 +3,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import { CaretDown } from "phosphor-react-native";
-import { useColors } from "../../contexts/Colors";
+import { useColors } from "../../contexts/colors";
 
 import Font from "../Font";
 

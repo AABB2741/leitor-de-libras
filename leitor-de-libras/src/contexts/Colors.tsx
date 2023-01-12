@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { useColorScheme } from "react-native";
-import { useSettings } from "./Settings";
+import { useSettings } from "./settings";
 
 import light from "../theme/light.json";
 import dark from "../theme/dark.json"; // Mudar paleta
@@ -15,9 +15,10 @@ interface ColorsProviderProps {
 const ColorsContext = createContext<Theme>(dark);
 
 export default function ColorsProvider({ children }: ColorsProviderProps) {
-    const [theme, setTheme] = useState<Theme>(light);
+    const [theme, setTheme] = useState<Theme | null>(null);
     const {settings} = useSettings();
-    const scheme = settings?.display?.appearance?.theme == "auto" ? useColorScheme() : (settings.display.appearance.theme ?? "light");
+    const deviceTheme = useColorScheme();
+    const scheme = settings?.display?.appearance?.theme == "auto" ? deviceTheme : (settings.display.appearance.theme ?? "light");
 
     useEffect(() => {
         if (scheme == "amoled") {
@@ -27,7 +28,10 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
         } else {
             setTheme(light);
         }
-    }, [scheme]);
+    }, [scheme, settings]);
+
+    if (!theme)
+        return null;
 
     return (
         <ColorsContext.Provider value={theme}>

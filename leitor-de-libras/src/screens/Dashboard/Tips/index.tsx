@@ -6,8 +6,8 @@ import {
 } from "phosphor-react-native";
 import { TouchableOpacity, View } from "react-native";
 import Font from "../../../components/Font";
-import { useColors } from "../../../contexts/Colors";
-import { useLang } from "../../../contexts/Lang";
+import { useColors } from "../../../contexts/colors";
+import { useLang } from "../../../contexts/lang";
 
 import createStyles from "./styles";
 

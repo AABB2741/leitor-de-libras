@@ -8,12 +8,12 @@ import { Archive,
     Translate,
     Trash
 } from "phosphor-react-native";
-import { useLang } from "../../../contexts/Lang";
+import { useLang } from "../../../contexts/lang";
 
 import Category from "../../../components/Category";
 
 import createStyles from "./styles";
-import { useColors } from "../../../contexts/Colors";
+import { useColors } from "../../../contexts/colors";
 import Font from "../../../components/Font";
 
 interface WhatToDo {

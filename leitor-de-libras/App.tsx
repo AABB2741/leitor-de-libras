@@ -6,9 +6,9 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-import SettingsProvider from "./src/contexts/Settings";
-import LangProvider from "./src/contexts/Lang";
-import ColorsProvider from "./src/contexts/Colors";
+import SettingsProvider from "./src/contexts/settings";
+import LangProvider from "./src/contexts/lang";
+import ColorsProvider from "./src/contexts/colors";
 import Routes from "./src/routes";
 
 SplashScreen.preventAutoHideAsync();
