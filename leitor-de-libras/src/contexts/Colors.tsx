@@ -28,7 +28,7 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
         } else {
             setTheme(light);
         }
-    }, [scheme, settings]);
+    }, [deviceTheme, settings]);
 
     if (!theme)
         return null;

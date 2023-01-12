@@ -8,8 +8,8 @@
     "background2": "#242424",
     "header": "#1e1e1e",
     "disabled": "#585858",
-    "accent": "#1e90ff",
-    "accent2": "#FF0454",
+    "accent": "#00c5ff",
+    "accent2": "#16dd17",
     "statusBar": {
         "background": "#000",
         "foreground": "light-content"

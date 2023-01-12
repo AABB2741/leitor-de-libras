@@ -64,7 +64,7 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
         marginTop: 10
     },
     previewExample: {
-        color: sample.font,
+        color: sample.desc,
         fontSize: 12
     }
 });

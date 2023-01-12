@@ -1,6 +1,6 @@
 {
     "appName": "Libras",
-    "name": "Português (Brasil)",
+    "langName": "Português (Brasil)",
     "locale": "pt",
     "formats": {
         
@@ -101,7 +101,8 @@
                 "desc": "Altere o idioma de exibição.",
                 "lang": {
                     "title": "Idioma de exibição",
-                    "desc": "Selecione o idioma que você deseja que o coteúdo seja exibido."
+                    "desc": "Selecione o idioma que você deseja que o coteúdo seja exibido.",
+                    "auto": "Automático (%s)"
                 }
             }
         }

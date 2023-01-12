@@ -27,6 +27,7 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
     const [settings, setSettings] = useState<DeepPartial<SettingsProps> | null>(null);
 
     async function saveSettings(config: DeepPartial<SettingsProps>) {
+        console.log("Salvando: " + JSON.stringify(config));
         const newSettings = merge(settings ?? {}, config);
         await Storage.setItem("@settings", newSettings);
         setSettings(newSettings);
@@ -40,7 +41,7 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
 
     if (!settings)
         return null;
-    
+    console.log(merge(SETTINGS, settings ?? {}))
     return (
         <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings ?? {}) as SettingsProps, saveSettings }}>
             {children}

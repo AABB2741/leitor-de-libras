@@ -2,6 +2,7 @@
     "display": {
         "appearance": {
             "theme": "auto",
+            "default_dark_mode": "dark",
             "custom_fonts": true
         },
         "lang": "auto"

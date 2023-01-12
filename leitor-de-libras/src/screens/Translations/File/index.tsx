@@ -4,16 +4,26 @@ import {
     ImageSourcePropType,
     TouchableOpacity
 } from "react-native";
-import Font from "../../../components/Font";
+import { Archive,
+    ArrowsClockwise,
+    Cloud,
+    DeviceMobileCamera,
+    DownloadSimple,
+    Keyhole,
+    Star
+} from "phosphor-react-native";
 import { useColors } from "../../../contexts/colors";
-import { LangProps, useLang } from "../../../contexts/lang";
+import { useLang } from "../../../contexts/lang";
 import * as Animatable from "react-native-animatable";
+
+import Font from "../../../components/Font";
 
 import moment from "moment";
 
 import createStyles from "./styles";
-import { Archive, ArrowsClockwise, Cloud, DeviceMobileCamera, DownloadSimple, Keyhole, Star } from "phosphor-react-native";
+
 import Theme from "../../../@types/Theme";
+import { LangProps } from "../../../lang/getLang";
 
 type FileState = "downloading" | "synching" | "localStorage" | "cloud";
 

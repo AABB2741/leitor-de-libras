@@ -4,7 +4,8 @@ import {
     PaintBrushHousehold,
     TestTube
 } from "phosphor-react-native";
-import { LangProps } from "../contexts/lang";
+
+import { LangProps } from "../lang/getLang";
 
 import Appearance from "../screens/Configure/Appearance";
 import Lang from "../screens/Configure/Lang";
@@ -24,7 +25,7 @@ export type Category = {
 }
 
 interface getSettingsProps {
-    lang: LangProps
+    lang: LangProps;
 }
 
 export default function getSettings({ lang }: getSettingsProps) {
