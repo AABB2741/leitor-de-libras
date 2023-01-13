@@ -17,6 +17,10 @@ export default ({ colors }: ConfigureStyle) => StyleSheet.create({
         backgroundColor: colors.background,
         padding: 20
     },
+    statusBarFix: {
+        height: Constants.statusBarHeight,
+        backgroundColor: colors.background
+    },
     presentation: {
         padding: 20,
         paddingBottom: 50,

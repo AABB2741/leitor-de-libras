@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
-    ScrollView
+    ScrollView,
+    Image
 } from "react-native";
 
 import { useColors } from "../../contexts/colors";
@@ -26,7 +27,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
 
     return (
         <ScrollView style={styles.container}>
-            <Font preset="title" style={styles.welcome}>{user.signed ? lang.dashboard.signed_welcome.replace("%s1", lang.appName).replace("%s2", user.name ?? "") : lang.dashboard.welcome.replace("%s", lang.appName)}</Font>
+            <Image style={styles.logo} source={require("../../../assets/imgs/horizontal-logo.png")} />
             <Infos navigation={navigation} />
             <Tips />
             <WhatToDo />

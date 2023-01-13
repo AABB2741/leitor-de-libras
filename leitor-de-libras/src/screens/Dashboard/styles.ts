@@ -14,6 +14,12 @@ export default ({ colors }: DashboardStyle) => StyleSheet.create({
         backgroundColor: colors.background,
         flex: 1
     },
+    logo: {
+        width: 150,
+        height: 40,
+        alignSelf: "center",
+        resizeMode: "contain"
+    },
     welcome: {
         fontSize: 20,
         paddingHorizontal: 20

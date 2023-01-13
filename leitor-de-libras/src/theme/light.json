@@ -9,8 +9,8 @@
     "background2": "#fff",
     "header": "#fff",
     "disabled": "#c9c9c9",
-    "accent": "#1e90ff",
-    "accent2": "#FF0454",
+    "accent": "#06bbff",
+    "accent2": "#08d778",
     "statusBar": {
         "background": "#fff",
         "foreground": "dark-content"

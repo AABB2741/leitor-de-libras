@@ -14,12 +14,10 @@ import ColorsProvider from "./src/contexts/colors";
 import Routes from "./src/routes";
 
 SplashScreen.preventAutoHideAsync();
+log("App iniciado", { color: "fgGray" });
+const startTime = new Date().getTime();
 
 export default function App() {
-	useEffect(() => {
-		log("Iniciando Li-libras", {color: "fgGray"});
-	});
-
 	const [fontsLoaded] = useFonts({
 		"Exo-2": require("./assets/fonts/Exo2-Bold.ttf"),
 		"Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
@@ -34,14 +32,13 @@ export default function App() {
 	const onLayoutRootView = useCallback(async () => {
 		if (fontsLoaded) {
 			await SplashScreen.hideAsync();
-			log("Saindo da splash screen");
 		}
 	}, [fontsLoaded]);
 
 	if (!fontsLoaded) {
 		return null;
 	}
-	log("Li-libras iniciado!", { color: "fgGreen" });
+	log(`App carregado. Tempo de carregamento: ${new Date().getTime() - startTime}ms`, { color: "fgYellow" });
 	return (
 		<View style={{ flex: 1, backgroundColor: "#000" }} onLayout={onLayoutRootView}>
 			<SettingsProvider>

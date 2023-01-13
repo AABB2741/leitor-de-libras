@@ -54,12 +54,13 @@ export default function Configure({ navigation, route }: ConfigureProps) {
     return (
         <ScrollView
             style={styles.container}
-            stickyHeaderIndices={[1]}
+            stickyHeaderIndices={[0, 2]}
             onScroll={e => {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
         >
+            <View style={styles.statusBarFix} />
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
                 {setting.icon({ color: colors.font, size: 36, weight: "fill" })}
                 <Font preset="title" style={styles.title}>{setting.title}</Font>

@@ -32,7 +32,7 @@ export default function ThemeOption({ theme, icon, sample, name, example }: Them
             <View style={styles.presentation}>
                 <View style={styles.infos}>
                     {icon({ color: colors.font, size: 20, weight: "fill" })}
-                    <Font preset="subtitle" style={styles.name}>{name}</Font>
+                    <Font preset="button" style={styles.name}>{name}</Font>
                 </View>
                 <Indicator
                     value={settings.display.appearance.theme == theme}

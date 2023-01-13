@@ -4,7 +4,7 @@ import amoled from "./amoled.json";
 import midnight from "./midnight.json";
 import {
     BatteryChargingVertical,
-    Drop,
+    Lamp,
     MoonStars,
     Sun
 } from "phosphor-react-native";
@@ -30,7 +30,7 @@ export const THEMES: ThemeListItem[] = [{
 }, {
     name: "midnight",
     theme: midnight,
-    icon: props => <Drop {...props} />
+    icon: props => <Lamp {...props} />
 }];
 
 export default function getTheme(name: ThemeName): ThemeProps {
