@@ -1,7 +1,7 @@
 import light from "./light.json";
 import dark from "./dark.json";
 import amoled from "./amoled.json";
-import darkula from "./darkula.json";
+import midnight from "./midnight.json";
 import {
     BatteryChargingVertical,
     Drop,
@@ -12,7 +12,7 @@ import {
 type ThemeListItem = {
     name: ThemeName,
     theme: ThemeProps;
-    icon: ({ color, size, weight }: { color: string; size: number, weight: "fill" | "regular"}) => JSX.Element;
+    icon: ({ color, size, weight }: { color: string; size: number, weight: "fill" | "regular" }) => JSX.Element;
 };
 
 export const THEMES: ThemeListItem[] = [{
@@ -28,8 +28,8 @@ export const THEMES: ThemeListItem[] = [{
     theme: amoled,
     icon: props => <BatteryChargingVertical {...props} />
 }, {
-    name: "darkula",
-    theme: darkula,
+    name: "midnight",
+    theme: midnight,
     icon: props => <Drop {...props} />
 }];
 
@@ -38,4 +38,4 @@ export default function getTheme(name: ThemeName): ThemeProps {
 }
 
 export type ThemeProps = typeof light;
-export type ThemeName = "light" | "dark" | "amoled" | "darkula";
+export type ThemeName = "auto" | "light" | "dark" | "amoled" | "midnight";

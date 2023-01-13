@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 import { ThemeProps } from '../../theme/getTheme';
 
@@ -18,7 +19,8 @@ export default ({ colors }: ConfigureStyle) => StyleSheet.create({
     },
     presentation: {
         padding: 20,
-        paddingVertical: 50,
+        paddingBottom: 50,
+        paddingTop: Constants.statusBarHeight + 50,
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center"

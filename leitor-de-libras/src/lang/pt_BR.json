@@ -89,8 +89,8 @@
                         "name": "Modo AMOLED",
                         "example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
                     },
-                    "darkula": {
-                        "name": "Darkula",
+                    "midnight": {
+                        "name": "Meia-noite",
                         "example": "Este é o modo Darkula. Muito loko, né?"
                     }
                 },

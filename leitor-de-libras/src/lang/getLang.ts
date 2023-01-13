@@ -22,4 +22,4 @@ export default function getLang(name: LangName) {
 }
 
 export type LangProps = typeof pt_BR;
-export type LangName = "pt_BR" | "en_US";
+export type LangName = "auto" | "pt_BR" | "en_US";

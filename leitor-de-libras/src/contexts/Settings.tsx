@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import * as Storage from "../services/Storage";
-import SETTINGS from "../constants/settings.json";
+import SETTINGS from "../constants/settings";
 import { DeepPartial } from "../utils/DeepPartial";
 
 import merge from "ts-deepmerge";

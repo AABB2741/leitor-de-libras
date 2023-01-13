@@ -16,12 +16,7 @@ import { useLang } from "../../../contexts/lang";
 
 import ThemeOption from "./ThemeOption";
 
-import light from "../../../theme/light.json";
-import dark from "../../../theme/dark.json";
-import amoled from "../../../theme/amoled.json";
-import darkula from "../../../theme/darkula.json";
-
-import { THEMES } from "../../../theme/getTheme";
+import getTheme, { THEMES } from "../../../theme/getTheme";
 
 import createStyles from "./styles";
 
@@ -43,7 +38,7 @@ export default function Appearance() {
                     icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.auto.name}
                     example={lang.settings.display.appearance.theme.auto.example}
-                    sample={scheme == "light" ? light : dark}
+                    sample={scheme == "light" ? getTheme("light") : getTheme("dark")}
                 />
                 {THEMES.map(t => (
                     <ThemeOption

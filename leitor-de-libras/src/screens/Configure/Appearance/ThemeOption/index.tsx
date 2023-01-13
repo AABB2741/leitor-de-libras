@@ -14,7 +14,7 @@ import createStyles from "./styles";
 import { useSettings } from "../../../../contexts/settings";
 
 interface ThemeOptionProps {
-    theme: "auto" | "light" | "dark" | "amoled" | "darkula";
+    theme: "auto" | "light" | "dark" | "amoled" | "midnight";
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
     sample: ThemeProps;
     name: string;
@@ -28,7 +28,7 @@ export default function ThemeOption({ theme, icon, sample, name, example }: Them
     const styles = createStyles({ colors, sample });
 
     return (
-        <Pressable style={styles.container} onPress={() => saveSettings({display: {appearance: { theme }}})}>
+        <Pressable style={styles.container} onPress={settings.display.appearance.theme == theme ? (() => null) : () => saveSettings({display: {appearance: { theme }}})}>
             <View style={styles.presentation}>
                 <View style={styles.infos}>
                     {icon({ color: colors.font, size: 20, weight: "fill" })}
