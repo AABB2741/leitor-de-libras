@@ -18,7 +18,7 @@ export const LANGS: LangListItem[] = [{
 }];
 
 export default function getLang(name: LangName) {
-    return merge(LANGS.find(l => l.name === name)?.lang ?? {}, pt_BR);
+    return merge(pt_BR, LANGS.find(l => l.name === name)?.lang ?? {}) as LangProps;
 }
 
 export type LangProps = typeof pt_BR;

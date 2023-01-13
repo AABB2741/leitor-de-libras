@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { useSettings } from "./settings";
-import { LangProps } from "../lang/getLang";
+import getLang, { LangProps } from "../lang/getLang";
 
 import log from "../utils/log";
 
@@ -29,7 +29,7 @@ export default function LangProvider({ children }: LangProviderProps) {
 
     useEffect(() => {
         log(`Atualizando idioma para "${lang?.langName ?? "default"}"`);
-        setLang(pt_BR);
+        setLang(getLang(settings.display.lang ?? "pt_BR"));
     }, [settings]);
 
     if (!lang)

@@ -14,7 +14,7 @@ export default ({ colors }: PickerStyle) => StyleSheet.create({
     },
     defaultOption: {
         borderBottomWidth: 1,
-        borderBottomColor: colors.desc3,
+        borderBottomColor: colors.border,
         paddingBottom: 20,
         marginBottom: 10
     },

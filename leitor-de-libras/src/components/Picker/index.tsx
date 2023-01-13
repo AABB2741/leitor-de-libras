@@ -29,7 +29,7 @@ export default function Picker({ options, value, disabled, onValueChange }: Pick
     return (
         <View style={styles.container}>
             {options.map(o => (
-                <TouchableOpacity style={[styles.option, o.default && styles.defaultOption]} key={o.value} onPress={() => onValueChange?.(o.value)}>
+                <TouchableOpacity style={[styles.option, o.default && styles.defaultOption]} key={o.value} onPress={o.value === value ? () => null : () => onValueChange?.(o.value)}>
                     <Indicator value={o.value === value} />
                     <Font preset="button" style={styles.optionLabel}>{o.label}</Font>
                 </TouchableOpacity>

@@ -1,5 +1,5 @@
 {
-    "appName": "Libras",
+    "appName": "Li Libras",
     "langName": "English (US)",
     "locale": "en",
     "formats": {
@@ -15,7 +15,7 @@
         "unity": {
             "future": "in %d",
             "past": "%s ago",
-            "s": "few seconds",
+            "s": "few moments",
             "ss": "sec",
             "m": "1min",
             "mm": "%dmin",
@@ -23,17 +23,17 @@
             "hh": "%dh",
             "d": "1d",
             "dd": "%dd",
-            "w": "1s",
-            "ww": "%ds",
+            "w": "1w",
+            "ww": "%dw",
             "M": "1m",
             "MM": "%dm",
-            "y": "1a",
-            "yy": "%da"
+            "y": "1y",
+            "yy": "%dy"
         }
     },
     "empty": {
-        "title": "Everything is empty...",
-        "desc": "Looks like there's no content to be displayed."
+        "title": "It's all empty...",
+        "desc": "There's no content to be displayed."
     },
     "dashboard": {
         "signed_welcome": "Welcome to %s1, %s2!",
@@ -45,38 +45,37 @@
         },
         "what_to_do": {
             "title": "What to do?",
-            "create": "Create new translation",
+            "create": "New translation",
             "view_translations": "See your translations",
-            "import": "Import translations",
-            "export": "Export translations",
-            "delete": "Delete translations",
-            "archived": "Archived translations"
+            "clear": "Delete all translations",
+            "archived": "Archived translations",
+            "learn": "Learn Libras"
         }
     },
     "settings": {
         "title": "Settings",
         "tips": {
-            "settings_sync": "Você pode fazer login para salvar suas configurações online e sincronizar com outros dispositivos.",
-            "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
-            "lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
+            "settings_sync": "You can log in to save your settings online and sync with other devices..",
+            "theme": "You can change the application's color palette by going to %s > %s > %s > %s",
+            "lang": "You can change the application language by going to %s > %s > %s > %s"
         },
         "not_found": {
-            "title": "Config not found",
-            "desc": "Sorry, we couldn't find the requested config.",
+            "title": "Configuration not found",
+            "desc": "Sorry, we couldn't find the requested configuration.",
             "back": "Back"
         },
         "display": {
             "title": "Display",
             "appearance": {
                 "title": "Appearance",
-                "desc": "Change the way %s is shown.",
+                "desc": "Change the way the %s is displayed.",
                 "theme": {
                     "title": "Theme",
-                    "desc": "Choose the color scheme that will be used to display %s.",
-                    "hello_world": "Hello, world!",
+                    "desc": "Choose the color palette that will be used to present %s.",
+                    "hello_world": "Hello World!",
                     "auto": {
-                        "name": "Auto",
-                        "example": "Theme selected based on your device's setting."
+                        "name": "Automatic theme",
+                        "example": "Theme chosen based on your device configuration. Updates when enabling or disabling night mode."
                     },
                     "light": {
                         "name": "Light theme",
@@ -84,21 +83,30 @@
                     },
                     "dark": {
                         "name": "Dark theme",
-                        "example": "This is the dark theme, great for places with low light."
+                        "example": "This is the dark theme, great for low light locations and not straining your eyes."
                     },
                     "amoled": {
-                        "name": "AMOLED",
-                        "example": "This is the AMOLED mode. In compatible devices, this mode can help to save battery."
+                        "name": "AMOLED mode",
+                        "example": "This is AMOLED mode. On supported devices, this mode can help save battery life."
+                    },
+                    "midnight": {
+                        "name": "Midnight",
+                        "example": "The moon is above the clouds and falls below the clouds again."
                     }
                 },
                 "custom_fonts": {
                     "title": "Custom fonts",
-                    "label": "Let %s use custom fonts"
+                    "label": "Permitir que o %s utilize fontes personalizadas"
                 }
             },
             "lang": {
                 "title": "Language",
-                "desc": "Change the display language."
+                "desc": "Change the display language.",
+                "lang": {
+                    "title": "Display language",
+                    "desc": "Select the language you want the content to be displayed in.",
+                    "auto": "Auto (%s)"
+                }
             }
         }
     },
@@ -106,30 +114,36 @@
         "options": {
             "create": "Create translation",
             "delete": "Delete",
+            "favorite": "Favorite",
+            "lock": "Lock",
             "import": "Import",
             "export": "Export",
             "archive": "Archive",
             "load": "Load"
         },
         "title": "My translations",
-        "filter": "Search translations...",
+        "filter": "Search for translations...",
+        "file": {
+            "downloading": "Downloading...",
+            "synching": "Synching..."
+        },
         "empty_search": {
             "title": "No results",
-            "desc": "We didn't find translations with the given name. Check if you spelled it correctly and try again."
+            "desc": "We found no translations with the name entered. Make sure you typed it correctly and try again."
         },
         "empty_files": {
-            "title": "You don't have translations yet",
-            "desc": "Create or import translations by pressing \"%s\" button.",
-            "send_option": "Send video",
-            "create_option": "Create video"
+            "title": "Você ainda não tem traduções",
+            "desc": "Comece a traduzir pressionando \"%s\" para criar ou importar gravações.",
+            "send_option": "Enviar vídeo",
+            "create_option": "Criar vídeo"
         }
     },
     "camera": {
         "presentation": {
-            "title": "Say \"Cheese\"!"
+            "title": "Diga \"X\"!"
         },
         "request_permission": {
-            "title": "Let us access your camera.",
+            "title": "Permita-nos acessar a sua câmera.",
             "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
             "learn_more": "Saiba como usamos seus dados"
         }
