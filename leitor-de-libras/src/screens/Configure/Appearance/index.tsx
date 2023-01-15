@@ -32,6 +32,7 @@ export default function Appearance() {
             <FixedCategory
                 title={lang.settings.display.appearance.theme.title}
                 desc={lang.settings.display.appearance.theme.desc.replace("%s", lang.appName)}
+                disableVerticalSpacing
             >
                 <ThemeOption
                     theme="auto"
@@ -51,7 +52,7 @@ export default function Appearance() {
                     />
                 ))}
             </FixedCategory>
-            <FixedCategory title={lang.settings.display.appearance.custom_fonts.title}>
+            <FixedCategory title={lang.settings.display.appearance.custom_fonts.title} disableVerticalSpacing>
 
             </FixedCategory>
         </View>

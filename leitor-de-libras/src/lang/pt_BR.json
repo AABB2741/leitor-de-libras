@@ -105,6 +105,10 @@
                     "title": "Idioma de exibição",
                     "desc": "Selecione o idioma que você deseja que o coteúdo seja exibido.",
                     "auto": "Automático (%s)"
+                },
+                "auto_translate": {
+                    "title": "Tradução automática",
+                    "desc": "Ative a tradução automática do Google para traduzir o aplicativo para um idioma não traduzido oficialmente. A tradução pode não ser totalmente precisa e é necessário estar conectado à internet."
                 }
             }
         }

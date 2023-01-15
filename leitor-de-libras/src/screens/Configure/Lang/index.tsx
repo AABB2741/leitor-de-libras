@@ -16,7 +16,11 @@ export default function Lang() {
     
     return (
         <View style={styles.container}>
-            <FixedCategory title={lang.settings.display.lang.lang.title} desc={lang.settings.display.lang.lang.desc}>
+            <FixedCategory
+                title={lang.settings.display.lang.lang.title}
+                desc={lang.settings.display.lang.lang.desc}
+                disableVerticalSpacing
+            >
                 <Picker
                     options={[{
                         label: lang.settings.display.lang.lang.auto.replace("%s", lang.langName),
@@ -30,6 +34,10 @@ export default function Lang() {
                     onValueChange={lang => saveSettings({display: { lang }} as {display: {lang: LangName}})}
                 />
             </FixedCategory>
+            <FixedCategory
+                title={lang.settings.display.lang.auto_translate.title}
+                desc={lang.settings.display.lang.auto_translate.desc}
+            />
         </View>
     );
 }

@@ -11,6 +11,7 @@ type FontName = "title" | "subtitle" | "text" | "desc" | "desc-bold" | "input" |
 
 interface Fonts extends TextStyle {
     name: FontName;
+    preventTranslate?: boolean;
 }
 
 const FONTS: Fonts[] = [{

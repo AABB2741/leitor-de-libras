@@ -34,7 +34,7 @@ export default ({ colors }: ConfigureStyle) => StyleSheet.create({
         fontSize: 20
     },
     desc: {
-        fontSize: 16,
+        fontSize: 14,
         marginTop: 10,
         color: colors.desc,
         textAlign: "center"

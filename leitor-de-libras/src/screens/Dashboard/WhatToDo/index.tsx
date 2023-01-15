@@ -52,7 +52,7 @@ export default function WhatToDo() {
 
     return (
         <Category
-            verticalSpacing={false}
+            disableVerticalSpacing
             data={WHAT_TO_DO}
             renderItem={({ item, index }) => (
                 <TouchableOpacity style={styles.container} onPress={item.onPress} key={index}>

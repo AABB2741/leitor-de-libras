@@ -4,7 +4,7 @@ import {
     ScrollView
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { GearSix, MagnifyingGlass } from "phosphor-react-native";
+import { Eraser, GearSix, MagnifyingGlass } from "phosphor-react-native";
 
 import getSettings from "../../constants/settingsList";
 
@@ -47,7 +47,9 @@ export default function Settings({ navigation }: SettingsProps) {
                 title={lang.settings.title}
                 opacity={opacity}
                 rightOptions={[{
-                    icon: ({ color, size }) => <MagnifyingGlass color={color} size={size} />
+                    icon: props => <Eraser {...props} />
+                }, {
+                    icon: props => <MagnifyingGlass {...props} />,
                 }]}
             />
             {settingsList.map((props, index) => <ConfigSection { ...props } navigation={navigation} key={index} />)}

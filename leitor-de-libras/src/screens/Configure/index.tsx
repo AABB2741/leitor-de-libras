@@ -69,9 +69,6 @@ export default function Configure({ navigation, route }: ConfigureProps) {
             <Header
                 title={setting.title}
                 opacity={opacity}
-                rightOptions={[{
-                    icon: ({ color, size }) => <Eraser color={color} size={size} weight="fill" />
-                }]}
             />
             <View style={styles.content}>
                 {setting.component()}
