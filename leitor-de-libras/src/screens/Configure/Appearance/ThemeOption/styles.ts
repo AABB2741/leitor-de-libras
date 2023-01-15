@@ -28,7 +28,7 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
     },
     preview: {
         borderWidth: 1,
-        borderColor: colors.desc3,
+        borderColor: colors.border,
         borderRadius: 12,
         backgroundColor: sample.background,
         padding: 10,

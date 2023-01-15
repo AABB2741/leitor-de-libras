@@ -44,10 +44,10 @@
             "learn_more": "Saiba mais"
         },
         "what_to_do": {
-            "create": "Criar nova tradução",
-            "view_translations": "Ver suas traduções",
-            "clear": "Apagar traduções",
-            "archived": "Traduções arquivadas",
+            "create": "Nova tradução",
+            "view_translations": "Suas traduções",
+            "clear": "Limpar traduções",
+            "archived": "Arquivados",
             "learn": "Aprender Libras"
         }
     },
