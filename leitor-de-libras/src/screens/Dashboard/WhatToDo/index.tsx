@@ -1,4 +1,5 @@
 import {
+    View,
     TouchableOpacity
 } from "react-native";
 import { Archive,
@@ -47,11 +48,13 @@ export default function WhatToDo() {
 
     return (
         <Category
-            title={lang.dashboard.what_to_do.title}
+            verticalSpacing={false}
             data={WHAT_TO_DO}
             renderItem={({ item, index }) => (
                 <TouchableOpacity style={styles.container} key={index}>
-                    {item.icon({ color: colors.font, size: 28 })}
+                    <View style={styles.iconContainer}>
+                        {item.icon({ color: colors.font, size: 20 })}
+                    </View>
                     <Font preset="subtitle" style={styles.label} numberOfLines={2}>{item.label}</Font>
                 </TouchableOpacity>
             )}

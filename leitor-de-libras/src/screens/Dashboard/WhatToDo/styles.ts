@@ -8,17 +8,19 @@ interface WhatToDoStyle {
 
 export default ({ colors }: WhatToDoStyle) => StyleSheet.create({
     container: {
-        padding: 15,
-        width: 100,
-        height: 100,
+        width: 60,
         marginRight: 10,
+        alignItems: "center"
+    },
+    iconContainer: {
         backgroundColor: colors.background2,
-        alignItems: "center",
-        borderRadius: 16,
-        justifyContent: "space-between"
+        padding: 20,
+        borderRadius: 50
     },
     label: {
+        marginTop: 10,
         fontSize: 12,
-        textAlign: "center"
+        textAlign: "center",
+        flex: 1
     }
 });

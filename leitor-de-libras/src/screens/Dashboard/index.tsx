@@ -29,8 +29,8 @@ export default function Dashboard({ navigation }: DashboardProps) {
         <ScrollView style={styles.container}>
             <Image style={styles.logo} source={require("../../../assets/imgs/horizontal-logo.png")} />
             <Infos navigation={navigation} />
-            <Tips />
             <WhatToDo />
+            <Tips />
         </ScrollView>
     );
 }

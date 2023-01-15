@@ -8,7 +8,8 @@ interface TipsStyle {
 
 export default ({ colors }: TipsStyle) => StyleSheet.create({
     container: {
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        marginTop: 20
     },
     content: {
         fontSize: 16

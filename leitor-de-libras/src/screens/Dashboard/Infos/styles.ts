@@ -12,7 +12,7 @@ export default ({ colors }: InfosStyle) => StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginVertical: 20
+        marginTop: 20
     },
     avatar: {
         width: 40,
