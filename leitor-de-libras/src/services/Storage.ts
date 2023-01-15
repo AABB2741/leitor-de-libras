@@ -8,13 +8,13 @@ function dbLog(msg: string) {
 }
 
 export async function getItem<T = Object>(key: Saves, tab?: boolean): Promise<T | null> {
-    dbLog(`${tab ? "\t↳ " : ""}Obtendo itens de "${key}"`);
+    dbLog(`${tab ? "\t↳ " : ""}Obtendo dados de "${key}"`);
     const data = await AsyncStorage.default.getItem(key);
     return data ? JSON.parse(data) : null;
 }
 
 export async function setItem<T = Object>(key: Saves, value: T, tab?: boolean): Promise<T> {
-    dbLog(`${tab ? "\t↳ " : ""}Definindo itens em "${key}"`);
+    dbLog(`${tab ? "\t↳ " : ""}Definindo dados em "${key}"`);
     await AsyncStorage.default.setItem(key, JSON.stringify(value));
     return value;
 }

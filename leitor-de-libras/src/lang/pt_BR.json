@@ -95,6 +95,7 @@
                 },
                 "custom_fonts": {
                     "title": "Fontes personalizadas",
+                    "desc": "Permitir que fontes personalizadas sejam utilizadas. Ao desabilitar, será utilizado a fonte padrão do dispositivo.",
                     "label": "Permitir que o %s utilize fontes personalizadas"
                 }
             },

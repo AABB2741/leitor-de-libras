@@ -6,9 +6,10 @@ interface InputStyle {
     colors: ThemeProps;
     transparent?: boolean;
     value?: string;
+    custom_fonts: boolean;
 }
 
-export default ({ colors, transparent, value }: InputStyle) => StyleSheet.create({
+export default ({ colors, transparent, value, custom_fonts }: InputStyle) => StyleSheet.create({
     container: {
         flex: 1
     },
@@ -27,7 +28,7 @@ export default ({ colors, transparent, value }: InputStyle) => StyleSheet.create
         paddingLeft: transparent ? 0 : 15,
         paddingRight: (!transparent && !value) ? 20 : 0,
         color: colors.font,
-        fontFamily: "Rubik",
+        fontFamily: custom_fonts ? "Rubik" : undefined,
         flex: 1,
         fontSize: 14
     },

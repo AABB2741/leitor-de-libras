@@ -4,6 +4,7 @@ import {
     TextStyle
 } from "react-native";
 import { useColors } from "../../contexts/colors";
+import { useSettings } from "../../contexts/settings";
 
 import createStyles from "./styles";
 
@@ -43,10 +44,11 @@ interface FontProps extends TextProps {
 }
 
 export default function Font({ preset, style, ...rest }: FontProps) {
+    const { settings } = useSettings();
     const colors = useColors();
     const styles = createStyles({ colors });
     
     return (
-        <Text {...rest} style={[styles.text, { ...FONTS.find(f => f.name == preset) }, Array.isArray(style) ? [...style] : style]} />
+        <Text {...rest} style={[styles.text, settings.display.appearance.custom_fonts && { ...FONTS.find(f => f.name == preset) }, Array.isArray(style) ? [...style] : style]} />
     );
 }

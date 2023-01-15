@@ -8,13 +8,13 @@ import { useColors } from "../../../../contexts/colors";
 import Font from "../../../../components/Font";
 import Indicator from "../../../../components/Picker/Indicator";
 
-import { ThemeProps } from "../../../../theme/getTheme";
+import { ThemeName, ThemeProps } from "../../../../theme/getTheme";
 
 import createStyles from "./styles";
 import { useSettings } from "../../../../contexts/settings";
 
 interface ThemeOptionProps {
-    theme: "auto" | "light" | "dark" | "amoled" | "midnight";
+    theme: ThemeName;
     icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
     sample: ThemeProps;
     name: string;

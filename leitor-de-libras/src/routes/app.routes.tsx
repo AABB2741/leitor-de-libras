@@ -51,11 +51,11 @@ export default function AppRoutes() {
                     component={Camera}
                     options={{
                         tabBarIcon: ({ focused }) => focused ? (
-                            <LinearGradient colors={[ colors.accent2, colors.accent ]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 12, marginBottom: 32, borderRadius: 28 }}>
+                            <LinearGradient colors={[ colors.accent2, colors.accent ]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 12, marginBottom: 26, borderRadius: 28 }}>
                                 <Plus size={32} color={colors.font2} />
                             </LinearGradient>
                         ) : (
-                            <View style={{ padding: 12, backgroundColor: colors.accent2, marginBottom: 32, borderRadius: 28 }}>
+                            <View style={{ padding: 12, backgroundColor: colors.accent2, marginBottom: 26, borderRadius: 28 }}>
                                 <Plus size={32} color={colors.font2} />
                             </View>
                         )

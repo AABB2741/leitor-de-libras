@@ -13,14 +13,17 @@ import FixedCategory from "../../../components/FixedCategory";
 import Font from "../../../components/Font";
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
+import { useSettings } from "../../../contexts/settings";
 
 import ThemeOption from "./ThemeOption";
 
 import getTheme, { THEMES } from "../../../theme/getTheme";
 
 import createStyles from "./styles";
+import Toggle from "../../../components/Toggle";
 
 export default function Appearance() {
+    const { settings, saveSettings } = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -52,8 +55,16 @@ export default function Appearance() {
                     />
                 ))}
             </FixedCategory>
-            <FixedCategory title={lang.settings.display.appearance.custom_fonts.title} disableVerticalSpacing>
-
+            <FixedCategory
+                title={lang.settings.display.appearance.custom_fonts.title}
+                desc={lang.settings.display.appearance.custom_fonts.desc}
+                disableVerticalSpacing
+            >
+                <Toggle
+                    label={lang.settings.display.appearance.custom_fonts.label}
+                    value={settings.display.appearance.custom_fonts}
+                    onValueChange={custom_fonts => saveSettings({display: {appearance:{ custom_fonts }} })}
+                />
             </FixedCategory>
         </View>
     )

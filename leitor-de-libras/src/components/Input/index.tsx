@@ -6,6 +6,8 @@ import {
     TouchableOpacity
 } from "react-native";
 import { useColors } from "../../contexts/colors";
+import { useSettings } from "../../contexts/settings";
+
 import Font from "../Font";
 
 import createStyles from "./styles";
@@ -18,8 +20,9 @@ interface InputProps extends TextInputProps {
 }
 
 export default function Input({ label, style, transparent, hideClearButton, onRequestClear, value, ...rest }: InputProps) {
+    const { settings } = useSettings();
     const colors = useColors();
-    const styles = createStyles({ colors, transparent, value });
+    const styles = createStyles({ colors, transparent, value, custom_fonts: settings.display.appearance.custom_fonts });
 
     return (
         <View style={styles.container}>
