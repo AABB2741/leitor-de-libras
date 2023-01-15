@@ -6,6 +6,7 @@
         
     },
     "general": {
+        "login": "Sign in",
         "filter": "Search...",
         "order": {
             "date": "Date",

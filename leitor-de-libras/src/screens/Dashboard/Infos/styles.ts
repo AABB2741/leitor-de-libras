@@ -14,6 +14,13 @@ export default ({ colors }: InfosStyle) => StyleSheet.create({
         justifyContent: "space-between",
         marginTop: 20
     },
+    login: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    loginLabel: {
+        marginLeft: 10
+    },
     avatar: {
         width: 40,
         height: 40,

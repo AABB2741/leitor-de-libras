@@ -6,6 +6,7 @@
         
     },
     "general": {
+        "login": "Fazer login",
         "filter": "Procurar...",
         "order": {
             "date": "Data",
