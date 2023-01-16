@@ -5,15 +5,17 @@ import { ThemeProps } from './../../theme/getTheme';
 interface InputStyle {
     colors: ThemeProps;
     transparent?: boolean;
+    noTopPadding?: boolean;
     value?: string;
     custom_fonts: boolean;
 }
 
-export default ({ colors, transparent, value, custom_fonts }: InputStyle) => StyleSheet.create({
+export default ({ colors, noTopPadding, transparent, value, custom_fonts }: InputStyle) => StyleSheet.create({
     container: {
         flex: 1
     },
     label: {
+        marginTop: noTopPadding ? 0 : 20,
         marginBottom: 10,
     },
     content: {

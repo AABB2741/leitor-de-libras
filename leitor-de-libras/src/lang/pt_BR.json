@@ -6,7 +6,8 @@
         
     },
     "general": {
-        "login": "Entrar",
+        "login": "Fazer login",
+        "signup": "Criar uma conta",
         "filter": "Procurar...",
         "order": {
             "date": "Data",
@@ -151,6 +152,22 @@
             "title": "Permita-nos acessar a sua câmera.",
             "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
             "learn_more": "Saiba como usamos seus dados"
+        }
+    },
+    "profile": {
+        "not_signed": {
+            "title": "Você não está conectado(a)",
+            "desc": "Para alterar as configurações do seu perfil, é necessário que você se conecte a uma conta."
+        },
+        "personal_data": {
+            "title": "Dados pessoais",
+            "avatar": "Foto de perfil",
+            "username": "Nome de usuário",
+            "about_me": "Sobre mim",
+            "email": "E-mail",
+            "password": "Senha",
+            "gender": "Sexo",
+            "change_password": "Alterar sua senha"
         }
     }
 }

@@ -11,6 +11,7 @@
     "disabled": "#c9c9c9",
     "accent": "#06bbff",
     "accent2": "#08d778",
+    "critic": "#ff0000",
     "statusBar": {
         "background": "#fff",
         "foreground": "dark-content"

@@ -16,13 +16,14 @@ interface InputProps extends TextInputProps {
     label?: string;
     transparent?: boolean;
     hideClearButton?: boolean;
+    noTopPadding?: boolean;
     onRequestClear?: () => void;
 }
 
-export default function Input({ label, style, transparent, hideClearButton, onRequestClear, value, ...rest }: InputProps) {
+export default function Input({ label, style, transparent, hideClearButton, noTopPadding, onRequestClear, value, ...rest }: InputProps) {
     const { settings } = useSettings();
     const colors = useColors();
-    const styles = createStyles({ colors, transparent, value, custom_fonts: settings.display.appearance.custom_fonts });
+    const styles = createStyles({ colors, transparent, noTopPadding, value, custom_fonts: settings.display.appearance.custom_fonts });
 
     return (
         <View style={styles.container}>
