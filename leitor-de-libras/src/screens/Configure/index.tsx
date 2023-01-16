@@ -59,6 +59,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
+            scrollEventThrottle={100}
         >
             <View style={styles.statusBarFix} />
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>

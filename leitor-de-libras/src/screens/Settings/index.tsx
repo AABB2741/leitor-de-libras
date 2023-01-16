@@ -38,6 +38,7 @@ export default function Settings({ navigation }: SettingsProps) {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
+            scrollEventThrottle={100}
         >
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
                 <GearSix size={36} weight="fill" color={colors.font} />
