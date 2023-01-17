@@ -28,13 +28,13 @@ interface ProfileProps {
 
 export default function Profile({  }: ProfileProps) {
     const lang = useLang();
-    const user = useUser();
+    const { user, signed } = useUser();
     const colors = useColors();
     const styles = createStyles({ colors });
 
     const [test, setTest] = useState("");
     
-    if (!user || !user.signed) {
+    if (!user || !signed) {
         return (
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <Empty

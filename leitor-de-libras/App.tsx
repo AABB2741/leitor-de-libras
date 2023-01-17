@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import log from "./src/utils/log";
 
+import UserProvider from "./src/contexts/user";
 import SettingsProvider from "./src/contexts/settings";
 import LangProvider from "./src/contexts/lang";
 import ColorsProvider from "./src/contexts/colors";
@@ -41,15 +42,17 @@ export default function App() {
 	log(`App carregado. Tempo de carregamento: ${new Date().getTime() - startTime}ms`, { color: "fgYellow" });
 	return (
 		<View style={{ flex: 1, backgroundColor: "#000" }} onLayout={onLayoutRootView}>
-			<SettingsProvider>
-				<LangProvider>
-					<ColorsProvider>
-						<NavigationContainer>
-							<Routes />
-						</NavigationContainer>
-					</ColorsProvider>
-				</LangProvider>
-			</SettingsProvider>
+			<UserProvider>
+				<SettingsProvider>
+					<LangProvider>
+						<ColorsProvider>
+							<NavigationContainer>
+								<Routes />
+							</NavigationContainer>
+						</ColorsProvider>
+					</LangProvider>
+				</SettingsProvider>
+			</UserProvider>
 		</View>
 	);
 }

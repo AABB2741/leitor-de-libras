@@ -20,7 +20,7 @@ import { useUser } from "../contexts/user";
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export default function AppRoutes() {
-    const user = useUser();
+    const { user, signed } = useUser();
     const colors = useColors();
 
     return (
@@ -72,8 +72,8 @@ export default function AppRoutes() {
                     name="Profile"
                     component={Profile}
                     options={{
-                        tabBarIcon: ({ focused, size }) => user.signed ? (
-                            <Image source={user.avatar} style={{
+                        tabBarIcon: ({ focused, size }) => signed ? (
+                            <Image source={user?.avatar} style={{
                                 width: size,
                                 height: size,
                                 borderRadius: size,

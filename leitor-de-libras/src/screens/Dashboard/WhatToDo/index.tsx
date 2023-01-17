@@ -6,6 +6,7 @@ import { Archive,
     Books,
     HardDrives,
     PlusCircle,
+    SignIn,
     Translate,
     UserCirclePlus
 } from "phosphor-react-native";
@@ -31,7 +32,7 @@ interface WhatToDo {
 export default function WhatToDo() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-    const user = useUser();
+    const {signed} = useUser();
     const colors = useColors();
     const lang = useLang();
     const styles = createStyles({ colors });
@@ -40,9 +41,9 @@ export default function WhatToDo() {
         icon: props => <PlusCircle {...props} />,
         label: lang.dashboard.what_to_do.create
     }, {
-        icon: props => <UserCirclePlus {...props} />,
+        icon: props => <SignIn {...props} />,
         label: lang.general.login,
-        disabled: user.signed
+        disabled: signed
     }, {
         icon: props => <Translate {...props} />,
         label: lang.dashboard.what_to_do.view_translations,

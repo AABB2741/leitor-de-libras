@@ -20,7 +20,7 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ navigation }: DashboardProps) {
-    const user = useUser();
+    const {user} = useUser();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });

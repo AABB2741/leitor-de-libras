@@ -10,7 +10,6 @@ export default function Routes() {
     return (
         <>
             <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
-            <LoginForm />
             <AppRoutes />
         </>
     );
