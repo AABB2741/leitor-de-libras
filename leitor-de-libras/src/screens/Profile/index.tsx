@@ -21,6 +21,7 @@ import Font from "../../components/Font";
 import FixedCategory from "../../components/FixedCategory";
 
 import createStyles from "./styles";
+import LoginForm from "../../components/LoginForm";
 
 interface ProfileProps {
     navigation: BottomTabNavigationProp<RootStackParamList, "Profile">;
@@ -32,23 +33,27 @@ export default function Profile({  }: ProfileProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const [test, setTest] = useState("");
+    const [loginFormVisible, setLoginFormVisible] = useState(false);
     
     if (!user || !signed) {
         return (
-            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                <Empty
-                    icon={props => <UserCircleMinus {...props} />}
-                    title={lang.profile.not_signed.title}
-                    desc={lang.profile.not_signed.desc}
-                    options={[{
-                        label: lang.general.login,
-                        highlight: true
-                    }, {
-                        label: lang.general.signup
-                    }]}
-                />
-            </ScrollView>
+            <>
+                <LoginForm visible={loginFormVisible} onRequestClose={() => setLoginFormVisible(false)} />
+                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                    <Empty
+                        icon={props => <UserCircleMinus {...props} />}
+                        title={lang.profile.not_signed.title}
+                        desc={lang.profile.not_signed.desc}
+                        options={[{
+                            label: lang.general.login,
+                            highlight: true,
+                            onPress: () => setLoginFormVisible(true)
+                        }, {
+                            label: lang.general.signup
+                        }]}
+                    />
+                </ScrollView>
+            </>
         );
     }
 

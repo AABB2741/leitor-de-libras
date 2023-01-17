@@ -3,8 +3,7 @@ import {
     ModalProps,
     View,
     ScrollView,
-    TouchableOpacity,
-    StatusBar
+    TouchableOpacity
 } from "react-native";
 import { X } from "phosphor-react-native";
 
@@ -24,9 +23,9 @@ export default function Dialog({ title, desc, children, ...rest }: DialogProps) 
     const styles = createStyles({ colors });
 
     return (
-        <Modal {...rest} animationType="slide" >
+        <Modal {...rest} animationType="slide" transparent >
             <ScrollView contentContainerStyle={styles.container}>
-                <TouchableOpacity onPress={rest.onRequestClose}>
+                <TouchableOpacity onPress={rest.onRequestClose}>    
                     <X style={styles.close} color={colors.font} size={24} />
                 </TouchableOpacity>
                 <Font preset="title" style={styles.title}>{title}</Font>

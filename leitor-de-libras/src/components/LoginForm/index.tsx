@@ -1,5 +1,12 @@
+import {
+    ModalProps
+} from "react-native";
 import Dialog from "../Dialog";
 
-export default function LoginForm() {
-    return <Dialog title="Boa noite, brasileiros, boa noite!" desc="Boa tarde, brasileiros, boa tarde!" />;
+interface LoginFormProps extends ModalProps {
+    visible?: boolean;
+}
+
+export default function LoginForm({ visible, ...rest }: LoginFormProps) {
+    return <Dialog visible={visible} title="Fazer login" {...rest} />;
 }

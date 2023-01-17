@@ -35,7 +35,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         return null;
     
     return (
-        <UserContext.Provider value={{ user, signed: !!user, logOut }}>
+        <UserContext.Provider value={{ user, signed: false, logOut }}>
             {children}
         </UserContext.Provider>
     );
