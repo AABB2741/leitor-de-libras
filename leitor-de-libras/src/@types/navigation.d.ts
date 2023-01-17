@@ -1,5 +1,7 @@
-type SettingsCategory = "display" | "test";
-type SettingsLocation = "appearance" | "lang" | "test2" | "test3";
+type SettingsLocation = {
+    display: "appearance" | "lang" | "performance";
+    more: "update" | "about";
+}
 
 type RootStackParamList = {
     Dashboard: undefined;

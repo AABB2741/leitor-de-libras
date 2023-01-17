@@ -1,6 +1,8 @@
 import {
     Atom,
+    Gauge,
     GlobeStand,
+    Info,
     PaintBrushHousehold,
     TestTube
 } from "phosphor-react-native";
@@ -10,18 +12,18 @@ import { LangProps } from "../lang/getLang";
 import Appearance from "../screens/Configure/Appearance";
 import Lang from "../screens/Configure/Lang";
 
+export type Category = {
+    category: keyof SettingsLocation;
+    title: string;
+    settings: Setting[];
+}
+
 type Setting = {
     icon: ({ color, size, weight }: { color: string, size: number, weight?: "regular" | "fill" }) => React.ReactNode;
-    location: SettingsLocation;
+    location: SettingsLocation[keyof SettingsLocation];
     title: string;
     desc?: string;
     component: () => React.ReactNode;
-}
-
-export type Category = {
-    category: SettingsCategory;
-    title: string;
-    settings: Setting[];
 }
 
 interface getSettingsProps {
@@ -44,20 +46,11 @@ export default function getSettings({ lang }: getSettingsProps) {
             desc: lang.settings.display.lang.desc,
             icon: ({ color, size, weight }) => <GlobeStand color={color} size={size} weight={weight} />,
             component: Lang
-        }]
-    }, {
-        category: "test",
-        title: "Segunda categoria de teste",
-        settings: [{
-            location: "test2",
-            title: "Opção teste 2",
-            icon: ({ color, size, weight }) => <TestTube color={color} size={size} weight={weight} />,
-            component: () => null
         }, {
-            location: "test3",
-            title: "Opção teste 3",
-            desc: "Config 5 ∙ Config 6",
-            icon: ({ color, size, weight }) => <Atom color={color} size={size} weight={weight} />,
+            location: "performance",
+            title: lang.settings.display.performance.title,
+            desc: lang.settings.display.performance.desc,
+            icon: props => <Gauge {...props} />,
             component: () => null
         }]
     }];

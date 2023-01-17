@@ -116,6 +116,20 @@
                     "title": "Tradução automática",
                     "desc": "Ative a tradução automática do Google para traduzir o aplicativo para um idioma não traduzido oficialmente. A tradução pode não ser totalmente precisa e é necessário estar conectado à internet."
                 }
+            },
+            "performance": {
+                "title": "Desempenho",
+                "desc": "Está presenciando problemas de desempenho no aplicativo? Estas configurações podem ajudar",
+                "reduce_animations": "Reduzir animações"
+            }
+        },
+        "more": {
+            "title": "Mais configurações",
+            "check_updates": {
+                "title": "Verificar se há atualizações"
+            },
+            "about": {
+                "title": "Sobre o %s"
             }
         }
     },

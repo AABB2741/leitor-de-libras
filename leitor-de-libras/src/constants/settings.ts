@@ -9,6 +9,9 @@ interface SettingsProps {
             custom_fonts: boolean;
         },
         lang: LangName;
+        performance: {
+            reduce_animations: boolean;
+        }
     }
 }
 
@@ -19,7 +22,10 @@ const SETTINGS: SettingsProps = {
             default_dark_mode: "dark",
             custom_fonts: true
         },
-        lang: "auto"
+        lang: "auto",
+        performance: {
+            reduce_animations: false
+        }
     }
 }
 
