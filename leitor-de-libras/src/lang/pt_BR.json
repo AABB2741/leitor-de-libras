@@ -90,15 +90,18 @@
                         "name": "Modo AMOLED",
                         "example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
                     },
+                    "contrast": {
+                        "name": "Alto contraste",
+                        "example": "Se você tem problema em diferenciar cores, o tema de alto contraste pode ajudar você."
+                    },
                     "midnight": {
                         "name": "Meia-noite",
                         "example": "Este é o modo Darkula. Muito loko, né?"
                     }
                 },
-                "custom_fonts": {
-                    "title": "Fontes personalizadas",
-                    "desc": "Permitir que fontes personalizadas sejam utilizadas. Ao desabilitar, será utilizado a fonte padrão do dispositivo.",
-                    "label": "Permitir que o %s utilize fontes personalizadas"
+                "other": {
+                    "title": "Outras configurações",
+                    "custom_fonts": "Permitir fontes personalizadas"
                 }
             },
             "lang": {

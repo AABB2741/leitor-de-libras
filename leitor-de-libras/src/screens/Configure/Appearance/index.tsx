@@ -56,12 +56,11 @@ export default function Appearance() {
                 ))}
             </FixedCategory>
             <FixedCategory
-                title={lang.settings.display.appearance.custom_fonts.title}
-                desc={lang.settings.display.appearance.custom_fonts.desc}
+                title={lang.settings.display.appearance.other.title}
                 disableVerticalSpacing
             >
                 <Toggle
-                    label={lang.settings.display.appearance.custom_fonts.label}
+                    label={lang.settings.display.appearance.other.custom_fonts}
                     value={settings.display.appearance.custom_fonts}
                     onValueChange={custom_fonts => saveSettings({display: {appearance:{ custom_fonts }} })}
                 />

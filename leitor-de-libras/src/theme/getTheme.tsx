@@ -2,8 +2,11 @@ import light from "./light.json";
 import dark from "./dark.json";
 import amoled from "./amoled.json";
 import midnight from "./midnight.json";
+import contrast from "./contrast.json";
+
 import {
     BatteryChargingVertical,
+    CircleHalf,
     Lamp,
     MoonStars,
     Sun
@@ -28,6 +31,10 @@ export const THEMES: ThemeListItem[] = [{
     theme: amoled,
     icon: props => <BatteryChargingVertical {...props} />
 }, {
+    name: "contrast",
+    theme: contrast,
+    icon: props => <CircleHalf {...props} />
+}, {
     name: "midnight",
     theme: midnight,
     icon: props => <Lamp {...props} />
@@ -38,4 +45,4 @@ export default function getTheme(name: ThemeName): ThemeProps {
 }
 
 export type ThemeProps = typeof light;
-export type ThemeName = "auto" | "light" | "dark" | "amoled" | "midnight";
+export type ThemeName = "auto" | "light" | "dark" | "amoled" | "contrast" | "midnight";

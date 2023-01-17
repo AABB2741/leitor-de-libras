@@ -1,0 +1,19 @@
+{
+    "font": "#ffff00",
+    "font2": "#fff",
+    "desc": "#fff",
+    "desc2": "#c9c9c9",
+    "desc3": "#585858",
+    "border": "#585858",
+    "background": "#000",
+    "background2": "#282828",
+    "header": "#1e1e1e",
+    "disabled": "#585858",
+    "accent": "#ffa051",
+    "accent2": "#08d778",
+    "critic": "#ff0000",
+    "statusBar": {
+        "background": "#000",
+        "foreground": "light-content"
+    }
+}
