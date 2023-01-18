@@ -13,14 +13,14 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Font from "../../components/Font";
 
 import createStyles from "./styles";
-import { useFocusEffect } from "@react-navigation/native";
+import { NavigationProp, useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useCallback, useState } from "react";
 import FixedCategory from "../../components/FixedCategory";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 interface LoginProps {
-    navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
+    navigation: NativeStackNavigationProp<LoginParamList, "Login">;
 }
 
 export default function Login({ navigation }: LoginProps) {
@@ -28,12 +28,14 @@ export default function Login({ navigation }: LoginProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "LoginRoutes">>();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
-            navigation.navigate("App");
+            rootNavigation.navigate("AppRoutes");
             return true;
         }
 
@@ -43,7 +45,7 @@ export default function Login({ navigation }: LoginProps) {
 
 
     return (
-        <>
+        <View style={styles.wrapper}>
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                 <Font preset="title" style={styles.title}>{lang.login.title}</Font>
                 <Font preset="desc" style={styles.desc}>{lang.login.desc}</Font>
@@ -76,6 +78,7 @@ export default function Login({ navigation }: LoginProps) {
                     />
                     <Button
                         label={lang.general.signup}
+                        onPress={() => navigation.navigate("SignUp")}
                     />
                 </FixedCategory>
             </ScrollView>
@@ -84,10 +87,10 @@ export default function Login({ navigation }: LoginProps) {
                     <Globe color={colors.font} size={24} />
                     <Font preset="button" style={{ marginLeft: 10 }}>{lang.locale}</Font>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("App")}>
+                <TouchableOpacity onPress={() => rootNavigation.navigate("AppRoutes")}>
                     <Font preset="button" style={styles.ignoreLabel}>{lang.login.ignore}</Font>
                 </TouchableOpacity>
             </View>
-        </>
+        </View>
     );
 }

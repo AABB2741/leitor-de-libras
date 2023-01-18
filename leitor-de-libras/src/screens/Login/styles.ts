@@ -7,17 +7,21 @@ interface LoginStyle {
 }
 
 export default ({ colors }: LoginStyle) => StyleSheet.create({
-    container: {
+    wrapper: {
+        backgroundColor: colors.background,
         flex: 1,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: colors.background
+        paddingTop: Constants.statusBarHeight
+    },
+    container: {
+        flex: 1
     },
     content: {
         padding: 20
     },
     title: {
         flex: 1,
-        textAlign: "center"
+        textAlign: "center",
+        marginBottom: 10
     },
     desc: {
         textAlign: "center",

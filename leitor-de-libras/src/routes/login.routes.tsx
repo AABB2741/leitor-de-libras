@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator<LoginParamList>();
 
 export default function LoginRoutes() {
     return (
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="ResetPassword" component={ResetPassword} />
