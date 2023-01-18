@@ -41,7 +41,7 @@ export default function ThemeOption({ theme, icon, sample, name, example }: Them
             <View style={styles.preview}>
                 <View style={styles.previewHeader}>
                     <View style={styles.previewIcon}>
-                        {icon({ color: sample.font, size: 16, weight: "regular" })}
+                        {icon({ color: sample.accent, size: 16, weight: "regular" })}
                     </View>
                     <View style={styles.previewTitleContainer}>
                         <Font preset="title" style={styles.previewTitle}>{lang.settings.display.appearance.theme.hello_world}</Font>

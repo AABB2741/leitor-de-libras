@@ -42,7 +42,7 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
     previewIcon: {
         padding: 5,
         borderRadius: 6,
-        backgroundColor: sample.background2,
+        backgroundColor: sample.header,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -51,7 +51,7 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
         marginLeft: 10,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        backgroundColor: sample.background2,
+        backgroundColor: sample.header,
         borderRadius: 6
     },
     previewTitle: {
