@@ -42,7 +42,7 @@ export default function Appearance() {
                     icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
                     name={lang.settings.display.appearance.theme.auto.name}
                     example={lang.settings.display.appearance.theme.auto.example}
-                    sample={scheme == "light" ? getTheme("light") : getTheme("dark")}
+                    sample={scheme == "light" ? getTheme("light") : getTheme("amoled")}
                 />
                 {THEMES.map(t => (
                     <ThemeOption

@@ -17,7 +17,7 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
     const [theme, setTheme] = useState<ThemeProps | null>(null);
     const {settings} = useSettings();
     const deviceTheme = useColorScheme() ?? "light";
-    const scheme: ThemeName = settings?.display?.appearance?.theme == "auto" ? deviceTheme : (settings.display.appearance.theme ?? "light");
+    const scheme: ThemeName = settings?.display?.appearance?.theme == "auto" ? (deviceTheme == "dark" ? "amoled" : "light") : (settings.display.appearance.theme ?? "light");
 
     useEffect(() => {
         log(`Atualizando tema para "${scheme}"`)
