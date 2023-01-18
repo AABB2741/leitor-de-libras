@@ -4,10 +4,16 @@ type SettingsLocation = {
 }
 
 type RootStackParamList = {
-    App: undefined;
-    Login?: {
-        location: "login" | "signup";
+    AppRoutes: undefined;
+    LoginRoutes?: {
+        location: "login" | "signup" | "reset_password";
     };
+}
+
+type LoginParamList = {
+    Login: undefined;
+    SignUp: undefined;
+    ResetPassword: undefined;
 }
 
 type AppScreens = {

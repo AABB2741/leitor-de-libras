@@ -31,7 +31,7 @@ interface WhatToDo {
 
 export default function WhatToDo() {
     const navigation = useNavigation<NativeStackNavigationProp<AppScreens>>();
-    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
+    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
 
     const {signed} = useUser();
     const colors = useColors();
@@ -45,7 +45,7 @@ export default function WhatToDo() {
         icon: props => <SignIn {...props} />,
         label: lang.general.login,
         disabled: signed,
-        onPress: () => rootNavigation.navigate("Login")
+        onPress: () => rootNavigation.navigate("LoginRoutes")
     }, {
         icon: props => <Translate {...props} />,
         label: lang.dashboard.what_to_do.view_translations,

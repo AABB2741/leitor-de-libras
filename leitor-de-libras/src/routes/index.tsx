@@ -13,9 +13,9 @@ export default function Routes() {
     return (
         <>
             <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
-            <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="App" component={AppRoutes} />
-                <Stack.Screen name="Login" component={Login} />
+            <Stack.Navigator initialRouteName="LoginRoutes" screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="AppRoutes" component={AppRoutes} />
+                <Stack.Screen name="LoginRoutes" component={Login} />
             </Stack.Navigator>
         </>
     );

@@ -29,12 +29,12 @@ export default function Infos({ navigation }: InfosProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
+    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
 
     return (
         <View style={styles.container}>
             {!signed && (
-                <TouchableOpacity style={styles.login} onPress={() => rootNavigation.navigate("Login")}>
+                <TouchableOpacity style={styles.login} onPress={() => rootNavigation.navigate("LoginRoutes")}>
                     <UserCirclePlus color={colors.font} size={36} />
                     <Font preset="button" style={styles.loginLabel}>{lang.general.login}</Font>
                 </TouchableOpacity>

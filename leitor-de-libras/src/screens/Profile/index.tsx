@@ -28,7 +28,7 @@ export default function Profile() {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const navigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
     
     if (!user || !signed) {
         return (
@@ -41,10 +41,10 @@ export default function Profile() {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            onPress: () => navigation.navigate("Login")
+                            onPress: () => navigation.navigate("LoginRoutes")
                         }, {
                             label: lang.general.signup,
-                            onPress: () => navigation.navigate("Login", { location: "signup" })
+                            onPress: () => navigation.navigate("LoginRoutes", { location: "signup" })
                         }]}
                     />
                 </ScrollView>
