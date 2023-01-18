@@ -24,7 +24,7 @@ export default function Input({ label, style, transparent, hideClearButton, noTo
     const { settings } = useSettings();
     const colors = useColors();
     const styles = createStyles({ colors, transparent, noTopPadding, value, custom_fonts: settings.display.appearance.custom_fonts });
-
+    
     return (
         <View style={styles.container}>
             {label && (

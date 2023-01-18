@@ -23,6 +23,11 @@ export default ({ colors }: LoginStyle) => StyleSheet.create({
         textAlign: "center",
         flex: 1
     },
+    image: {
+        width: 200,
+        height: 200,
+        alignSelf: "center"
+    },
     options: {
         backgroundColor: colors.header,
         flexDirection: "row",

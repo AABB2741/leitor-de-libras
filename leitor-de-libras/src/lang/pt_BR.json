@@ -187,7 +187,10 @@
             "username": "Nome de usuário",
             "about_me": "Sobre mim",
             "email": "E-mail",
+            "email_placeholder": "Insira seu e-mail",
             "password": "Senha",
+            "password_placeholder": "Insira sua senha",
+            "password_forgot": "Esqueci minha senha",
             "gender": "Sexo",
             "change_password": "Alterar sua senha"
         }
