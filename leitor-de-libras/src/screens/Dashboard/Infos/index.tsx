@@ -9,6 +9,8 @@ import {
     UserCirclePlus
 } from "phosphor-react-native";
 
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useColors } from "../../../contexts/colors";
 import { useUser } from "../../../contexts/user";
 import { useLang } from "../../../contexts/lang";
@@ -16,7 +18,6 @@ import { useLang } from "../../../contexts/lang";
 import createStyles from "./styles";
 
 import Font from "../../../components/Font";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface InfosProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
@@ -28,10 +29,12 @@ export default function Infos({ navigation }: InfosProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
+
     return (
         <View style={styles.container}>
             {!signed && (
-                <TouchableOpacity style={styles.login}>
+                <TouchableOpacity style={styles.login} onPress={() => rootNavigation.navigate("Login")}>
                     <UserCirclePlus color={colors.font} size={36} />
                     <Font preset="button" style={styles.loginLabel}>{lang.general.login}</Font>
                 </TouchableOpacity>

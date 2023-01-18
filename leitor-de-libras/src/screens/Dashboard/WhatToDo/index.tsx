@@ -13,7 +13,7 @@ import { Archive,
 
 import { useLang } from "../../../contexts/lang";
 import { useUser } from "../../../contexts/user";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 import Category from "../../../components/Category";
 
@@ -31,6 +31,7 @@ interface WhatToDo {
 
 export default function WhatToDo() {
     const navigation = useNavigation<NativeStackNavigationProp<AppScreens>>();
+    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
 
     const {signed} = useUser();
     const colors = useColors();
@@ -43,7 +44,8 @@ export default function WhatToDo() {
     }, {
         icon: props => <SignIn {...props} />,
         label: lang.general.login,
-        disabled: signed
+        disabled: signed,
+        onPress: () => rootNavigation.navigate("Login")
     }, {
         icon: props => <Translate {...props} />,
         label: lang.dashboard.what_to_do.view_translations,
