@@ -17,7 +17,7 @@ import Profile from "../screens/Profile";
 import { Image, View } from "react-native";
 import { useUser } from "../contexts/user";
 
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<AppScreens>();
 
 export default function AppRoutes() {
     const { user, signed } = useUser();

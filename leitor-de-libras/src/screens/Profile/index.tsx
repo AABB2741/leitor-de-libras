@@ -9,7 +9,7 @@ import {
     SignOut,
     UserCircleMinus
 } from "phosphor-react-native";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
@@ -21,24 +21,18 @@ import Font from "../../components/Font";
 import FixedCategory from "../../components/FixedCategory";
 
 import createStyles from "./styles";
-import LoginForm from "../../components/LoginForm";
 
-interface ProfileProps {
-    navigation: BottomTabNavigationProp<RootStackParamList, "Profile">;
-}
-
-export default function Profile({  }: ProfileProps) {
+export default function Profile() {
     const lang = useLang();
     const { user, signed } = useUser();
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const [loginFormVisible, setLoginFormVisible] = useState(false);
+    const navigation = useNavigation<NavigationProp<RootStackParamList, "App">>();
     
     if (!user || !signed) {
         return (
             <>
-                <LoginForm visible={loginFormVisible} onRequestClose={() => setLoginFormVisible(false)} />
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                     <Empty
                         icon={props => <UserCircleMinus {...props} />}
@@ -47,9 +41,10 @@ export default function Profile({  }: ProfileProps) {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            onPress: () => setLoginFormVisible(true)
+                            onPress: () => navigation.navigate("Login")
                         }, {
-                            label: lang.general.signup
+                            label: lang.general.signup,
+                            onPress: () => navigation.navigate("Login", { location: "signup" })
                         }]}
                     />
                 </ScrollView>

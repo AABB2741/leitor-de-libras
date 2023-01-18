@@ -13,7 +13,7 @@ import createStyles from "./styles";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 interface CameraProps {
-    navigation: BottomTabNavigationProp<RootStackParamList, "Camera">;
+    navigation: BottomTabNavigationProp<AppScreens, "Camera">;
 }
 
 export default function Camera({ navigation, ...rest }: CameraProps) {

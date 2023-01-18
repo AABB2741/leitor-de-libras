@@ -34,7 +34,7 @@ import createStyles from "./styles";
 
 import FILES from "../../constants/recordings";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Translations">;
+type Props = NativeStackScreenProps<AppScreens, "Translations">;
 
 export default function Translations({ navigation }: Props) {
     const lang = useLang();

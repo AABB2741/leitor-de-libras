@@ -7,7 +7,7 @@ import { useColors } from "../../contexts/colors";
 import createStyles from "./styles";
 
 interface LearnProps {
-    navigation: BottomTabNavigationProp<RootStackParamList, "Learn">;
+    navigation: BottomTabNavigationProp<AppScreens, "Learn">;
 }
 
 export default function Profile({  }: LearnProps) {

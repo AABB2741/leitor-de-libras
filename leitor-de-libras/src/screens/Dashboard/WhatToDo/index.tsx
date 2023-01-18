@@ -30,7 +30,7 @@ interface WhatToDo {
 }
 
 export default function WhatToDo() {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<NativeStackNavigationProp<AppScreens>>();
 
     const {signed} = useUser();
     const colors = useColors();

@@ -4,6 +4,13 @@ type SettingsLocation = {
 }
 
 type RootStackParamList = {
+    App: undefined;
+    Login?: {
+        location: "login" | "signup";
+    };
+}
+
+type AppScreens = {
     Dashboard: undefined;
     Translations: undefined;
     Camera: undefined;
