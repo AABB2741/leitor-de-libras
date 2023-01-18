@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { BackHandler, ScrollView, TouchableOpacity, View } from "react-native";
 import { useLang } from "../../contexts/lang";
 import { useColors } from "../../contexts/colors";
 import { Globe } from "phosphor-react-native";
@@ -7,6 +7,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Font from "../../components/Font";
 
 import createStyles from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 interface LoginProps {
     navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
@@ -16,6 +18,17 @@ export default function Login({ navigation }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
+
+    useFocusEffect(useCallback(() => {
+        function handleBack() {
+            navigation.navigate("App");
+            return true;
+        }
+
+        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
+        return () => sub.remove();
+    }, []));
+
 
     return (
         <>
