@@ -42,6 +42,14 @@
         "desc": "Com uma conta fica tudo melhor. Salve seus vídeos na nuvem e personalize o seu perfil.",
         "ignore": "Ignorar por enquanto"
     },
+    "reset_password": {
+        "title": "Alterar senha",
+        "desc": "Se você esqueceu sua senha ou quer colocar uma mais forte, preencha todas as informações necessárias."
+    },
+    "sign_up": {
+        "title": "Cadastrar-se",
+        "desc": "Crie sua conta agora e receba bons benefícios!"
+    },
     "dashboard": {
         "signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
         "welcome": "Bem-vindo(a) ao %s!",

@@ -24,7 +24,7 @@ export default function AppRoutes() {
     const colors = useColors();
 
     return (
-        <View style={{ flex: 1, backgroundColor: colors.background }}>
+        <>
             <Tab.Navigator initialRouteName="Dashboard" screenOptions={{
                 headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                     backgroundColor: colors.header,
@@ -86,6 +86,6 @@ export default function AppRoutes() {
                     }}
                 />
             </Tab.Navigator>
-        </View>
+        </>
     );
 }

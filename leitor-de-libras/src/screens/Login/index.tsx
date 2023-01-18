@@ -70,6 +70,7 @@ export default function Login({ navigation }: LoginProps) {
                     <Button
                         accentColor={colors.accent2}
                         label={lang.profile.personal_data.password_forgot}
+                        onPress={() => navigation.navigate("ResetPassword")}
                     />
                     <Button
                         highlight
