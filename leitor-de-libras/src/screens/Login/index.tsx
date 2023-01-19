@@ -40,7 +40,7 @@ export default function Login({ navigation }: LoginProps) {
         }
 
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
-        return () => sub.remove();
+        return sub.remove;
     }, []));
 
 

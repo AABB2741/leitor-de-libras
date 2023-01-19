@@ -41,7 +41,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
 
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
 
-        return () => sub.remove();
+        return sub.remove;
     }, []));
 
     return (

@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
     View,
     Image,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    BackHandler
 } from "react-native";
 import {
     SignOut,
     UserCircleMinus
 } from "phosphor-react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { useNavigation, NavigationProp, useFocusEffect } from "@react-navigation/native";
 
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
@@ -21,6 +22,7 @@ import Font from "../../components/Font";
 import FixedCategory from "../../components/FixedCategory";
 
 import createStyles from "./styles";
+import log from "../../utils/log";
 
 export default function Profile() {
     const lang = useLang();
@@ -29,6 +31,17 @@ export default function Profile() {
     const styles = createStyles({ colors });
 
     const navigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
+
+    useFocusEffect(useCallback(() => {
+        function handleBack() {
+            log("Saindo do APP em \"Profile\"", { color: "fgRed" });
+            BackHandler.exitApp();
+            return true;
+        }
+
+        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
+        return sub.remove;
+    }, []));
     
     if (!user || !signed) {
         return (

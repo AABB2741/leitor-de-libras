@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
     FlatList,
     View,
-    RefreshControl
+    RefreshControl,
+    BackHandler
 } from "react-native";
 import {
     Archive,
@@ -20,6 +21,8 @@ import {
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useFocusEffect } from "@react-navigation/native";
+
 import Order from "../../@types/Order";
 import Option, { OptionProps as OptionProps } from "./Option";
 
@@ -27,12 +30,12 @@ import Header from "../../components/Header";
 import Empty from "../../components/Empty";
 import File from "./File";
 import Filter from "../../components/Filter";
-import Font from "../../components/Font";
 
 import normalize from "../../utils/normalize";
 import createStyles from "./styles";
 
 import FILES from "../../constants/recordings";
+import log from "../../utils/log";
 
 type Props = NativeStackScreenProps<AppScreens, "Translations">;
 
@@ -45,6 +48,17 @@ export default function Translations({ navigation }: Props) {
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
+
+    useFocusEffect(useCallback(() => {
+        function handleBack() {
+            log("Saindo do APP em \"Translations\"", { color: "fgRed" });
+            BackHandler.exitApp();
+            return true;
+        }
+
+        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
+        return sub.remove;
+    }, []));
 
     const OPTIONS: OptionProps[] = [{
         icon: props => <PlusCircle {...props} />,
