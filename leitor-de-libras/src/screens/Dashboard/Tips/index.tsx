@@ -36,7 +36,7 @@ export default function Tips({ navigation }: TipsProps) {
             </View>
             <View style={styles.options}>
                 <View style={styles.buttons}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => setCuriosity(getCuriosity())}>
                         <Shuffle size={24} color={colors.font} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button}>
