@@ -56,7 +56,12 @@
         "tips": {
             "curiosity": "Você sabia?",
             "tip": "Dica:",
-            "learn_more": "Saiba mais"
+            "learn_more": "Saiba mais",
+            "about_libras": {
+                "title": "Libras não se resume aos sinais manuais",
+                "short": "Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.",
+                "long": "Uma questão bastante curiosa é que Libras não se resume aos sinais manuais. Se fosse assim ficaria bem complicado já que, por ser uma língua nova, em construção, ela possui apenas cerca de 15 mil sinais. Isso para dar conta de 600 mil palavras do português.\n\nO que torna essa mágica possível são os chamados classificadores. São estratégias usadas por surdos e intérpretes para comunicarem, ali onde faltam os sinais.\n\nAlém disso as expressões faciais, e outros parâmetros da língua se unem para tornar a língua eficiente e eficaz."
+            }
         },
         "what_to_do": {
             "create": "Nova tradução",
@@ -65,6 +70,12 @@
             "archived": "Arquivados",
             "learn": "Aprender Libras"
         }
+    },
+    "article": {
+        "_comment": "Tela que aparecerá quando o usuário pressionar Saiba mais em uma dica ou curiosidade",
+        "credits": "por %s1 via %s2",
+        "credits_no_author": "disponível em %s",
+        "full_article": "Ver artigo completo"
     },
     "settings": {
         "title": "Configurações",

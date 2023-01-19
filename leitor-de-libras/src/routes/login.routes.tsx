@@ -17,10 +17,6 @@ interface LoginRoutesProps {
 export default function LoginRoutes({ route }: LoginRoutesProps) {
     const colors = useColors();
 
-    useFocusEffect(() => {
-        console.log(route.params?.location);
-    });
-
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: "slide_from_right" }}>

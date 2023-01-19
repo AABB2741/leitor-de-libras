@@ -49,7 +49,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
             <Image style={styles.logo} source={require("../../../assets/imgs/horizontal-logo.png")} />
             <Infos navigation={navigation} />
             <WhatToDo />
-            <Tips />
+            <Tips navigation={navigation} />
         </ScrollView>
     );
 }

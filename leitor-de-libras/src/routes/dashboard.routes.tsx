@@ -8,6 +8,7 @@ import Dashboard from "../screens/Dashboard";
 import Settings from "../screens/Settings";
 import Customize from "../screens/Customize";
 import Configure from "../screens/Configure";
+import Article from "../screens/Article";
 
 const Stack = createNativeStackNavigator<DashboardParamList>();
 
@@ -22,6 +23,7 @@ export default function DashboardRoutes() {
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="Configure" component={Configure} />
                 <Stack.Screen name="Customize" component={Customize} />
+                <Stack.Screen name="Article" component={Article} />
             </Stack.Navigator>
         </View>
     );

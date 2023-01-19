@@ -1,3 +1,5 @@
+type CuriosityID = "about_libras";
+
 type SettingsLocation = {
     display: "appearance" | "lang" | "performance";
     more: "update" | "about";
@@ -27,9 +29,12 @@ type AppScreens = {
 type DashboardParamList = {
     Home: undefined;
     Settings: undefined;
+    Customize: undefined;
+    Article: {
+        id: CuriosityID;
+    };
     Configure: {
         category: SettingsCategory;
         location: ValueOf<keyof SettingsLocation>;
     };
-    Customize: undefined;
 }
