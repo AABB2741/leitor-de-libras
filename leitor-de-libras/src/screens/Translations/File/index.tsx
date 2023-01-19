@@ -12,9 +12,11 @@ import { Archive,
     Keyhole,
     Star
 } from "phosphor-react-native";
+import * as Animatable from "react-native-animatable";
+
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
-import * as Animatable from "react-native-animatable";
+import { useSettings } from "../../../contexts/settings";
 
 import Font from "../../../components/Font";
 
@@ -41,6 +43,7 @@ export interface FileProps {
 }
 
 export default function File({ state, favorited, archived, locked, disabled, thumbnail, title, length, date, index }: FileProps) {
+    const {settings} = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -53,7 +56,7 @@ export default function File({ state, favorited, archived, locked, disabled, thu
 
     return (
         <TouchableOpacity style={styles.container} onLongPress={() => console.log("Ação com botão direito")}>
-            <Animatable.View style={{ flex: 1 }} animation="fadeInUp" delay={index * 50}>
+            <Animatable.View style={{ flex: 1 }} animation={settings.display.performance.reduce_animations ? undefined : "fadeInUp"} delay={index * 50}>
                 <View style={styles.indicators}>
                     {getStateIcon({state, colors, lang})}
                     <View style={styles.props}>
