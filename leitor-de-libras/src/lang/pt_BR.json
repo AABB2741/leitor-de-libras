@@ -61,6 +61,11 @@
                 "title": "Libras não se resume aos sinais manuais",
                 "short": "Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.",
                 "long": "Uma questão bastante curiosa é que Libras não se resume aos sinais manuais. Se fosse assim ficaria bem complicado já que, por ser uma língua nova, em construção, ela possui apenas cerca de 15 mil sinais. Isso para dar conta de 600 mil palavras do português.\n\nO que torna essa mágica possível são os chamados classificadores. São estratégias usadas por surdos e intérpretes para comunicarem, ali onde faltam os sinais.\n\nAlém disso as expressões faciais, e outros parâmetros da língua se unem para tornar a língua eficiente e eficaz."
+            },
+            "different": {
+                "title": "Libras é diferente de português",
+                "short": "Comunicar em libras não é falar o português convencional.",
+                "long": "A maneira em que as informações são passadas em Libras é diferente do português convencional. Isso porque, diferente da linguagem falada, em Libras não existem algumas regras do português, como tempos verbais e artigos."
             }
         },
         "what_to_do": {

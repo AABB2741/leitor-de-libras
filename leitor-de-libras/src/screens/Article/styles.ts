@@ -35,12 +35,15 @@ export default ({ colors }: ArticleStyle) => StyleSheet.create({
         alignItems: "stretch",
         justifyContent: "space-between",
         position: "absolute",
-        bottom: 0,
+        bottom: 16,
         left: 0,
         right: 0,
-        padding: 10
+        padding: 10,
+        borderColor: "red",
     },
     option: {
+        height: 40,
+        minWidth: 40,
         padding: 10,
         backgroundColor: colors.background2,
         borderRadius: 50,

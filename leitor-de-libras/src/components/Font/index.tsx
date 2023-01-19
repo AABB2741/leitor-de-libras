@@ -8,7 +8,7 @@ import { useSettings } from "../../contexts/settings";
 
 import createStyles from "./styles";
 
-type FontName = "title" | "subtitle" | "text" | "desc" | "desc-bold" | "input" | "button"
+type FontName = "title" | "subtitle" | "text" | "desc" | "desc-bold" | "input" | "button" | "heavy";
 
 interface Fonts extends TextStyle {
     name: FontName;
@@ -37,6 +37,9 @@ const FONTS: Fonts[] = [{
 }, {
     name: "subtitle",
     fontFamily: "Ubuntu"
+}, {
+    name: "heavy",
+    fontFamily: "Fira-Sans"
 }];
 
 interface FontProps extends TextProps {
