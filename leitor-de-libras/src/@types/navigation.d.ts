@@ -29,7 +29,7 @@ type DashboardParamList = {
     Settings: undefined;
     Configure: {
         category: SettingsCategory;
-        location: SettingsLocation;
+        location: ValueOf<keyof SettingsLocation>;
     };
     Customize: undefined;
 }

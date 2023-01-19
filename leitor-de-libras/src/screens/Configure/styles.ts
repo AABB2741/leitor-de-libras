@@ -22,9 +22,10 @@ export default ({ colors }: ConfigureStyle) => StyleSheet.create({
         backgroundColor: colors.background
     },
     presentation: {
-        padding: 20,
-        paddingBottom: 50,
-        paddingTop: Constants.statusBarHeight + 50,
+        minHeight: 200,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+        paddingTop: Constants.statusBarHeight + 20,
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center"

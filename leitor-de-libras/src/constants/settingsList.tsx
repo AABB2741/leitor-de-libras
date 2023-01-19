@@ -11,6 +11,7 @@ import { LangProps } from "../lang/getLang";
 
 import Appearance from "../screens/Configure/Appearance";
 import Lang from "../screens/Configure/Lang";
+import Performance from "../screens/Configure/Performance";
 
 export type Category = {
     category: keyof SettingsLocation;
@@ -51,7 +52,7 @@ export default function getSettings({ lang }: getSettingsProps) {
             title: lang.settings.display.performance.title,
             desc: lang.settings.display.performance.desc,
             icon: props => <Gauge {...props} />,
-            component: () => null
+            component: Performance
         }]
     }];
 

@@ -29,7 +29,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
     const settingsList = getSettings({ lang });
-    const setting = settingsList.find(s => s.category == route.params.category)?.settings.find(s => s.location == route.params.location);
+    const setting = settingsList.find(s => s.category == route.params.category)?.settings.find(s => s.location == location);
 
     const [headerY, setHeaderY] = useState(0);
     const [opacity, setOpacity] = useState(0);

@@ -33,13 +33,14 @@ export default function Settings({ navigation }: SettingsProps) {
     return (
         <ScrollView
             style={styles.container}
-            stickyHeaderIndices={[1]}
+            stickyHeaderIndices={[0, 2]}
             onScroll={e => {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
             scrollEventThrottle={100}
         >
+            <View style={styles.statusBarFix} />
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
                 <GearSix size={36} weight="fill" color={colors.font} />
                 <Font preset="title" style={styles.title}>{lang.settings.title}</Font>
