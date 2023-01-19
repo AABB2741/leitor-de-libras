@@ -26,6 +26,22 @@ const CURIOSITIES: Curiosity[] = [{
         via: "Ensino.digital",
         url: "https://ensino.digital/blog/22-curiosidades-da-libras-que-voce-nao-conhece"
     }
+}, {
+    id: "adaptation",
+    type: "curiosity",
+    credits: {
+        author: "Nicole Utzig Mattjie",
+        via: "Ensino.digital",
+        url: "https://ensino.digital/blog/22-curiosidades-da-libras-que-voce-nao-conhece"
+    }
+}, {
+    id: "illiterate",
+    type: "curiosity",
+    credits: {
+        author: "Arthur Costa",
+        via: "LinkedIn",
+        url: "https://pt.linkedin.com/pulse/10-fatos-sobre-libras-e-comunidade-surda-pra-voc%C3%AA-come%C3%A7ar-costa"
+    }
 }]
 
 export default function getCuriosity(id?: CuriosityID) {

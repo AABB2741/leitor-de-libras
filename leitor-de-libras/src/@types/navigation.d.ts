@@ -1,4 +1,4 @@
-type CuriosityID = "about_libras" | "different";
+type CuriosityID = "about_libras" | "different" | "adaptation" | "illiterate";
 
 type SettingsLocation = {
     display: "appearance" | "lang" | "performance";

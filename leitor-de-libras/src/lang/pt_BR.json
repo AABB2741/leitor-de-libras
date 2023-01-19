@@ -66,6 +66,16 @@
                 "title": "Libras é diferente de português",
                 "short": "Comunicar em libras não é falar o português convencional.",
                 "long": "A maneira em que as informações são passadas em Libras é diferente do português convencional. Isso porque, diferente da linguagem falada, em Libras não existem algumas regras do português, como tempos verbais e artigos."
+            },
+            "adaptation": {
+                "title": "Libras não é uma adaptação do português falado",
+                "short": "Libras não é somente uma adaptação da linguagem falada.",
+                "long": "A Língua Brasileira de Sinais (Libras) é reconhecida oficialmente como uma língua brasileira desde 2002 pela Lei nº 10.436. Isso quer dizer que Libras é uma linguagem completa, que possui uma estrutura gramatical própria, o que significa que ela não é apenas uma adaptação da língua oral."
+            },
+            "illiterate": {
+                "title": "Cerca de 80% dos surdos do mundo são analfabetos nas línguas escritas",
+                "short": "80% dos surdos de todo o mundo são analfabetos, ou seja, não entendem ou têm dificuldades para ler e escrever.",
+                "long": "De acordo com a WFD (Federação Mundial dos Surdos, na sigla em inglês), 80% dos surdos de todo o mundo têm baixa escolaridade e problemas de alfabetização. E no Brasil a situação não é diferente, já que a grande maioria dos surdos não tem uma boa compreensão do português, ou seja, não entendem ou têm dificuldades para ler e escrever. Por conta disso isso, eles dependem exclusivamente da língua de sinais para se comunicar e obter informação. A dificuldade de aprendizado da língua portuguesa escrita pode estar ligada a diversos fatores, como a impossibilidade de aprender através da fonética e som, a aquisição de linguagem tardia, ou mesmo, a diferença da estrutura gramatical da Libras e do português."
             }
         },
         "what_to_do": {
