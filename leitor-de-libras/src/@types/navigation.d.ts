@@ -6,7 +6,7 @@ type SettingsLocation = {
 type RootStackParamList = {
     AppRoutes: undefined;
     LoginRoutes?: {
-        location: "login" | "signup" | "reset_password";
+        location: "Login" | "SignUp" | "ResetPassword";
     };
 }
 

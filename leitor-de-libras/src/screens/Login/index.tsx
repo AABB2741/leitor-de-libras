@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import {
     BackHandler,
     ScrollView,
@@ -5,19 +6,25 @@ import {
     View,
     Image
 } from "react-native";
-import { useLang } from "../../contexts/lang";
-import { useColors } from "../../contexts/colors";
+import {
+    NavigationProp,
+    RouteProp,
+    useFocusEffect,
+    useNavigation
+} from "@react-navigation/native";
 import { Globe } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import { useLang } from "../../contexts/lang";
+import { useColors } from "../../contexts/colors";
+
 import Font from "../../components/Font";
 
-import createStyles from "./styles";
-import { NavigationProp, useFocusEffect, useNavigation } from "@react-navigation/native";
-import { useCallback, useState } from "react";
 import FixedCategory from "../../components/FixedCategory";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+
+import createStyles from "./styles";
 
 interface LoginProps {
     navigation: NativeStackNavigationProp<LoginParamList, "Login">;
@@ -71,6 +78,7 @@ export default function Login({ navigation }: LoginProps) {
                         accentColor={colors.accent2}
                         label={lang.profile.personal_data.password_forgot}
                         onPress={() => navigation.navigate("ResetPassword")}
+                        labelStyle={{ fontSize: 12 }}
                     />
                     <Button
                         highlight

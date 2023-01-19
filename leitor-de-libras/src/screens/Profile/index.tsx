@@ -57,7 +57,7 @@ export default function Profile() {
                             onPress: () => navigation.navigate("LoginRoutes")
                         }, {
                             label: lang.general.signup,
-                            onPress: () => navigation.navigate("LoginRoutes", { location: "signup" })
+                            onPress: () => navigation.navigate("LoginRoutes", { location: "SignUp" })
                         }]}
                     />
                 </ScrollView>

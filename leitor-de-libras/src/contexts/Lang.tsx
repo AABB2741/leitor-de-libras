@@ -28,7 +28,7 @@ export default function LangProvider({ children }: LangProviderProps) {
     const [lang, setLang] = useState<LangProps | null>(null);
 
     useEffect(() => {
-        log(`Atualizando idioma para "${lang?.langName ?? "default"}"`);
+        log(`Atualizando idioma para "${lang?.langName ?? "default"}"`, { color: "fgGray" });
         setLang(getLang(settings.display.lang ?? "pt_BR"));
     }, [settings]);
 

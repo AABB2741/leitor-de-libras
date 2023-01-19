@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { RouteProp, useFocusEffect } from "@react-navigation/native";
 
 import { useColors } from "../contexts/colors";
 
@@ -9,12 +10,20 @@ import ResetPassword from "../screens/ResetPassword";
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 
-export default function LoginRoutes() {
+interface LoginRoutesProps {
+    route: RouteProp<RootStackParamList, "LoginRoutes">;
+}
+
+export default function LoginRoutes({ route }: LoginRoutesProps) {
     const colors = useColors();
+
+    useFocusEffect(() => {
+        console.log(route.params?.location);
+    });
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
-            <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, animation: "slide_from_right" }}>
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="SignUp" component={SignUp} />
                 <Stack.Screen name="ResetPassword" component={ResetPassword} />

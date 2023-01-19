@@ -36,11 +36,10 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
     }
 
     useEffect(() => {
-        log("Carregando configurações...");
         Storage.getItem<DeepPartial<SettingsProps>>("@settings").then(data => {
             setSettings(data);
         });
-        log("Configurações carregadas!");
+        log("Configurações carregadas", { color: "fgGray" })
     }, []);
 
     return (

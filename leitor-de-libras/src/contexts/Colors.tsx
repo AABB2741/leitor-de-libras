@@ -20,7 +20,7 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
     const scheme: ThemeName = settings?.display?.appearance?.theme == "auto" ? (deviceTheme == "dark" ? "amoled" : "light") : (settings.display.appearance.theme ?? "light");
 
     useEffect(() => {
-        log(`Atualizando tema para "${scheme}"`)
+        log(`Atualizando tema para "${scheme}"`, { color: "fgGray" });
         setTheme(getTheme(scheme));
     }, [deviceTheme, settings]);
 
