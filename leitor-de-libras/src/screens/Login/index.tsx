@@ -49,7 +49,7 @@ export default function Login({ navigation }: LoginProps) {
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                 <Font preset="title" style={styles.title}>{lang.login.title}</Font>
                 <Font preset="desc" style={styles.desc}>{lang.login.desc}</Font>
-                <Image source={require("../../../assets/imgs/login.png")} style={styles.image} />
+                <Image source={colors.themeName === "light" ? require("../../../assets/imgs/login-light.png") : require("../../../assets/imgs/login.png")} style={styles.image} />
                 <FixedCategory title={lang.general.login}>
                     <Input
                         noTopPadding
