@@ -28,7 +28,8 @@ export default function App() {
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
 		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
 		"PT-Sans-Bold": require("./assets/fonts/PTSans-Bold.ttf"),
-		"Fira-Sans": require("./assets/fonts/FiraSans-Heavy.ttf")
+		"Fira-Sans": require("./assets/fonts/FiraSans-Heavy.ttf"),
+		"LibreFranklin": require("./assets/fonts/LibreFranklin-BlackItalic.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {
