@@ -35,6 +35,7 @@ export default function Settings({ navigation }: SettingsProps) {
     return (
         <ScrollView
             style={styles.container}
+            contentContainerStyle={{ paddingBottom: 20 }}
             stickyHeaderIndices={[0, 2]}
             onScroll={e => {
                 const { y } = e.nativeEvent.contentOffset;

@@ -1,10 +1,11 @@
 import {
-    Atom,
+    ClockClockwise,
+    Code,
     Gauge,
     GlobeStand,
+    IconProps,
     Info,
-    PaintBrushHousehold,
-    TestTube
+    PaintBrushHousehold
 } from "phosphor-react-native";
 
 import { LangProps } from "../lang/getLang";
@@ -20,7 +21,7 @@ export type Category = {
 }
 
 type Setting = {
-    icon: ({ color, size, weight }: { color: string, size: number, weight?: "regular" | "fill" }) => React.ReactNode;
+    icon: ({ color, size, weight }: IconProps) => React.ReactNode;
     location: SettingsLocation[keyof SettingsLocation];
     title: string;
     desc?: string;
@@ -39,13 +40,13 @@ export default function getSettings({ lang }: getSettingsProps) {
             location: "appearance",
             title: lang.settings.display.appearance.title,
             desc: lang.settings.display.appearance.desc.replace("%s", lang.appName),
-            icon: ({ color, size, weight }) => <PaintBrushHousehold color={color} size={size} weight={weight} />,
+            icon: props => <PaintBrushHousehold {...props} />,
             component: Appearance
         }, {
             location: "lang",
             title: lang.settings.display.lang.title,
             desc: lang.settings.display.lang.desc,
-            icon: ({ color, size, weight }) => <GlobeStand color={color} size={size} weight={weight} />,
+            icon: props => <GlobeStand {...props} />,
             component: Lang
         }, {
             location: "performance",
@@ -53,6 +54,25 @@ export default function getSettings({ lang }: getSettingsProps) {
             desc: lang.settings.display.performance.desc,
             icon: props => <Gauge {...props} />,
             component: Performance
+        }]
+    }, {
+        category: "more",
+        title: lang.settings.more.title,
+        settings: [{
+            location: "developer_settings",
+            title: lang.settings.more.developer_settings.title,
+            icon: props => <Code {...props} />,
+            component: () => null
+        }, {
+            location: "update",
+            title: lang.settings.more.check_updates.title,
+            icon: props => <ClockClockwise {...props} />,
+            component: () => null
+        }, {
+            location: "about",
+            title: lang.settings.more.about.title.replace("%s", lang.appName),
+            icon: props => <Info {...props} />,
+            component: () => null
         }]
     }];
 

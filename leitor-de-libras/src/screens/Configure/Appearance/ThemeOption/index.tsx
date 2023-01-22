@@ -2,6 +2,7 @@ import {
     View,
     Pressable
 } from "react-native";
+import { IconProps } from "phosphor-react-native";
 import { useLang } from "../../../../contexts/lang";
 import { useColors } from "../../../../contexts/colors";
 
@@ -15,7 +16,7 @@ import { useSettings } from "../../../../contexts/settings";
 
 interface ThemeOptionProps {
     theme: ThemeName;
-    icon: ({ color, size, weight }: { color: string, size: number, weight: "regular" | "fill" }) => React.ReactNode;
+    icon: ({ color, size, weight }: IconProps) => React.ReactNode;
     sample: ThemeProps;
     name: string;
     example: string;

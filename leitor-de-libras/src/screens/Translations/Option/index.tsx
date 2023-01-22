@@ -1,16 +1,12 @@
 import {
     TouchableOpacity
 } from "react-native";
+import { IconProps } from "phosphor-react-native";
 
 import createStyles from "./styles";
 import { useColors } from "../../../contexts/colors";
 
 import Font from "../../../components/Font";
-
-interface IconProps {
-    readonly color: string;
-    readonly size: number;
-}
 
 export interface OptionProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;

@@ -7,6 +7,7 @@ import contrast from "./contrast.json";
 import {
     BatteryChargingVertical,
     CircleHalf,
+    IconProps,
     Lamp,
     MoonStars,
     Sun
@@ -15,7 +16,7 @@ import {
 type ThemeListItem = {
     name: ThemeName,
     theme: ThemeProps;
-    icon: ({ color, size, weight }: { color: string; size: number, weight: "fill" | "regular" }) => JSX.Element;
+    icon: ({ color, size, weight }: IconProps) => JSX.Element;
 };
 
 export const THEMES: ThemeListItem[] = [{

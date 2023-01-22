@@ -2,13 +2,14 @@ import {
     View,
     TouchableOpacity
 } from "react-native";
-import { Archive,
+import {
+    Archive,
     Books,
     HardDrives,
+    IconProps,
     PlusCircle,
     SignIn,
-    Translate,
-    UserCirclePlus
+    Translate
 } from "phosphor-react-native";
 
 import { useLang } from "../../../contexts/lang";
@@ -23,7 +24,7 @@ import Font from "../../../components/Font";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface WhatToDo {
-    icon: ({ color, size }: { color: string, size: number }) => React.ReactNode;
+    icon: ({ color, size }: IconProps) => React.ReactNode;
     label: string;
     onPress?: () => void;
     disabled?: boolean;
@@ -33,7 +34,7 @@ export default function WhatToDo() {
     const navigation = useNavigation<NativeStackNavigationProp<AppScreens>>();
     const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
 
-    const {signed} = useUser();
+    const { signed } = useUser();
     const colors = useColors();
     const lang = useLang();
     const styles = createStyles({ colors });
@@ -66,7 +67,7 @@ export default function WhatToDo() {
             disableVerticalSpacing
             data={WHAT_TO_DO}
             renderItem={({ item, index }) => (
-                <TouchableOpacity style={[styles.container, item.disabled && {display: "none"}]} onPress={item.onPress} key={index}>
+                <TouchableOpacity style={[styles.container, item.disabled && { display: "none" }]} onPress={item.onPress} key={index}>
                     <View style={styles.iconContainer}>
                         {item.icon({ color: colors.font, size: 20 })}
                     </View>

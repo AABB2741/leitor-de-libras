@@ -167,7 +167,7 @@
         "more": {
             "title": "Mais configurações",
             "check_updates": {
-                "title": "Verificar se há atualizações"
+                "title": "Verificar atualizações"
             },
             "developer_settings": {
                 "title": "Opções de desenvolvedor"

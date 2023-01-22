@@ -1,4 +1,4 @@
-import { CaretLeft } from "phosphor-react-native";
+import { CaretLeft, IconProps } from "phosphor-react-native";
 import {
     View,
     ViewProps,
@@ -11,11 +11,6 @@ import { useColors } from "../../contexts/colors";
 import Font from "../Font";
 
 import createStyles from "./styles";
-
-interface IconProps {
-    color?: string;
-    size?: number;
-}
 
 export interface HeaderOptionProps extends TouchableOpacityProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
