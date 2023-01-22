@@ -13,6 +13,7 @@
     "accent": "#1e90ff",
     "accent2": "#08d778",
     "critic": "#ff0000",
+    "warn": "#eb8934",
     "statusBar": {
         "background": "#000",
         "foreground": "light-content"

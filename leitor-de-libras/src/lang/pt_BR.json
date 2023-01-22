@@ -9,6 +9,7 @@
         "login": "Fazer login",
         "signup": "Criar uma conta",
         "filter": "Procurar...",
+        "warning": "Aviso: %s",
         "order": {
             "date": "Data",
             "name": "Nome",
@@ -94,6 +95,7 @@
     },
     "settings": {
         "title": "Configurações",
+        "restart_required": "Foram feitas alterações que podem precisar que o APP seja reiniciado para funcionarem corretamente.",
         "tips": {
             "settings_sync": "Você pode fazer login para salvar suas configurações online e sincronizar com outros dispositivos.",
             "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
@@ -166,6 +168,9 @@
             "title": "Mais configurações",
             "check_updates": {
                 "title": "Verificar se há atualizações"
+            },
+            "developer_settings": {
+                "title": "Opções de desenvolvedor"
             },
             "about": {
                 "title": "Sobre o %s"

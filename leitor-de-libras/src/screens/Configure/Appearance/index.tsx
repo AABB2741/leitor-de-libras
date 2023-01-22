@@ -23,7 +23,7 @@ import createStyles from "./styles";
 import Toggle from "../../../components/Toggle";
 
 export default function Appearance() {
-    const { settings, saveSettings } = useSettings();
+    const { settings, saveSettings, setRestartRequired } = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -62,7 +62,10 @@ export default function Appearance() {
                 <Toggle
                     label={lang.settings.display.appearance.other.custom_fonts}
                     value={settings.display.appearance.custom_fonts}
-                    onValueChange={custom_fonts => saveSettings({display: {appearance:{ custom_fonts }} })}
+                    onValueChange={custom_fonts => {
+                        setRestartRequired(true);
+                        saveSettings({display: {appearance:{ custom_fonts }} });
+                    }}
                 />
             </FixedCategory>
         </View>

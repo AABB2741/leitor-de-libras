@@ -27,5 +27,13 @@ export default ({ colors }: SettingsStyle) => StyleSheet.create({
     title: {
         marginTop: 5,
         fontSize: 20
+    },
+    warning: {
+        backgroundColor: colors.warn,
+        marginHorizontal: 20,
+        marginTop: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 12
     }
 });

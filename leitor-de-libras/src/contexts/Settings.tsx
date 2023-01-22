@@ -16,6 +16,8 @@ type SettingsProps = typeof SETTINGS;
 
 interface SettingsValue {
     settings: SettingsProps;
+    restartRequired: boolean;
+    setRestartRequired: React.Dispatch<React.SetStateAction<boolean>>;
     saveSettings: (config: DeepPartial<SettingsProps>) => Promise<void>;
 }
 
@@ -26,6 +28,7 @@ interface SettingsProviderProps {
 const SettingsContext = createContext<SettingsValue>({} as SettingsValue);
 
 export default function SettingsProvider({ children }: SettingsProviderProps) {
+    const [restartRequired, setRestartRequired] = useState(false);
     const [settings, setSettings] = useState<DeepPartial<SettingsProps> | null>(null);
 
     async function saveSettings(config: DeepPartial<SettingsProps>) {
@@ -41,9 +44,12 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
         });
         log("Configurações carregadas", { color: "fgGray" })
     }, []);
+    
+    if (!settings)
+        return null;
 
     return (
-        <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings ?? {}) as SettingsProps, saveSettings }}>
+        <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings) as SettingsProps, saveSettings, restartRequired, setRestartRequired }}>
             {children}
         </SettingsContext.Provider>
     );

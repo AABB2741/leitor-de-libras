@@ -9,6 +9,7 @@ import { Eraser, GearSix, MagnifyingGlass } from "phosphor-react-native";
 import getSettings from "../../constants/settingsList";
 
 import { useColors } from "../../contexts/colors";
+import { useSettings } from "../../contexts/settings";
 import { useLang } from "../../contexts/lang";
 
 import Font from "../../components/Font";
@@ -24,6 +25,7 @@ interface SettingsProps {
 export default function Settings({ navigation }: SettingsProps) {
     const lang = useLang();
     const colors = useColors();
+    const { restartRequired } = useSettings();
     const styles = createStyles({ colors });
     const settingsList = getSettings({ lang });
 
@@ -54,6 +56,11 @@ export default function Settings({ navigation }: SettingsProps) {
                     icon: props => <MagnifyingGlass {...props} />,
                 }]}
             />
+            {restartRequired && (
+                <View style={styles.warning}>
+                    <Font preset="text" style={{ color: colors.font2 }}>{lang.general.warning.replace("%s", lang.settings.restart_required)}</Font>
+                </View>
+            )}
             {settingsList.map((props, index) => <ConfigSection { ...props } navigation={navigation} key={index} />)}
         </ScrollView>
     );
