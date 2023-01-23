@@ -2,7 +2,8 @@
 import { useCallback, useEffect } from "react";
 import {
 	View,
-	ImageBackground
+	ImageBackground,
+	LogBox
 } from 'react-native';
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -15,8 +16,9 @@ import UserProvider from "./src/contexts/user";
 import SettingsProvider from "./src/contexts/settings";
 import LangProvider from "./src/contexts/lang";
 import ColorsProvider from "./src/contexts/colors";
-import Routes from "./src/routes";
+import RoutesProvider from "./src/routes";
 
+LogBox.ignoreLogs(["Require cycle:"]);
 SplashScreen.preventAutoHideAsync();
 log("App iniciado", { color: "fgGray" });
 const startTime = new Date().getTime();
@@ -49,15 +51,15 @@ export default function App() {
 		<ImageBackground
 			style={{ flex: 1, backgroundColor: "#000" }}
 			onLayout={onLayoutRootView}
-			source={require("./assets/imgs/logo.png")}
-			imageStyle={{ width: 150, height: 150, backgroundColor: "red" }}
+			source={require("./assets/imgs/splash.png")}
+			imageStyle={{ flex: 1 }}
 		>
 			<UserProvider>
 				<SettingsProvider>
 					<LangProvider>
 						<ColorsProvider>
 							<NavigationContainer>
-								<Routes />
+								<RoutesProvider />
 							</NavigationContainer>
 						</ColorsProvider>
 					</LangProvider>

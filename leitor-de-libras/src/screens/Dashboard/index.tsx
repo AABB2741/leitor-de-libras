@@ -11,10 +11,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { useColors } from "../../contexts/colors";
-import { useLang } from "../../contexts/lang";
-import { useUser } from "../../contexts/user";
 
-import Font from "../../components/Font";
 import Infos from "./Infos";
 import Tips from "./Tips";
 import WhatToDo from "./WhatToDo";
@@ -27,8 +24,6 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ navigation }: DashboardProps) {
-    const {user} = useUser();
-    const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
 

@@ -36,7 +36,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
     if (user === null)
         return null;
-    log(`Usuário "${user.name ?? "Anônimo"}" carregado`, { color: "fgGray", tab: true })
+    log(`Usuário "${user.name ?? "Anônimo"}" carregado`, { color: "fgGray", tab: true });
     return (
         <UserContext.Provider value={{ user, signed: true, logOut }}>
             {children}

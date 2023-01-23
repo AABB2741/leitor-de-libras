@@ -14,9 +14,11 @@ import {
 } from "@react-navigation/native";
 import { Globe } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import * as Storage from "../../services/Storage";
 
 import { useLang } from "../../contexts/lang";
 import { useColors } from "../../contexts/colors";
+import { useRoutes } from "../../routes";
 
 import Font from "../../components/Font";
 
@@ -34,15 +36,13 @@ export default function Login({ navigation }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-
-    const rootNavigation = useNavigation<NavigationProp<RootStackParamList, "LoginRoutes">>();
+    const { setRoute } = useRoutes();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
-            rootNavigation.navigate("AppRoutes");
             return true;
         }
 
@@ -96,7 +96,13 @@ export default function Login({ navigation }: LoginProps) {
                     <Globe color={colors.font} size={24} />
                     <Font preset="button" style={{ marginLeft: 10 }}>{lang.locale}</Font>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => rootNavigation.navigate("AppRoutes")}>
+                <TouchableOpacity onPress={() => {
+                    Storage.mergeItem("@welcome", {
+                        skip_login: true
+                    }).then(() => {
+                        setRoute("AppRoutes");
+                    });
+                }}>
                     <Font preset="button" style={styles.ignoreLabel}>{lang.login.ignore}</Font>
                 </TouchableOpacity>
             </View>

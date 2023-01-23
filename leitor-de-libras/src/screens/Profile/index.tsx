@@ -10,11 +10,12 @@ import {
     SignOut,
     UserCircleMinus
 } from "phosphor-react-native";
-import { useNavigation, NavigationProp, useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { useUser } from "../../contexts/user";
+import { useRoutes } from "../../routes";
 
 import Empty from "../../components/Empty";
 import Input from "../../components/Input";
@@ -28,9 +29,9 @@ export default function Profile() {
     const lang = useLang();
     const { user, signed } = useUser();
     const colors = useColors();
-    const styles = createStyles({ colors });
+    const { setRoute } = useRoutes();
 
-    const navigation = useNavigation<NavigationProp<RootStackParamList, "AppRoutes">>();
+    const styles = createStyles({ colors });
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
@@ -54,10 +55,7 @@ export default function Profile() {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            onPress: () => null // navigation.navigate("LoginRoutes")
-                        }, {
-                            label: lang.general.signup,
-                            onPress: () => null // navigation.navigate("LoginRoutes", { location: "SignUp" })
+                            onPress: () => setRoute("LoginRoutes") // navigation.navigate("LoginRoutes")
                         }]}
                     />
                 </ScrollView>

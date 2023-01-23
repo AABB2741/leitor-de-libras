@@ -2,7 +2,7 @@ type CuriosityID = "about_libras" | "different" | "adaptation" | "illiterate";
 
 type SettingsLocation = {
     display: "appearance" | "lang" | "performance";
-    more: "update" | "developer_settings" | "about";
+    more: "update" | "dev_tools" | "about";
 }
 
 type LoginParamList = {

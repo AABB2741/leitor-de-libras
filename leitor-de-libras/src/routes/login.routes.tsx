@@ -10,11 +10,7 @@ import ResetPassword from "../screens/ResetPassword";
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 
-interface LoginRoutesProps {
-    // route: RouteProp<RootStackParamList, "LoginRoutes">;
-}
-
-export default function LoginRoutes({  }: LoginRoutesProps) {
+export default function LoginRoutes() {
     const colors = useColors();
 
     return (

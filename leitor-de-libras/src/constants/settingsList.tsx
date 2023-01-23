@@ -11,6 +11,7 @@ import {
 import { LangProps } from "../lang/getLang";
 
 import Appearance from "../screens/Configure/Appearance";
+import DevTools from "../screens/Configure/DevTools";
 import Lang from "../screens/Configure/Lang";
 import Performance from "../screens/Configure/Performance";
 
@@ -59,10 +60,10 @@ export default function getSettings({ lang }: getSettingsProps) {
         category: "more",
         title: lang.settings.more.title,
         settings: [{
-            location: "developer_settings",
-            title: lang.settings.more.developer_settings.title,
+            location: "dev_tools",
+            title: lang.settings.more.dev_tools.title,
             icon: props => <Code {...props} />,
-            component: () => null
+            component: DevTools
         }, {
             location: "update",
             title: lang.settings.more.check_updates.title,
