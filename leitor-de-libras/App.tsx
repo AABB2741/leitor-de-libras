@@ -1,6 +1,9 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect } from "react";
-import { View } from 'react-native';
+import {
+	View,
+	ImageBackground
+} from 'react-native';
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -41,9 +44,14 @@ export default function App() {
 	if (!fontsLoaded) {
 		return null;
 	}
-	log(`App carregado. Tempo de carregamento: ${new Date().getTime() - startTime}ms`, { color: "fgYellow" });
+	log(`App carregado. Tempo de carregamento: ${new Date().getTime() - startTime}ms`, { color: "fgYellow", tab: true });
 	return (
-		<View style={{ flex: 1, backgroundColor: "#000" }} onLayout={onLayoutRootView}>
+		<ImageBackground
+			style={{ flex: 1, backgroundColor: "#000" }}
+			onLayout={onLayoutRootView}
+			source={require("./assets/imgs/logo.png")}
+			imageStyle={{ width: 150, height: 150, backgroundColor: "red" }}
+		>
 			<UserProvider>
 				<SettingsProvider>
 					<LangProvider>
@@ -55,6 +63,6 @@ export default function App() {
 					</LangProvider>
 				</SettingsProvider>
 			</UserProvider>
-		</View>
+		</ImageBackground>
 	);
 }

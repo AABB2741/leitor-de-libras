@@ -28,7 +28,7 @@ const colors = {
 
 type TerminalColors = keyof typeof colors;
 
-interface Configs {
+export interface LogConfigs {
     color?: TerminalColors;
     from?: string;
     tab?: boolean;
@@ -36,7 +36,7 @@ interface Configs {
     err?: boolean;
 }
 
-export default function log(msg: string, { color, from }: Configs = {}) {
+export default function log(msg: string, { color, from, tab }: LogConfigs = {}) {
     const d = new Date();
-    console.log(`${colors.fgGray}[${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}]${from ? ` ${colors.fgYellow}${from}${colors[color ?? "fgGray"]}:` : ""} ${colors[color ?? "fgWhite"]}${msg}${colors.reset}`);
+    console.log(`${colors.fgGray}[${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}]${tab ? "  ↳ " : ""}${from ? ` ${colors.fgYellow}${from}${colors[color ?? "fgGray"]}:` : ""} ${colors[color ?? "fgWhite"]}${msg}${colors.reset}`);
 }

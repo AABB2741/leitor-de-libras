@@ -20,13 +20,13 @@ export default function ColorsProvider({ children }: ColorsProviderProps) {
     const scheme: ThemeName = settings?.display?.appearance?.theme == "auto" ? (deviceTheme == "dark" ? "amoled" : "light") : (settings.display.appearance.theme ?? "light");
 
     useEffect(() => {
-        log(`Atualizando tema para "${scheme}"`, { color: "fgGray" });
+        log(`Carregando paleta de cores "${scheme}"...`, { color: "fgGray" });
         setTheme(getTheme(scheme));
     }, [deviceTheme, settings]);
 
     if (!theme)
         return null;
-
+    log("Paleta de cores carregada", { color: "fgGray", tab: true })
     return (
         <ColorsContext.Provider value={theme}>
             {children}

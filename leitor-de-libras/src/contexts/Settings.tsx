@@ -39,14 +39,16 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
     }
 
     useEffect(() => {
+        log("Carregando configurações...", { color: "fgGray" })
         Storage.getItem<DeepPartial<SettingsProps>>("@settings").then(data => {
-            setSettings(data);
+            setSettings(data ?? {});
         });
-        log("Configurações carregadas", { color: "fgGray" })
     }, []);
     
-    if (!settings)
+    if (settings === null)
         return null;
+
+    log("Configurações carregadas", { color: "fgGray" })
 
     return (
         <SettingsContext.Provider value={{ settings: merge(SETTINGS, settings) as SettingsProps, saveSettings, restartRequired, setRestartRequired }}>

@@ -24,17 +24,17 @@ interface LangProviderProps {
 const LangContext = createContext<LangProps>(pt_BR);
 
 export default function LangProvider({ children }: LangProviderProps) {
-    const {settings} = useSettings();
+    const { settings } = useSettings();
     const [lang, setLang] = useState<LangProps | null>(null);
 
     useEffect(() => {
-        log(`Atualizando idioma para "${lang?.langName ?? "default"}"`, { color: "fgGray" });
+        log(`Carregando pacote de idiomas "${lang?.langName ?? "default"}"...`, { color: "fgGray" });
         setLang(getLang(settings.display.lang ?? "pt_BR"));
     }, [settings]);
 
     if (!lang)
         return null;
-
+    log("Pacote de idiomas carregado", { color: "fgGray", tab: true })
     return (
         <LangContext.Provider value={lang}>
             {children}

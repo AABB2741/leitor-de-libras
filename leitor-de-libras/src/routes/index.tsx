@@ -1,6 +1,7 @@
 import { StatusBar, StatusBarStyle, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { useUser } from "../contexts/user";
 import { useColors } from "../contexts/colors";
 import { useSettings } from "../contexts/settings";
 
@@ -12,6 +13,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function Routes() {
     const colors = useColors();
     const { settings } = useSettings();
+    const { signed } = useUser();
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
