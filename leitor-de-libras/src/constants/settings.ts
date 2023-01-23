@@ -1,7 +1,7 @@
 import { LangName } from "../lang/getLang";
 import { ThemeName } from "../theme/getTheme"
 
-interface SettingsProps {
+export interface SettingsProps {
     display: {
         appearance: {
             theme: ThemeName,

@@ -42,7 +42,7 @@ export default function Profile() {
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
     }, []));
-    
+
     if (!user || !signed) {
         return (
             <>
@@ -54,10 +54,10 @@ export default function Profile() {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            onPress: () => navigation.navigate("LoginRoutes")
+                            onPress: () => null // navigation.navigate("LoginRoutes")
                         }, {
                             label: lang.general.signup,
-                            onPress: () => navigation.navigate("LoginRoutes", { location: "SignUp" })
+                            onPress: () => null // navigation.navigate("LoginRoutes", { location: "SignUp" })
                         }]}
                     />
                 </ScrollView>

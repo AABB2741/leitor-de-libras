@@ -5,13 +5,6 @@ type SettingsLocation = {
     more: "update" | "developer_settings" | "about";
 }
 
-type RootStackParamList = {
-    AppRoutes: undefined;
-    LoginRoutes?: {
-        location: "Login" | "SignUp" | "ResetPassword";
-    };
-}
-
 type LoginParamList = {
     Login: undefined;
     SignUp: undefined;

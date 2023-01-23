@@ -40,7 +40,7 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
 
     useEffect(() => {
         log("Carregando configurações...", { color: "fgGray" })
-        Storage.getItem<DeepPartial<SettingsProps>>("@settings").then(data => {
+        Storage.getItem("@settings").then(data => {
             setSettings(data ?? {});
         });
     }, []);

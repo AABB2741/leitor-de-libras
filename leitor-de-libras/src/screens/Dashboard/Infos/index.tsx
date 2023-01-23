@@ -25,7 +25,7 @@ interface InfosProps {
 
 export default function Infos({ navigation }: InfosProps) {
     const lang = useLang();
-    const {user, signed} = useUser();
+    const { user, signed } = useUser();
     const colors = useColors();
     const styles = createStyles({ colors });
 
@@ -34,7 +34,7 @@ export default function Infos({ navigation }: InfosProps) {
     return (
         <View style={styles.container}>
             {!signed && (
-                <TouchableOpacity style={styles.login} onPress={() => rootNavigation.navigate("LoginRoutes")}>
+                <TouchableOpacity style={styles.login} onPress={() => null /* rootNavigation.navigate("LoginRoutes")*/}>
                     <UserCirclePlus color={colors.font} size={36} />
                     <Font preset="button" style={styles.loginLabel}>{lang.general.login}</Font>
                 </TouchableOpacity>

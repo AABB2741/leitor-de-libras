@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image, View } from "react-native";
 import {
     Books,
     House,
@@ -6,16 +7,16 @@ import {
     UserCircle,
     Plus
 } from "phosphor-react-native";
-import { useColors } from "../contexts/colors";
 import { LinearGradient } from "expo-linear-gradient";
+
+import { useUser } from "../contexts/user";
+import { useColors } from "../contexts/colors";
 
 import DashboardRoutes from "./dashboard.routes";
 import Translations from "../screens/Translations";
 import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
 import Profile from "../screens/Profile";
-import { Image, View } from "react-native";
-import { useUser } from "../contexts/user";
 
 const Tab = createBottomTabNavigator<AppScreens>();
 
