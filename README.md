@@ -1,2 +1,2 @@
-# leitor de libras
- Trabalho de Conclusão de Curso para a Escola Salesiana São José
+# Li Libras
+### Seja bem-vindo(a) ao Li Libras!
