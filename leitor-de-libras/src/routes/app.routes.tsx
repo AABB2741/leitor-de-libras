@@ -13,7 +13,7 @@ import { useUser } from "../contexts/user";
 import { useColors } from "../contexts/colors";
 
 import DashboardRoutes from "./dashboard.routes";
-import Translations from "../screens/Translations";
+import TranslationsRoutes from "./translations.routes";
 import Camera from "../screens/Camera";
 import Learn from "../screens/Learn";
 import Profile from "../screens/Profile";
@@ -26,7 +26,7 @@ export default function AppRoutes() {
 
     return (
         <>
-            <Tab.Navigator initialRouteName="Dashboard" screenOptions={{
+            <Tab.Navigator initialRouteName="DashboardRoutes" screenOptions={{
                 headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                     backgroundColor: colors.header,
                     borderTopWidth: 0,
@@ -34,15 +34,15 @@ export default function AppRoutes() {
                 }
             }}>
                 <Tab.Screen
-                    name="Dashboard"
+                    name="DashboardRoutes"
                     component={DashboardRoutes}
                     options={{
                         tabBarIcon: ({ focused, size }) => focused ? <House weight="fill" size={size} color={colors.accent} /> : <House size={size} color={colors.font} />
                     }}
                 />
                 <Tab.Screen
-                    name="Translations"
-                    component={Translations}
+                    name="TranslationsRoutes"
+                    component={TranslationsRoutes}
                     options={{
                         tabBarIcon: ({ focused, size }) => focused ? <Translate weight="fill" size={size} color={colors.accent} /> : <Translate size={size} color={colors.font} />
                     }}

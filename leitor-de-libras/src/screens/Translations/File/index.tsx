@@ -4,7 +4,8 @@ import {
     ImageSourcePropType,
     TouchableOpacity
 } from "react-native";
-import { Archive,
+import {
+    Archive,
     ArrowsClockwise,
     Cloud,
     DeviceMobileCamera,
@@ -26,6 +27,8 @@ import createStyles from "./styles";
 
 import { LangProps } from "../../../lang/getLang";
 import { ThemeProps } from "../../../theme/getTheme";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type FileState = "downloading" | "synching" | "localStorage" | "cloud";
 
@@ -43,11 +46,13 @@ export interface FileProps {
 }
 
 export default function File({ state, favorited, archived, locked, disabled, thumbnail, title, length, date, index }: FileProps) {
-    const {settings} = useSettings();
+    const { settings } = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-    
+
+    const navigation = useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
+
     moment.updateLocale(lang.locale, {
         relativeTime: {
             ...lang.general.unity
@@ -55,10 +60,10 @@ export default function File({ state, favorited, archived, locked, disabled, thu
     });
 
     return (
-        <TouchableOpacity style={styles.container} onLongPress={() => console.log("Ação com botão direito")}>
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Watch")} onLongPress={() => console.log("Ação com botão direito")}>
             <Animatable.View style={{ flex: 1 }} animation={settings.display.performance.reduce_animations ? undefined : "fadeInUp"} delay={index * 50}>
                 <View style={styles.indicators}>
-                    {getStateIcon({state, colors, lang})}
+                    {getStateIcon({ state, colors, lang })}
                     <View style={styles.props}>
                         {(locked && !disabled) && <Keyhole color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
                         {(archived && !disabled) && <Archive color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
@@ -80,7 +85,7 @@ interface GetIconProps {
 }
 
 function getStateIcon({ state, colors, lang }: GetIconProps) {
-    switch(state) {
+    switch (state) {
         case "localStorage":
             return (
                 <DeviceMobileCamera color={colors.desc} size={14} style={{ transform: [{ rotate: "180deg" }] }} />

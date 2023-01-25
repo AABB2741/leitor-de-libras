@@ -20,7 +20,7 @@ import createStyles from "./styles";
 import Font from "../../../components/Font";
 
 interface InfosProps {
-    navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
+    navigation: NativeStackNavigationProp<DashboardParamList, "Dashboard">;
 }
 
 export default function Infos({ navigation }: InfosProps) {

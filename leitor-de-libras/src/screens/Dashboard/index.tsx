@@ -20,7 +20,7 @@ import log from "../../utils/log";
 import createStyles from "./styles";
 
 interface DashboardProps {
-    navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
+    navigation: NativeStackNavigationProp<DashboardParamList, "Dashboard">;
 }
 
 export default function Dashboard({ navigation }: DashboardProps) {

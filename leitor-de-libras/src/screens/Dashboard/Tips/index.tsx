@@ -19,7 +19,7 @@ import getCuriosity from "../../../constants/curiosities";
 import createStyles from "./styles";
 
 interface TipsProps {
-    navigation: NativeStackNavigationProp<DashboardParamList, "Home">;
+    navigation: NativeStackNavigationProp<DashboardParamList, "Dashboard">;
 }
 
 export default function Tips({ navigation }: TipsProps) {

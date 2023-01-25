@@ -18,8 +18,8 @@ export default function DashboardRoutes() {
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
-            <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, animation: settings.display.performance.reduce_animations ? "none" : "slide_from_right" }}>
-                <Stack.Screen name="Home" component={Dashboard} />
+            <Stack.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false, animation: settings.display.performance.reduce_animations ? "none" : "slide_from_right" }}>
+                <Stack.Screen name="Dashboard" component={Dashboard} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="Configure" component={Configure} />
                 <Stack.Screen name="Customize" component={Customize} />

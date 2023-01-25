@@ -12,15 +12,15 @@ type LoginParamList = {
 }
 
 type AppScreens = {
-    Dashboard: undefined;
-    Translations: undefined;
+    DashboardRoutes: undefined;
+    TranslationsRoutes: undefined;
     Camera: undefined;
     Learn: undefined;
     Profile: undefined;
 }
 
 type DashboardParamList = {
-    Home: undefined;
+    Dashboard: undefined;
     Settings: undefined;
     Customize: undefined;
     Article: {
@@ -30,4 +30,9 @@ type DashboardParamList = {
         category: SettingsCategory;
         location: ValueOf<keyof SettingsLocation>;
     };
+}
+
+type TranslationsParamList = {
+    Translations: undefined;
+    Watch: undefined;
 }
