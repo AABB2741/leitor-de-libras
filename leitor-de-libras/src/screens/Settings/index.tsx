@@ -25,7 +25,7 @@ interface SettingsProps {
 export default function Settings({ navigation }: SettingsProps) {
     const lang = useLang();
     const colors = useColors();
-    const { restartRequired } = useSettings();
+    const { settings, restartRequired } = useSettings();
     const styles = createStyles({ colors });
     const settingsList = getSettings({ lang });
 
@@ -37,7 +37,7 @@ export default function Settings({ navigation }: SettingsProps) {
             style={styles.container}
             contentContainerStyle={{ paddingBottom: 20 }}
             stickyHeaderIndices={[0, 2]}
-            onScroll={e => {
+            onScroll={settings.display.performance.reduce_animations ? undefined : e => {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
@@ -50,7 +50,7 @@ export default function Settings({ navigation }: SettingsProps) {
             </View>
             <Header
                 title={lang.settings.title}
-                opacity={opacity}
+                opacity={settings.display.performance.reduce_animations ? 1 : opacity}
                 rightOptions={[{
                     icon: props => <Eraser {...props} />
                 }, {

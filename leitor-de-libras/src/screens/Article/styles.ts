@@ -30,6 +30,9 @@ export default ({ colors }: ArticleStyle) => StyleSheet.create({
     credits: {
         marginTop: 5
     },
+    article: {
+        lineHeight: 18
+    },
     options: {
         flexDirection: "row",
         alignItems: "stretch",

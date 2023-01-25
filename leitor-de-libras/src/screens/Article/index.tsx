@@ -32,7 +32,7 @@ export default function Article({ route }: ArticleProps) {
                     <Font preset="heavy" style={styles.title}>{lang.dashboard.tips[route.params.id].title}</Font>
                     <Font preset="desc" style={styles.credits}>{lang.article.credits.replace("%s1", curiosity.credits.author ?? "??").replace("%s2", curiosity.credits.via)}</Font>
                 </View>
-                <Font preset="text">{lang.dashboard.tips[route.params.id].long}</Font>
+                <Font preset="text" style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
             </ScrollView>
             <View style={styles.options}>
                 <View style={styles.leftOptions}>

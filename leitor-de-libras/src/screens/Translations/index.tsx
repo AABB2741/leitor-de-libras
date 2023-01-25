@@ -92,8 +92,6 @@ export default function Translations({ navigation }: Props) {
                 title={lang.translations.title}
                 hideBackButton
                 rightOptions={[{
-                    icon: props => <MagnifyingGlass {...props} />
-                }, {
                     icon: props => <DotsThreeVertical {...props} />
                 }]}
             />

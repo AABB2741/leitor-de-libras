@@ -34,7 +34,7 @@ export default function App() {
 		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
 		"PT-Sans-Bold": require("./assets/fonts/PTSans-Bold.ttf"),
 		"Fira-Sans": require("./assets/fonts/FiraSans-Heavy.ttf"),
-		"LibreFranklin": require("./assets/fonts/LibreFranklin-BlackItalic.ttf")
+		"Inter-Black": require("./assets/fonts/Inter-Black.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {

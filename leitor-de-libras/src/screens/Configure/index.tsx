@@ -3,7 +3,9 @@ import {
     View,
     ScrollView
 } from "react-native";
-import { Eraser, Wrench } from "phosphor-react-native";
+import { Wrench } from "phosphor-react-native";
+
+import { useSettings } from "../../contexts/settings";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 
@@ -27,6 +29,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
 
     const lang = useLang();
     const colors = useColors();
+    const { settings } = useSettings();
     const styles = createStyles({ colors });
     const settingsList = getSettings({ lang });
     const setting = settingsList.find(s => s.category == route.params.category)?.settings.find(s => s.location == location);
@@ -55,7 +58,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
         <ScrollView
             style={styles.container}
             stickyHeaderIndices={[0, 2]}
-            onScroll={e => {
+            onScroll={settings.display.performance.reduce_animations ? undefined : e => {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
@@ -69,7 +72,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
             </View>
             <Header
                 title={setting.title}
-                opacity={opacity}
+                opacity={settings.display.performance.reduce_animations ? 1 : opacity}
             />
             <View style={styles.content}>
                 {setting.component()}

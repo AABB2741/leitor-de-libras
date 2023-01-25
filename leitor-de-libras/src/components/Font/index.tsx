@@ -39,7 +39,7 @@ const FONTS: Fonts[] = [{
     fontFamily: "Ubuntu"
 }, {
     name: "heavy",
-    fontFamily: "LibreFranklin"
+    fontFamily: "Inter-Black"
 }];
 
 interface FontProps extends TextProps {
