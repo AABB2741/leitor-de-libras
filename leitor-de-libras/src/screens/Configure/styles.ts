@@ -39,8 +39,5 @@ export default ({ colors }: ConfigureStyle) => StyleSheet.create({
         marginTop: 10,
         color: colors.desc,
         textAlign: "center"
-    },
-    content: {
-        padding: 20
     }
 });

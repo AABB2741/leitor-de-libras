@@ -33,9 +33,13 @@ export default function App() {
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
 		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
 		"PT-Sans-Bold": require("./assets/fonts/PTSans-Bold.ttf"),
-		"Fira-Sans": require("./assets/fonts/FiraSans-Heavy.ttf"),
 		"Inter-Black": require("./assets/fonts/Inter-Black.ttf")
 	});
+	// const [fontsLoaded] = useFonts({
+	// 	"Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
+	// 	"Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
+	// 	"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf")
+	// })
 
 	const onLayoutRootView = useCallback(async () => {
 		if (fontsLoaded) {

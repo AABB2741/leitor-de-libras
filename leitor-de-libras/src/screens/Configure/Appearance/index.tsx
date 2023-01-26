@@ -1,5 +1,6 @@
 import {
     View,
+    ScrollView,
     useColorScheme
 } from "react-native";
 import {
@@ -36,27 +37,32 @@ export default function Appearance() {
                 title={lang.settings.display.appearance.theme.title}
                 desc={lang.settings.display.appearance.theme.desc.replace("%s", lang.appName)}
                 disableVerticalSpacing
+                headerPadding={20}
             >
-                <ThemeOption
-                    theme="auto"
-                    icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
-                    name={lang.settings.display.appearance.theme.auto.name}
-                    example={lang.settings.display.appearance.theme.auto.example}
-                    sample={scheme == "light" ? getTheme("light") : getTheme("amoled")}
-                />
-                {THEMES.map(t => (
+                <ScrollView style={styles.themesContainer} contentContainerStyle={styles.themes} horizontal showsHorizontalScrollIndicator={false}>
                     <ThemeOption
-                        theme={t.name}
-                        icon={t.icon}
-                        name={lang.settings.display.appearance.theme[t.name].name}
-                        example={lang.settings.display.appearance.theme[t.name].example}
-                        sample={t.theme}
-                        key={t.name}
+                        theme="auto"
+                        icon={({ color, size, weight }) => <Palette color={color} size={size} weight={weight} />}
+                        name={lang.settings.display.appearance.theme.auto.name}
+                        example={lang.settings.display.appearance.theme.auto.example}
+                        sample={scheme == "light" ? getTheme("light") : getTheme("amoled")}
                     />
-                ))}
+                    {THEMES.map(t => (
+                        <ThemeOption
+                            theme={t.name}
+                            icon={t.icon}
+                            name={lang.settings.display.appearance.theme[t.name].name}
+                            example={lang.settings.display.appearance.theme[t.name].example}
+                            sample={t.theme}
+                            key={t.name}
+                        />
+                    ))}
+                </ScrollView>
             </FixedCategory>
             <FixedCategory
                 title={lang.settings.display.appearance.other.title}
+                headerPadding={20}
+                contentPadding={20}
                 disableVerticalSpacing
             >
                 <Toggle

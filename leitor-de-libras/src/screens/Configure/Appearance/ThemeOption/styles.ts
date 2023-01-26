@@ -13,6 +13,8 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
         backgroundColor: colors.background2,
         borderRadius: 12,
         marginBottom: 20,
+        maxWidth: 250,
+        marginRight: 10
     },
     presentation: {
         flexDirection: "row",
@@ -27,6 +29,7 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
         marginLeft: 10
     },
     preview: {
+        flex: 1,
         borderWidth: 1,
         borderColor: colors.border,
         borderRadius: 12,
@@ -62,7 +65,8 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
         padding: 5,
         borderRadius: 6,
         backgroundColor: sample.background2,
-        marginTop: 10
+        marginTop: 10,
+        flex: 1
     },
     previewExample: {
         color: sample.desc,

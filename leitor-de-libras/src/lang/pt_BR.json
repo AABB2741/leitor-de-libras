@@ -205,6 +205,14 @@
             "create_option": "Criar vídeo"
         }
     },
+    "watch": {
+        "options": {
+            "share": "Compartilhar",
+            "copy": "Copiar texto",
+            "edit": "Editar",
+            "details": "Detalhes"
+        }
+    },
     "camera": {
         "presentation": {
             "title": "Diga \"X\"!"

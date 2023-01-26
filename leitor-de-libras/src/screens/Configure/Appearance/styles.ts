@@ -7,5 +7,12 @@ interface AppearanceStyle {
 }
 
 export default ({ colors }: AppearanceStyle) => StyleSheet.create({
-
+    themesContainer: {
+        
+    },
+    themes: {
+        paddingLeft: 20,
+        paddingRight: 10,
+        flexDirection: "row"
+    }
 });

@@ -13,7 +13,7 @@ import {
     Sun
 } from "phosphor-react-native";
 
-type ThemeListItem = {
+export type ThemeListItem = {
     name: ThemeName,
     theme: ThemeProps;
     icon: ({ color, size, weight }: IconProps) => JSX.Element;

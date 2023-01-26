@@ -1,3 +1,6 @@
+import {
+    View
+} from "react-native";
 import { useLang } from "../../../contexts/lang";
 import { useSettings } from "../../../contexts/settings";
 
@@ -10,10 +13,12 @@ export default function Performance() {
     const { settings, saveSettings } = useSettings();
 
     return (
-        <Toggle
-            label={lang.settings.display.performance.reduce_animations}
-            value={settings.display.performance.reduce_animations}
-            onValueChange={reduce_animations => saveSettings({ display: {performance: { reduce_animations }} })}
-        />
+        <View style={styles.container}>
+            <Toggle
+                label={lang.settings.display.performance.reduce_animations}
+                value={settings.display.performance.reduce_animations}
+                onValueChange={reduce_animations => saveSettings({ display: {performance: { reduce_animations }} })}
+            />
+        </View>
     );
 }

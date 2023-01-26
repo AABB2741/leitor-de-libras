@@ -15,6 +15,33 @@ interface Fonts extends TextStyle {
     preventTranslate?: boolean;
 }
 
+// const FONTS: Fonts[] = [{
+//     name: "title",
+//     fontSize: 18,
+//     fontFamily: "Inter-Bold"
+// }, {
+//     name: "desc",
+//     fontFamily: "Inter-Regular"
+// }, {
+//     name: "desc-bold",
+//     fontFamily: "Inter-Medium"
+// }, {
+//     name: "input",
+//     fontFamily: "Inter-Regular"
+// }, {
+//     name: "text",
+//     fontFamily: "Inter-Regular"
+// }, {
+//     name: "button",
+//     fontFamily: "Inter-Medium"
+// }, {
+//     name: "subtitle",
+//     fontFamily: "Inter-Medium"
+// }, {
+//     name: "heavy",
+//     fontFamily: "Inter-Bold"
+// }];
+
 const FONTS: Fonts[] = [{
     name: "title",
     fontFamily: "Montserrat-Bold",
@@ -41,6 +68,7 @@ const FONTS: Fonts[] = [{
     name: "heavy",
     fontFamily: "Inter-Black"
 }];
+
 
 interface FontProps extends TextProps {
     preset: FontName;
