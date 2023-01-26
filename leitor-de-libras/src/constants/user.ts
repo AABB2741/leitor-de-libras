@@ -8,4 +8,5 @@ const USER: User = {
     signed: true,
     token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)"
 }
+
 export default USER;
