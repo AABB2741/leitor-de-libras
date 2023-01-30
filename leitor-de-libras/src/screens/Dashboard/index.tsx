@@ -13,8 +13,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useColors } from "../../contexts/colors";
 
 import Infos from "./Infos";
-import Tips from "./Tips";
+import NetworkState from "./NetworkState";
 import WhatToDo from "./WhatToDo";
+import Tips from "./Tips";
 
 import log from "../../utils/log";
 import createStyles from "./styles";
@@ -43,6 +44,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
         <ScrollView style={styles.container}>
             <Image style={styles.logo} source={require("../../../assets/imgs/horizontal-logo.png")} />
             <Infos navigation={navigation} />
+            <NetworkState />
             <WhatToDo />
             <Tips navigation={navigation} />
         </ScrollView>
