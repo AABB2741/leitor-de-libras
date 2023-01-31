@@ -55,7 +55,7 @@
         "signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
         "welcome": "Bem-vindo(a) ao %s!",
         "cellular": "Você está utilizando os dados móveis. Para usar o aplicativo, recomendamos que você se conecte à uma rede Wi-Fi para evitar que cobranças adicionais sejam feitas.",
-        "disconnected": "Sem conexão com a internet. Sem uma conexão com a internet, você só poderá acessar os arquivos salvos localmente.",
+        "disconnected": "Você não está conectado(a) à rede. Sem uma conexão com a internet, você só poderá acessar os arquivos salvos localmente.",
         "tips": {
             "curiosity": "Você sabia?",
             "tip": "Dica:",

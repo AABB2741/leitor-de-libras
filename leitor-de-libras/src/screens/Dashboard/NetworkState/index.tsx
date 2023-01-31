@@ -5,7 +5,7 @@ import {
 import {
     View
 } from "react-native";
-import { WifiX } from "phosphor-react-native";
+import { Plugs, WifiX } from "phosphor-react-native";
 
 import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
@@ -25,18 +25,27 @@ export default function NetworkState() {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const [networkState, setNetworkState] = useState<NetState>("cellular");
     const infos = useNetInfo();
+    const [networkState, setNetworkState] = useState<NetState>(null);
 
     useEffect(() => {
-        if (!infos.isConnected) {
-            
-        }
+        log("Atualizando informações de conexão");
+        console.log(infos);
+        if (infos.isConnected) {
+            if (infos.type === "cellular") {
+                setNetworkState("cellular");
+            } else setNetworkState(null);
+        } else if (infos.isConnected === false) setNetworkState("disconnected");
     }, [infos]);
+    console.log(`Estado da rede: ${networkState}`);
+
+    if (networkState === null || infos.type === "unknown")
+        return null;
     
     return  (
-        <View style={styles.container}>
-            <WifiX color={colors.font} size={16} />
+        <View style={[styles.container, networkState && styles[networkState]]}>
+            {networkState === "disconnected" && <Plugs color={colors.font} size={16} />}
+            {networkState === "cellular" && <WifiX color={colors.font} size={16} />}
             {networkState && <Font preset="text" style={styles.text}>{lang.dashboard[networkState].replace("%s", lang.appName)}</Font>}
         </View>
     );

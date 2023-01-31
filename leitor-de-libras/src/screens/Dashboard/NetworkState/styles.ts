@@ -12,10 +12,15 @@ export default ({ colors }: NetworkStateStyle) => StyleSheet.create({
         paddingVertical: 15,
         marginTop: 20,
         borderRadius: 12,
-        backgroundColor: colors.warn,
         flexDirection: "row",
         alignItems: "flex-start",
         justifyContent: "space-between"
+    },
+    cellular: {
+        backgroundColor: colors.warn
+    },
+    disconnected: {
+        backgroundColor: colors.critic
     },
     text: {
         fontSize: 10,
