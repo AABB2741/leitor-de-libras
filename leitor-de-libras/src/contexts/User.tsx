@@ -1,11 +1,11 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import User from "../@types/User";
-import USER from "../constants/user";
+
+import USER, { UserProps } from "../constants/user";
 
 import log from "../utils/log";
 
-type UserValue = {
-    user?: User;
+type UserContextValue = {
+    user?: UserProps;
     signed: boolean;
     logOut: () => void;
 }
@@ -14,10 +14,10 @@ interface UserProviderProps {
     children: JSX.Element;
 }
 
-const UserContext = createContext<UserValue>({} as UserValue);
+const UserContext = createContext<UserContextValue>({} as UserContextValue);
 
 export default function UserProvider({ children }: UserProviderProps) {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<UserProps | null>(null);
 
     async function logOut() {
         return new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         return null;
     log(`Usuário "${user.name ?? "Anônimo"}" carregado`, { color: "fgGray", tab: true });
     return (
-        <UserContext.Provider value={{ user, signed: true, logOut }}>
+        <UserContext.Provider value={{ user, signed: false, logOut }}>
             {children}
         </UserContext.Provider>
     );

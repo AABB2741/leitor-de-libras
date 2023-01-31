@@ -7,6 +7,7 @@ import { StatusBar, StatusBarStyle } from "react-native";
 
 import log from "../utils/log";
 import * as Storage from "../services/Storage";
+import { useUser } from "../contexts/user";
 import { useColors } from "../contexts/colors";
 
 import LoginForm from "../components/LoginForm";
@@ -14,6 +15,7 @@ import AppRoutes from "./app.routes";
 
 export default function Routes() {
     const [loginFormVisible, setLoginFormVisible] = useState<null | boolean>(null);
+    const { signed } = useUser();
     const colors = useColors();
 
     useEffect(() => {
@@ -25,13 +27,13 @@ export default function Routes() {
         });
     }, []);
 
-    if (loginFormVisible === null)
+    if (loginFormVisible === null && !signed)
         return null;
 
     return (
         <>
             <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
-            <LoginForm visible={loginFormVisible} />
+            {/* <LoginForm visible={!!loginFormVisible && !signed} /> */}
             <AppRoutes />
         </>
     );
