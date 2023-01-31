@@ -12,8 +12,8 @@
     "disabled": "#585858",
     "accent": "#1e90ff",
     "accent2": "#08d778",
-    "critic": "#ff0000",
-    "warn": "#eb8934",
+    "critic": "#a30b00",
+    "warn": "#cf6000",
     "statusBar": {
         "background": "#1e1e1e",
         "foreground": "light-content"

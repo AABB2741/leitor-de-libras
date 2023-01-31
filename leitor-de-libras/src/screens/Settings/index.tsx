@@ -59,7 +59,7 @@ export default function Settings({ navigation }: SettingsProps) {
             />
             {restartRequired && (
                 <View style={styles.warning}>
-                    <Font preset="text" style={{ color: colors.font2 }}>{lang.general.warning.replace("%s", lang.settings.restart_required)}</Font>
+                    <Font preset="text" style={{ fontSize: 10 }}>{lang.general.warning.replace("%s", lang.settings.restart_required)}</Font>
                 </View>
             )}
             {settingsList.map((props, index) => <ConfigSection { ...props } navigation={navigation} key={index} />)}

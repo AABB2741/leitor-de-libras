@@ -12,7 +12,7 @@
     "disabled": "#c9c9c9",
     "accent": "#06bbff",
     "accent2": "#08d778",
-    "critic": "#ff0000",
+    "critic": "#fc9f9f",
     "warn": "#fdff6e",
     "statusBar": {
         "background": "#fff",

@@ -33,7 +33,7 @@ export default ({ colors }: SettingsStyle) => StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 20,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 15,
         borderRadius: 12
     }
 });
