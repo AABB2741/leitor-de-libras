@@ -1,10 +1,37 @@
+import {
+    useEffect,
+    useState
+} from "react";
+
+import { StatusBar, StatusBarStyle } from "react-native";
+
+import log from "../utils/log";
+import * as Storage from "../services/Storage";
+import { useColors } from "../contexts/colors";
+
 import LoginForm from "../components/LoginForm";
 import AppRoutes from "./app.routes";
 
 export default function Routes() {
+    const [loginFormVisible, setLoginFormVisible] = useState<null | boolean>(null);
+    const colors = useColors();
+
+    useEffect(() => {
+        log("Verificando se o usuário pulou etapa de login", { color: "fgGray" });
+        Storage.getItem("@welcome").then(data => {
+            if (data?.skip_login) {
+                setLoginFormVisible(false);
+            } else setLoginFormVisible(true);
+        });
+    }, []);
+
+    if (loginFormVisible === null)
+        return null;
+
     return (
         <>
-            {/* <LoginForm /> */}
+            <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
+            <LoginForm visible={loginFormVisible} />
             <AppRoutes />
         </>
     );

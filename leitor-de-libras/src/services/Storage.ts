@@ -17,14 +17,14 @@ function dbLog(msg: string, options?: LogConfigs) {
 }
 
 export async function getItem<T extends keyof Saves>(key: T, tab?: boolean): Promise<Saves[T] | null> {
-    dbLog(`}Obtendo dados de "${key}"`, { tab });
+    dbLog(`Obtendo dados de "${key}"`, { tab });
     const data = await AsyncStorage.default.getItem(key);
     log(`Dados obtidos de "${key}".`, { color: "fgGray", tab: true })
     return data ? JSON.parse(data) : null;
 }
 
 export async function setItem<T extends keyof Saves>(key: T, value: Object, tab?: boolean): Promise<Object> {
-    dbLog(`}Definindo dados em "${key}"`, { tab });
+    dbLog(`Definindo dados em "${key}"`, { tab });
     await AsyncStorage.default.setItem(key, JSON.stringify(value));
     log(`Dados definidos para "${key}".`, { color: "fgGray", tab: true })
     return value;
