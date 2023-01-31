@@ -30,14 +30,12 @@ export default function NetworkState() {
 
     useEffect(() => {
         log("Atualizando informações de conexão");
-        console.log(infos);
         if (infos.isConnected) {
             if (infos.type === "cellular") {
                 setNetworkState("cellular");
             } else setNetworkState(null);
         } else if (infos.isConnected === false) setNetworkState("disconnected");
     }, [infos]);
-    console.log(`Estado da rede: ${networkState}`);
 
     if (networkState === null || infos.type === "unknown")
         return null;

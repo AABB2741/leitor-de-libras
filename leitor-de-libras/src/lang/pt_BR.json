@@ -86,7 +86,7 @@
             "view_translations": "Suas traduções",
             "clear": "Limpar traduções",
             "archived": "Arquivados",
-            "learn": "Aprender Libras"
+            "talk": "Conversar"
         }
     },
     "article": {
@@ -223,6 +223,15 @@
             "title": "Permita-nos acessar a sua câmera.",
             "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
             "learn_more": "Saiba como usamos seus dados"
+        }
+    },
+    "conversations": {
+        "title": "Bate-papo",
+        "empty": {
+            "title": "Converse com alguém agora.",
+            "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o bate-papo.",
+            "try": "Experimentar",
+            "learn_more": "Saiba como funciona"
         }
     },
     "profile": {

@@ -15,7 +15,7 @@ type AppScreens = {
     DashboardRoutes: undefined;
     TranslationsRoutes: undefined;
     Camera: undefined;
-    Learn: undefined;
+    Talk: undefined;
     Profile: undefined;
 }
 
@@ -35,4 +35,9 @@ type DashboardParamList = {
 type TranslationsParamList = {
     Translations: undefined;
     Watch: undefined;
+}
+
+type TalkParamList = {
+    Conversations: undefined;
+    Chat: undefined;
 }

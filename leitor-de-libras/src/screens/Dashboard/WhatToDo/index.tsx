@@ -4,7 +4,7 @@ import {
 } from "react-native";
 import {
     Archive,
-    Books,
+    Chats,
     HardDrives,
     IconProps,
     PlusCircle,
@@ -15,7 +15,7 @@ import {
 import { useLang } from "../../../contexts/lang";
 import { useUser } from "../../../contexts/user";
 import { useRoutes } from "../../../routes";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import Category from "../../../components/Category";
 
@@ -51,7 +51,7 @@ export default function WhatToDo() {
     }, {
         icon: props => <Translate {...props} />,
         label: lang.dashboard.what_to_do.view_translations,
-        onPress: () => navigation.navigate("Translations")
+        onPress: () => navigation.navigate("TranslationsRoutes")
     }, {
         icon: props => <HardDrives {...props} />,
         label: lang.dashboard.what_to_do.clear
@@ -59,8 +59,8 @@ export default function WhatToDo() {
         icon: props => <Archive {...props} />,
         label: lang.dashboard.what_to_do.archived
     }, {
-        icon: props => <Books {...props} />,
-        label: lang.dashboard.what_to_do.learn
+        icon: props => <Chats {...props} />,
+        label: lang.dashboard.what_to_do.talk
     }];
 
     return (

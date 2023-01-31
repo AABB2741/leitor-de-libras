@@ -5,7 +5,8 @@ import {
     House,
     Translate,
     UserCircle,
-    Plus
+    Plus,
+    Chats
 } from "phosphor-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -15,7 +16,7 @@ import { useColors } from "../contexts/colors";
 import DashboardRoutes from "./dashboard.routes";
 import TranslationsRoutes from "./translations.routes";
 import Camera from "../screens/Camera";
-import Learn from "../screens/Learn";
+import TalkRoutes from "./talk.routes";
 import Profile from "../screens/Profile";
 
 const Tab = createBottomTabNavigator<AppScreens>();
@@ -63,10 +64,10 @@ export default function AppRoutes() {
                     }}
                 />
                 <Tab.Screen
-                    name="Learn"
-                    component={Learn}
+                    name="Talk"
+                    component={TalkRoutes}
                     options={{
-                        tabBarIcon: ({ focused, size }) => focused ? <Books weight="fill" size={size} color={colors.accent} /> : <Books size={size} color={colors.font} />
+                        tabBarIcon: ({ focused, size }) => focused ? <Chats weight="fill" size={size} color={colors.accent} /> : <Chats size={size} color={colors.font} />
                     }}
                 />
                 <Tab.Screen

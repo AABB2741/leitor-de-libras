@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { ThemeProps } from '../../theme/getTheme';
-import Constants from "expo-constants";
 
 interface HeaderStyle {
     colors: ThemeProps;
@@ -8,7 +7,6 @@ interface HeaderStyle {
 
 export default ({ colors }: HeaderStyle) => StyleSheet.create({
     container: {
-        paddingTop: Constants.statusBarHeight,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
