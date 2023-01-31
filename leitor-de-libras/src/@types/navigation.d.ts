@@ -5,18 +5,18 @@ type SettingsLocation = {
     more: "update" | "dev_tools" | "about";
 }
 
-type LoginParamList = {
-    Login: undefined;
-    SignUp: undefined;
-    ResetPassword: undefined;
-}
-
 type AppScreens = {
     DashboardRoutes: undefined;
     TranslationsRoutes: undefined;
     Camera: undefined;
     Talk: undefined;
     Profile: undefined;
+}
+
+type LoginParamList = {
+    Login: undefined;
+    SignUp: undefined;
+    ResetPassword: undefined;
 }
 
 type DashboardParamList = {

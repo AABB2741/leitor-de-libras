@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ThemeProps } from "../../theme/getTheme";
+import { ThemeProps } from "../../../theme/getTheme";
 import Constants from "expo-constants"
 
 interface ResetPasswordStyle {

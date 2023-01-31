@@ -15,7 +15,6 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { useUser } from "../../contexts/user";
-import { useRoutes } from "../../routes";
 
 import Empty from "../../components/Empty";
 import Input from "../../components/Input";
@@ -29,7 +28,6 @@ export default function Profile() {
     const lang = useLang();
     const { user, signed } = useUser();
     const colors = useColors();
-    const { setRoute } = useRoutes();
 
     const styles = createStyles({ colors });
 
@@ -55,7 +53,7 @@ export default function Profile() {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            onPress: () => setRoute("LoginRoutes") // navigation.navigate("LoginRoutes")
+                            // onPress: () => setRoute("LoginRoutes") // navigation.navigate("LoginRoutes")
                         }]}
                     />
                 </ScrollView>

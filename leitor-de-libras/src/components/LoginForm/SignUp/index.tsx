@@ -2,10 +2,10 @@ import {
     View,
     ScrollView
 } from "react-native";
-import { useColors } from "../../contexts/colors";
-import { useLang } from "../../contexts/lang";
+import { useColors } from "../../../contexts/colors";
+import { useLang } from "../../../contexts/lang";
 
-import Font from "../../components/Font";
+import Font from "../../Font";
 
 import createStyles from "./styles";
 

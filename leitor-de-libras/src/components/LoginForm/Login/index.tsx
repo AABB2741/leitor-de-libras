@@ -7,24 +7,21 @@ import {
     Image
 } from "react-native";
 import {
-    NavigationProp,
-    RouteProp,
-    useFocusEffect,
-    useNavigation
+    useFocusEffect
 } from "@react-navigation/native";
+
 import { Globe } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import * as Storage from "../../services/Storage";
+import * as Storage from "../../../services/Storage";
 
-import { useLang } from "../../contexts/lang";
-import { useColors } from "../../contexts/colors";
-import { useRoutes } from "../../routes";
+import { useLang } from "../../../contexts/lang";
+import { useColors } from "../../../contexts/colors";
 
-import Font from "../../components/Font";
+import Font from "../../Font";
 
-import FixedCategory from "../../components/FixedCategory";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import FixedCategory from "../../FixedCategory";
+import Input from "../../Input";
+import Button from "../../Button";
 
 import createStyles from "./styles";
 
@@ -36,7 +33,6 @@ export default function Login({ navigation }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-    const { setRoute } = useRoutes();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -100,7 +96,7 @@ export default function Login({ navigation }: LoginProps) {
                     Storage.mergeItem("@welcome", {
                         skip_login: true
                     }).then(() => {
-                        setRoute("AppRoutes");
+                        // setRoute("AppRoutes");
                     });
                 }}>
                     <Font preset="button" style={styles.ignoreLabel}>{lang.login.ignore}</Font>

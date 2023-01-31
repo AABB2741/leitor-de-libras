@@ -1,51 +1,63 @@
-import React, {
-    useEffect,
-    useState,
-    createContext,
-    useContext
-} from "react";
-import { StatusBar, StatusBarStyle } from "react-native";
-import * as Storage from "../services/Storage";
-
-import { useUser } from "../contexts/user";
-import { useColors } from "../contexts/colors";
-
+import LoginForm from "../components/LoginForm";
 import AppRoutes from "./app.routes";
-import LoginRoutes from "./login.routes";
 
-type Routes = "AppRoutes" | "LoginRoutes";
-interface RoutesProviderValues {
-    route: null | Routes;
-    setRoute: React.Dispatch<React.SetStateAction<null | Routes>>;
-}
-
-const RoutesContext = createContext<RoutesProviderValues>({} as RoutesProviderValues);
-
-export default function RoutesProvider() {
-    const { signed } = useUser();
-    const colors = useColors();
-    const [route, setRoute] = useState<null | Routes>(null);
-
-    useEffect(() => {
-        if (!signed) {
-            Storage.getItem("@welcome").then(data => {
-                if (!data?.skip_login) {
-                    setRoute("LoginRoutes");
-                } else setRoute("AppRoutes");
-            });
-        } else setRoute("AppRoutes");
-    }, []);
-
+export default function Routes() {
     return (
-        <RoutesContext.Provider value={{ route, setRoute }}>
-            <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
-            {(route === "AppRoutes") && <AppRoutes />}
-            {(route === "LoginRoutes") && <LoginRoutes />}
-        </RoutesContext.Provider>
+        <>
+            {/* <LoginForm /> */}
+            <AppRoutes />
+        </>
     );
 }
 
-export const useRoutes = () => useContext(RoutesContext);
+// import React, {
+//     useEffect,
+//     useState,
+//     createContext,
+//     useContext
+// } from "react";
+// import { StatusBar, StatusBarStyle } from "react-native";
+// import * as Storage from "../services/Storage";
+
+// import { useUser } from "../contexts/user";
+// import { useColors } from "../contexts/colors";
+
+// import AppRoutes from "./app.routes";
+// import LoginRoutes from "./login.routes";
+
+// type Routes = "AppRoutes" | "LoginRoutes";
+// interface RoutesProviderValues {
+//     route: null | Routes;
+//     setRoute: React.Dispatch<React.SetStateAction<null | Routes>>;
+// }
+
+// const RoutesContext = createContext<RoutesProviderValues>({} as RoutesProviderValues);
+
+// export default function RoutesProvider() {
+//     const { signed } = useUser();
+//     const colors = useColors();
+//     const [route, setRoute] = useState<null | Routes>(null);
+
+//     useEffect(() => {
+//         if (!signed) {
+//             Storage.getItem("@welcome").then(data => {
+//                 if (!data?.skip_login) {
+//                     setRoute("LoginRoutes");
+//                 } else setRoute("AppRoutes");
+//             });
+//         } else setRoute("AppRoutes");
+//     }, []);
+
+//     return (
+//         <RoutesContext.Provider value={{ route, setRoute }}>
+//             <StatusBar barStyle={colors.statusBar.foreground as StatusBarStyle} backgroundColor={"transparent"} translucent />
+//             {(route === "AppRoutes") && <AppRoutes />}
+//             {(route === "LoginRoutes") && <LoginRoutes />}
+//         </RoutesContext.Provider>
+//     );
+// }
+
+// export const useRoutes = () => useContext(RoutesContext);
 
 // import { useEffect, useState } from "react";
 // import { StatusBar, StatusBarStyle, View } from "react-native";
