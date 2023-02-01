@@ -10,6 +10,7 @@
         "signup": "Criar uma conta",
         "filter": "Procurar...",
         "warning": "Aviso: %s",
+        "resource_not_available": "Recurso não disponível",
         "order": {
             "date": "Data",
             "name": "Nome",
@@ -93,7 +94,8 @@
         "_comment": "Tela que aparecerá quando o usuário pressionar Saiba mais em uma dica ou curiosidade",
         "credits": "por %s1 via %s2",
         "credits_no_author": "disponível em %s",
-        "full_article": "Ver artigo completo"
+        "full_article": "Ver artigo completo",
+        "cant_open_url": "Desculpe, mas não é possível abrir esta URL. Caso queira inserir manualmente, este é o link:\n%s"
     },
     "settings": {
         "title": "Configurações",

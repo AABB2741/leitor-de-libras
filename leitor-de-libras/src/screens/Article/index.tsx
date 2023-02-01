@@ -4,15 +4,21 @@ import {
     ScrollView,
     TouchableOpacity
 } from "react-native";
+import {
+    ArrowSquareOut,
+    Heart,
+    ShareNetwork
+} from "phosphor-react-native";
 
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
+import getCuriosity from "../../constants/curiosities";
 
 import Font from "../../components/Font";
+import Link from "../../components/Link";
 
 import createStyles from "./styles";
-import getCuriosity from "../../constants/curiosities";
-import { ArrowSquareOut, Heart, ShareNetwork } from "phosphor-react-native";
+
 
 interface ArticleProps {
     route: RouteProp<DashboardParamList, "Article">;
@@ -43,10 +49,10 @@ export default function Article({ route }: ArticleProps) {
                         <ShareNetwork color={colors.font} size={14} />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.option, { paddingHorizontal: 25 }]}>
+                <Link url={curiosity.credits.url} style={[styles.option, { paddingHorizontal: 25 }]}>
                     <Font preset="button" style={styles.fullArticleLabel}>{lang.article.full_article}</Font>
                     <ArrowSquareOut color={colors.accent} size={16} />
-                </TouchableOpacity>
+                </Link>
             </View>
         </View>
     );
