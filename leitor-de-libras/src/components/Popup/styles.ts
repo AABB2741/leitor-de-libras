@@ -2,13 +2,14 @@ import { StyleSheet } from "react-native";
 import { ThemeProps } from "../../theme/getTheme";
 import Constants from "expo-constants";
 
-interface MessageStyle {
+interface PopupStyle {
     colors: ThemeProps;
 }
 
-export default ({ colors }: MessageStyle) => StyleSheet.create({
+export default ({ colors }: PopupStyle) => StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center"
     },
@@ -25,8 +26,7 @@ export default ({ colors }: MessageStyle) => StyleSheet.create({
         padding: 20,
         borderRadius: 24,
         marginHorizontal: 20,
-        minWidth: 250,
-        maxWidth: "100%"
+        flex: 1
     },
     title: {
         fontSize: 14,

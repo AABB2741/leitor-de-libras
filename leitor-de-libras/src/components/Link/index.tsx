@@ -12,7 +12,7 @@ import {
 import { useLang } from "../../contexts/lang";
 import log from "../../utils/log";
 
-import Message from "../Message";
+import Popup from "../Popup";
 
 interface LinkProps extends TouchableOpacityProps {
     url: string;
@@ -43,7 +43,7 @@ export default function Link({ url, noSupportMessage, ...rest }: LinkProps) {
 
     return (
         <>
-            <Message
+            <Popup
                 title={lang.general.resource_not_available}
                 text={noSupportMessage}
                 visible={warningVisible}

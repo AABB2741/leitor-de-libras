@@ -13,10 +13,12 @@ export default ({ colors }: FilterStyle) => StyleSheet.create({
     filter: {
         flex: 1,
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "flex-start"
     },
     filterInput: {
-        marginHorizontal: 10
+        flex: 1,
+        paddingHorizontal: 10
     },
     sort: {
         flexDirection: "row",

@@ -53,13 +53,13 @@ export default function Filter({ filter, filterPlaceholder, filterClearHidden, f
                     <MagnifyingGlass color={colors.font} size={24} />
                 )}
                 <Input
+                    containerStyle={{ flex: 1 }}
                     style={styles.filterInput}
                     placeholder={filterPlaceholder ?? lang.general.filter}
                     value={filterState}
                     onChangeText={text => filterAutoSubmit ? onFilterChange?.(text) : setFilterState(text)}
                     onSubmitEditing={() => onFilterChange?.(filterState)}
                     transparent
-                    hideClearButton
                 />
             </View>
             <View style={styles.sort}>

@@ -19,7 +19,7 @@ import { useColors } from "../../contexts/colors";
 import Header from "../../components/Header";
 import Empty from "../../components/Empty";
 import Meet from "./Meet";
-import Message from "../../components/Message";
+import Popup from "../../components/Popup";
 
 import log from "../../utils/log";
 import CONVERSATIONS from "../../constants/conversations";
@@ -51,7 +51,7 @@ export default function Conversations({ }: ConversationsProps) {
 
     return (
         <View style={styles.container}>
-            <Message
+            <Popup
                 title={lang.conversations.create.title}
                 type="confirm"
                 visible={createModalVisible}
@@ -59,19 +59,15 @@ export default function Conversations({ }: ConversationsProps) {
                     setCreateModalVisible(false);
                 }}
             >
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flex: 1 }}>
-                        <Input
-                            label={lang.conversations.create.name.label}
-                            placeholder={lang.conversations.create.name.placeholder}
-                        />
-                        <Input
-                            label={lang.conversations.create.meet_name.label}
-                            placeholder={lang.conversations.create.meet_name.placeholder}
-                        />
-                    </View>
-                </View>
-            </Message>
+                <Input
+                    label={lang.conversations.create.name.label}
+                    placeholder={lang.conversations.create.name.placeholder}
+                />
+                <Input
+                    label={lang.conversations.create.meet_name.label}
+                    placeholder={lang.conversations.create.meet_name.placeholder}
+                />
+            </Popup>
             <Header
                 title={lang.conversations.title}
                 hideBackButton

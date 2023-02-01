@@ -15,10 +15,10 @@ import Font from "../Font";
 
 import createStyles from "./styles";
 
-export type MessageOption = "ok" | "confirm" | "boolean";
+export type PopupOption = "ok" | "confirm" | "boolean";
 
-interface MessageProps extends ModalProps {
-    type?: MessageOption;
+interface PopupProps extends ModalProps {
+    type?: PopupOption;
     title?: string;
     text?: string;
     caution?: boolean;
@@ -28,7 +28,7 @@ interface MessageProps extends ModalProps {
     onRespondBoolean?: (repsonse: boolean) => void;
 }
 
-export default function Message({ type = "ok", title, text, caution, children, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: MessageProps) {
+export default function Popup({ type = "ok", title, text, caution, children, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: PopupProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });

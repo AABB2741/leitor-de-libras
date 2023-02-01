@@ -16,7 +16,7 @@ import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { useUser } from "../../contexts/user";
 
-import Message from "../../components/Message";
+import Popup from "../../components/Popup";
 import Empty from "../../components/Empty";
 import Input from "../../components/Input";
 import Font from "../../components/Font";
@@ -66,7 +66,7 @@ export default function Profile() {
 
     return (
         <>
-            <Message
+            <Popup
                 title={lang.profile.logout.title}
                 text={lang.profile.logout.text}
                 type="boolean"
@@ -87,7 +87,6 @@ export default function Profile() {
                 </View>
                 <FixedCategory title={lang.profile.personal_data.title}>
                     <Input
-                        noTopPadding
                         label={lang.profile.personal_data.username}
                         placeholder={lang.profile.personal_data.username}
                         value={user.name}
