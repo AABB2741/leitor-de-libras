@@ -242,6 +242,17 @@
             "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o bate-papo.",
             "try": "Experimentar",
             "learn_more": "Saiba como funciona"
+        },
+        "create": {
+            "title": "Criar nova conversa",
+            "name": {
+                "label": "Nome",
+                "placeholder": "Com quem você conversará?"
+            },
+            "meet_name": {
+                "label": "Nome da conversa",
+                "placeholder": "Conversa #%d"
+            }
         }
     },
     "profile": {

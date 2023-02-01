@@ -12,18 +12,21 @@ interface InputStyle {
 
 export default ({ colors, noTopPadding, transparent, value, custom_fonts }: InputStyle) => StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "green"
     },
     label: {
         marginTop: noTopPadding ? 0 : 20,
         marginBottom: 10,
+        backgroundColor: "violet"
     },
     content: {
         borderRadius: 12,
-        backgroundColor: transparent ? "transparent" : colors.background2,
+        // backgroundColor: transparent ? "transparent" : colors.background2,
         flexDirection: "row",
         alignItems: "stretch",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor: "blue"
     },
     input: {
         paddingVertical: transparent ? 0 : 5,
@@ -32,7 +35,8 @@ export default ({ colors, noTopPadding, transparent, value, custom_fonts }: Inpu
         color: colors.font,
         fontFamily: custom_fonts ? "Rubik" : undefined,
         flex: 1,
-        fontSize: 14
+        fontSize: 14,
+        backgroundColor: "pink"
     },
     clear: {
         alignItems: "center",

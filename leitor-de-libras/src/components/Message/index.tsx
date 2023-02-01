@@ -1,5 +1,6 @@
 import {
     View,
+    ScrollView,
     Pressable,
     Modal,
     ModalProps,
@@ -38,7 +39,7 @@ export default function Message({ type = "ok", title, text, caution, children, o
             <Modal
                 presentationStyle="overFullScreen"
                 transparent
-                { ...rest }
+                {...rest}
             >
                 <Pressable style={styles.background} onPress={rest.onRequestClose} />
                 <View style={styles.container}>
@@ -47,7 +48,9 @@ export default function Message({ type = "ok", title, text, caution, children, o
                             {title && <Font preset="subtitle" style={styles.title}>{title}</Font>}
                             {text && <Font preset="text" style={styles.text}>{text}</Font>}
                         </View>
-                        {children}
+                        <View>
+                            {children}
+                        </View>
                         <View style={styles.options}>
                             {type === "ok" && (
                                 <Button
@@ -67,6 +70,20 @@ export default function Message({ type = "ok", title, text, caution, children, o
                                     <Button
                                         label={lang.general.modal.yes}
                                         highlight onPress={() => onRespondBoolean?.(true)}
+                                        accentColor={caution ? colors.critic : colors.accent}
+                                    />
+                                </>
+                            )}
+                            {type === "confirm" && (
+                                <>
+                                    <Button
+                                        label={lang.general.modal.cancel}
+                                        onPress={() => onRespondConfirm?.(false)}
+                                        accentColor={caution ? colors.critic : colors.accent}
+                                    />
+                                    <Button
+                                        label={lang.general.modal.confirm}
+                                        highlight onPress={() => onRespondConfirm?.(true)}
                                         accentColor={caution ? colors.critic : colors.accent}
                                     />
                                 </>

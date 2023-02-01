@@ -1,30 +1,42 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
+import {
+    useCallback,
+    useState
+} from "react";
 import {
     BackHandler,
-    View
+    View,
+    FlatList
 } from "react-native";
+import {
+    Chats,
+    MagnifyingGlass
+} from "phosphor-react-native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { useLang } from "../../contexts/lang";
 import { useColors } from "../../contexts/colors";
-
 import Header from "../../components/Header";
 import Empty from "../../components/Empty";
+import Meet from "./Meet";
+import Message from "../../components/Message";
 
 import log from "../../utils/log";
+import CONVERSATIONS from "../../constants/conversations";
 
 import createStyles from "./styles";
-import { Chats, MagnifyingGlass } from "phosphor-react-native";
+import Input from "../../components/Input";
 
 interface ConversationsProps {
     navigation: BottomTabNavigationProp<AppScreens, "TalkRoutes">;
 }
 
-export default function Conversations({  }: ConversationsProps) {
+export default function Conversations({ }: ConversationsProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
+
+    const [createModalVisible, setCreateModalVisible] = useState(false);
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
@@ -39,12 +51,39 @@ export default function Conversations({  }: ConversationsProps) {
 
     return (
         <View style={styles.container}>
+            <Message
+                title={lang.conversations.create.title}
+                type="confirm"
+                visible={createModalVisible}
+                onRespondConfirm={response => {
+                    setCreateModalVisible(false);
+                }}
+            >
+                <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                        <Input
+                            label={lang.conversations.create.name.label}
+                            placeholder={lang.conversations.create.name.placeholder}
+                        />
+                        <Input
+                            label={lang.conversations.create.meet_name.label}
+                            placeholder={lang.conversations.create.meet_name.placeholder}
+                        />
+                    </View>
+                </View>
+            </Message>
             <Header
                 title={lang.conversations.title}
                 hideBackButton
                 rightOptions={[{
-                    icon: props => <MagnifyingGlass { ...props } />
+                    icon: props => <MagnifyingGlass {...props} />
                 }]}
+            />
+            <FlatList
+                data={CONVERSATIONS}
+                renderItem={({ item }) => (
+                    <Meet {...item} key={item.id} />
+                )}
             />
             <Empty
                 contentContainerStyle={{ paddingHorizontal: 20 }}
@@ -53,7 +92,8 @@ export default function Conversations({  }: ConversationsProps) {
                 icon={props => <Chats {...props} weight="duotone" />}
                 options={[{
                     label: lang.conversations.empty.try,
-                    highlight: true
+                    highlight: true,
+                    onPress: () => setCreateModalVisible(true)
                 }, {
                     label: lang.conversations.empty.learn_more
                 }]}
