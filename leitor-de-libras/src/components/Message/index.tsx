@@ -1,20 +1,29 @@
 import {
     View,
+    Pressable,
     Modal,
     ModalProps,
     StatusBar
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 import { useColors } from "../../contexts/colors";
+import { useLang } from "../../contexts/lang";
+import Button from "../Button";
+import Font from "../Font";
 
 import createStyles from "./styles";
 
+export type MessageOption = "ok" | "confirm" | "boolean";
+
 interface MessageProps extends ModalProps {
+    type?: MessageOption;
     title?: string;
     text?: string;
 }
 
-export default function Message({ title, text, ...rest }: MessageProps) {
+export default function Message({ type, title, text, ...rest }: MessageProps) {
+    const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
 
@@ -22,13 +31,21 @@ export default function Message({ title, text, ...rest }: MessageProps) {
         <>
             {rest.visible && <StatusBar backgroundColor="#fff" />}
             <Modal
-                animationType="fade"
                 presentationStyle="overFullScreen"
                 transparent
                 { ...rest }
             >
+                <Pressable style={styles.background} onPress={rest.onRequestClose} />
                 <View style={styles.container}>
-
+                    <Animatable.View style={styles.content} animation="zoomIn" duration={300}>
+                        <View>
+                            {title && <Font preset="subtitle" style={styles.title}>{title}</Font>}
+                            {text && <Font preset="text" style={styles.text}>{text}</Font>}
+                        </View>
+                        <View style={styles.options}>
+                            <Button label={lang.general.modal.ok} style={{ flex: 1 }} onPress={rest.onRequestClose} />
+                        </View>
+                    </Animatable.View>
                 </View>
             </Modal>
         </>

@@ -26,8 +26,7 @@ export default function Link({ url, noSupportMessage, ...rest }: LinkProps) {
 
     useEffect(() => {
         Linking.canOpenURL(url).then(supported => {
-            setIsLinkSupported(false);
-            log("Suportado: " + supported);
+            setIsLinkSupported(supported);
         });
     }, [url]);
 
@@ -43,7 +42,8 @@ export default function Link({ url, noSupportMessage, ...rest }: LinkProps) {
     return (
         <>
             <Message
-                text={noSupportMessage ?? lang.general.resource_not_available}
+                title={lang.general.resource_not_available}
+                text={noSupportMessage}
                 visible={warningVisible}
                 onRequestClose={() => setWarningVisible(false)}
             />

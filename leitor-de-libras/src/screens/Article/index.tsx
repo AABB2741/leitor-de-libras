@@ -49,7 +49,11 @@ export default function Article({ route }: ArticleProps) {
                         <ShareNetwork color={colors.font} size={14} />
                     </TouchableOpacity>
                 </View>
-                <Link url={curiosity.credits.url} style={[styles.option, { paddingHorizontal: 25 }]}>
+                <Link
+                    url={curiosity.credits.url}
+                    style={[styles.option, { paddingHorizontal: 25 }]}
+                    noSupportMessage={lang.article.cant_open_url.replace("%s", curiosity.credits.url)}
+                >
                     <Font preset="button" style={styles.fullArticleLabel}>{lang.article.full_article}</Font>
                     <ArrowSquareOut color={colors.accent} size={16} />
                 </Link>

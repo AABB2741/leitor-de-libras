@@ -11,6 +11,9 @@
         "filter": "Procurar...",
         "warning": "Aviso: %s",
         "resource_not_available": "Recurso não disponível",
+        "modal": {
+            "ok": "Ok"
+        },
         "order": {
             "date": "Data",
             "name": "Nome",
@@ -95,7 +98,7 @@
         "credits": "por %s1 via %s2",
         "credits_no_author": "disponível em %s",
         "full_article": "Ver artigo completo",
-        "cant_open_url": "Desculpe, mas não é possível abrir esta URL. Caso queira inserir manualmente, este é o link:\n%s"
+        "cant_open_url": "Desculpe, mas não é possível abrir esta URL. Caso queira inserir manualmente, este é o link:\n\n%s"
     },
     "settings": {
         "title": "Configurações",
