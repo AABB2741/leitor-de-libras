@@ -18,7 +18,7 @@ import createStyles from "./styles";
 import { Chats, MagnifyingGlass } from "phosphor-react-native";
 
 interface ConversationsProps {
-    navigation: BottomTabNavigationProp<AppScreens, "Talk">;
+    navigation: BottomTabNavigationProp<AppScreens, "TalkRoutes">;
 }
 
 export default function Conversations({  }: ConversationsProps) {

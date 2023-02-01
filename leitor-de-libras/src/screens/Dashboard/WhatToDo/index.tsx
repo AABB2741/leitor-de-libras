@@ -42,6 +42,10 @@ export default function WhatToDo() {
         icon: props => <PlusCircle {...props} />,
         label: lang.dashboard.what_to_do.create
     }, {
+        icon: props => <Chats {...props} />,
+        label: lang.dashboard.what_to_do.talk,
+        onPress: () => navigation.navigate("TalkRoutes")
+    }, {
         icon: props => <SignIn {...props} />,
         label: lang.general.login,
         disabled: signed,
@@ -56,9 +60,6 @@ export default function WhatToDo() {
     }, {
         icon: props => <Archive {...props} />,
         label: lang.dashboard.what_to_do.archived
-    }, {
-        icon: props => <Chats {...props} />,
-        label: lang.dashboard.what_to_do.talk
     }];
 
     return (

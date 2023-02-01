@@ -9,7 +9,7 @@ type AppScreens = {
     DashboardRoutes: undefined;
     TranslationsRoutes: undefined;
     Camera: undefined;
-    Talk: undefined;
+    TalkRoutes: undefined;
     Profile: undefined;
 }
 

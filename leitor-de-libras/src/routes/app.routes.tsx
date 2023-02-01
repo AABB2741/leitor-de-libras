@@ -64,7 +64,7 @@ export default function AppRoutes() {
                     }}
                 />
                 <Tab.Screen
-                    name="Talk"
+                    name="TalkRoutes"
                     component={TalkRoutes}
                     options={{
                         tabBarIcon: ({ focused, size }) => focused ? <Chats weight="fill" size={size} color={colors.accent} /> : <Chats size={size} color={colors.font} />
