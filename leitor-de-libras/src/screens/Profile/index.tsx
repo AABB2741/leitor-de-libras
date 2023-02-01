@@ -71,6 +71,7 @@ export default function Profile() {
                 text={lang.profile.logout.text}
                 type="boolean"
                 visible={signOutVisible}
+                caution
                 onRequestClose={() => setSignOutVisible(false)}
             />
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>

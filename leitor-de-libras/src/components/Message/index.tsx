@@ -20,12 +20,14 @@ interface MessageProps extends ModalProps {
     type?: MessageOption;
     title?: string;
     text?: string;
+    caution?: boolean;
+    children?: React.ReactNode;
     onRespondOk?: () => void;
     onRespondConfirm?: (response: boolean) => void;
     onRespondBoolean?: (repsonse: boolean) => void;
 }
 
-export default function Message({ type = "ok", title, text, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: MessageProps) {
+export default function Message({ type = "ok", title, text, caution, children, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: MessageProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -45,18 +47,28 @@ export default function Message({ type = "ok", title, text, onRespondOk, onRespo
                             {title && <Font preset="subtitle" style={styles.title}>{title}</Font>}
                             {text && <Font preset="text" style={styles.text}>{text}</Font>}
                         </View>
+                        {children}
                         <View style={styles.options}>
                             {type === "ok" && (
                                 <Button
                                     label={lang.general.modal.ok}
                                     style={{ flex: 1 }}
                                     onPress={onRespondOk ?? rest.onRequestClose}
+                                    accentColor={caution ? colors.critic : colors.accent}
                                 />
                             )}
                             {type === "boolean" && (
                                 <>
-                                    <Button label={lang.general.modal.no} onPress={() => onRespondBoolean?.(false)} />
-                                    <Button label={lang.general.modal.yes} highlight onPress={() => onRespondBoolean?.(true)} />
+                                    <Button
+                                        label={lang.general.modal.no}
+                                        onPress={() => onRespondBoolean?.(false)}
+                                        accentColor={caution ? colors.critic : colors.accent}
+                                    />
+                                    <Button
+                                        label={lang.general.modal.yes}
+                                        highlight onPress={() => onRespondBoolean?.(true)}
+                                        accentColor={caution ? colors.critic : colors.accent}
+                                    />
                                 </>
                             )}
                         </View>
