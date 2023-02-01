@@ -13,6 +13,7 @@ import log from "../../../utils/log";
 
 import { useLang } from "../../../contexts/lang";
 import { useColors } from "../../../contexts/colors";
+import { useSettings } from "../../../contexts/settings";
 
 import Font from "../../../components/Font";
 
@@ -23,6 +24,7 @@ type NetState = "cellular" | "disconnected" | null;
 export default function NetworkState() {
     const lang = useLang();
     const colors = useColors();
+    const { settings } = useSettings();
     const styles = createStyles({ colors });
 
     const infos = useNetInfo();
@@ -37,7 +39,7 @@ export default function NetworkState() {
         } else if (infos.isConnected === false) setNetworkState("disconnected");
     }, [infos]);
 
-    if (networkState === null || infos.type === "unknown")
+    if (networkState === null || infos.type === "unknown" || !settings.display.appearance.connection_alerts)
         return null;
     
     return  (

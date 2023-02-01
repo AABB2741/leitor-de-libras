@@ -28,7 +28,7 @@ export default function Appearance() {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-
+    
     const scheme = useColorScheme();
 
     return (
@@ -71,6 +71,13 @@ export default function Appearance() {
                     onValueChange={custom_fonts => {
                         setRestartRequired(true);
                         saveSettings({display: {appearance:{ custom_fonts }} });
+                    }}
+                />
+                <Toggle
+                    label={lang.settings.display.appearance.other.connection_alerts}
+                    value={settings.display.appearance.connection_alerts}
+                    onValueChange={connection_alerts => {
+                        saveSettings({display: {appearance:{ connection_alerts }} });
                     }}
                 />
             </FixedCategory>

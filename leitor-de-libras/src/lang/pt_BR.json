@@ -144,7 +144,8 @@
                 },
                 "other": {
                     "title": "Outras configurações",
-                    "custom_fonts": "Permitir fontes personalizadas"
+                    "custom_fonts": "Permitir fontes personalizadas",
+                    "connection_alerts": "Exibir alertas de estado da conexão de rede"
                 }
             },
             "lang": {

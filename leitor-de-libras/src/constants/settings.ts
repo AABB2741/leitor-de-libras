@@ -7,6 +7,7 @@ export interface SettingsProps {
             theme: ThemeName,
             default_dark_mode: ThemeName,
             custom_fonts: boolean;
+            connection_alerts: boolean;
         },
         lang: LangName;
         performance: {
@@ -20,7 +21,8 @@ const SETTINGS: SettingsProps = {
         appearance: {
             theme: "auto",
             default_dark_mode: "dark",
-            custom_fonts: true
+            custom_fonts: true,
+            connection_alerts: true   
         },
         lang: "auto",
         performance: {

@@ -51,7 +51,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
                     }]}
                 />
             </View>
-        )
+        );
     }
 
     return (
@@ -74,7 +74,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
                 title={setting.title}
                 opacity={settings.display.performance.reduce_animations ? 1 : opacity}
             />
-            <View style={styles.content}>
+            <View>
                 {setting.component()}
             </View>
         </ScrollView>
