@@ -12,7 +12,11 @@
         "warning": "Aviso: %s",
         "resource_not_available": "Recurso não disponível",
         "modal": {
-            "ok": "Ok"
+            "ok": "Ok",
+            "yes": "Sim",
+            "no": "Não",
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
         },
         "order": {
             "date": "Data",
@@ -244,6 +248,10 @@
         "not_signed": {
             "title": "Você não está conectado(a)",
             "desc": "Para alterar as configurações do seu perfil, é necessário que você se conecte a uma conta."
+        },
+        "logout": {
+            "title": "Desconectar-se?",
+            "text": "Os vídeos e conversas que estiverem salvos somente online não estarão disponíveis até que você faça login novamente."
         },
         "personal_data": {
             "title": "Dados pessoais",

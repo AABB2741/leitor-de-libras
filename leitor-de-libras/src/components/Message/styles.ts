@@ -23,7 +23,7 @@ export default ({ colors }: MessageStyle) => StyleSheet.create({
     content: {
         backgroundColor: colors.modal,
         padding: 20,
-        borderRadius: 12,
+        borderRadius: 24,
         marginHorizontal: 20,
         minWidth: 250,
         maxWidth: "100%"

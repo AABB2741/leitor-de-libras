@@ -20,9 +20,12 @@ interface MessageProps extends ModalProps {
     type?: MessageOption;
     title?: string;
     text?: string;
+    onRespondOk?: () => void;
+    onRespondConfirm?: (response: boolean) => void;
+    onRespondBoolean?: (repsonse: boolean) => void;
 }
 
-export default function Message({ type, title, text, ...rest }: MessageProps) {
+export default function Message({ type = "ok", title, text, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: MessageProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -43,7 +46,19 @@ export default function Message({ type, title, text, ...rest }: MessageProps) {
                             {text && <Font preset="text" style={styles.text}>{text}</Font>}
                         </View>
                         <View style={styles.options}>
-                            <Button label={lang.general.modal.ok} style={{ flex: 1 }} onPress={rest.onRequestClose} />
+                            {type === "ok" && (
+                                <Button
+                                    label={lang.general.modal.ok}
+                                    style={{ flex: 1 }}
+                                    onPress={onRespondOk ?? rest.onRequestClose}
+                                />
+                            )}
+                            {type === "boolean" && (
+                                <>
+                                    <Button label={lang.general.modal.no} onPress={() => onRespondBoolean?.(false)} />
+                                    <Button label={lang.general.modal.yes} highlight onPress={() => onRespondBoolean?.(true)} />
+                                </>
+                            )}
                         </View>
                     </Animatable.View>
                 </View>
