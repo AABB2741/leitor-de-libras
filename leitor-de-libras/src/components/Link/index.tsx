@@ -25,7 +25,9 @@ export default function Link({ url, noSupportMessage, ...rest }: LinkProps) {
     const [warningVisible, setWarningVisible] = useState(false);
 
     useEffect(() => {
+        log("Verificando suporte de Linking do dispositivo", { color: "fgGray" });
         Linking.canOpenURL(url).then(supported => {
+            log(supported ? "Linking está disponível" : "Linking não está disponível", { tab: true, color: supported ? "fgGreen" : "fgRed" })
             setIsLinkSupported(supported);
         });
     }, [url]);
