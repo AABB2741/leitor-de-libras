@@ -55,11 +55,9 @@ export default function Login({ navigation }: LoginProps) {
                 <Image source={colors.themeName === "light" ? require("../../../../assets/imgs/login-light.png") : require("../../../../assets/imgs/login.png")} style={styles.image} />
                 <FixedCategory title={lang.general.login}>
                     <Input
-                        noTopPadding
                         label={lang.profile.personal_data.email}
                         placeholder={lang.profile.personal_data.email_placeholder}
                         onChangeText={email => setEmail(email)}
-                        onRequestClear={() => setEmail("")}
                         value={email}
                     />
                     <Input
@@ -67,7 +65,6 @@ export default function Login({ navigation }: LoginProps) {
                         placeholder={lang.profile.personal_data.password_placeholder}
                         secureTextEntry
                         onChangeText={password => setPassword(password)}
-                        onRequestClear={() => setPassword("")}
                         value={password}
                     />
                     <Button

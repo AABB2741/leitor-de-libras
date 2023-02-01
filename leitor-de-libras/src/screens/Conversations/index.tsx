@@ -58,6 +58,7 @@ export default function Conversations({ }: ConversationsProps) {
                 onRespondConfirm={response => {
                     setCreateModalVisible(false);
                 }}
+                onRequestClose={() => setCreateModalVisible(false)}
             >
                 <Input
                     label={lang.conversations.create.name.label}
