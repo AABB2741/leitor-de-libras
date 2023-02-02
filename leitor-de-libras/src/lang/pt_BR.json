@@ -6,6 +6,7 @@
         
     },
     "general": {
+        "anonymous": "Anônimo",
         "login": "Fazer login",
         "signup": "Criar uma conta",
         "filter": "Procurar...",
@@ -259,7 +260,8 @@
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
         },
         "chat": {
-            "placeholder": "O que você quer falar?"
+            "placeholder": "O que você quer falar?",
+            "guest": "Convidado(a)"
         }
     },
     "profile": {

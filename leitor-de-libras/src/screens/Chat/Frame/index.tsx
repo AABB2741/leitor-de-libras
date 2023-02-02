@@ -17,6 +17,8 @@ import { useColors } from "../../../contexts/colors";
 import SUGGESTIONS, { SuggestionProps } from "../../../constants/suggestions";
 
 import createStyles from "./styles";
+import MsgBox from "../MsgBox";
+import { useUser } from "../../../contexts/user";
 
 interface FrameProps {
     messages: Msg[];
@@ -26,6 +28,7 @@ interface FrameProps {
 }
 
 export default function Frame({ messages, guest, keyboardOpen, handleSendMessage }: FrameProps) {
+    const { user, signed } = useUser();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors, guest });
@@ -44,8 +47,20 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
     console.log(messages);
     return (
         <View style={styles.container}>
-            <ScrollView
-                
+            <FlatList
+                data={[...messages].reverse()}
+                inverted
+                renderItem={({ item, index }) => (
+                    <MsgBox invert={guest} {...item} key={index} />
+                )}
+                contentContainerStyle={{
+                    paddingBottom: 20
+                }}
+                ListFooterComponent={(
+                    <View style={styles.mode}>
+                        <Font preset="text" style={styles.modeLabel}>{guest ? lang.conversations.chat.guest : (signed ? user?.name : lang.general.anonymous)}</Font>
+                    </View>
+                )}
             />
             <View>
                 <View style={styles.suggestionContainer}>
@@ -77,7 +92,10 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                         onChangeText={msg => setMsg(msg)}
                         focusable={!guest}
                     />
-                    <TouchableOpacity style={styles.action} onPress={msg ? () => handleSendMessage({ message: msg, from: guest ? "guest" : "owner" }) : () => null}>
+                    <TouchableOpacity style={styles.action} onPress={msg ? () => {
+                        setMsg("");
+                        handleSendMessage({ message: msg, from: guest ? "guest" : "owner" });
+                    } : () => null}>
                         {msg && <PaperPlaneRight color={colors.font2} size={18} />}
                         {!msg && <Microphone color={colors.font2} size={18} />}
                     </TouchableOpacity>

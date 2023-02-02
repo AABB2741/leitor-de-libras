@@ -13,6 +13,18 @@ export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
             rotate: guest ? "180deg" : "0deg"
         }]
     },
+    mode: {
+        justifyContent: "center",
+        flexDirection: "row",
+        marginBottom: 20
+    },
+    modeLabel: {
+        fontSize: 10,
+        paddingVertical: 5,
+        paddingHorizontal: 15,
+        backgroundColor: colors.background2,
+        borderRadius: 50
+    },
     controls: {
         paddingHorizontal: 20,
         flexDirection: "row",
