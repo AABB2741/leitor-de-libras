@@ -16,7 +16,7 @@ import { useColors } from "../contexts/colors";
 import DashboardRoutes from "./dashboard.routes";
 import TranslationsRoutes from "./translations.routes";
 import Camera from "../screens/Camera";
-import TalkRoutes from "./talk.routes";
+import TalkRoutes from "./conversation.routes";
 import Profile from "../screens/Profile";
 
 const Tab = createBottomTabNavigator<AppScreens>();

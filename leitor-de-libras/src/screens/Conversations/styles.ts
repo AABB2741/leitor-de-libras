@@ -7,6 +7,12 @@ interface ConversationsStyle {
 }
 
 export default ({ colors }: ConversationsStyle) => StyleSheet.create({
+    loading: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.background
+    },
     container: {
         flex: 1,
         backgroundColor: colors.background

@@ -1,11 +1,13 @@
 import {
     useCallback,
+    useEffect,
     useState
 } from "react";
 import {
     BackHandler,
     View,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from "react-native";
 import {
     Chats,
@@ -13,6 +15,7 @@ import {
 } from "phosphor-react-native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useFocusEffect } from "@react-navigation/native";
+import * as Storage from "../../services/Storage";
 
 import { useLang } from "../../contexts/lang";
 import { useColors } from "../../contexts/colors";
@@ -26,6 +29,7 @@ import CONVERSATIONS from "../../constants/conversations";
 
 import createStyles from "./styles";
 import Input from "../../components/Input";
+import Loading from "../../components/Loading";
 
 interface ConversationsProps {
     navigation: BottomTabNavigationProp<AppScreens, "TalkRoutes">;
@@ -37,6 +41,14 @@ export default function Conversations({ }: ConversationsProps) {
     const styles = createStyles({ colors });
 
     const [createModalVisible, setCreateModalVisible] = useState(false);
+    const [conversations, setConversations] = useState<ConversationProps[] | null>(null);
+
+    useEffect(() => {
+        setConversations(CONVERSATIONS);
+        setTimeout(() => {
+            setConversations(CONVERSATIONS);
+        }, 2500);
+    }, []);
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
@@ -48,6 +60,13 @@ export default function Conversations({ }: ConversationsProps) {
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
     }, []))
+
+    if (conversations === null)
+        return (
+            <View style={styles.loading}>
+                <Loading />
+            </View>
+        );
 
     return (
         <View style={styles.container}>
@@ -83,6 +102,7 @@ export default function Conversations({ }: ConversationsProps) {
                 )}
             />
             <Empty
+                visible={conversations.length === 0}
                 contentContainerStyle={{ paddingHorizontal: 20 }}
                 title={lang.conversations.empty.title}
                 desc={lang.conversations.empty.desc}

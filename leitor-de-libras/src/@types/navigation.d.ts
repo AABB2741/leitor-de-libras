@@ -39,5 +39,7 @@ type TranslationsParamList = {
 
 type TalkParamList = {
     Conversations: undefined;
-    Chat: undefined;
+    Chat: {
+        id: number;
+    };
 }

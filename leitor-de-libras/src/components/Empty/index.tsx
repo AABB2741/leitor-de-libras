@@ -28,13 +28,17 @@ interface EmptyProps {
     title?: string;
     desc?: string;
     options?: OptionProps[];
+    visible?: boolean;
     contentContainerStyle?: ViewStyle;
 }
 
-export default function Empty({ icon, title, desc, options, contentContainerStyle }: EmptyProps) {
+export default function Empty({ icon, title, desc, options, visible = true, contentContainerStyle }: EmptyProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
+
+    if (!visible)
+        return null;
 
     return (
         <View style={[styles.container, contentContainerStyle]}>

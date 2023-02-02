@@ -7,7 +7,8 @@ type Saves = {
     "@settings": SettingsProps;
     "@welcome": {
         "skip_login": boolean;
-    }
+    },
+    "conversations": ConversationProps[]
 };
 
 import log, { LogConfigs } from "../utils/log";

@@ -24,9 +24,9 @@
             "length": "Comprimento"
         },
         "unity": {
-            "future": "em %d",
+            "future": "em %s",
             "past": "há %s",
-            "s": "alguns segundos",
+            "s": "pouco tempo",
             "ss": "seg",
             "m": "1min",
             "mm": "%dmin",
@@ -253,6 +253,10 @@
                 "label": "Nome da conversa",
                 "placeholder": "Conversa #%d"
             }
+        },
+        "delete": {
+            "title": "Excluir conversa",
+            "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
         }
     },
     "profile": {

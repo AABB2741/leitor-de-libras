@@ -32,7 +32,7 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-
+    
     return (
         <>
             {rest.visible && <StatusBar backgroundColor="#fff" />}
