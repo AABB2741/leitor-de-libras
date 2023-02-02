@@ -35,7 +35,6 @@ function hasResponses(msg: string, responses: string[]) {
         }
     }
 
-    console.log("N tem respostas")
     return false;
 }
 
