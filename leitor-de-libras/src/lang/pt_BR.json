@@ -257,6 +257,9 @@
         "delete": {
             "title": "Excluir conversa",
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
+        },
+        "chat": {
+            "placeholder": "O que você quer falar?"
         }
     },
     "profile": {
