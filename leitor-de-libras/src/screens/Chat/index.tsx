@@ -9,12 +9,13 @@ import {
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import log from "../../utils/log";
 import Frame from "./Frame";
 import Loading from "../../components/Loading";
 import { useColors } from "../../contexts/colors";
+import CONVERSATIONS, { MESSAGES } from "../../constants/conversations";
 
 import createStyles from "./styles";
-import CONVERSATIONS from "../../constants/conversations";
 
 interface ChatProps {
     navigation: NativeStackNavigationProp<TalkParamList, "Chat">;
@@ -26,14 +27,17 @@ export default function Chat({ navigation, route }: ChatProps) {
     const styles = createStyles({ colors });
 
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
+    const [messages, setMessages] = useState<Msg[] | null>(null);
 
     useEffect(() => {
+        log("Obtendo conversas do bate-papo #" + route.params.id, {});
         setTimeout(() => {
             setChatInfos(CONVERSATIONS.find(c => c.id === route.params.id) ?? null);
+            setMessages(MESSAGES);
         }, 2500);
     }, []);
 
-    if (chatInfos === null) {
+    if (chatInfos === null || messages === null) {
         return (
             <View style={styles.loading}>
                 <Loading />
@@ -43,7 +47,9 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     return (
         <View style={styles.container}>
-            <Frame />
+            <Frame
+                messages={messages}
+            />
         </View>
     );
 }

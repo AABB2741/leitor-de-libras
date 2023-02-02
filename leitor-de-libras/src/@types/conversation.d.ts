@@ -14,5 +14,5 @@ type Msg = {
     chatId: number;
     content: string;
     date: Date;
-    sentBy: "owner" | "guest";
+    from: "owner" | "guest";
 }

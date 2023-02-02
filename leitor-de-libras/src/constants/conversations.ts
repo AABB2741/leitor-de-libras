@@ -13,3 +13,5 @@ const CONVERSATIONS: ConversationProps[] = [{
 }];
 
 export default CONVERSATIONS;
+
+export const MESSAGES = [];
