@@ -3,11 +3,15 @@ import { ThemeProps } from "../../../theme/getTheme";
 
 interface FrameStyle {
     colors: ThemeProps;
+    guest?: boolean;
 }
 
-export default ({ colors }: FrameStyle) => StyleSheet.create({
+export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        transform: [{
+            rotate: guest ? "180deg" : "0deg"
+        }]
     },
     controls: {
         paddingHorizontal: 20,
@@ -44,7 +48,7 @@ export default ({ colors }: FrameStyle) => StyleSheet.create({
     input: {
         borderRadius: 50
     },
-    speak: {
+    action: {
         padding: 10,
         backgroundColor: colors.accent,
         borderRadius: 25,

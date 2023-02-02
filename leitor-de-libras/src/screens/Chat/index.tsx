@@ -12,6 +12,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import log from "../../utils/log";
 import Frame from "./Frame";
 import Loading from "../../components/Loading";
+import Split from "./Split";
 import { useColors } from "../../contexts/colors";
 import CONVERSATIONS, { MESSAGES } from "../../constants/conversations";
 
@@ -28,6 +29,7 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
+    
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
@@ -36,6 +38,17 @@ export default function Chat({ navigation, route }: ChatProps) {
             setMessages(MESSAGES);
         }, 2500);
     }, []);
+
+    function handleSendMessage({ from, message }: Omit<Omit<Msg, "chatId">, "date">) {
+        const newMessages = messages ? [...messages] : [];
+        newMessages.push({
+            chatId: route.params.id,
+            date: new Date(),
+            from,
+            message
+        });
+        setMessages(newMessages);
+    }
 
     if (chatInfos === null || messages === null) {
         return (
@@ -48,6 +61,13 @@ export default function Chat({ navigation, route }: ChatProps) {
     return (
         <View style={styles.container}>
             <Frame
+                handleSendMessage={handleSendMessage}
+                messages={messages}
+                guest
+            />
+            <Split />
+            <Frame
+                handleSendMessage={handleSendMessage}
                 messages={messages}
             />
         </View>

@@ -8,7 +8,7 @@ import {
     useEffect,
     useState
 } from "react";
-import { Microphone, X } from "phosphor-react-native";
+import { Microphone, PaperPlane, PaperPlaneRight, X } from "phosphor-react-native";
 
 import Font from "../../../components/Font";
 import Input from "../../../components/Input";
@@ -20,22 +20,28 @@ import createStyles from "./styles";
 
 interface FrameProps {
     messages: Msg[];
+    guest?: boolean;
+    keyboardOpen?: boolean;
+    handleSendMessage: ({ message, from }: Omit<Omit<Msg, "chatId">, "date">) => void;
 }
 
-export default function Frame({ messages }: FrameProps) {
+export default function Frame({ messages, guest, keyboardOpen, handleSendMessage }: FrameProps) {
     const lang = useLang();
     const colors = useColors();
-    const styles = createStyles({ colors });
+    const styles = createStyles({ colors, guest });
 
     const [msg, setMsg] = useState("");
     const [suggestions, setSuggestions] = useState<SuggestionProps[]>([]);
 
     useEffect(() => {
-        if (!messages.length) {
+        if (!messages.length && !guest) {
             setSuggestions(SUGGESTIONS.filter(s => s.initial))
         }
     }, [messages])
 
+    if (keyboardOpen && guest)
+        return null;
+    console.log(messages);
     return (
         <View style={styles.container}>
             <ScrollView
@@ -47,7 +53,7 @@ export default function Frame({ messages }: FrameProps) {
                         <FlatList
                             data={suggestions}
                             renderItem={({ item, index }) => (
-                                <TouchableOpacity style={styles.suggestion} onLongPress={() => setMsg(item.msg)} key={index}>
+                                <TouchableOpacity style={styles.suggestion} onPress={() => handleSendMessage({ message: item.msg, from: guest ? "guest" : "owner" })} onLongPress={() => setMsg(item.msg)} key={index}>
                                     <Font preset="text" style={styles.suggestionLabel}>{item.shortMsg ?? item.msg}</Font>
                                 </TouchableOpacity>
                             )}
@@ -56,9 +62,11 @@ export default function Frame({ messages }: FrameProps) {
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
-                    <TouchableOpacity style={styles.suggestionClose}>
-                        <X size={20} color={colors.font} />
-                    </TouchableOpacity>
+                    {!!suggestions.length && (
+                        <TouchableOpacity style={styles.suggestionClose}>
+                            <X size={20} color={colors.font} />
+                        </TouchableOpacity>
+                    )}
                 </View>
                 <View style={styles.controls}>
                     <Input
@@ -67,11 +75,11 @@ export default function Frame({ messages }: FrameProps) {
                         style={styles.input}
                         value={msg}
                         onChangeText={msg => setMsg(msg)}
+                        focusable={!guest}
                     />
-                    <TouchableOpacity
-                        style={styles.speak}
-                    >
-                        <Microphone color={colors.font2} size={18} />
+                    <TouchableOpacity style={styles.action} onPress={msg ? () => handleSendMessage({ message: msg, from: guest ? "guest" : "owner" }) : () => null}>
+                        {msg && <PaperPlaneRight color={colors.font2} size={18} />}
+                        {!msg && <Microphone color={colors.font2} size={18} />}
                     </TouchableOpacity>
                 </View>
             </View>

@@ -12,7 +12,7 @@ type Chat = {
 
 type Msg = {
     chatId: number;
-    content: string;
+    message: string;
     date: Date;
     from: "owner" | "guest";
 }

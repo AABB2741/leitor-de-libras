@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 import { ThemeProps } from "../../theme/getTheme";
 
+import Constants from "expo-constants";
+
 interface ChatStyle {
     colors: ThemeProps;
 }
@@ -15,6 +17,7 @@ export default ({ colors }: ChatStyle) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
+        paddingTop: Constants.statusBarHeight + 10,
         paddingBottom: 16
     },
     controls: {
