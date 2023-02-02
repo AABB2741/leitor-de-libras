@@ -8,12 +8,12 @@ import { useColors } from "../../../contexts/colors";
 import createStyles from "./styles";
 
 interface MsgBoxProps extends Msg {
-    invert?: boolean;
+    
 }
 
-export default function MsgBox({ message, from, date, invert }: MsgBoxProps) {
+export default function MsgBox({ message, from, date }: MsgBoxProps) {
     const colors = useColors();
-    const styles = createStyles({ colors, from, invert });
+    const styles = createStyles({ colors, from, invert: from === "guest" });
 
     return (
         <View style={styles.container}>

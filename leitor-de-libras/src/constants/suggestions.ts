@@ -7,11 +7,11 @@ export type SuggestionProps = {
 
 const SUGGESTIONS: SuggestionProps[] = [{
     msg: "Olá, tudo bem?",
-    respondsTo: ["olá"],
+    respondsTo: ["olá", "oi"],
     initial: true
 }, {
-    msg: "Estou bem!",
-    respondsTo: ["bem"]
+    msg: "Tudo ótimo!",
+    respondsTo: ["tudo bem"]
 }, {
     msg: "Onde fica o banheiro?",
     initial: true,
@@ -29,6 +29,17 @@ const SUGGESTIONS: SuggestionProps[] = [{
 }, {
     msg: "Deixa pra lá",
     respondsTo: ["precisa"]
+}, {
+    msg: "Não sei",
+    respondsTo: ["onde"]
+}, {
+    msg: "Obrigado(a)!"
+}, {
+    msg: "Ok, obrigado(a)!",
+    respondsTo: ["Não sei"]
+}, {
+    msg: "De nada",
+    respondsTo: ["obrigado", "obrigada", "obrigado(a)", "ok, obrigado", "vlw", "valeu"]
 }];
 
 export default SUGGESTIONS;
