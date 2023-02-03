@@ -8,7 +8,7 @@ import {
     useEffect,
     useState
 } from "react";
-import { Microphone, PaperPlane, PaperPlaneRight, X } from "phosphor-react-native";
+import { Lightning, Microphone, PaperPlane, PaperPlaneRight, X } from "phosphor-react-native";
 
 import Font from "../../../components/Font";
 import Input from "../../../components/Input";
@@ -46,6 +46,7 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
 
     const [msg, setMsg] = useState("");
     const [suggestions, setSuggestions] = useState<SuggestionProps[]>([]);
+    const [suggestionsVisible, setSuggestionsVisible] = useState(true);
 
     useEffect(() => {
         if (!messages.length && !guest) {
@@ -95,11 +96,13 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                             contentContainerStyle={{ paddingLeft: 10 }}
                             horizontal
                             showsHorizontalScrollIndicator={false}
+                            style={!suggestionsVisible && { display: "none" }}
                         />
                     </View>
                     {!!suggestions.length && (
-                        <TouchableOpacity style={styles.suggestionClose}>
-                            <X size={20} color={colors.font} />
+                        <TouchableOpacity style={styles.suggestionClose} onPress={() => setSuggestionsVisible(!suggestionsVisible)}>
+                            {suggestionsVisible && <X size={20} color={colors.font} />}
+                            {!suggestionsVisible && <Lightning size={20} color={colors.font} />}
                         </TouchableOpacity>
                     )}
                 </View>

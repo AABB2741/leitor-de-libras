@@ -263,7 +263,7 @@
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
         },
         "chat": {
-            "placeholder": "Falar com %s",
+            "placeholder": "Conversar com %s",
             "guest": "Convidado(a)"
         }
     },

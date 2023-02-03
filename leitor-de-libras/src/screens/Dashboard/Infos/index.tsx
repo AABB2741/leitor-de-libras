@@ -4,7 +4,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import {
-    BellSimple,
+    Activity,
     GearSix,
     UserCirclePlus
 } from "phosphor-react-native";
@@ -48,7 +48,7 @@ export default function Infos({ navigation }: InfosProps) {
             )}
             <View style={styles.buttons}>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Customize")}>
-                    <BellSimple color={colors.font} size={24} />
+                    <Activity color={colors.font} size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}>
                     <GearSix color={colors.font} size={24} />
