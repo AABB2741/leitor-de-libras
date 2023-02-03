@@ -2,13 +2,14 @@ import {
     View,
     ScrollView,
     FlatList,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from "react-native";
 import {
     useEffect,
     useState
 } from "react";
-import { Lightning, Microphone, PaperPlane, PaperPlaneRight, X } from "phosphor-react-native";
+import { Crown, Lightning, Microphone, PaperPlane, PaperPlaneRight, UserCircle, UserCirclePlus, X } from "phosphor-react-native";
 
 import Font from "../../../components/Font";
 import Input from "../../../components/Input";
@@ -24,6 +25,7 @@ import createStyles from "./styles";
 interface FrameProps {
     messages: Msg[];
     guest?: boolean;
+    inverted: boolean;
     keyboardOpen?: boolean;
     handleSendMessage: ({ message, from }: Omit<Omit<Msg, "chatId">, "date">) => void;
 }
@@ -78,8 +80,11 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                     paddingBottom: 20
                 }}
                 ListFooterComponent={(
-                    <View style={styles.mode}>
-                        <Font preset="text" style={styles.modeLabel}>{lang.conversations.whos_talking.replace("%s", guest ? (user?.name ?? lang.general.anonymous) : lang.conversations.chat.guest)}</Font>
+                    <View style={styles.whoami}>
+                        {guest && <UserCirclePlus weight="fill" size={36} color={colors.desc3} />}
+                        {!guest && (signed ? <Image style={styles.userAvatar} source={user?.avatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
+                        <Font preset="subtitle" style={styles.sayMyName}>{guest ? lang.conversations.chat.guest : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
+                        <Font preset="text" style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? lang.conversations.chat.guest : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
                     </View>
                 )}
             />
@@ -108,12 +113,14 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                 </View>
                 <View style={styles.controls}>
                     <Input
-                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (user?.name ?? lang.general.anonymous) : lang.conversations.chat.guest)}
+                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous) : lang.conversations.chat.guest)}
                         containerStyle={{ flex: 1, paddingBottom: 0 }}
                         style={styles.input}
                         value={msg}
                         onChangeText={msg => setMsg(msg)}
-                        focusable={!guest}
+                        editable={!guest}
+                        selectTextOnFocus={!guest}
+                        pointerEvents="none"
                         onSubmitEditing={() => {
                             setMsg("");
                             handleSendMessage({ message: msg, from: guest ? "guest" : "owner" });

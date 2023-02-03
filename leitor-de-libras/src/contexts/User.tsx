@@ -38,7 +38,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         return null;
     log(`Usuário "${user.name ?? "Anônimo"}" carregado`, { color: "fgGray", tab: true });
     return (
-        <UserContext.Provider value={{ user, signed: true, logOut }}>
+        <UserContext.Provider value={{ user, signed: false, logOut }}>
             {children}
         </UserContext.Provider>
     );

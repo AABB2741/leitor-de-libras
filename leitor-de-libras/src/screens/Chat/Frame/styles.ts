@@ -13,18 +13,23 @@ export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
             rotate: guest ? "180deg" : "0deg"
         }]
     },
-    mode: {
-        justifyContent: "center",
-        flexDirection: "row",
-        marginBottom: 20,
-        overflow: "hidden"
+    whoami: {
+        flexDirection: "column",
+        alignItems: "center",
+        paddingVertical: 20
     },
-    modeLabel: {
-        fontSize: 10,
-        paddingVertical: 5,
-        paddingHorizontal: 15,
-        backgroundColor: colors.header,
-        borderRadius: 50
+    sayMyName: {
+        fontSize: 14,
+        textAlign: "center",
+        marginVertical: 5
+    },
+    whosTalking: {
+        fontSize: 12
+    },
+    userAvatar: {
+        width: 36,
+        height: 36,
+        borderRadius: 18
     },
     controls: {
         paddingHorizontal: 20,

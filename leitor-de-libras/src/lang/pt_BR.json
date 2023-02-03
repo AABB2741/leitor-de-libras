@@ -6,7 +6,7 @@
         
     },
     "general": {
-        "anonymous": "Anônimo",
+        "anonymous": "Usuário",
         "login": "Fazer login",
         "signup": "Criar uma conta",
         "filter": "Procurar...",
@@ -240,7 +240,7 @@
     },
     "conversations": {
         "title": "Li Talks",
-        "whos_talking": "Conversando com %s",
+        "whos_talking": "Você está conversando com %s",
         "presentation": {
             "intro": "Apresentando o %s",
             "text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."

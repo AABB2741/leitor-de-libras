@@ -29,7 +29,7 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
-    const [guestName, setGuestName] = useState<string | null>(null);
+    const [inverted, setInverted] = useState(false);
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
@@ -57,17 +57,26 @@ export default function Chat({ navigation, route }: ChatProps) {
     }
 
     return (
-        <View style={styles.container}>
-            <Frame
-                handleSendMessage={handleSendMessage}
-                messages={messages}
-                guest
-            />
-            <Split />
-            <Frame
-                handleSendMessage={handleSendMessage}
-                messages={messages}
-            />
-        </View>
+        <>
+            <View style={styles.statusBarFix} />
+            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }]}>
+                <Frame
+                    inverted={inverted}
+                    handleSendMessage={handleSendMessage}
+                    messages={messages}
+                    guest
+                />
+                <Split
+                    mode="split"
+                    inverted={inverted}
+                    setInverted={setInverted}
+                />
+                <Frame
+                    inverted={inverted}
+                    handleSendMessage={handleSendMessage}
+                    messages={messages}
+                />
+            </View>
+        </>
     );
 }

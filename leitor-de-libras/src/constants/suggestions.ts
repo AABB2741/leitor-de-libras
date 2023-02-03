@@ -43,6 +43,9 @@ const SUGGESTIONS: SuggestionProps[] = [{
     msg: "Não sei",
     respondsTo: ["onde", "você sabe"]
 }, {
+    msg: "Não",
+    respondsTo: ["mais algum", "você sabe", "onde"]
+}, {
     msg: "Obrigado!"
 }, {
     msg: "Ok, obrigado!",
@@ -59,7 +62,7 @@ const SUGGESTIONS: SuggestionProps[] = [{
     respondsTo: ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
 }, {
     msg: "Ok",
-    respondsTo: ["preciso ir", "prefiro"]
+    respondsTo: ["preciso ir", "prefiro", "vou verificar", "não", "nada"]
 }, {
     msg: "Tchau",
     respondsTo: ["tchau", "flw", "preciso ir", "até a próxima"]
