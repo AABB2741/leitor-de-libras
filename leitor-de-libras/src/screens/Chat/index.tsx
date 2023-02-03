@@ -3,8 +3,9 @@ import {
     useState
 } from "react";
 import {
+    FlatList,
+    Keyboard,
     View,
-    FlatList
 } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -27,6 +28,7 @@ export default function Chat({ navigation, route }: ChatProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
     const [inverted, setInverted] = useState(false);
@@ -35,15 +37,25 @@ export default function Chat({ navigation, route }: ChatProps) {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
         setChatInfos(CONVERSATIONS.find(c => c.id === route.params.id) ?? null);
         setMessages(MESSAGES);
+
+        Keyboard.addListener("keyboardDidShow", () => {
+            setKeyboardVisible(true);
+        });
+        Keyboard.addListener("keyboardDidHide", () => {
+            setKeyboardVisible(false);
+        })
     }, []);
 
     function handleSendMessage({ from, message }: Omit<Omit<Msg, "chatId">, "date">) {
+        if (!message.trim())
+            return;
+
         const newMessages = messages ? [...messages] : [];
         newMessages.push({
             chatId: route.params.id,
             date: new Date(),
             from,
-            message
+            message: message.trim()
         });
         setMessages(newMessages);
     }
@@ -59,22 +71,25 @@ export default function Chat({ navigation, route }: ChatProps) {
     return (
         <>
             <View style={styles.statusBarFix} />
-            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }]}>
+            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }, !keyboardVisible && { paddingTop: 20 }]}>
                 <Frame
                     inverted={inverted}
                     handleSendMessage={handleSendMessage}
                     messages={messages}
                     guest
+                    keyboardVisible={keyboardVisible}
                 />
                 <Split
                     mode="split"
                     inverted={inverted}
                     setInverted={setInverted}
+                    keyboardVisible={keyboardVisible}
                 />
                 <Frame
                     inverted={inverted}
                     handleSendMessage={handleSendMessage}
                     messages={messages}
+                    keyboardVisible={keyboardVisible}
                 />
             </View>
         </>

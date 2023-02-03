@@ -17,6 +17,7 @@ export default ({ colors, from, invert }: MsgBoxStyle) => StyleSheet.create({
         justifyContent: invert ? "flex-start" : "flex-end"
     },
     text: {
+        maxWidth: "85%",
         borderRadius: 16,
         overflow: "hidden",
         backgroundColor: invert ? colors.msg.guest : colors.msg.owner,

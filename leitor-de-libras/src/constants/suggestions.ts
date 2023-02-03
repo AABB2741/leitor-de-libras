@@ -13,12 +13,6 @@ const SUGGESTIONS: SuggestionProps[] = [{
     msg: "Tudo ótimo!",
     respondsTo: ["tudo bem"]
 }, {
-    msg: "Qual seu nome?",
-    respondsTo: ["tudo ótimo"]
-}, {
-    msg: "Prefiro não dizer",
-    respondsTo: ["nome"]
-}, {
     msg: "Onde fica o banheiro?",
     initial: true,
     respondsTo: ["precisa", "tudo ótimo"]

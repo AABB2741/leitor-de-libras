@@ -26,7 +26,7 @@ interface FrameProps {
     messages: Msg[];
     guest?: boolean;
     inverted: boolean;
-    keyboardOpen?: boolean;
+    keyboardVisible: boolean;
     handleSendMessage: ({ message, from }: Omit<Omit<Msg, "chatId">, "date">) => void;
 }
 
@@ -40,7 +40,7 @@ function hasResponses(msg: string, responses: string[]) {
     return false;
 }
 
-export default function Frame({ messages, guest, keyboardOpen, handleSendMessage }: FrameProps) {
+export default function Frame({ messages, guest, inverted, keyboardVisible, handleSendMessage }: FrameProps) {
     const { user, signed } = useUser();
     const lang = useLang();
     const colors = useColors();
@@ -65,7 +65,7 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
         }
     }, [messages])
 
-    if (keyboardOpen && guest)
+    if (keyboardVisible && (guest ? !inverted : inverted))
         return null;
     
     return (
@@ -118,9 +118,8 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                         style={styles.input}
                         value={msg}
                         onChangeText={msg => setMsg(msg)}
-                        editable={!guest}
-                        selectTextOnFocus={!guest}
-                        pointerEvents="none"
+                        editable={guest ? inverted : !inverted}
+                        selectTextOnFocus={guest ? inverted : !inverted}
                         onSubmitEditing={() => {
                             setMsg("");
                             handleSendMessage({ message: msg, from: guest ? "guest" : "owner" });

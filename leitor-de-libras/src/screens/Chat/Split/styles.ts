@@ -10,29 +10,19 @@ export default ({ colors }: SplitStyle) => StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingHorizontal: 20
-    },
-    line: {
-        position: "absolute",
-        left: 0,
-        right: 0,
-        height: 3,
-        backgroundColor: colors.border
+        backgroundColor: colors.header
     },
     options: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
         borderRadius: 25,
-        overflow: "hidden",
-        backgroundColor: colors.background2,
-        paddingHorizontal: 10
+        overflow: "hidden"
     },
     option: {
         padding: 10
     },
     switch: {
-        backgroundColor: colors.accent,
         padding: 10,
         borderRadius: 50
     }
