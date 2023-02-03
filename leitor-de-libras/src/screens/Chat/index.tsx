@@ -29,7 +29,7 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
-    
+    const [guestName, setGuestName] = useState<string | null>(null);
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
