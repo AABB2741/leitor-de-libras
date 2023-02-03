@@ -105,7 +105,7 @@ export default function Conversations({ }: ConversationsProps) {
                 visible={conversations.length === 0}
                 contentContainerStyle={{ paddingHorizontal: 20 }}
                 title={lang.conversations.empty.title}
-                desc={lang.conversations.empty.desc}
+                desc={lang.conversations.empty.desc.replace("%s", lang.conversations.title)}
                 icon={props => <Chats {...props} weight="duotone" />}
                 options={[{
                     label: lang.conversations.empty.try,

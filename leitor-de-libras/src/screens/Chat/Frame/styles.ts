@@ -16,7 +16,8 @@ export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
     mode: {
         justifyContent: "center",
         flexDirection: "row",
-        marginBottom: 20
+        marginBottom: 20,
+        overflow: "hidden"
     },
     modeLabel: {
         fontSize: 10,

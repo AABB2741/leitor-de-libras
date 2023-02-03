@@ -41,6 +41,9 @@
             "MM": "%dm",
             "y": "1a",
             "yy": "%da"
+        },
+        "formats": {
+            "time": "hh:mm"
         }
     },
     "empty": {
@@ -64,7 +67,7 @@
         "signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
         "welcome": "Bem-vindo(a) ao %s!",
         "cellular": "Você está utilizando os dados móveis. Para usar o aplicativo, recomendamos que você se conecte à uma rede Wi-Fi para evitar que cobranças adicionais sejam feitas.",
-        "disconnected": "Você não está conectado(a) à rede. Sem uma conexão com a internet, você só poderá acessar o bate-papo e os arquivos salvos localmente.",
+        "disconnected": "Você não está conectado(a) à rede. Sem uma conexão com a internet, você só poderá acessar o %s e os arquivos salvos localmente.",
         "tips": {
             "curiosity": "Você sabia?",
             "tip": "Dica:",
@@ -94,8 +97,7 @@
             "create": "Nova tradução",
             "view_translations": "Suas traduções",
             "clear": "Limpar traduções",
-            "archived": "Arquivados",
-            "talk": "Conversar"
+            "archived": "Arquivados"
         }
     },
     "article": {
@@ -237,10 +239,11 @@
         }
     },
     "conversations": {
-        "title": "Bate-papo",
+        "title": "Li Talks",
+        "whos_talking": "Conversando com %s",
         "empty": {
             "title": "Converse com alguém agora.",
-            "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o bate-papo.",
+            "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o %s.",
             "try": "Experimentar",
             "learn_more": "Saiba como funciona"
         },
@@ -260,7 +263,7 @@
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
         },
         "chat": {
-            "placeholder": "O que você quer falar?",
+            "placeholder": "Falar com %s",
             "guest": "Convidado(a)"
         }
     },

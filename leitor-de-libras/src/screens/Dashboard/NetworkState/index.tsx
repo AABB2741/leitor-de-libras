@@ -46,7 +46,7 @@ export default function NetworkState() {
         <View style={[styles.container, networkState && styles[networkState]]}>
             {networkState === "disconnected" && <Plugs color={colors.font} size={16} />}
             {networkState === "cellular" && <WifiX color={colors.font} size={16} />}
-            {networkState && <Font preset="text" style={styles.text}>{lang.general.warning.replace("%s", lang.dashboard[networkState].replace("%s", lang.appName))}</Font>}
+            {networkState && <Font preset="text" style={styles.text}>{lang.general.warning.replace("%s", lang.dashboard[networkState].replace("%s", lang.conversations.title))}</Font>}
         </View>
     );
 }

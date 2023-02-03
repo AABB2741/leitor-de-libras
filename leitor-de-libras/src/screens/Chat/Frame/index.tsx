@@ -71,14 +71,14 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                 data={[...messages].reverse()}
                 inverted
                 renderItem={({ item, index }) => (
-                    <MsgBox {...item} key={index} />
+                    <MsgBox {...item} pov={guest ? "guest" : "owner"} key={index} />
                 )}
                 contentContainerStyle={{
                     paddingBottom: 20
                 }}
                 ListFooterComponent={(
                     <View style={styles.mode}>
-                        <Font preset="text" style={styles.modeLabel}>{guest ? lang.conversations.chat.guest : (signed ? user?.name : lang.general.anonymous)}</Font>
+                        <Font preset="text" style={styles.modeLabel}>{lang.conversations.whos_talking.replace("%s", guest ? (user?.name ?? lang.general.anonymous) : lang.conversations.chat.guest)}</Font>
                     </View>
                 )}
             />
@@ -105,7 +105,7 @@ export default function Frame({ messages, guest, keyboardOpen, handleSendMessage
                 </View>
                 <View style={styles.controls}>
                     <Input
-                        placeholder={lang.conversations.chat.placeholder}
+                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (user?.name ?? lang.general.anonymous) : lang.conversations.chat.guest)}
                         containerStyle={{ flex: 1, paddingBottom: 0 }}
                         style={styles.input}
                         value={msg}

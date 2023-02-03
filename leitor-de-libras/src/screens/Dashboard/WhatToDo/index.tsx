@@ -43,7 +43,7 @@ export default function WhatToDo() {
         label: lang.dashboard.what_to_do.create
     }, {
         icon: props => <Chats {...props} />,
-        label: lang.dashboard.what_to_do.talk,
+        label: lang.conversations.title,
         onPress: () => navigation.navigate("TalkRoutes")
     }, {
         icon: props => <SignIn {...props} />,

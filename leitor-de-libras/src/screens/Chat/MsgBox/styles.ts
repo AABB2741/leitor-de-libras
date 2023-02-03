@@ -18,6 +18,7 @@ export default ({ colors, from, invert }: MsgBoxStyle) => StyleSheet.create({
     },
     text: {
         borderRadius: 16,
+        overflow: "hidden",
         backgroundColor: invert ? colors.msg.guest : colors.msg.owner,
         paddingHorizontal: 20,
         paddingVertical: 10

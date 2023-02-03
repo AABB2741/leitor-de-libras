@@ -13,15 +13,22 @@ const SUGGESTIONS: SuggestionProps[] = [{
     msg: "Tudo ótimo!",
     respondsTo: ["tudo bem"]
 }, {
+    msg: "Qual seu nome?",
+    respondsTo: ["tudo ótimo"]
+}, {
+    msg: "Prefiro não dizer",
+    respondsTo: ["nome"]
+}, {
     msg: "Onde fica o banheiro?",
     initial: true,
-    respondsTo: ["precisa"]
+    respondsTo: ["precisa", "tudo ótimo"]
 }, {
     msg: "Pode me ajudar?",
-    initial: true
+    initial: true,
+    respondsTo: ["tudo ótimo"]
 }, {
     msg: "Do que você precisa?",
-    respondsTo: ["ajuda"]
+    respondsTo: ["ajuda", "ok"]
 }, {
     shortMsg: "Onde tem hospital?",
     msg: "Você sabe onde tem algum hospital por perto?",
@@ -36,23 +43,23 @@ const SUGGESTIONS: SuggestionProps[] = [{
     msg: "Não sei",
     respondsTo: ["onde", "você sabe"]
 }, {
-    msg: "Obrigado(a)!"
+    msg: "Obrigado!"
 }, {
-    msg: "Ok, obrigado(a)!",
+    msg: "Ok, obrigado!",
     respondsTo: ["Não sei"]
 }, {
     msg: "De nada",
-    respondsTo: ["obrigado", "obrigada", "obrigado(a)", "ok, obrigado", "vlw", "valeu"]
+    respondsTo: ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu"]
 }, {
     shortMsg: "Mais algo?",
     msg: "Precisa de mais alguma coisa?",
-    respondsTo: ["obrigado", "obrigada", "obrigado(a)", "ok, obrigado", "vlw", "valeu"]
+    respondsTo: ["obrigado", "obrigada", "ok", "obrigado", "vlw", "valeu"]
 }, {
     msg: "Preciso ir",
-    respondsTo: ["obrigado", "obrigada", "obrigado(a)", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
+    respondsTo: ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
 }, {
     msg: "Ok",
-    respondsTo: ["preciso ir"]
+    respondsTo: ["preciso ir", "prefiro"]
 }, {
     msg: "Tchau",
     respondsTo: ["tchau", "flw", "preciso ir", "até a próxima"]
