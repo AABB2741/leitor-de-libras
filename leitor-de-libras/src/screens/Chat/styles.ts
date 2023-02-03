@@ -20,8 +20,7 @@ export default ({ colors }: ChatStyle) => StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: colors.background,
-        paddingBottom: 20
+        backgroundColor: colors.background
     },
     controls: {
 

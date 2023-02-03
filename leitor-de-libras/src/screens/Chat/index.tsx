@@ -71,7 +71,7 @@ export default function Chat({ navigation, route }: ChatProps) {
     return (
         <>
             <View style={styles.statusBarFix} />
-            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }, !keyboardVisible && { paddingTop: 20 }]}>
+            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }]}>
                 <Frame
                     inverted={inverted}
                     handleSendMessage={handleSendMessage}

@@ -33,6 +33,7 @@ export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
     },
     controls: {
         paddingHorizontal: 20,
+        paddingBottom: 20,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
