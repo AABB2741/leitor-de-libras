@@ -20,7 +20,7 @@ export default function Routes() {
 
     useEffect(() => {
         log("Verificando se o usuário pulou etapa de login", { color: "fgGray" });
-        Storage.getItem("@welcome").then(data => {
+        Storage.getItem("@introduction").then(data => {
             if (data?.skip_login) {
                 setLoginFormVisible(false);
             } else setLoginFormVisible(true);

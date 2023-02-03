@@ -33,10 +33,8 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
-        setTimeout(() => {
-            setChatInfos(CONVERSATIONS.find(c => c.id === route.params.id) ?? null);
-            setMessages(MESSAGES);
-        }, 2500);
+        setChatInfos(CONVERSATIONS.find(c => c.id === route.params.id) ?? null);
+        setMessages(MESSAGES);
     }, []);
 
     function handleSendMessage({ from, message }: Omit<Omit<Msg, "chatId">, "date">) {

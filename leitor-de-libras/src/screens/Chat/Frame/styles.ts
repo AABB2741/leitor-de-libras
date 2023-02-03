@@ -23,7 +23,7 @@ export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
         fontSize: 10,
         paddingVertical: 5,
         paddingHorizontal: 15,
-        backgroundColor: colors.background2,
+        backgroundColor: colors.header,
         borderRadius: 50
     },
     controls: {

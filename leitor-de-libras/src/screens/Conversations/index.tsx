@@ -45,9 +45,6 @@ export default function Conversations({ }: ConversationsProps) {
 
     useEffect(() => {
         setConversations(CONVERSATIONS);
-        setTimeout(() => {
-            setConversations(CONVERSATIONS);
-        }, 2500);
     }, []);
 
     useFocusEffect(useCallback(() => {
@@ -96,7 +93,7 @@ export default function Conversations({ }: ConversationsProps) {
                 }]}
             />
             <FlatList
-                data={CONVERSATIONS}
+                data={conversations}
                 renderItem={({ item }) => (
                     <Meet {...item} key={item.id} />
                 )}

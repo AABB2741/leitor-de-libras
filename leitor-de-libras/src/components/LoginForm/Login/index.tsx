@@ -90,7 +90,7 @@ export default function Login({ navigation }: LoginProps) {
                     <Font preset="button" style={{ marginLeft: 10 }}>{lang.locale}</Font>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    Storage.mergeItem("@welcome", {
+                    Storage.mergeItem("@introduction", {
                         skip_login: true
                     }).then(() => {
                         // setRoute("AppRoutes");

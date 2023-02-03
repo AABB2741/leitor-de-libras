@@ -241,6 +241,10 @@
     "conversations": {
         "title": "Li Talks",
         "whos_talking": "Conversando com %s",
+        "presentation": {
+            "intro": "Apresentando o %s",
+            "text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
+        },
         "empty": {
             "title": "Converse com alguém agora.",
             "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o %s.",

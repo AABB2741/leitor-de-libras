@@ -5,8 +5,9 @@ import { DeepPartial } from "../utils/DeepPartial";
 
 type Saves = {
     "@settings": SettingsProps;
-    "@welcome": {
+    "@introduction": {
         "skip_login": boolean;
+        "conversations": boolean;
     },
     "conversations": ConversationProps[]
 };

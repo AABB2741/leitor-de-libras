@@ -18,5 +18,9 @@
     "statusBar": {
         "background": "#000",
         "foreground": "light-content"
+    },
+    "msg": {
+        "owner": "#2C3359",
+        "guest": "#30503D"
     }
 }
