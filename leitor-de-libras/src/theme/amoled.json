@@ -21,6 +21,7 @@
     },
     "msg": {
         "owner": "#2C3359",
-        "guest": "#30503D"
+        "guest": "#30503D",
+        "guest_background": "#181921"
     }
 }

@@ -28,6 +28,7 @@ export default function Chat({ navigation, route }: ChatProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [mode, setMode] = useState<"split" | "normal">("split");
     const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
     const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
@@ -68,6 +69,34 @@ export default function Chat({ navigation, route }: ChatProps) {
         );
     }
 
+    if (mode === "normal") {
+        return (
+            <View style={styles.container}>
+                <Split
+                    mode={mode}
+                    setMode={setMode}
+                    inverted={inverted}
+                    setInverted={setInverted}
+                />
+                {inverted && (
+                    <Frame
+                        guest
+                        handleSendMessage={handleSendMessage}
+                        messages={messages}
+                        mode={mode}
+                    />
+                )}
+                {!inverted && (
+                    <Frame
+                        handleSendMessage={handleSendMessage}
+                        messages={messages}
+                        mode={mode}
+                    />
+                )}
+            </View>
+        );
+    }
+
     return (
         <>
             <View style={styles.statusBarFix} />
@@ -80,7 +109,8 @@ export default function Chat({ navigation, route }: ChatProps) {
                     keyboardVisible={keyboardVisible}
                 />
                 <Split
-                    mode="split"
+                    mode={mode}
+                    setMode={setMode}
                     inverted={inverted}
                     setInverted={setInverted}
                     keyboardVisible={keyboardVisible}

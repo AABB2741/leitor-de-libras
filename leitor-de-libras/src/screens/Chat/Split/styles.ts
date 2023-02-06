@@ -1,16 +1,19 @@
 import { StyleSheet } from "react-native";
 import { ThemeProps } from "../../../theme/getTheme";
+import Constants from "expo-constants";
 
 interface SplitStyle {
     colors: ThemeProps;
+    mode: "split" | "normal";
 }
 
-export default ({ colors }: SplitStyle) => StyleSheet.create({
+export default ({ colors, mode }: SplitStyle) => StyleSheet.create({
     container: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: colors.header
+        backgroundColor: colors.header,
+        paddingTop: mode === "normal" ? Constants.statusBarHeight : 0
     },
     options: {
         flexDirection: "row",

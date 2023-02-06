@@ -25,8 +25,9 @@ import createStyles from "./styles";
 interface FrameProps {
     messages: Msg[];
     guest?: boolean;
-    inverted: boolean;
-    keyboardVisible: boolean;
+    inverted?: boolean;
+    keyboardVisible?: boolean;
+    mode?: "split" | "normal";
     handleSendMessage: ({ message, from }: Omit<Omit<Msg, "chatId">, "date">) => void;
 }
 
@@ -40,11 +41,11 @@ function hasResponses(msg: string, responses: string[]) {
     return false;
 }
 
-export default function Frame({ messages, guest, inverted, keyboardVisible, handleSendMessage }: FrameProps) {
+export default function Frame({ messages, guest, inverted, mode, keyboardVisible, handleSendMessage }: FrameProps) {
     const { user, signed } = useUser();
     const lang = useLang();
     const colors = useColors();
-    const styles = createStyles({ colors, guest });
+    const styles = createStyles({ colors, guest, mode });
 
     const [msg, setMsg] = useState("");
     const [suggestions, setSuggestions] = useState<SuggestionProps[]>([]);

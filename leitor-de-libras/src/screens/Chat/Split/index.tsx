@@ -4,6 +4,7 @@ import {
 } from "react-native";
 import {
     ArrowLeft,
+    ArrowsClockwise,
     ArrowsDownUp,
     FloppyDisk,
     Square,
@@ -15,17 +16,19 @@ import { useColors } from "../../../contexts/colors";
 import createStyles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
 
 interface SplitProps {
     mode: "split" | "normal";
     inverted: boolean;
-    keyboardVisible: boolean;
+    keyboardVisible?: boolean;
+    setMode: React.Dispatch<React.SetStateAction<"split" | "normal">>
     setInverted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Split({ mode, inverted, keyboardVisible, setInverted }: SplitProps) {
+export default function Split({ mode, inverted, keyboardVisible, setMode, setInverted }: SplitProps) {
     const colors = useColors();
-    const styles = createStyles({ colors });
+    const styles = createStyles({ colors, mode });
 
     const navigation = useNavigation<NativeStackNavigationProp<TalkParamList, "Chat">>();
     
@@ -43,20 +46,27 @@ export default function Split({ mode, inverted, keyboardVisible, setInverted }: 
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={[styles.switch, { backgroundColor: inverted ? colors.accent2 : colors.accent }]} onPress={() => setInverted(!inverted)}>
-                <ArrowsDownUp
-                    size={24}
-                    color={colors.font2}
-                />
+                {mode === "normal" ? (
+                    <ArrowsClockwise
+                        size={24}
+                        color={colors.font2}
+                    />
+                ) : (
+                    <ArrowsDownUp
+                        size={24}
+                        color={colors.font2}
+                    />
+                )}
             </TouchableOpacity>
             <View style={styles.options}>
-                <TouchableOpacity style={styles.option}>
+                <TouchableOpacity style={styles.option} onPress={() => setMode("normal")}>
                     <Square
                         weight={mode === "normal" ? "fill" : "regular"}
-                        color={mode === "normal" ? colors.accent : colors.font}
+                        color={mode === "normal" ? colors.accent2 : colors.font}
                         size={24}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option}>
+                <TouchableOpacity style={styles.option} onPress={() => setMode("split")}>
                     <SquareHalfBottom
                         weight={mode === "split" ? "fill" : "regular"}
                         color={mode === "split" ? colors.accent2 : colors.font}

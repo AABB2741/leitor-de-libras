@@ -34,7 +34,7 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
     
     return (
         <>
-            <StatusBar barStyle="light-content" />
+            {rest.visible && <StatusBar barStyle="light-content" />}
             <Modal
                 presentationStyle="overFullScreen"
                 transparent

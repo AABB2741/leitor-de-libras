@@ -4,13 +4,15 @@ import { ThemeProps } from "../../../theme/getTheme";
 interface FrameStyle {
     colors: ThemeProps;
     guest?: boolean;
+    mode?: "split" | "normal";
 }
 
-export default ({ colors, guest }: FrameStyle) => StyleSheet.create({
+export default ({ colors, guest, mode }: FrameStyle) => StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: guest ? colors.msg.guest_background : undefined,
         transform: [{
-            rotate: guest ? "180deg" : "0deg"
+            rotate: (guest && mode !== "normal") ? "180deg" : "0deg"
         }]
     },
     whoami: {
