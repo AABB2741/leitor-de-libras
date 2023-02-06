@@ -11,7 +11,9 @@ export default ({ colors }: PopupStyle) => StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderTopWidth: Constants.statusBarHeight,
+        borderTopColor: "#fff"
     },
     background: {
         backgroundColor: "rgba(0, 0, 0, 0.5)",

@@ -1,6 +1,5 @@
 import {
     View,
-    ScrollView,
     Pressable,
     Modal,
     ModalProps,
@@ -35,10 +34,11 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
     
     return (
         <>
-            {rest.visible && <StatusBar backgroundColor="#fff" />}
+            <StatusBar barStyle="light-content" />
             <Modal
                 presentationStyle="overFullScreen"
                 transparent
+                statusBarTranslucent
                 {...rest}
             >
                 <Pressable style={styles.background} onPress={rest.onRequestClose} />
