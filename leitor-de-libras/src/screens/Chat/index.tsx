@@ -30,7 +30,7 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     const [mode, setMode] = useState<"split" | "normal">("split");
     const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
-    const [chatInfos, setChatInfos] = useState<ConversationProps | null>(null);
+    const [chatInfos, setChatInfos] = useState<MeetProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
     const [inverted, setInverted] = useState(false);
 

@@ -9,7 +9,7 @@ type Saves = {
         "skip_login": boolean;
         "conversations": boolean;
     },
-    "conversations": ConversationProps[]
+    "conversations": MeetProps[]
 };
 
 import log, { LogConfigs } from "../utils/log";

@@ -7,9 +7,10 @@ import {
     BackHandler,
     View,
     FlatList,
-    ActivityIndicator
+    TouchableOpacity
 } from "react-native";
 import {
+    ChatCircleDots,
     Chats,
     MagnifyingGlass
 } from "phosphor-react-native";
@@ -30,6 +31,7 @@ import CONVERSATIONS from "../../constants/conversations";
 import createStyles from "./styles";
 import Input from "../../components/Input";
 import Loading from "../../components/Loading";
+import Font from "../../components/Font";
 
 interface ConversationsProps {
     navigation: BottomTabNavigationProp<AppScreens, "TalkRoutes">;
@@ -41,7 +43,7 @@ export default function Conversations({ }: ConversationsProps) {
     const styles = createStyles({ colors });
 
     const [createModalVisible, setCreateModalVisible] = useState(false);
-    const [conversations, setConversations] = useState<ConversationProps[] | null>(null);
+    const [conversations, setConversations] = useState<MeetProps[] | null>(null);
 
     useEffect(() => {
         setConversations(CONVERSATIONS);
@@ -94,6 +96,12 @@ export default function Conversations({ }: ConversationsProps) {
             />
             <FlatList
                 data={conversations}
+                ListHeaderComponent={(
+                    <TouchableOpacity style={styles.create} onPress={() => setCreateModalVisible(true)}>
+                        <ChatCircleDots color={colors.check} size={18} />
+                        <Font preset="button" style={styles.createLabel}>{lang.conversations.create.title}</Font>
+                    </TouchableOpacity>
+                )}
                 renderItem={({ item }) => (
                     <Meet {...item} key={item.id} />
                 )}

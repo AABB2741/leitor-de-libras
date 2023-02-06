@@ -1,13 +1,8 @@
-type ConversationProps = {
+type MeetProps = {
     id: number;
     title: string;
     date: Date;
     chatId?: number;
-}
-
-type Chat = {
-    id: number;
-    messages: Msg[];
 }
 
 type Msg = {

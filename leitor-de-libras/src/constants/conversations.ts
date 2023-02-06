@@ -1,4 +1,4 @@
-const CONVERSATIONS: ConversationProps[] = [{
+const CONVERSATIONS: MeetProps[] = [{
     id: 124,
     title: "Teste conversa  #1",
     date: new Date("2023-02-03T13:17:00-03:00")

@@ -15,6 +15,7 @@
     "accent2": "#08d778",
     "critic": "#a30b00",
     "warn": "#cf6000",
+    "check": "#08d778",
     "statusBar": {
         "background": "#1e1e1e",
         "foreground": "light-content"

@@ -21,7 +21,7 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-interface MeetProps extends ConversationProps {
+interface Props extends MeetProps {
 
 }
 
