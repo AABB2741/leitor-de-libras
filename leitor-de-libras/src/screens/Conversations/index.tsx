@@ -49,11 +49,12 @@ export default function Conversations({ }: ConversationsProps) {
 
     useEffect(() => {
         log("Obtendo lista de conversas", { color: "fgGray" });
-        Storage.getItem("@talk:conversations").then(data => {
-            if (!data) {
-                setConversations([]);
-            } else setConversations(data);
-        });
+        // Storage.getItem("@talk:conversations").then(data => {
+        //     if (!data) {
+        //         setConversations([]);
+        //     } else setConversations(data);
+        // });
+        setConversations(CONVERSATIONS);
     }, []);
 
     useFocusEffect(useCallback(() => {
