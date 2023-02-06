@@ -1,3 +1,6 @@
+import "react-native-get-random-values";
+import { v4 as uuid4 } from "uuid";
+
 import * as AsyncStorage from "@react-native-async-storage/async-storage";
 import merge from "ts-deepmerge";
 import { SettingsProps } from "../constants/settings";
@@ -9,7 +12,11 @@ type Saves = {
         "skip_login": boolean;
         "conversations": boolean;
     },
-    "conversations": MeetProps[]
+    "@talk:conversations": MeetProps[],
+    "@talk:meets": {
+        id: string;
+        messages: Msg[];
+    }
 };
 
 import log, { LogConfigs } from "../utils/log";
@@ -36,8 +43,19 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
     dbLog(`Fundindo dados de "${key}"`);
     const data = await getItem(key, true) ?? {};
     const res = merge(data, value);
-    await setItem(key, res as DeepPartial<Saves[T]>, true);
+    await setItem(key, res as DeepPartial<Saves[T]> & Object, true);
     dbLog(`Itens de "${key}" fundidos.`, { tab: true });
+}
+
+export async function pushItem<T extends keyof Saves>(key: T, value: Object): Promise<Saves[T]> {
+    dbLog(`Inserindo dados em "${key}"`);
+    const newItem = {
+        ...value,
+        id: uuid4()
+    }
+    const data = await getItem(key);
+    data.push(newItem);
+    // Parei aqui
 }
 
 export const clear = AsyncStorage.default.clear;

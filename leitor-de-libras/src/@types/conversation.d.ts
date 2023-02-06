@@ -1,12 +1,12 @@
 type MeetProps = {
-    id: number;
+    id: string;
+    guestName?: string;
     title: string;
     date: Date;
-    chatId?: number;
+    chatId: string;
 }
 
 type Msg = {
-    chatId: number;
     message: string;
     date: Date;
     from: "owner" | "guest";

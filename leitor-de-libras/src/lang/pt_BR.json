@@ -246,9 +246,9 @@
             "text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
         },
         "empty": {
-            "title": "Converse com alguém agora.",
-            "desc": "Se você deseja conversar com alguém que não sabe Libras, você pode utilizar o %s.",
-            "try": "Experimentar",
+            "title": "Sem conversas",
+            "desc": "Você não tem conversas salvas. Crie uma nova conversa para começar.",
+            "try": "Criar uma conversa",
             "learn_more": "Saiba como funciona"
         },
         "create": {
@@ -259,7 +259,7 @@
             },
             "meet_name": {
                 "label": "Nome da conversa",
-                "placeholder": "Conversa #%d"
+                "placeholder": "Insira um título"
             }
         },
         "delete": {

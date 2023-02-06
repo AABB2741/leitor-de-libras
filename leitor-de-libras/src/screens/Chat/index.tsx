@@ -53,7 +53,6 @@ export default function Chat({ navigation, route }: ChatProps) {
 
         const newMessages = messages ? [...messages] : [];
         newMessages.push({
-            chatId: route.params.id,
             date: new Date(),
             from,
             message: message.trim()

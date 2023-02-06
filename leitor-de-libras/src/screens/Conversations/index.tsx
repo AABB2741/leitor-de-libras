@@ -42,11 +42,18 @@ export default function Conversations({ }: ConversationsProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [createGuestName, setCreateGuestName] = useState("");
+    const [createTitle, setCreateTitle] = useState("");
     const [createModalVisible, setCreateModalVisible] = useState(false);
     const [conversations, setConversations] = useState<MeetProps[] | null>(null);
 
     useEffect(() => {
-        setConversations(CONVERSATIONS);
+        log("Obtendo lista de conversas", { color: "fgGray" });
+        Storage.getItem("@talk:conversations").then(data => {
+            if (!data) {
+                setConversations([]);
+            } else setConversations(data);
+        });
     }, []);
 
     useFocusEffect(useCallback(() => {
@@ -58,7 +65,11 @@ export default function Conversations({ }: ConversationsProps) {
 
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
-    }, []))
+    }, []));
+
+    async function handleCreateMeet() {
+        
+    }
 
     if (conversations === null)
         return (
@@ -81,10 +92,14 @@ export default function Conversations({ }: ConversationsProps) {
                 <Input
                     label={lang.conversations.create.name.label}
                     placeholder={lang.conversations.create.name.placeholder}
+                    value={createGuestName}
+                    onChangeText={name => setCreateGuestName(name)}
                 />
                 <Input
                     label={lang.conversations.create.meet_name.label}
                     placeholder={lang.conversations.create.meet_name.placeholder}
+                    value={createTitle}
+                    onChangeText={title => setCreateTitle(title)}
                 />
             </Popup>
             <Header
@@ -105,6 +120,7 @@ export default function Conversations({ }: ConversationsProps) {
                 renderItem={({ item }) => (
                     <Meet {...item} key={item.id} />
                 )}
+                style={conversations.length === 0 && { display: "none" }}
             />
             <Empty
                 visible={conversations.length === 0}
