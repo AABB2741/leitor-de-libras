@@ -41,6 +41,6 @@ type TalkParamList = {
     ConversationsWelcome: undefined;
     Conversations: undefined;
     Chat: {
-        id: number;
+        id: string;
     };
 }

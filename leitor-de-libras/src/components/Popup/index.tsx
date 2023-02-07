@@ -22,12 +22,13 @@ interface PopupProps extends ModalProps {
     text?: string;
     caution?: boolean;
     children?: React.ReactNode;
+    loading?: boolean;
     onRespondOk?: () => void;
     onRespondConfirm?: (response: boolean) => void;
     onRespondBoolean?: (repsonse: boolean) => void;
 }
 
-export default function Popup({ type = "ok", title, text, caution, children, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: PopupProps) {
+export default function Popup({ type = "ok", title, text, caution, children, loading, onRespondOk, onRespondConfirm, onRespondBoolean, ...rest }: PopupProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -38,6 +39,7 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
             <Modal
                 presentationStyle="overFullScreen"
                 transparent
+                statusBarTranslucent
                 {...rest}
             >
                 <Pressable style={styles.background} onPress={rest.onRequestClose} />
@@ -53,6 +55,7 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
                         <View style={styles.options}>
                             {type === "ok" && (
                                 <Button
+                                    loading={loading}
                                     label={lang.general.modal.ok}
                                     style={{ flex: 1 }}
                                     onPress={onRespondOk ?? rest.onRequestClose}
@@ -62,11 +65,13 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
                             {type === "boolean" && (
                                 <>
                                     <Button
+                                        disabled={loading}
                                         label={lang.general.modal.no}
                                         onPress={() => onRespondBoolean?.(false)}
                                         accentColor={caution ? colors.critic : colors.accent}
                                     />
                                     <Button
+                                        loading={loading}
                                         label={lang.general.modal.yes}
                                         highlight onPress={() => onRespondBoolean?.(true)}
                                         accentColor={caution ? colors.critic : colors.accent}
@@ -76,11 +81,13 @@ export default function Popup({ type = "ok", title, text, caution, children, onR
                             {type === "confirm" && (
                                 <>
                                     <Button
+                                        disabled={loading}
                                         label={lang.general.modal.cancel}
                                         onPress={() => onRespondConfirm?.(false)}
                                         accentColor={caution ? colors.critic : colors.accent}
                                     />
                                     <Button
+                                        loading={loading}
                                         label={lang.general.modal.confirm}
                                         highlight onPress={() => onRespondConfirm?.(true)}
                                         accentColor={caution ? colors.critic : colors.accent}

@@ -7,6 +7,8 @@ import { SettingsProps } from "../constants/settings";
 import { DeepPartial } from "../utils/DeepPartial";
 
 type Saves = {
+    "_teste": boolean;
+    "_outro": string;
     "@settings": SettingsProps;
     "@introduction": {
         "skip_login": boolean;
@@ -20,6 +22,7 @@ type Saves = {
 };
 
 import log, { LogConfigs } from "../utils/log";
+import { ValueOf } from "react-native-gesture-handler/lib/typescript/typeUtils";
 
 function dbLog(msg: string, options?: LogConfigs) {
     log(msg, { from: "DB", ...options });
@@ -47,15 +50,16 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
     dbLog(`Itens de "${key}" fundidos.`, { tab: true });
 }
 
-export async function pushItem<T extends keyof Saves>(key: T, value: Object): Promise<Saves[T]> {
+export async function pushItem<T extends keyof Saves, K extends Saves[T]>(key: Saves[T] extends Object[] ? T : never, value: DeepPartial<K[keyof K]>): Promise<typeof value & { id: string }> {
     dbLog(`Inserindo dados em "${key}"`);
-    const newItem = {
+    const data = await getItem(key, true) as Object[] | null ?? [];
+    const item = {
         ...value,
         id: uuid4()
     }
-    const data = await getItem(key);
-    data.push(newItem);
-    // Parei aqui
+    data.push(item);
+    await setItem(key, data, true);
+    return item;
 }
 
 export const clear = AsyncStorage.default.clear;

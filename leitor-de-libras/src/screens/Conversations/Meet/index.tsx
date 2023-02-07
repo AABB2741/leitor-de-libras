@@ -25,7 +25,7 @@ interface Props extends MeetProps {
 
 }
 
-export default function Meet({ id, title, date }: MeetProps) {
+export default function Meet({ id, title, guestName, date }: MeetProps) {
     const lang = useLang();
     const colors = useColors();
     const { user } = useUser();
@@ -64,7 +64,7 @@ export default function Meet({ id, title, date }: MeetProps) {
                         preset="subtitle"
                         style={styles.title}
                         numberOfLines={1}
-                    >{title}</Font>
+                    >{title || lang.conversations.untitled.replace("%s", guestName ?? "")}</Font>
                     <Font
                         preset="desc"
                         style={styles.desc}

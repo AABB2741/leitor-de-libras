@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import * as Storage from "../../services/Storage";
 
 import log from "../../utils/log";
 import Frame from "./Frame";
 import Loading from "../../components/Loading";
 import Split from "./Split";
 import { useColors } from "../../contexts/colors";
-import CONVERSATIONS, { MESSAGES } from "../../constants/conversations";
 
 import createStyles from "./styles";
 
@@ -36,8 +36,13 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo #" + route.params.id, {});
-        setChatInfos(CONVERSATIONS.find(c => c.id === route.params.id) ?? null);
-        setMessages(MESSAGES);
+        
+        Storage.getItem("@talk:conversations").then(conversations => {
+            setChatInfos(conversations?.find(c => c.id === route.params.id) ?? null);
+            setMessages([]);
+        });
+
+        // setMessages(MESSAGES);
 
         Keyboard.addListener("keyboardDidShow", () => {
             setKeyboardVisible(true);

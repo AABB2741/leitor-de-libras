@@ -26,7 +26,7 @@ export default ({ colors }: ConversationsStyle) => StyleSheet.create({
         borderRadius: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
-        marginTop: 20,
+        marginVertical: 20,
         padding: 0
     },
     createLabel: {

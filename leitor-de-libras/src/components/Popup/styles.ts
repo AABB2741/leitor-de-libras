@@ -4,6 +4,7 @@ import Constants from "expo-constants";
 
 interface PopupStyle {
     colors: ThemeProps;
+    loading?: boolean;
 }
 
 export default ({ colors }: PopupStyle) => StyleSheet.create({

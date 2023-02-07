@@ -46,15 +46,15 @@ export default function Conversations({ }: ConversationsProps) {
     const [createTitle, setCreateTitle] = useState("");
     const [createModalVisible, setCreateModalVisible] = useState(false);
     const [conversations, setConversations] = useState<MeetProps[] | null>(null);
+    const [createLoading, setCreateLoading] = useState(false);
 
     useEffect(() => {
         log("Obtendo lista de conversas", { color: "fgGray" });
-        // Storage.getItem("@talk:conversations").then(data => {
-        //     if (!data) {
-        //         setConversations([]);
-        //     } else setConversations(data);
-        // });
-        setConversations(CONVERSATIONS);
+        Storage.getItem("@talk:conversations").then(data => {
+            if (!data) {
+                setConversations([]);
+            } else setConversations(data);
+        });
     }, []);
 
     useFocusEffect(useCallback(() => {
@@ -69,7 +69,22 @@ export default function Conversations({ }: ConversationsProps) {
     }, []));
 
     async function handleCreateMeet() {
-        
+        const title = createTitle.trim();
+        const guestName = createGuestName.trim();
+
+        if (!title && !guestName)
+            return false;
+
+        setCreateLoading(true);
+        const res = await Storage.pushItem("@talk:conversations", {
+            title,
+            guestName,
+            date: new Date()
+        });
+        setConversations([...(conversations ?? []), res as MeetProps]);
+        setCreateLoading(false);
+
+        return true;
     }
 
     if (conversations === null)
@@ -85,8 +100,21 @@ export default function Conversations({ }: ConversationsProps) {
                 title={lang.conversations.create.title}
                 type="confirm"
                 visible={createModalVisible}
-                onRespondConfirm={response => {
-                    setCreateModalVisible(false);
+                loading={createLoading}
+                onRespondConfirm={async response => {
+                    if (response) {
+                        const res = await handleCreateMeet();
+
+                        if (res) {
+                            setCreateGuestName("");
+                            setCreateTitle("");
+                            setCreateModalVisible(false);
+                        } else {
+                            console.log("Deu erro");
+                        }
+
+                        setCreateLoading(false);
+                    } else setCreateModalVisible(false);
                 }}
                 onRequestClose={() => setCreateModalVisible(false)}
             >
@@ -111,7 +139,7 @@ export default function Conversations({ }: ConversationsProps) {
                 }]}
             />
             <FlatList
-                data={conversations}
+                data={[...conversations].slice().reverse()}
                 ListHeaderComponent={(
                     <TouchableOpacity style={styles.create} onPress={() => setCreateModalVisible(true)}>
                         <ChatCircleDots color={colors.check} size={18} />
@@ -122,6 +150,7 @@ export default function Conversations({ }: ConversationsProps) {
                     <Meet {...item} key={item.id} />
                 )}
                 style={conversations.length === 0 && { display: "none" }}
+                // snapToAlignment --> testar depois
             />
             <Empty
                 visible={conversations.length === 0}

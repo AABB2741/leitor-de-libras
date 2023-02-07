@@ -240,6 +240,7 @@
     },
     "conversations": {
         "title": "Li Talks",
+        "untitled": "Conversa com %s",
         "whos_talking": "Você está conversando com %s",
         "presentation": {
             "intro": "Apresentando o %s",
