@@ -22,7 +22,7 @@ export default function Input({ label, transparent, containerStyle, ...rest }: I
 
     return (
         <View style={[styles.container, containerStyle]}>
-            {label && <Font preset="subtitle" style={styles.label}>{label}</Font>}
+            {label && <Font preset="input" style={styles.label}>{label}</Font>}
             <TextInput placeholderTextColor={colors.desc} {...rest} style={[styles.input, Array.isArray(rest.style) ? [...rest.style] : rest.style]} />
         </View>
     );

@@ -36,10 +36,10 @@ export default ({ colors }: InfosStyle) => StyleSheet.create({
         flex: 1
     },
     username: {
-        fontSize: 16
+        fontSize: 14
     },
     email: {
-        fontSize: 14,
+        fontSize: 12,
         color: colors.desc
     },
     buttons: {

@@ -23,10 +23,15 @@ export default ({ colors, mode }: SplitStyle) => StyleSheet.create({
         overflow: "hidden"
     },
     option: {
-        padding: 10
+        padding: 10,
+        justifyContent: "center",
+        alignItems: "center"
     },
     switch: {
         padding: 10,
         borderRadius: 50
+    },
+    saving: {
+        position: "absolute"
     }
 });

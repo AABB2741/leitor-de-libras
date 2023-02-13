@@ -1,3 +1,4 @@
+import React from "react";
 import {
     TouchableOpacity,
     View
@@ -10,23 +11,26 @@ import {
     Square,
     SquareHalfBottom
 } from "phosphor-react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import Loading from "../../../components/Loading";
 
 import { useColors } from "../../../contexts/colors";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import createStyles from "./styles";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
 
 interface SplitProps {
     mode: "split" | "normal";
     inverted: boolean;
     keyboardVisible?: boolean;
+    occupied: string | boolean | null;
     setMode: React.Dispatch<React.SetStateAction<"split" | "normal">>
     setInverted: React.Dispatch<React.SetStateAction<boolean>>;
+    handleSaveMessages: () => Promise<void>;
 }
 
-export default function Split({ mode, inverted, keyboardVisible, setMode, setInverted }: SplitProps) {
+export default function Split({ mode, inverted, keyboardVisible, occupied, setMode, setInverted, handleSaveMessages }: SplitProps) {
     const colors = useColors();
     const styles = createStyles({ colors, mode });
 
@@ -38,14 +42,15 @@ export default function Split({ mode, inverted, keyboardVisible, setMode, setInv
     return (
         <View style={styles.container}>
             <View style={styles.options}>
-                <TouchableOpacity style={styles.option} onPress={navigation.canGoBack() ? navigation.goBack : () => navigation.navigate("Conversations")}>
-                    <ArrowLeft color={colors.font} size={24} />
+                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={navigation.canGoBack() ? navigation.goBack : () => navigation.navigate("Conversations")}>
+                    <ArrowLeft color={occupied ? colors.disabled : colors.font} size={24} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option}>
-                    <FloppyDisk color={colors.font} size={24} />
+                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={handleSaveMessages}>
+                    <FloppyDisk color={occupied ? colors.disabled : colors.font} size={24} />
+                    {occupied === "saving" && <Loading size={12} style={styles.saving} />}
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={[styles.switch, { backgroundColor: inverted ? colors.accent2 : colors.accent }]} onPress={() => setInverted(!inverted)}>
+            <TouchableOpacity disabled={!!occupied} style={[styles.switch, { backgroundColor: inverted ? colors.accent2 : colors.accent }]} onPress={() => setInverted(!inverted)}>
                 {mode === "normal" ? (
                     <ArrowsClockwise
                         size={24}
@@ -59,14 +64,14 @@ export default function Split({ mode, inverted, keyboardVisible, setMode, setInv
                 )}
             </TouchableOpacity>
             <View style={styles.options}>
-                <TouchableOpacity style={styles.option} onPress={() => setMode("normal")}>
+                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={() => setMode("normal")}>
                     <Square
                         weight={mode === "normal" ? "fill" : "regular"}
                         color={mode === "normal" ? colors.accent2 : colors.font}
                         size={24}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => setMode("split")}>
+                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={() => setMode("split")}>
                     <SquareHalfBottom
                         weight={mode === "split" ? "fill" : "regular"}
                         color={mode === "split" ? colors.accent2 : colors.font}

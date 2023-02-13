@@ -30,9 +30,10 @@ export default function App() {
 		"Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
 		"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
 		"Rubik": require("./assets/fonts/Rubik-Regular.ttf"),
+		"Rubik-Bold": require("./assets/fonts/Rubik-Bold.ttf"),
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
 		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
-		"PT-Sans-Bold": require("./assets/fonts/PTSans-Bold.ttf"),
+		"Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
 		"Inter-Black": require("./assets/fonts/Inter-Black.ttf")
 	});
 	// const [fontsLoaded] = useFonts({

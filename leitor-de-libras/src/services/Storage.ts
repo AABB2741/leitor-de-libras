@@ -49,16 +49,35 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
     dbLog(`Itens de "${key}" fundidos.`, { tab: true });
 }
 
-export async function pushItem<T extends keyof Saves, K extends Saves[T]>(key: Saves[T] extends Object[] ? T : never, value: DeepPartial<K[keyof K]>): Promise<typeof value & { id: string }> {
-    dbLog(`Inserindo dados em "${key}"`);
-    const data = await getItem(key, true) as Object[] | null ?? [];
-    const item = {
-        ...value,
-        id: uuid4()
-    }
-    data.push(item);
-    await setItem(key, data, true);
-    return item;
+// export async function pushItem<T extends keyof Saves, K extends Saves[T]>(key: Saves[T] extends Object[] ? T : never, value: DeepPartial<K[keyof K]>): Promise<typeof value & { id: string }> {
+//     dbLog(`Inserindo dados em "${key}"`);
+//     const data = await getItem(key, true) as Object[] | null ?? [];
+//     const item = {
+//         ...value,
+//         id: uuid4()
+//     }
+//     data.push(item);
+//     await setItem(key, data, true);
+//     return item;
+// }
+
+export async function pushItem(...keys: (keyof Saves)[]) {
+
 }
+
+
+// TODO: Finalizar a função de atualizar item do banco
+/*
+export async function updateItem<T extends keyof Saves>(key: T, predicate: (value: Saves[T]) => boolean, value: DeepPartial<Saves[T]>) {
+    const data = await getItem(key, true) ?? [] as Saves[T][];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando atualizar um elemento de uma base de dados que não é um array (${key}).`);
+
+    const index = data.findIndex(predicate);
+    const found = data[index] ?? {};
+    const res = { ...found, ...value };
+    return res;
+}
+*/
 
 export const clear = AsyncStorage.default.clear;

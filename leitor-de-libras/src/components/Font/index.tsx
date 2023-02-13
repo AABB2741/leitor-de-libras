@@ -8,7 +8,7 @@ import { useSettings } from "../../contexts/settings";
 
 import createStyles from "./styles";
 
-type FontName = "title" | "subtitle" | "text" | "bold" | "desc" | "desc-bold" | "input" | "button" | "heavy";
+type FontName = "title" | "subtitle" | "text" | "bold" | "desc" | "desc-bold" | "input" | "label" | "button" | "heavy";
 
 interface Fonts extends TextStyle {
     name: FontName;
@@ -44,17 +44,20 @@ interface Fonts extends TextStyle {
 
 const FONTS: Fonts[] = [{
     name: "title",
-    fontFamily: "Montserrat-Bold",
+    fontFamily: "Inter-Black",
     fontSize: 18
 }, {
     name: "desc",
-    fontFamily: "PT-Sans"
+    fontFamily: "Inter-Regular"
 }, {
     name: "desc-bold",
-    fontFamily: "PT-Sans-Bold"
+    fontFamily: "Inter-Medium"
 }, {
     name: "input",
     fontFamily: "Rubik"
+}, {
+    name: "label",
+    fontFamily: "Rubik-Bold"
 }, {
     name: "text",
     fontFamily: "Inter-Regular"
@@ -63,7 +66,7 @@ const FONTS: Fonts[] = [{
     fontFamily: "Inter-Bold"
 }, {
     name: "button",
-    fontFamily: "Exo-2"
+    fontFamily: "Ubuntu"
 }, {
     name: "subtitle",
     fontFamily: "Ubuntu"

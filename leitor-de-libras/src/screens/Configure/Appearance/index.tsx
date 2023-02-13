@@ -4,24 +4,19 @@ import {
     useColorScheme
 } from "react-native";
 import {
-    BatteryChargingVertical,
-    Drop,
-    MoonStars,
-    Palette,
-    Sun
+    Palette
 } from "phosphor-react-native";
+
 import FixedCategory from "../../../components/FixedCategory";
-import Font from "../../../components/Font";
+import ThemeOption from "./ThemeOption";
+import Toggle from "../../../components/Toggle";
+
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
 import { useSettings } from "../../../contexts/settings";
-
-import ThemeOption from "./ThemeOption";
-
 import getTheme, { THEMES } from "../../../theme/getTheme";
 
 import createStyles from "./styles";
-import Toggle from "../../../components/Toggle";
 
 export default function Appearance() {
     const { settings, saveSettings, setRestartRequired } = useSettings();

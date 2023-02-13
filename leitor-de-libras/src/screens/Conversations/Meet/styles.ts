@@ -18,9 +18,9 @@ export default StyleSheet.create({
         paddingHorizontal: 15
     },
     title: {
-        fontSize: 16
+        fontSize: 14
     },
     desc: {
-        fontSize: 14
+        fontSize: 12
     }
 });

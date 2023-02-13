@@ -12,7 +12,7 @@ export default ({ colors }: TipsStyle) => StyleSheet.create({
         marginTop: 20
     },
     content: {
-        fontSize: 16
+        fontSize: 14
     },
     buttons: {
         flexDirection: "row",
@@ -31,7 +31,7 @@ export default ({ colors }: TipsStyle) => StyleSheet.create({
         justifyContent: "space-between"
     },
     visitLabel: {
-        fontSize: 16,
+        fontSize: 14,
         color: colors.accent,
         marginRight: 10
     }

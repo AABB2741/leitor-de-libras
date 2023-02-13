@@ -24,6 +24,12 @@ interface ChatProps {
     route: RouteProp<TalkParamList, "Chat">;
 }
 
+/**
+ * 
+ * TODO: Chat
+ * [ ] Impedir que o usuário volte para a página anterior enquanto estiver ocupado (botão de voltar);
+ */
+
 export default function Chat({ navigation, route }: ChatProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -33,6 +39,7 @@ export default function Chat({ navigation, route }: ChatProps) {
     const [chatInfos, setChatInfos] = useState<MeetProps | null>(null);
     const [messages, setMessages] = useState<Msg[] | null>(null);
     const [inverted, setInverted] = useState(false);
+    const [occupied, setOccupied] = useState<null | boolean | "loading" | "saving">("loading");
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo " + route.params.id, {});
@@ -41,8 +48,8 @@ export default function Chat({ navigation, route }: ChatProps) {
             setChatInfos(conversations?.find(c => c.id === route.params.id) ?? null);
         }).then(() => {
             Storage.getItem("@talk:messages").then(data => {
-                console.log("Mensagens obtidas");
                 if (!data || !data.length) {
+                    setOccupied(false);
                     return setMessages([]);
                 }
 
@@ -50,6 +57,8 @@ export default function Chat({ navigation, route }: ChatProps) {
                 if (chat) {
                     setMessages(chat.messages);
                 } else setMessages([]);
+
+                setOccupied(false);
             });
         });
 
@@ -75,7 +84,20 @@ export default function Chat({ navigation, route }: ChatProps) {
     }
 
     async function handleSaveMessages() {
-        console.log("Salvando mensagens");
+        // TODO: Terminar função e corrigir erros
+
+        // setOccupied("saving");
+        
+        // Storage.updateItem("@talk:messages", msg => msg.conversationId === route.params.id, {
+        //     conversationId: route.params.id,
+        //     messages
+        // });
+        // return new Promise<void>(resolve => {
+        //     setTimeout(() => {
+        //         resolve();
+        //         setOccupied(null);
+        //     }, 2500);
+        // });
     }
 
     if (chatInfos === null || messages === null) {
@@ -85,9 +107,7 @@ export default function Chat({ navigation, route }: ChatProps) {
             </View>
         );
     }
-    console.log("Renderizando");
-    console.log(chatInfos);
-    console.log(messages);
+    
     if (mode === "normal") {
         return (
             <View style={styles.container}>
@@ -96,6 +116,8 @@ export default function Chat({ navigation, route }: ChatProps) {
                     setMode={setMode}
                     inverted={inverted}
                     setInverted={setInverted}
+                    handleSaveMessages={handleSaveMessages}
+                    occupied={occupied}
                 />
                 {inverted && (
                     <Frame
@@ -115,7 +137,7 @@ export default function Chat({ navigation, route }: ChatProps) {
             </View>
         );
     }
-
+    
     return (
         <>
             <View style={styles.statusBarFix} />
@@ -133,6 +155,8 @@ export default function Chat({ navigation, route }: ChatProps) {
                     inverted={inverted}
                     setInverted={setInverted}
                     keyboardVisible={keyboardVisible}
+                    handleSaveMessages={handleSaveMessages}
+                    occupied={occupied}
                 />
                 <Frame
                     inverted={inverted}
