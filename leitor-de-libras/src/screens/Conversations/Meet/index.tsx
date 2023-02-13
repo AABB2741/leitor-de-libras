@@ -69,7 +69,7 @@ export default function Meet({ id, title, guestName, date }: MeetProps) {
                         preset="desc"
                         style={styles.desc}
                         numberOfLines={1}
-                    >{moment(date).fromNow()}</Font>
+                    >{guestName ? `${guestName} ∙ ` : ""}{moment(date).fromNow()}</Font>
                 </View>
                 <TouchableOpacity onPress={() => setDeleteVisible(true)}>
                     <Trash size={18} color={colors.critic} />

@@ -240,6 +240,7 @@
     },
     "conversations": {
         "title": "Li Talks",
+        "meet_label": "Mensagens com %s",
         "untitled": "Conversa com %s",
         "whos_talking": "Você está conversando com %s",
         "presentation": {

@@ -13,16 +13,15 @@ type Saves = {
     "@introduction": {
         "skip_login": boolean;
         "conversations": boolean;
-    },
-    "@talk:conversations": MeetProps[],
-    "@talk:meets": {
-        id: string;
+    };
+    "@talk:conversations": MeetProps[];
+    "@talk:messages": {
+        conversationId: string;
         messages: Msg[];
-    }
+    }[];
 };
 
 import log, { LogConfigs } from "../utils/log";
-import { ValueOf } from "react-native-gesture-handler/lib/typescript/typeUtils";
 
 function dbLog(msg: string, options?: LogConfigs) {
     log(msg, { from: "DB", ...options });

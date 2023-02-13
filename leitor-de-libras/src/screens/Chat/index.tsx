@@ -35,14 +35,23 @@ export default function Chat({ navigation, route }: ChatProps) {
     const [inverted, setInverted] = useState(false);
 
     useEffect(() => {
-        log("Obtendo conversas do bate-papo #" + route.params.id, {});
+        log("Obtendo conversas do bate-papo " + route.params.id, {});
         
         Storage.getItem("@talk:conversations").then(conversations => {
             setChatInfos(conversations?.find(c => c.id === route.params.id) ?? null);
-            setMessages([]);
-        });
+        }).then(() => {
+            Storage.getItem("@talk:messages").then(data => {
+                console.log("Mensagens obtidas");
+                if (!data || !data.length) {
+                    return setMessages([]);
+                }
 
-        // setMessages(MESSAGES);
+                const chat = data.find(c => c.conversationId === route.params.id);
+                if (chat) {
+                    setMessages(chat.messages);
+                } else setMessages([]);
+            });
+        });
 
         Keyboard.addListener("keyboardDidShow", () => {
             setKeyboardVisible(true);
@@ -52,7 +61,7 @@ export default function Chat({ navigation, route }: ChatProps) {
         })
     }, []);
 
-    function handleSendMessage({ from, message }: Omit<Omit<Msg, "chatId">, "date">) {
+    function handleSendMessage({ from, message }: Omit<Msg, "date">) {
         if (!message.trim())
             return;
 
@@ -65,6 +74,10 @@ export default function Chat({ navigation, route }: ChatProps) {
         setMessages(newMessages);
     }
 
+    async function handleSaveMessages() {
+        console.log("Salvando mensagens");
+    }
+
     if (chatInfos === null || messages === null) {
         return (
             <View style={styles.loading}>
@@ -72,7 +85,9 @@ export default function Chat({ navigation, route }: ChatProps) {
             </View>
         );
     }
-
+    console.log("Renderizando");
+    console.log(chatInfos);
+    console.log(messages);
     if (mode === "normal") {
         return (
             <View style={styles.container}>
