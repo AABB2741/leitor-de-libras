@@ -52,7 +52,8 @@ export default function Translations({ navigation }: Props) {
     useFocusEffect(useCallback(() => {
         function handleBack() {
             log("Saindo do APP em \"Translations\"", { color: "fgRed" });
-            BackHandler.exitApp();
+            // BackHandler.exitApp();
+            console.log(selectedFiles);
             return true;
         }
 
@@ -66,7 +67,7 @@ export default function Translations({ navigation }: Props) {
         if (newSelectedFiles.includes(id)) {
             newSelectedFiles.splice(newSelectedFiles.indexOf(id), 1);
         } else newSelectedFiles.push(id);
-        
+
         setSelectedFiles(newSelectedFiles);
     }
 

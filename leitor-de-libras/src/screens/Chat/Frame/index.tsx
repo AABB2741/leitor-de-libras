@@ -28,6 +28,7 @@ interface FrameProps {
     inverted?: boolean;
     keyboardVisible?: boolean;
     mode?: "split" | "normal";
+    guestName?: string;
     handleSendMessage: ({ message, from }: Omit<Omit<Msg, "chatId">, "date">) => void;
 }
 
@@ -41,7 +42,7 @@ function hasResponses(msg: string, responses: string[]) {
     return false;
 }
 
-export default function Frame({ messages, guest, inverted, mode, keyboardVisible, handleSendMessage }: FrameProps) {
+export default function Frame({ messages, guest, inverted, mode, keyboardVisible, guestName, handleSendMessage }: FrameProps) {
     const { user, signed } = useUser();
     const lang = useLang();
     const colors = useColors();
@@ -84,8 +85,8 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                     <View style={styles.whoami}>
                         {guest && <UserCirclePlus weight="fill" size={36} color={colors.desc3} />}
                         {!guest && (signed ? <Image style={styles.userAvatar} source={user?.avatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
-                        <Font preset="subtitle" style={styles.sayMyName}>{guest ? lang.conversations.chat.guest : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
-                        <Font preset="text" style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? lang.conversations.chat.guest : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
+                        <Font preset="subtitle" style={styles.sayMyName}>{guest ? (guestName ?? lang.conversations.chat.guest) : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
+                        <Font preset="text" style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? (guestName ?? lang.conversations.chat.guest) : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
                     </View>
                 )}
             />
@@ -114,7 +115,7 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                 </View>
                 <View style={styles.controls}>
                     <Input
-                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous) : lang.conversations.chat.guest)}
+                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous) : (guestName ?? lang.conversations.chat.guest))}
                         containerStyle={{ flex: 1, paddingBottom: 0 }}
                         style={styles.input}
                         value={msg}

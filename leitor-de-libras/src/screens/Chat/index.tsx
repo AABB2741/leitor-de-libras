@@ -94,6 +94,9 @@ export default function Chat({ navigation, route }: ChatProps) {
 
     // Função para exibir mensagem de confirmação para sair do chat
     function handleRequestLeft() {
+        if (!messages?.length)
+            return navigation.goBack();
+
         setLeftConfirm(true);
     }
 
@@ -132,6 +135,7 @@ export default function Chat({ navigation, route }: ChatProps) {
                 {inverted && (
                     <Frame
                         guest
+                        guestName={chatInfos.guestName}
                         handleSendMessage={handleSendMessage}
                         messages={messages}
                         mode={mode}
@@ -139,6 +143,7 @@ export default function Chat({ navigation, route }: ChatProps) {
                 )}
                 {!inverted && (
                     <Frame
+                        guestName={chatInfos.guestName}
                         handleSendMessage={handleSendMessage}
                         messages={messages}
                         mode={mode}
@@ -173,6 +178,7 @@ export default function Chat({ navigation, route }: ChatProps) {
                     handleSendMessage={handleSendMessage}
                     messages={messages}
                     guest
+                    guestName={chatInfos.guestName}
                     keyboardVisible={keyboardVisible}
                 />
                 <Split
@@ -186,6 +192,7 @@ export default function Chat({ navigation, route }: ChatProps) {
                     onRequestLeft={handleRequestLeft}
                 />
                 <Frame
+                    guestName={chatInfos.guestName}
                     inverted={inverted}
                     handleSendMessage={handleSendMessage}
                     messages={messages}
