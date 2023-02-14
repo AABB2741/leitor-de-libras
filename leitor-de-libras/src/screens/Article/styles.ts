@@ -16,7 +16,8 @@ export default ({ colors }: ArticleStyle) => StyleSheet.create({
         flex: 1
     },
     content: {
-        padding: 20
+        padding: 20,
+        paddingTop: 0
     },
     presentation: {
         paddingBottom: 20,
@@ -35,28 +36,19 @@ export default ({ colors }: ArticleStyle) => StyleSheet.create({
     },
     options: {
         flexDirection: "row",
-        alignItems: "stretch",
+        alignItems: "center",
         justifyContent: "space-between",
-        position: "absolute",
-        bottom: 16,
-        left: 0,
-        right: 0,
-        padding: 10,
-        borderColor: "red",
+        paddingHorizontal: 20,
+        paddingVertical: 10
     },
-    option: {
-        height: 40,
-        minWidth: 40,
-        padding: 10,
-        backgroundColor: colors.background2,
-        borderRadius: 50,
+    fullArticle: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
-    },
-    leftOptions: {
-        flexDirection: "row",
-        alignItems: "center"
+        justifyContent: "center",
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        backgroundColor: colors.background2,
+        borderRadius: 30
     },
     fullArticleLabel: {
         color: colors.accent,
