@@ -66,7 +66,6 @@ export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[]
     return item;
 }
 
-// (X) TODO: Verificar o porquê de quando é trocado por "U", o value de predicate dá erro                                                     V
 export async function updateItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean, value: Partial<U>): Promise<U | null> {
     dbLog(`Atualizando dados de "${key}"`);
     const data = (await getItem(key, true) ?? []) as U[];
@@ -88,11 +87,6 @@ export async function updateItem<T extends keyof Saves, U extends Saves[T] exten
     return newItem;
 }
 
-// export async function findItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean): Promise<U | null> {
-//     dbLog(`Procurando itens em "${key}"`);
-//     const data = await getItem(key, true) ?? [];
-// }
-
 export async function findItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean): Promise<U | null> {
     dbLog(`Procurando itens em "${key}"`);
     const data = (await getItem(key, true) ?? []) as U[];
@@ -103,19 +97,5 @@ export async function findItem<T extends keyof Saves, U extends Saves[T] extends
     dbLog(`Item em "${key}" procurado`, { tab: true });
     return res ?? null;
 }
-
-// TODO: Finalizar a função de atualizar item do banco
-/*
-export async function updateItem<T extends keyof Saves>(key: T, predicate: (value: Saves[T]) => boolean, value: DeepPartial<Saves[T]>) {
-    const data = await getItem(key, true) ?? [] as Saves[T][];
-    if (!Array.isArray(data))
-        throw new TypeError(`Tentando atualizar um elemento de uma base de dados que não é um array (${key}).`);
-
-    const index = data.findIndex(predicate);
-    const found = data[index] ?? {};
-    const res = { ...found, ...value };
-    return res;
-}
-*/
 
 export const clear = AsyncStorage.default.clear;

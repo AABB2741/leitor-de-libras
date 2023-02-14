@@ -28,9 +28,10 @@ interface SplitProps {
     setMode: React.Dispatch<React.SetStateAction<"split" | "normal">>
     setInverted: React.Dispatch<React.SetStateAction<boolean>>;
     handleSaveMessages: () => Promise<void>;
+    onRequestLeft: () => void;
 }
 
-export default function Split({ mode, inverted, keyboardVisible, occupied, setMode, setInverted, handleSaveMessages }: SplitProps) {
+export default function Split({ mode, inverted, keyboardVisible, occupied, setMode, setInverted, handleSaveMessages, onRequestLeft }: SplitProps) {
     const colors = useColors();
     const styles = createStyles({ colors, mode });
 
@@ -42,7 +43,7 @@ export default function Split({ mode, inverted, keyboardVisible, occupied, setMo
     return (
         <View style={styles.container}>
             <View style={styles.options}>
-                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={navigation.canGoBack() ? navigation.goBack : () => navigation.navigate("Conversations")}>
+                <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={onRequestLeft}>
                     <ArrowLeft color={occupied ? colors.disabled : colors.font} size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity disabled={!!occupied} style={styles.option} onPress={handleSaveMessages}>

@@ -264,6 +264,10 @@
                 "placeholder": "Insira um título"
             }
         },
+        "left_chat_confirm": {
+            "title": "Sair?",
+            "text": "Talvez você tenha mensagens que ainda não foram salvas. Sair fará com que essas mensagens sejam excluídas.\nTem certeza de que deseja sair?"
+        },
         "delete": {
             "title": "Excluir conversa",
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
