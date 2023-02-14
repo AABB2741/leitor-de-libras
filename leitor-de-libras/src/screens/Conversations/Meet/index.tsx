@@ -44,7 +44,7 @@ export default function Meet({ id, title, guestName, date }: MeetProps) {
         <>
             <Popup
                 title={lang.conversations.delete.title}
-                text={lang.conversations.delete.text.replace("%s", title)}
+                text={lang.conversations.delete.text.replace("%s", title || lang.conversations.untitled.replace("%s", guestName || lang.conversations.chat.guest))}
                 type="boolean"
                 caution
                 visible={deleteVisible}

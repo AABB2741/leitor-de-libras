@@ -47,6 +47,7 @@ export default function Conversations({ }: ConversationsProps) {
     const [createModalVisible, setCreateModalVisible] = useState(false);
     const [conversations, setConversations] = useState<MeetProps[] | null>(null);
     const [createLoading, setCreateLoading] = useState(false);
+    const [occupied, setOccupied] = useState<"create" | boolean>(false);
 
     useEffect(() => {
         log("Obtendo lista de conversas", { color: "fgGray" });
@@ -87,6 +88,10 @@ export default function Conversations({ }: ConversationsProps) {
         return true;
     }
 
+    async function handleDeleteMeet(id: string) {
+        //TODO: Continuar função para excluir item
+    }
+
     if (conversations === null)
         return (
             <View style={styles.loading}>
@@ -100,7 +105,8 @@ export default function Conversations({ }: ConversationsProps) {
                 title={lang.conversations.create.title}
                 type="confirm"
                 visible={createModalVisible}
-                loading={createLoading}
+                // TODO: Terminar esse carregamento
+                loading={occupied === "create" || occupied}
                 onRespondConfirm={async response => {
                     if (response) {
                         const res = await handleCreateMeet();
