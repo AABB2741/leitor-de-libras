@@ -14,10 +14,6 @@ export default ({ colors }: ChatStyle) => StyleSheet.create({
         alignItems: "center",
         backgroundColor: colors.background
     },
-    statusBarFix: {
-        height: Constants.statusBarHeight,
-        backgroundColor: colors.background
-    },
     container: {
         flex: 1,
         backgroundColor: colors.background

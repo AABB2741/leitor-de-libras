@@ -10,6 +10,7 @@ import {
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Storage from "../../services/Storage";
+import Constants from "expo-constants";
 
 import log from "../../utils/log";
 import Frame from "./Frame";
@@ -140,8 +141,12 @@ export default function Chat({ navigation, route }: ChatProps) {
     
     return (
         <>
-            <View style={styles.statusBarFix} />
-            <View style={[styles.container, inverted && { transform: [{ rotate: "180deg" }] }]}>
+            <View style={[
+                styles.container,
+                { borderColor: inverted ? colors.background : colors.msg.guest_background },
+                inverted && { transform: [{ rotate: "180deg" }], borderBottomWidth: Constants.statusBarHeight},
+                !inverted && { borderTopWidth: Constants.statusBarHeight }
+            ]}>
                 <Frame
                     inverted={inverted}
                     handleSendMessage={handleSendMessage}

@@ -70,6 +70,6 @@ export default ({ colors, sample }: ThemeOptionStyle) => StyleSheet.create({
     },
     previewExample: {
         color: sample.desc,
-        fontSize: 12
+        fontSize: 11
     }
 });

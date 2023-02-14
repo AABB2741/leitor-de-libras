@@ -61,10 +61,22 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
 //     return item;
 // }
 
-export async function pushItem(...keys: (keyof Saves)[]) {
+export async function pushItem<T extends keyof Saves, U = Saves[T] extends [] ? Saves[T][number] : never>(key: T, value: U): Promise<U & { id: string }> {
+    dbLog(`Inserindo dados em "${key}"`);
+    const data = await getItem(key, true) ?? [] as unknown[T];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando inserir um elemento em uma base de dados que não é um array (${key}).`);
+    
+    const item = {
+        ...value,
+        id: uuid4()
+    }
 
+    data.push(item);
+    await setItem(key, data, true);
+
+    return item;
 }
-
 
 // TODO: Finalizar a função de atualizar item do banco
 /*
