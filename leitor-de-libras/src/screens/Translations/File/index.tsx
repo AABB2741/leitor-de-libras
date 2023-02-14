@@ -7,6 +7,7 @@ import {
 import {
     Archive,
     ArrowsClockwise,
+    CheckCircle,
     Cloud,
     DeviceMobileCamera,
     DownloadSimple,
@@ -33,6 +34,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type FileState = "downloading" | "synching" | "localStorage" | "cloud";
 
 export interface FileProps {
+    id: string;
     state: FileState;
     favorited?: boolean;
     archived?: boolean;
@@ -42,16 +44,23 @@ export interface FileProps {
     title: string;
     date: Date;
     length: number;
-    index: number;
 }
 
-export default function File({ state, favorited, archived, locked, disabled, thumbnail, title, length, date, index }: FileProps) {
+interface Props extends FileProps {
+    index: number;
+    selectedFiles: string[];
+    handleSelectFile: (id: string) => void;
+}
+
+export default function File({ id, state, favorited, archived, locked, disabled, thumbnail, title, length, date, index, selectedFiles, handleSelectFile }: Props) {
     const { settings } = useSettings();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
 
     const navigation = useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
+
+    const selected = selectedFiles.includes(id);
 
     moment.updateLocale(lang.locale, {
         relativeTime: {
@@ -60,15 +69,22 @@ export default function File({ state, favorited, archived, locked, disabled, thu
     });
 
     return (
-        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Watch")} onLongPress={() => console.log("Ação com botão direito")}>
+        <TouchableOpacity style={styles.container} onPress={selectedFiles.length ? () => handleSelectFile(id) : () => navigation.navigate("Watch")} onLongPress={() => handleSelectFile(id)}>
             <Animatable.View style={{ flex: 1 }} animation={settings.display.performance.reduce_animations ? undefined : "fadeInUp"} delay={index * 50}>
-                <View style={styles.indicators}>
+                <View style={[styles.indicators, selected && { display: "none" }]}>
                     {getStateIcon({ state, colors, lang })}
                     <View style={styles.props}>
                         {(locked && !disabled) && <Keyhole color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
                         {(archived && !disabled) && <Archive color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
                         {(favorited && !disabled) && <Star color={colors.desc} size={14} weight="fill" style={{ marginLeft: 5 }} />}
                     </View>
+                </View>
+                <View style={[styles.indicators, !selected && { display: "none" }]}>
+                    <CheckCircle
+                        color={selected ? colors.accent : colors.font}
+                        weight={selected ? "fill" : "regular"}
+                        size={14}
+                    />
                 </View>
                 <Image style={styles.thumbnail} source={thumbnail} />
                 <Font preset="text" style={styles.title} numberOfLines={1}>{title}</Font>

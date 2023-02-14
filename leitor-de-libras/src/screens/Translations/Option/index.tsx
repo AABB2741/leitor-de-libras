@@ -11,6 +11,7 @@ import Font from "../../../components/Font";
 export interface OptionProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
     label: string;
+    multiSelectVisible?: boolean;
     onPress?: () => void;
 }
 

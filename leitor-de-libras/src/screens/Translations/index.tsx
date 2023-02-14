@@ -44,7 +44,7 @@ export default function Translations({ navigation }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const [selected, setSelected] = useState<number[]>([]);
+    const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
@@ -60,9 +60,20 @@ export default function Translations({ navigation }: Props) {
         return sub.remove;
     }, []));
 
+    function handleSelectFile(id: string) {
+        const newSelectedFiles = [...selectedFiles];
+
+        if (newSelectedFiles.includes(id)) {
+            newSelectedFiles.splice(newSelectedFiles.indexOf(id), 1);
+        } else newSelectedFiles.push(id);
+        
+        setSelectedFiles(newSelectedFiles);
+    }
+
     const OPTIONS: OptionProps[] = [{
         icon: props => <PlusCircle {...props} />,
-        label: lang.translations.options.create
+        label: lang.translations.options.create,
+        multiSelectVisible: false
     }, {
         icon: props => <Trash {...props} />,
         label: lang.translations.options.delete
@@ -74,7 +85,8 @@ export default function Translations({ navigation }: Props) {
         label: lang.translations.options.lock
     }, {
         icon: props => <Download {...props} />,
-        label: lang.translations.options.import
+        label: lang.translations.options.import,
+        multiSelectVisible: false
     }, {
         icon: props => <Export {...props} />,
         label: lang.translations.options.export
@@ -126,7 +138,7 @@ export default function Translations({ navigation }: Props) {
                     columnWrapperStyle={styles.files}
                     ListHeaderComponentStyle={{ padding: 0 }}
                     data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
-                    renderItem={({ item, index }) => <File {...item} index={index} key={index} />}
+                    renderItem={({ item, index }) => <File {...item} selectedFiles={selectedFiles} index={index} handleSelectFile={handleSelectFile} key={index} />}
                     refreshControl={(
                         <RefreshControl
                             refreshing={refreshing}

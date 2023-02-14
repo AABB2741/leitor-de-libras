@@ -109,10 +109,8 @@ export default function Conversations({ }: ConversationsProps) {
                             setCreateGuestName("");
                             setCreateTitle("");
                             setCreateModalVisible(false);
-                        } else {
-                            console.log("Deu erro");
                         }
-
+                        
                         setCreateLoading(false);
                     } else setCreateModalVisible(false);
                 }}
