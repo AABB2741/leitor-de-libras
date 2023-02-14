@@ -11,6 +11,7 @@ import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Storage from "../../services/Storage";
 import Constants from "expo-constants";
+import { v4 as uuid4 } from "uuid";
 
 import log from "../../utils/log";
 import Frame from "./Frame";
@@ -43,23 +44,35 @@ export default function Chat({ navigation, route }: ChatProps) {
     const [occupied, setOccupied] = useState<null | boolean | "loading" | "saving">("loading");
 
     useEffect(() => {
-        log("Obtendo conversas do bate-papo " + route.params.id, {});
+        log("Obtendo conversas do bate-papo " + route.params.id, { color: "fgGray" });
         
-        Storage.getItem("@talk:conversations").then(conversations => {
-            setChatInfos(conversations?.find(c => c.id === route.params.id) ?? null);
+        // Storage.getItem("@talk:conversations").then(conversations => {
+        //     setChatInfos(conversations?.find(c => c.id === route.params.id) ?? null);
+        // }).then(() => {
+        //     Storage.getItem("@talk:messages").then(data => {
+        //         if (!data || !data.length) {
+        //             setOccupied(false);
+        //             return setMessages([]);
+        //         }
+
+        //         const chat = data.find(c => c.conversationId === route.params.id);
+        //         if (chat) {
+        //             setMessages(chat.messages);
+        //         } else setMessages([]);
+
+        //         setOccupied(false);
+        //     });
+        // });
+
+        Storage.findItem("@talk:conversations", c => c.id === route.params.id).then(conversations => {
+            if (!conversations)
+                return navigation.navigate("Conversations");
+
+            setChatInfos(conversations);
         }).then(() => {
-            Storage.getItem("@talk:messages").then(data => {
-                if (!data || !data.length) {
-                    setOccupied(false);
-                    return setMessages([]);
-                }
-
-                const chat = data.find(c => c.conversationId === route.params.id);
-                if (chat) {
-                    setMessages(chat.messages);
-                } else setMessages([]);
-
-                setOccupied(false);
+            Storage.findItem("@talk:messages", m => m.conversationId === route.params.id).then(messages => {
+                setMessages(messages?.messages ?? []);
+                setOccupied(null);
             });
         });
 
@@ -85,6 +98,15 @@ export default function Chat({ navigation, route }: ChatProps) {
     }
 
     async function handleSaveMessages() {
+        setOccupied("saving");
+
+        const res = await Storage.updateItem("@talk:messages", m => m.conversationId === route.params.id, {
+            conversationId: route.params.id,
+            messages: messages ?? []
+        });
+
+        setOccupied(null);
+
         // TODO: Terminar função e corrigir erros
 
         // setOccupied("saving");

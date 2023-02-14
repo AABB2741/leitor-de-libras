@@ -49,19 +49,7 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
     dbLog(`Itens de "${key}" fundidos.`, { tab: true });
 }
 
-// export async function pushItem<T extends keyof Saves, K extends Saves[T]>(key: Saves[T] extends Object[] ? T : never, value: DeepPartial<K[keyof K]>): Promise<typeof value & { id: string }> {
-//     dbLog(`Inserindo dados em "${key}"`);
-//     const data = await getItem(key, true) as Object[] | null ?? [];
-//     const item = {
-//         ...value,
-//         id: uuid4()
-//     }
-//     data.push(item);
-//     await setItem(key, data, true);
-//     return item;
-// }
-
-export async function pushItem<T extends keyof Saves, U = Saves[T] extends [] ? Saves[T][number] : never>(key: T, value: U): Promise<U & { id: string }> {
+export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[] ? Saves[T][number] : never>(key: T, value: U): Promise<U & { id: string }> {
     dbLog(`Inserindo dados em "${key}"`);
     const data = await getItem(key, true) ?? [] as unknown[T];
     if (!Array.isArray(data))
@@ -74,8 +62,46 @@ export async function pushItem<T extends keyof Saves, U = Saves[T] extends [] ? 
 
     data.push(item);
     await setItem(key, data, true);
-
+    dbLog(`Dados inseridos em "${key}"`, { tab: true });
     return item;
+}
+
+// (X) TODO: Verificar o porquê de quando é trocado por "U", o value de predicate dá erro                                                     V
+export async function updateItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean, value: Partial<U>): Promise<U | null> {
+    dbLog(`Atualizando dados de "${key}"`);
+    const data = (await getItem(key, true) ?? []) as U[];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando atualizar um elemento de uma base de dados que não é um array (${key}).`);
+
+    const index = data.findIndex(predicate);
+
+    const newItem = {
+        ...data[index],
+        ...value
+    }
+
+    if (index === -1) {
+        data.push(newItem);
+    } else data[index] = newItem;
+
+    setItem(key, data);
+    return newItem;
+}
+
+// export async function findItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean): Promise<U | null> {
+//     dbLog(`Procurando itens em "${key}"`);
+//     const data = await getItem(key, true) ?? [];
+// }
+
+export async function findItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean): Promise<U | null> {
+    dbLog(`Procurando itens em "${key}"`);
+    const data = (await getItem(key, true) ?? []) as U[];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando procurar um elemento de uma base de dados que não é um array (${key})`);
+
+    const res = data.find(predicate);
+    dbLog(`Item em "${key}" procurado`, { tab: true });
+    return res ?? null;
 }
 
 // TODO: Finalizar a função de atualizar item do banco
