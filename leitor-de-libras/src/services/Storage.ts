@@ -7,8 +7,6 @@ import { SettingsProps } from "../constants/settings";
 import { DeepPartial } from "../utils/DeepPartial";
 
 type Saves = {
-    "_teste": boolean;
-    "_outro": string;
     "@settings": SettingsProps;
     "@introduction": {
         "skip_login": boolean;
@@ -98,4 +96,4 @@ export async function findItem<T extends keyof Saves, U extends Saves[T] extends
     return res ?? null;
 }
 
-export const clear = AsyncStorage.default.clear;
+export const clear = () => AsyncStorage.default.multiRemove(["@settings", "@introduction", "@talk:conversations", "@talk:messages"]);
