@@ -11,13 +11,24 @@ import Font from "../../../components/Font";
 export interface OptionProps {
     icon: ({ color, size }: IconProps) => React.ReactNode;
     label: string;
-    multiSelectVisible?: boolean;
+    multiSelectDisabled?: boolean;
+    requireSelect?: boolean;
     onPress?: () => void;
 }
 
-export default function Option({ icon, label }: OptionProps) {
+interface Props extends OptionProps {
+    selectCount: number;
+}
+
+export default function Option({ icon, label, selectCount, requireSelect, multiSelectDisabled }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
+
+    if (selectCount > 1 && multiSelectDisabled)
+        return null;
+
+    if (requireSelect && selectCount === 0)
+        return null;
 
     return (
         <TouchableOpacity style={styles.container}>

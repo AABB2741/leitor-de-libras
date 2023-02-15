@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
     FlatList,
     View,
@@ -30,7 +30,7 @@ import Option, { OptionProps as OptionProps } from "./Option";
 
 import Header from "../../components/Header";
 import Empty from "../../components/Empty";
-import File from "./File";
+import File, { FileProps } from "./File";
 import Filter from "../../components/Filter";
 import Font from "../../components/Font";
 
@@ -39,6 +39,7 @@ import createStyles from "./styles";
 
 import FILES from "../../constants/recordings";
 import log from "../../utils/log";
+import Loading from "../../components/Loading";
 
 type Props = NativeStackScreenProps<AppScreens, "TranslationsRoutes">;
 
@@ -47,6 +48,7 @@ export default function Translations({ navigation }: Props) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [files, setFiles] = useState<FileProps[] | null>(null);
     const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
@@ -54,15 +56,25 @@ export default function Translations({ navigation }: Props) {
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
-            log("Saindo do APP em \"Translations\"", { color: "fgRed" });
-            // BackHandler.exitApp();
-            console.log(selectedFiles);
+            if (selectedFiles.length > 0) {
+                setSelectedFiles([]);
+            } else {
+                log("Saindo do APP em \"Translations\"", { color: "fgRed" });
+                BackHandler.exitApp();
+            }
+
             return true;
         }
 
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
-    }, []));
+    }, [selectedFiles]));
+
+    useEffect(() => {
+        setTimeout(() => {
+            setFiles(FILES);
+        }, 2500);
+    }, []);
 
     function handleSelectFile(id: string) {
         const newSelectedFiles = [...selectedFiles];
@@ -77,30 +89,44 @@ export default function Translations({ navigation }: Props) {
     const OPTIONS: OptionProps[] = [{
         icon: props => <PlusCircle {...props} />,
         label: lang.translations.options.create,
-        multiSelectVisible: false
+        multiSelectDisabled: true
     }, {
         icon: props => <Trash {...props} />,
-        label: lang.translations.options.delete
+        label: lang.translations.options.delete,
+        requireSelect: true
     }, {
         icon: props => <Star {...props} />,
-        label: lang.translations.options.favorite
+        label: lang.translations.options.favorite,
+        requireSelect: true
     }, {
         icon: props => <Keyhole {...props} />,
-        label: lang.translations.options.lock
+        label: lang.translations.options.lock,
+        requireSelect: true
     }, {
         icon: props => <Download {...props} />,
         label: lang.translations.options.import,
-        multiSelectVisible: false
+        multiSelectDisabled: true
     }, {
         icon: props => <Export {...props} />,
-        label: lang.translations.options.export
+        label: lang.translations.options.export,
+        requireSelect: true
     }, {
         icon: props => <Archive {...props} />,
-        label: lang.translations.options.archive
+        label: lang.translations.options.archive,
+        requireSelect: true
     }, {
         icon: props => <CloudCheck {...props} />,
-        label: lang.translations.options.load
+        label: lang.translations.options.load,
+        requireSelect: true
     }];
+
+    if (!files) {
+        return (
+            <View style={styles.loading}>
+                <Loading />
+            </View>
+        );
+    }
 
     return (
         <>
@@ -129,7 +155,7 @@ export default function Translations({ navigation }: Props) {
                                     horizontal
                                     showsHorizontalScrollIndicator={false}
                                     renderItem={({ item, index }) => (
-                                        <Option {...item} key={index} />
+                                        <Option {...item} selectCount={selectedFiles.length} key={index} />
                                     )}
                                 />
                             </View>
@@ -147,14 +173,14 @@ export default function Translations({ navigation }: Props) {
                     numColumns={3}
                     columnWrapperStyle={styles.files}
                     ListHeaderComponentStyle={{ padding: 0 }}
-                    data={FILES.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
+                    data={files.filter(f => normalize(f.title, true).includes(normalize(search, true)))}
                     renderItem={({ item, index }) => <File {...item} selectedFiles={selectedFiles} index={index} handleSelectFile={handleSelectFile} key={index} />}
                     refreshControl={(
                         <RefreshControl
                             refreshing={refreshing}
                         />
                     )}
-                    ListEmptyComponent={(search && FILES.length > 0) ? (
+                    ListEmptyComponent={(search && files.length > 0) ? (
                         <Empty
                             icon={props => <MagnifyingGlass {...props} />}
                             title={lang.translations.empty_search.title}
@@ -165,7 +191,7 @@ export default function Translations({ navigation }: Props) {
                         <Empty
                             icon={props => <HandWaving {...props} />}
                             title={lang.translations.empty_files.title}
-                            desc={lang.translations.empty_files.desc.replace("%s", lang.translations.options.create)}
+                            desc={lang.translations.empty_files.desc.replace("%s", lang.translations.empty_files.create_option)}
                             contentContainerStyle={{ marginHorizontal: 20 }}
                             options={[{
                                 label: lang.translations.empty_files.create_option,

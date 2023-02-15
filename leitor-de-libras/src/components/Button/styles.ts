@@ -15,7 +15,8 @@ export default ({ colors, accentColor, disabled }: ButtonStyle) => StyleSheet.cr
         borderRadius: 50,
         marginTop: 10,
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center"
     },
     loading: {
         marginRight: 10

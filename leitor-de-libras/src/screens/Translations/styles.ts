@@ -7,6 +7,12 @@ interface TranslationsStyle {
 }
 
 export default ({ colors }: TranslationsStyle) => StyleSheet.create({
+    loading: {
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        backgroundColor: colors.background
+    },
     container: {
         flex: 1,
         backgroundColor: colors.background
