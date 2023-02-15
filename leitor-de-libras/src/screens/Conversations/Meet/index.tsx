@@ -79,12 +79,11 @@ export default function Meet({ id, title, guestName, date, handleDeleteMeet }: P
                 />
                 <View style={styles.infos}>
                     <Font
-                        preset="subtitle"
+                        family="ubuntu"
                         style={styles.title}
                         numberOfLines={1}
                     >{title || lang.conversations.untitled.replace("%s", guestName ?? "")}</Font>
                     <Font
-                        preset="desc"
                         style={styles.desc}
                         numberOfLines={1}
                     >{guestName ? `${guestName} ∙ ` : ""}{moment(date).fromNow()}</Font>
