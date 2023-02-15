@@ -58,7 +58,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
         <ScrollView
             style={styles.container}
             stickyHeaderIndices={[0, 2]}
-            onScroll={settings.display.performance.reduce_animations ? undefined : e => {
+            onScroll={settings?.display?.performance?.reduce_animations ? undefined : e => {
                 const { y } = e.nativeEvent.contentOffset;
                 setOpacity(y / headerY);
             }}
@@ -72,7 +72,7 @@ export default function Configure({ navigation, route }: ConfigureProps) {
             </View>
             <Header
                 title={setting.title}
-                opacity={settings.display.performance.reduce_animations ? 1 : opacity}
+                opacity={settings?.display?.performance?.reduce_animations ? 1 : opacity}
             />
             <View>
                 {setting.component()}

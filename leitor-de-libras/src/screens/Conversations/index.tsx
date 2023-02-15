@@ -34,10 +34,10 @@ import Loading from "../../components/Loading";
 import Font from "../../components/Font";
 
 interface ConversationsProps {
-    navigation: BottomTabNavigationProp<AppScreens, "TalkRoutes">;
+    navigation: BottomTabNavigationProp<TalkParamList, "Conversations">;
 }
 
-export default function Conversations({ }: ConversationsProps) {
+export default function Conversations({ navigation }: ConversationsProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -49,13 +49,17 @@ export default function Conversations({ }: ConversationsProps) {
     const [createLoading, setCreateLoading] = useState(false);
     const [occupied, setOccupied] = useState<"create" | boolean>(false);
 
-    useEffect(() => {
+    async function loadConversations() {
         log("Obtendo lista de conversas", { color: "fgGray" });
         Storage.getItem("@talk:conversations").then(data => {
             if (!data) {
                 setConversations([]);
             } else setConversations(data);
         });
+    }
+
+    useEffect(() => {
+        loadConversations();
     }, []);
 
     useFocusEffect(useCallback(() => {
@@ -82,14 +86,25 @@ export default function Conversations({ }: ConversationsProps) {
             guestName,
             date: new Date()
         });
-        setConversations([...(conversations ?? []), res as MeetProps]);
         setCreateLoading(false);
+        await loadConversations();
 
+        navigation.navigate("Chat", { id: res.id });
         return true;
     }
 
-    async function handleDeleteMeet(id: string) {
+    async function handleDeleteMeet(id: string): Promise<boolean> {
         //TODO: Continuar função para excluir item
+        log("Excluindo mensagens", { color: "fgGray" });
+        await Storage.removeItem("@talk:messages", m => m.conversationId === id);
+
+        log("Excluindo conversa", { color: "fgGray" });
+        const res = await Storage.removeItem("@talk:conversations", c => c.id === id);
+        if(!res)
+            return false;
+
+        await loadConversations();
+        return true;
     }
 
     if (conversations === null)
@@ -106,7 +121,7 @@ export default function Conversations({ }: ConversationsProps) {
                 type="confirm"
                 visible={createModalVisible}
                 // TODO: Terminar esse carregamento
-                loading={occupied === "create" || occupied}
+                loading={!!occupied}
                 onRespondConfirm={async response => {
                     if (response) {
                         const res = await handleCreateMeet();
@@ -116,7 +131,7 @@ export default function Conversations({ }: ConversationsProps) {
                             setCreateTitle("");
                             setCreateModalVisible(false);
                         }
-                        
+
                         setCreateLoading(false);
                     } else setCreateModalVisible(false);
                 }}
@@ -151,10 +166,10 @@ export default function Conversations({ }: ConversationsProps) {
                     </TouchableOpacity>
                 )}
                 renderItem={({ item }) => (
-                    <Meet {...item} key={item.id} />
+                    <Meet {...item} handleDeleteMeet={handleDeleteMeet} key={item.id} />
                 )}
                 style={conversations.length === 0 && { display: "none" }}
-                // snapToAlignment --> testar depois
+            // snapToAlignment --> testar depois
             />
             <Empty
                 visible={conversations.length === 0}

@@ -22,15 +22,17 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface Props extends MeetProps {
-
+    handleDeleteMeet: (id: string) => Promise<boolean>;
 }
 
-export default function Meet({ id, title, guestName, date }: MeetProps) {
+export default function Meet({ id, title, guestName, date, handleDeleteMeet }: Props) {
     const lang = useLang();
     const colors = useColors();
     const { user } = useUser();
 
     const [deleteVisible, setDeleteVisible] = useState(false);
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [deleteErrVisible, setDeleteErrVisible] = useState(false);
 
     const navigation = useNavigation<NativeStackNavigationProp<TalkParamList, "Conversations">>();
 
@@ -48,11 +50,27 @@ export default function Meet({ id, title, guestName, date }: MeetProps) {
                 type="boolean"
                 caution
                 visible={deleteVisible}
+                loading={deleteLoading}
                 onRequestClose={() => setDeleteVisible(false)}
-                onRespondBoolean={response => {
+                onRespondBoolean={async response => {
                     if (!response)
                         return setDeleteVisible(false);
+
+                    setDeleteLoading(true);
+                    const deleted = await handleDeleteMeet(id);
+                    if (!deleted) {
+                        setDeleteErrVisible(true);
+                    }
+
+                    setDeleteLoading(false);
+                    setDeleteVisible(false);
                 }}
+            />
+            <Popup
+                title={lang.conversations.delete_err.title}
+                text={lang.conversations.delete_err.text.replace("%s", title || lang.conversations.untitled.replace("%s", guestName || lang.conversations.chat.guest))}
+                onRequestClose={() => setDeleteErrVisible(false)}
+                visible={deleteErrVisible}
             />
             <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Chat", { id })}>
                 <Image

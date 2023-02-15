@@ -3,7 +3,8 @@ import {
     FlatList,
     View,
     RefreshControl,
-    BackHandler
+    BackHandler,
+    TouchableOpacity
 } from "react-native";
 import {
     Archive,
@@ -16,7 +17,8 @@ import {
     MagnifyingGlass,
     PlusCircle,
     Star,
-    Trash
+    Trash,
+    X
 } from "phosphor-react-native";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
@@ -30,6 +32,7 @@ import Header from "../../components/Header";
 import Empty from "../../components/Empty";
 import File from "./File";
 import Filter from "../../components/Filter";
+import Font from "../../components/Font";
 
 import normalize from "../../utils/normalize";
 import createStyles from "./styles";
@@ -109,6 +112,12 @@ export default function Translations({ navigation }: Props) {
                 }]}
             />
             <View style={styles.container}>
+                <View style={[styles.selected, selectedFiles.length < 1 && { display: "none" }]}>
+                    <Font style={styles.selectedLabel}>{selectedFiles.length === 1 ? lang.translations.selected_single.replace("%s", selectedFiles.length.toString()) : lang.translations.selected.replace("%s", selectedFiles.length.toString())}</Font>
+                    <TouchableOpacity onPress={() => setSelectedFiles([])}>
+                        <X size={16} color={colors.font} />
+                    </TouchableOpacity>
+                </View>
                 <FlatList
                     ListHeaderComponent={(
                         <>

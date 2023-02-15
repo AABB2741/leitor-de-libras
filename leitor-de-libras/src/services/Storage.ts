@@ -96,4 +96,23 @@ export async function findItem<T extends keyof Saves, U extends Saves[T] extends
     return res ?? null;
 }
 
+export async function removeItem<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number, obj: U[]) => boolean): Promise<U | null> {
+    dbLog(`Removendo item de "${key}"`);
+    const data = (await getItem(key, true) ?? []) as U[];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando excluir um elemento de uma base de dados que não é um array (${key})`);
+
+    const index = data.findIndex(predicate);
+    if (index === -1) {
+        dbLog(`O item a remover de "${key}" não foi encontrado`);
+        return null;
+    }
+
+    const exclude = data[index];
+    data.splice(index, 1);
+    await setItem(key, data, true);
+    dbLog(`Dado de "${key}" excluído`);
+    return exclude;
+}
+
 export const clear = () => AsyncStorage.default.multiRemove(["@settings", "@introduction", "@talk:conversations", "@talk:messages"]);

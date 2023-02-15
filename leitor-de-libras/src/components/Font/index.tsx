@@ -77,7 +77,7 @@ const FONTS: Fonts[] = [{
 
 
 interface FontProps extends TextProps {
-    preset: FontName;
+    preset?: FontName;
 }
 
 export default function Font({ preset, style, ...rest }: FontProps) {
@@ -86,6 +86,6 @@ export default function Font({ preset, style, ...rest }: FontProps) {
     const styles = createStyles({ colors });
     
     return (
-        <Text {...rest} style={[styles.text, settings.display.appearance.custom_fonts && { ...FONTS.find(f => f.name == preset) }, Array.isArray(style) ? [...style] : style]} />
+        <Text {...rest} style={[styles.text, settings.display.appearance.custom_fonts && { ...FONTS.find(f => f.name == (preset ?? "text")) }, Array.isArray(style) ? [...style] : style]} />
     );
 }

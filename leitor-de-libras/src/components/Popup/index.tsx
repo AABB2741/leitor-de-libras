@@ -60,7 +60,7 @@ export default function Popup({ type = "ok", title, text, caution, children, loa
                                 <Button
                                     loading={loading}
                                     label={lang.general.modal.ok}
-                                    style={{ flex: 1 }}
+                                    style={{ flex: 1, justifyContent: "center" }}
                                     onPress={onRespondOk ?? rest.onRequestClose}
                                     accentColor={caution ? colors.critic : colors.accent}
                                 />

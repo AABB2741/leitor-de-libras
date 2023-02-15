@@ -193,6 +193,8 @@
         }
     },
     "translations": {
+        "selected_single": "%s selecionado",
+        "selected": "%s selecionados",
         "options": {
             "create": "Criar tradução",
             "delete": "Excluir",
@@ -271,6 +273,10 @@
         "delete": {
             "title": "Excluir conversa",
             "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
+        },
+        "delete_err": {
+            "title": "Erro ao excluir conversa",
+            "text": "Desculpe, ocorreu um erro ao excluir a conversa \"%s\". Se o erro persistir, avise-nos."
         },
         "chat": {
             "placeholder": "Conversar com %s",
