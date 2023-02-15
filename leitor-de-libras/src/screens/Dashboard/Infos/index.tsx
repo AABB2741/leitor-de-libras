@@ -43,6 +43,7 @@ export default function Infos({ navigation }: InfosProps) {
             {signed === null && (
                 <View style={styles.loading}>
                     <Loading size={16} />
+                    <Font style={styles.loadingLabel}>{lang.general.user.loading}</Font>
                 </View>
             )}
             {signed && (

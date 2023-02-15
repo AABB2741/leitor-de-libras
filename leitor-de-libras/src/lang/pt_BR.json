@@ -12,6 +12,10 @@
         "filter": "Procurar...",
         "warning": "Aviso: %s",
         "resource_not_available": "Recurso não disponível",
+        "user": {
+            "anonymous": "Anônimo",
+            "loading":  "Carregando usuário..."
+        },
         "modal": {
             "ok": "Ok",
             "yes": "Sim",

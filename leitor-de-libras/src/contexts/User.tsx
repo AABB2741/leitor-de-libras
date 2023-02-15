@@ -18,12 +18,13 @@ const UserContext = createContext<UserContextValue>({} as UserContextValue);
 
 export default function UserProvider({ children }: UserProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
+    const [signed, setSigned] = useState<boolean | null>(null);
 
     async function logOut() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(false);
-            }, 1000);
+            }, 2500);
         });
     }
 
@@ -31,11 +32,12 @@ export default function UserProvider({ children }: UserProviderProps) {
         log("Carregando informações do usuário...", { color: "fgGray" });
         setTimeout(() => {
             setUser(USER);
-        }, 1000);
+            setSigned(true);
+        }, 2500);
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, signed: null, logOut }}>
+        <UserContext.Provider value={{ user, signed, logOut }}>
             {children}
         </UserContext.Provider>
     );

@@ -19,7 +19,8 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         flex: 1
     },
     title: {
-        padding: 20
+        padding: 20,
+        fontSize: 18
     },
     options: {
         paddingLeft: 20,

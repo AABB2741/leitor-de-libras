@@ -85,8 +85,8 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                     <View style={styles.whoami}>
                         {guest && <UserCirclePlus weight="fill" size={36} color={colors.desc3} />}
                         {!guest && (signed ? <Image style={styles.userAvatar} source={user?.avatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
-                        <Font family="ubuntu" style={styles.sayMyName}>{guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
-                        <Font style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
+                        <Font family="ubuntu" style={styles.sayMyName}>{guest ? guestName : (signed ? (user?.name ?? lang.general.user.anonymous) : lang.general.user.anonymous)}</Font>
+                        <Font style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? guestName : (signed ? (user?.name ?? lang.general.user.anonymous) : lang.general.user.anonymous))}</Font>
                     </View>
                 )}
             />
@@ -115,7 +115,7 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                 </View>
                 <View style={styles.controls}>
                     <Input
-                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous) : guestName)}
+                        placeholder={lang.conversations.chat.placeholder.replace("%s", guest ? (signed ? (user?.name ?? lang.general.user.anonymous) : lang.general.user.anonymous) : guestName)}
                         containerStyle={{ flex: 1, paddingBottom: 0 }}
                         style={styles.input}
                         value={msg}

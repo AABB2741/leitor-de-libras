@@ -15,8 +15,14 @@ export default ({ colors }: InfosStyle) => StyleSheet.create({
         marginTop: 20
     },
     loading: {
+        flexDirection: "row",
         alignItems: "center",
         justifyContent: "center"
+    },
+    loadingLabel: {
+        color: colors.disabled,
+        fontSize: 12,
+        marginLeft: 10
     },
     login: {
         flexDirection: "row",
