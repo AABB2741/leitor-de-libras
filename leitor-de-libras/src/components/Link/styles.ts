@@ -12,7 +12,6 @@ export default ({ colors }: LinkStyle) => StyleSheet.create({
     },
     label: {
         fontSize: 14,
-        color: colors.accent,
-        marginRight: 10
+        color: colors.accent
     }
 });

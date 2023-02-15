@@ -25,9 +25,10 @@ interface LinkProps extends TouchableOpacityProps {
     noSupportMessage?: string;
     children?: string;
     labelStyle?: TextStyle;
+    disableIcon?: boolean;
 }
 
-export default function Link({ url, noSupportMessage, children, labelStyle, ...rest }: LinkProps) {
+export default function Link({ url, noSupportMessage, children, labelStyle, disableIcon, ...rest }: LinkProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -62,10 +63,7 @@ export default function Link({ url, noSupportMessage, children, labelStyle, ...r
             />
             <TouchableOpacity onPress={handlePress} style={styles.container}>
                 <Font family="ubuntu" style={[styles.label, Array.isArray(labelStyle) ? [...labelStyle] : labelStyle]}>{children}</Font>
-                <ArrowSquareOut
-                    size={14}
-                    color={colors.accent}
-                />
+                {!disableIcon && <ArrowSquareOut size={14} color={colors.accent} style={{ marginLeft: 10 }} />}
             </TouchableOpacity>
         </>
     );
