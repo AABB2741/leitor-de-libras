@@ -39,20 +39,10 @@ export default ({ colors }: ArticleStyle) => StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         paddingHorizontal: 20,
-        paddingVertical: 10
-    },
-    fullArticle: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        backgroundColor: colors.background2,
-        borderRadius: 30
+        paddingTop: 20,
+        paddingBottom: 10
     },
     fullArticleLabel: {
-        color: colors.accent,
-        fontSize: 12,
-        marginRight: 10
+        fontSize: 12
     }
 });

@@ -48,7 +48,7 @@ export default function WhatToDo() {
     }, {
         icon: props => <SignIn {...props} />,
         label: lang.general.login,
-        disabled: signed,
+        disabled: signed !== false
         //onPress: () => setRoute("LoginRoutes") // rootNavigation.navigate("LoginRoutes")
     }, {
         icon: props => <Translate {...props} />,

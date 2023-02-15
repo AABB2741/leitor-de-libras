@@ -14,6 +14,10 @@ export default ({ colors }: InfosStyle) => StyleSheet.create({
         justifyContent: "space-between",
         marginTop: 20
     },
+    loading: {
+        alignItems: "center",
+        justifyContent: "center"
+    },
     login: {
         flexDirection: "row",
         alignItems: "center"

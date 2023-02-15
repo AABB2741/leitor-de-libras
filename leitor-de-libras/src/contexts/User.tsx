@@ -5,8 +5,8 @@ import USER, { UserProps } from "../constants/user";
 import log from "../utils/log";
 
 type UserContextValue = {
-    user?: UserProps;
-    signed: boolean;
+    user: UserProps | null;
+    signed: null | boolean; // null significa que ainda não foi carregado
     logOut: () => void;
 }
 
@@ -34,11 +34,8 @@ export default function UserProvider({ children }: UserProviderProps) {
         }, 1000);
     }, []);
 
-    if (user === null)
-        return null;
-    log(`Usuário "${user.name ?? "Anônimo"}" carregado`, { color: "fgGray", tab: true });
     return (
-        <UserContext.Provider value={{ user, signed: false, logOut }}>
+        <UserContext.Provider value={{ user, signed: null, logOut }}>
             {children}
         </UserContext.Provider>
     );

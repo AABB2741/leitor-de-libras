@@ -4,6 +4,7 @@ import {
     View
 } from "react-native";
 import {
+    ArrowRight,
     ArrowSquareOut,
     Heart,
     ShareNetwork,
@@ -48,7 +49,7 @@ export default function Tips({ navigation }: TipsProps) {
                 </View>
                 <TouchableOpacity style={styles.visit} onPress={() => navigation.navigate("Article", { id: curiosity.id })}>
                     <Font family="ubuntu" style={styles.visitLabel}>{lang.dashboard.tips.learn_more}</Font>
-                    <ArrowSquareOut size={16} color={colors.accent} />
+                    <ArrowRight size={16} color={colors.accent} />
                 </TouchableOpacity>
             </View>
         </View>

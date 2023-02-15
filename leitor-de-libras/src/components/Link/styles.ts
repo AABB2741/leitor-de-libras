@@ -6,5 +6,13 @@ interface LinkStyle {
 }
 
 export default ({ colors }: LinkStyle) => StyleSheet.create({
-
+    container: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    label: {
+        fontSize: 14,
+        color: colors.accent,
+        marginRight: 10
+    }
 });

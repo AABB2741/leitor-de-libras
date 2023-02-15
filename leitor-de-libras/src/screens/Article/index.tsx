@@ -45,12 +45,9 @@ export default function Article({ navigation, route }: ArticleProps) {
                 </TouchableOpacity>
                 <Link
                     url={curiosity.credits.url}
-                    style={[styles.fullArticle, { paddingHorizontal: 25 }]}
+                    labelStyle={styles.fullArticleLabel}
                     noSupportMessage={lang.article.cant_open_url.replace("%s", curiosity.credits.url)}
-                >
-                    <Font family="ubuntu" style={styles.fullArticleLabel}>{lang.article.full_article}</Font>
-                    <ArrowSquareOut color={colors.accent} size={16} />
-                </Link>
+                >{lang.article.full_article}</Link>
             </View>
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                 <View style={styles.presentation}>
