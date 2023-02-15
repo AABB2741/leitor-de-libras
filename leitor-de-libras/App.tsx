@@ -25,22 +25,12 @@ const startTime = new Date().getTime();
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
-		"Exo-2": require("./assets/fonts/Exo2-Bold.ttf"),
-		"Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
-		"Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
-		"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
-		"Rubik": require("./assets/fonts/Rubik-Regular.ttf"),
-		"Rubik-Bold": require("./assets/fonts/Rubik-Bold.ttf"),
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
-		"PT-Sans": require("./assets/fonts/PTSans-Regular.ttf"),
+		"Rubik": require("./assets/fonts/Rubik-Regular.ttf"),
+		"Inter": require("./assets/fonts/Inter-Regular.ttf"),
 		"Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
 		"Inter-Black": require("./assets/fonts/Inter-Black.ttf")
 	});
-	// const [fontsLoaded] = useFonts({
-	// 	"Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
-	// 	"Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
-	// 	"Inter-Regular": require("./assets/fonts/Inter-Regular.ttf")
-	// })
 
 	const onLayoutRootView = useCallback(async () => {
 		if (fontsLoaded) {

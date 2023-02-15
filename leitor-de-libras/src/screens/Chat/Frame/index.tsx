@@ -85,8 +85,8 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                     <View style={styles.whoami}>
                         {guest && <UserCirclePlus weight="fill" size={36} color={colors.desc3} />}
                         {!guest && (signed ? <Image style={styles.userAvatar} source={user?.avatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
-                        <Font preset="subtitle" style={styles.sayMyName}>{guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
-                        <Font preset="text" style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
+                        <Font family="ubuntu" style={styles.sayMyName}>{guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous)}</Font>
+                        <Font style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? guestName : (signed ? (user?.name ?? lang.general.anonymous) : lang.general.anonymous))}</Font>
                     </View>
                 )}
             />
@@ -97,7 +97,7 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                             data={suggestions}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity style={styles.suggestion} onPress={() => handleSendMessage({ message: item.msg, from: guest ? "guest" : "owner" })} onLongPress={() => setMsg(item.msg)} key={index}>
-                                    <Font preset="text" style={styles.suggestionLabel}>{item.shortMsg ?? item.msg}</Font>
+                                    <Font style={styles.suggestionLabel}>{item.shortMsg ?? item.msg}</Font>
                                 </TouchableOpacity>
                             )}
                             contentContainerStyle={{ paddingLeft: 10 }}

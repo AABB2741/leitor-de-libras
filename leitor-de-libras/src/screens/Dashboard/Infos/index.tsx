@@ -34,15 +34,15 @@ export default function Infos({ navigation }: InfosProps) {
             {!signed && (
                 <TouchableOpacity style={styles.login}>
                     <UserCirclePlus color={colors.font} size={36} />
-                    <Font preset="button" style={styles.loginLabel}>{lang.general.login}</Font>
+                    <Font family="ubuntu" style={styles.loginLabel}>{lang.general.login}</Font>
                 </TouchableOpacity>
             )}
             {signed && (
                 <View style={styles.userContainer}>
                     <Image source={user?.avatar} style={styles.avatar} />
                     <View style={styles.userData}>
-                        <Font preset="subtitle" numberOfLines={1} style={styles.username}>{user?.name}</Font>
-                        <Font preset="desc" numberOfLines={1} style={styles.email}>{user?.email}</Font>
+                        <Font family="ubuntu" numberOfLines={1} style={styles.username}>{user?.name}</Font>
+                        <Font numberOfLines={1} style={styles.email}>{user?.email}</Font>
                     </View>
                 </View>
             )}

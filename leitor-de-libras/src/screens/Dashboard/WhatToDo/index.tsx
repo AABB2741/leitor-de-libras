@@ -71,7 +71,7 @@ export default function WhatToDo() {
                     <View style={styles.iconContainer}>
                         {item.icon({ color: colors.font, size: 20 })}
                     </View>
-                    <Font preset="subtitle" style={styles.label} numberOfLines={2}>{item.label}</Font>
+                    <Font family="ubuntu" style={styles.label} numberOfLines={2}>{item.label}</Font>
                 </TouchableOpacity>
             )}
         />

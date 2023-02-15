@@ -46,7 +46,7 @@ export default function Settings({ navigation }: SettingsProps) {
             <View style={styles.statusBarFix} />
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
                 <GearSix size={36} weight="fill" color={colors.font} />
-                <Font preset="title" style={styles.title}>{lang.settings.title}</Font>
+                <Font family="black" style={styles.title}>{lang.settings.title}</Font>
             </View>
             <Header
                 title={lang.settings.title}
@@ -59,7 +59,7 @@ export default function Settings({ navigation }: SettingsProps) {
             />
             {restartRequired && (
                 <View style={styles.warning}>
-                    <Font preset="text" style={{ fontSize: 10 }}>{lang.general.warning.replace("%s", lang.settings.restart_required)}</Font>
+                    <Font style={{ fontSize: 10 }}>{lang.general.warning.replace("%s", lang.settings.restart_required)}</Font>
                 </View>
             )}
             {settingsList.map((props, index) => <ConfigSection { ...props } navigation={navigation} key={index} />)}

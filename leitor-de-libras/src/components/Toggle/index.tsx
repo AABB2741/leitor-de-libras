@@ -25,7 +25,7 @@ export default function Toggle({ label, value, disabled, onValueChange }: Toggle
 
     return (
         <Pressable style={styles.container} disabled={disabled} onPress={() => onValueChange?.(!value)}>
-            <Font preset="button" style={styles.label}>{label}</Font>
+            <Font family="ubuntu" style={styles.label}>{label}</Font>
             {value ? <ToggleRight size={26} color={colors.accent} weight="fill" /> : <ToggleLeft size={26} color={colors.font} />}
         </Pressable>
     )

@@ -33,7 +33,7 @@ export default function ThemeOption({ theme, icon, sample, name, example }: Them
             <View style={styles.presentation}>
                 <View style={styles.infos}>
                     {icon({ color: colors.font, size: 20, weight: "fill" })}
-                    <Font preset="button" style={styles.name}>{name}</Font>
+                    <Font family="ubuntu" style={styles.name}>{name}</Font>
                 </View>
                 <Indicator
                     value={settings.display.appearance.theme == theme}
@@ -45,11 +45,11 @@ export default function ThemeOption({ theme, icon, sample, name, example }: Them
                         {icon({ color: sample.accent, size: 16, weight: "regular" })}
                     </View>
                     <View style={styles.previewTitleContainer}>
-                        <Font preset="title" style={styles.previewTitle}>{lang.settings.display.appearance.theme.hello_world}</Font>
+                        <Font family="black" style={styles.previewTitle}>{lang.settings.display.appearance.theme.hello_world}</Font>
                     </View>
                 </View>
                 <View style={styles.previewExampleContainer}>
-                    <Font preset="text" style={styles.previewExample}>
+                    <Font style={styles.previewExample}>
                         {example}
                     </Font>
                 </View>

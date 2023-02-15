@@ -38,7 +38,7 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
             <ExpoCamera style={styles.camera} type={CameraType.back} ratio="16:9">
                 <View style={styles.overlay}>
                     <View style={styles.top}>
-                        <Font preset="title">Opções superiores</Font>
+                        <Font family="black">Opções superiores</Font>
                     </View>
                     <View style={styles.bottom}>
 

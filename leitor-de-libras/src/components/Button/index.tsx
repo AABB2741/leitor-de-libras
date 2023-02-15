@@ -26,7 +26,7 @@ export default function Button({ children, label, highlight, accentColor, style,
     return (
         <TouchableOpacity { ...rest } disabled={disabled || loading} style={[styles.container, highlight && styles.highlight, style]}>
             {loading && <Loading size={14} style={styles.loading} />}
-            <Font preset="button" style={[styles.label, highlight && styles.labelHighlight, labelStyle]}>{children ?? label}</Font>
+            <Font family="ubuntu" style={[styles.label, highlight && styles.labelHighlight, labelStyle]}>{children ?? label}</Font>
         </TouchableOpacity>  
     );
 }

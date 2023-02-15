@@ -17,8 +17,8 @@ export default function SignUp() {
     return (
         <View style={styles.wrapper}>
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-                <Font preset="title" style={styles.title}>{lang.sign_up.title}</Font>
-                <Font preset="desc" style={styles.desc}>{lang.sign_up.desc}</Font>
+                <Font family="black" style={styles.title}>{lang.sign_up.title}</Font>
+                <Font style={styles.desc}>{lang.sign_up.desc}</Font>
             </ScrollView>
         </View>
     );

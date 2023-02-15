@@ -67,8 +67,8 @@ export default function Configure({ navigation, route }: ConfigureProps) {
             <View style={styles.statusBarFix} />
             <View style={styles.presentation} onLayout={e => setHeaderY(e.nativeEvent.layout.height)}>
                 {setting.icon({ color: colors.font, size: 36, weight: "fill" })}
-                <Font preset="title" style={styles.title}>{setting.title}</Font>
-                {setting.desc && <Font preset="desc" style={styles.desc}>{setting.desc}</Font>}
+                <Font family="black" style={styles.title}>{setting.title}</Font>
+                {setting.desc && <Font style={styles.desc}>{setting.desc}</Font>}
             </View>
             <Header
                 title={setting.title}

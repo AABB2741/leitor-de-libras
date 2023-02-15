@@ -49,8 +49,8 @@ export default function Popup({ type = "ok", title, text, caution, children, loa
                 <View style={styles.container}>
                     <Animatable.View style={styles.content} animation={settings.display.performance.reduce_animations ? undefined : "zoomIn"} duration={300}>
                         <View>
-                            {title && <Font preset="subtitle" style={styles.title}>{title}</Font>}
-                            {text && <Font preset="text" style={styles.text}>{text}</Font>}
+                            {title && <Font family="ubuntu" style={styles.title}>{title}</Font>}
+                            {text && <Font style={styles.text}>{text}</Font>}
                         </View>
                         <View>
                             {children}

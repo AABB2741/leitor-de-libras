@@ -162,7 +162,7 @@ export default function Conversations({ navigation }: ConversationsProps) {
                 ListHeaderComponent={(
                     <TouchableOpacity style={styles.create} onPress={() => setCreateModalVisible(true)}>
                         <ChatCircleDots color={colors.check} size={18} />
-                        <Font preset="button" style={styles.createLabel}>{lang.conversations.create.title}</Font>
+                        <Font family="ubuntu" style={styles.createLabel}>{lang.conversations.create.title}</Font>
                     </TouchableOpacity>
                 )}
                 renderItem={({ item }) => (

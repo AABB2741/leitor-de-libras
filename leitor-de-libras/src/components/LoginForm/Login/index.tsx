@@ -50,8 +50,8 @@ export default function Login({ navigation }: LoginProps) {
     return (
         <View style={styles.wrapper}>
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-                <Font preset="title" style={styles.title}>{lang.login.title}</Font>
-                <Font preset="desc" style={styles.desc}>{lang.login.desc}</Font>
+                <Font family="black" style={styles.title}>{lang.login.title}</Font>
+                <Font style={styles.desc}>{lang.login.desc}</Font>
                 <Image source={colors.themeName === "light" ? require("../../../../assets/imgs/login-light.png") : require("../../../../assets/imgs/login.png")} style={styles.image} />
                 <FixedCategory title={lang.general.login}>
                     <Input
@@ -87,7 +87,7 @@ export default function Login({ navigation }: LoginProps) {
             <View style={styles.options}>
                 <TouchableOpacity style={styles.lang}>
                     <Globe color={colors.font} size={24} />
-                    <Font preset="button" style={{ marginLeft: 10 }}>{lang.locale}</Font>
+                    <Font family="ubuntu" style={{ marginLeft: 10 }}>{lang.locale}</Font>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
                     Storage.mergeItem("@introduction", {
@@ -96,7 +96,7 @@ export default function Login({ navigation }: LoginProps) {
                         // setRoute("AppRoutes");
                     });
                 }}>
-                    <Font preset="button" style={styles.ignoreLabel}>{lang.login.ignore}</Font>
+                    <Font family="ubuntu" style={styles.ignoreLabel}>{lang.login.ignore}</Font>
                 </TouchableOpacity>
             </View>
         </View>

@@ -51,7 +51,7 @@ export default function Header({ hideBackButton, title, leftOptions, rightOption
                             { icon({ color: colors.font, size: 24 }) }
                         </TouchableOpacity>
                     )) }
-                    <Font preset="subtitle" style={[styles.title, hideBackButton && { paddingLeft: 20 }, { opacity }]} numberOfLines={1}>{title}</Font>
+                    <Font family="ubuntu" style={[styles.title, hideBackButton && { paddingLeft: 20 }, { opacity }]} numberOfLines={1}>{title}</Font>
                 </View>
                 <View style={styles.headerRight}>
                     { rightOptions?.map(({ icon, ...rest }, i) => (

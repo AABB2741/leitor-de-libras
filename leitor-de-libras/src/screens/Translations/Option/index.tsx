@@ -22,7 +22,7 @@ export default function Option({ icon, label }: OptionProps) {
     return (
         <TouchableOpacity style={styles.container}>
             { icon({ color: colors.font, size: 16 }) }
-            <Font preset="subtitle" style={styles.label}>{label}</Font>
+            <Font family="ubuntu" style={styles.label}>{label}</Font>
         </TouchableOpacity>
     );
 }

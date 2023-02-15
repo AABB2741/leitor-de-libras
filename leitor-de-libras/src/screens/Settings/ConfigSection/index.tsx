@@ -17,14 +17,14 @@ export default function ConfigSection({ navigation, category, title, settings }:
     
     return (
         <View style={styles.container}>
-            <Font preset="subtitle" numberOfLines={1}>{title}</Font>
+            <Font family="ubuntu" numberOfLines={1}>{title}</Font>
             <View style={styles.configs}>
                 {settings.map(({ icon, location, title, desc }, index) => (
                     <TouchableOpacity style={styles.config} onPress={() => navigation.navigate("Configure", { category, location })} key={index}>
                         {icon({ color: colors.font, size: 24 })}
                         <View style={styles.configInfos}>
-                            <Font preset="button" numberOfLines={1}>{title}</Font>
-                            {desc && <Font preset="desc" style={styles.configDesc} numberOfLines={1}>{desc}</Font>}
+                            <Font family="ubuntu" numberOfLines={1}>{title}</Font>
+                            {desc && <Font style={styles.configDesc} numberOfLines={1}>{desc}</Font>}
                         </View>
                         <CaretRight color={colors.font} size={12} />
                     </TouchableOpacity>

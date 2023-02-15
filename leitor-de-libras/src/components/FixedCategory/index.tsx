@@ -23,8 +23,8 @@ export default function FixedCategory({ title, desc, children, headerPadding, co
     return (
         <View {...rest} style={[!disableVerticalSpacing && { marginTop: 20 }, rest.style]}>
             <View style={[{ padding: headerPadding }, !!headerPadding && { paddingBottom: 10 }]}>
-                {title && <Font preset="subtitle" style={{ fontSize: 16 }}>{title}</Font>}
-                {desc && <Font preset="desc" style={{ color: colors.desc, marginTop: 5 }}>{desc}</Font>}
+                {title && <Font family="ubuntu" style={{ fontSize: 16 }}>{title}</Font>}
+                {desc && <Font style={{ color: colors.desc, marginTop: 5 }}>{desc}</Font>}
             </View>
             <View style={[styles.content, !!contentPadding && { padding: contentPadding, paddingTop: 0 }]}>
                 {children}

@@ -32,7 +32,7 @@ export default function Tips({ navigation }: TipsProps) {
     return (
         <View style={styles.container}>
             <View>
-                <Font preset="desc-bold" style={styles.content}>{lang.dashboard.tips[curiosity.type]} <Font preset="desc">{lang.dashboard.tips[curiosity.id].short}</Font></Font>
+                <Font family="medium" style={styles.content}>{lang.dashboard.tips[curiosity.type]} <Font>{lang.dashboard.tips[curiosity.id].short}</Font></Font>
             </View>
             <View style={styles.options}>
                 <View style={styles.buttons}>
@@ -47,7 +47,7 @@ export default function Tips({ navigation }: TipsProps) {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.visit} onPress={() => navigation.navigate("Article", { id: curiosity.id })}>
-                    <Font preset="button" style={styles.visitLabel}>{lang.dashboard.tips.learn_more}</Font>
+                    <Font family="ubuntu" style={styles.visitLabel}>{lang.dashboard.tips.learn_more}</Font>
                     <ArrowSquareOut size={16} color={colors.accent} />
                 </TouchableOpacity>
             </View>

@@ -78,8 +78,8 @@ export default function Profile() {
                 <View style={styles.header}>
                     <Image style={styles.avatar} source={user.avatar} />
                     <View style={styles.userInfos}>
-                        <Font preset="subtitle" style={styles.userName}>{user.name}</Font>
-                        <Font preset="desc" style={styles.userEmail}>{user.email}</Font>
+                        <Font family="ubuntu" style={styles.userName}>{user.name}</Font>
+                        <Font style={styles.userEmail}>{user.email}</Font>
                     </View>
                     <TouchableOpacity onPress={() => setSignOutVisible(true)}>
                         <SignOut color={colors.critic} size={24} />

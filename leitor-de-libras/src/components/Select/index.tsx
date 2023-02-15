@@ -36,7 +36,7 @@ export default function Select({ label, value, options, disableStyles, disabled,
 
     return (
         <TouchableOpacity disabled={disabled} style={!disableStyles && styles.container}>
-            <Font preset="button" style={styles.label}>{value ?? label}</Font>
+            <Font family="ubuntu" style={styles.label}>{value ?? label}</Font>
             {!disableStyles && <CaretDown color={colors.font} size={12} style={styles.indicator} />}
         </TouchableOpacity>
     );

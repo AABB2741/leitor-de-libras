@@ -8,84 +8,39 @@ import { useSettings } from "../../contexts/settings";
 
 import createStyles from "./styles";
 
-type FontName = "title" | "subtitle" | "text" | "bold" | "desc" | "desc-bold" | "input" | "label" | "button" | "heavy";
+type Family = "black" | "medium" | "regular" | "rubik" | "ubuntu";
 
 interface Fonts extends TextStyle {
-    name: FontName;
+    name: Family;
     preventTranslate?: boolean;
 }
-
-// const FONTS: Fonts[] = [{
-//     name: "title",
-//     fontSize: 18,
-//     fontFamily: "Inter-Bold"
-// }, {
-//     name: "desc",
-//     fontFamily: "Inter-Regular"
-// }, {
-//     name: "desc-bold",
-//     fontFamily: "Inter-Medium"
-// }, {
-//     name: "input",
-//     fontFamily: "Inter-Regular"
-// }, {
-//     name: "text",
-//     fontFamily: "Inter-Regular"
-// }, {
-//     name: "button",
-//     fontFamily: "Inter-Medium"
-// }, {
-//     name: "subtitle",
-//     fontFamily: "Inter-Medium"
-// }, {
-//     name: "heavy",
-//     fontFamily: "Inter-Bold"
-// }];
-
 const FONTS: Fonts[] = [{
-    name: "title",
-    fontFamily: "Inter-Black",
-    fontSize: 18
+    name: "ubuntu",
+    fontFamily: "Ubuntu"
 }, {
-    name: "desc",
-    fontFamily: "Inter-Regular"
-}, {
-    name: "desc-bold",
-    fontFamily: "Inter-Medium"
-}, {
-    name: "input",
+    name: "rubik",
     fontFamily: "Rubik"
 }, {
-    name: "label",
-    fontFamily: "Rubik-Bold"
+    name: "regular",
+    fontFamily: "Inter"
 }, {
-    name: "text",
-    fontFamily: "Inter-Regular"
+    name: "medium",
+    fontFamily: "Inter-Medium"
 }, {
-    name: "bold",
-    fontFamily: "Inter-Bold"
-}, {
-    name: "button",
-    fontFamily: "Ubuntu"
-}, {
-    name: "subtitle",
-    fontFamily: "Ubuntu"
-}, {
-    name: "heavy",
+    name: "black",
     fontFamily: "Inter-Black"
-}];
-
+}]
 
 interface FontProps extends TextProps {
-    preset?: FontName;
+    family?: Family;
 }
 
-export default function Font({ preset, style, ...rest }: FontProps) {
+export default function Font({ family, style, ...rest }: FontProps) {
     const { settings } = useSettings();
     const colors = useColors();
     const styles = createStyles({ colors });
     
     return (
-        <Text {...rest} style={[styles.text, settings.display.appearance.custom_fonts && { ...FONTS.find(f => f.name == (preset ?? "text")) }, Array.isArray(style) ? [...style] : style]} />
+        <Text {...rest} style={[styles.text, settings.display.appearance.custom_fonts && { ...FONTS.find(f => f.name == (family ?? "regular")) }, Array.isArray(style) ? [...style] : style]} />
     );
 }

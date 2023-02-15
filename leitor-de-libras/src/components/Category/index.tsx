@@ -23,7 +23,7 @@ export default function Category<T>({ title, pressable, disableVerticalSpacing =
     return (
         <View style={!disableVerticalSpacing && {marginTop: 20}}>
             <TouchableOpacity style={styles.top}>
-                <Font preset="subtitle" style={[styles.title, !disableVerticalSpacing && { marginBottom: 10 }]} numberOfLines={1}>{title}</Font>
+                <Font family="ubuntu" style={[styles.title, !disableVerticalSpacing && { marginBottom: 10 }]} numberOfLines={1}>{title}</Font>
                 {pressable && <CaretRight size={14} color={colors.font} />}
             </TouchableOpacity>
             <FlatList

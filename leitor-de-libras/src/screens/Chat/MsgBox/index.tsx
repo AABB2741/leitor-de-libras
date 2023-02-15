@@ -22,9 +22,9 @@ export default function MsgBox({ message, from, date, pov }: MsgBoxProps) {
     return (
         <View style={styles.container}>
             <View style={styles.box}>
-                <Font preset="text" style={styles.text}>{message}</Font>
+                <Font style={styles.text}>{message}</Font>
             </View>
-            <Font preset="desc" style={styles.date}>{lang.general.formats.time.replace("hh", `${d.getHours().toString().padStart(2, "0")}`).replace("mm", d.getMinutes().toString().padStart(2, "0"))}</Font>
+            <Font style={styles.date}>{lang.general.formats.time.replace("hh", `${d.getHours().toString().padStart(2, "0")}`).replace("mm", d.getMinutes().toString().padStart(2, "0"))}</Font>
         </View>
     );
 }

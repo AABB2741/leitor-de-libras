@@ -48,17 +48,17 @@ export default function Article({ navigation, route }: ArticleProps) {
                     style={[styles.fullArticle, { paddingHorizontal: 25 }]}
                     noSupportMessage={lang.article.cant_open_url.replace("%s", curiosity.credits.url)}
                 >
-                    <Font preset="button" style={styles.fullArticleLabel}>{lang.article.full_article}</Font>
+                    <Font family="ubuntu" style={styles.fullArticleLabel}>{lang.article.full_article}</Font>
                     <ArrowSquareOut color={colors.accent} size={16} />
                 </Link>
             </View>
             <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                 <View style={styles.presentation}>
-                    <Font preset="heavy" style={styles.title}>{lang.dashboard.tips[route.params.id].title}</Font>
-                    <Font preset="desc" style={styles.credits}>{lang.article.credits.replace("%s1", curiosity.credits.author ?? "??").replace("%s2", curiosity.credits.via)}</Font>
+                    <Font family="black" style={styles.title}>{lang.dashboard.tips[route.params.id].title}</Font>
+                    <Font style={styles.credits}>{lang.article.credits.replace("%s1", curiosity.credits.author ?? "??").replace("%s2", curiosity.credits.via)}</Font>
                 </View>
-                <Font preset="text" style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
-                <Font preset="text" style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
+                <Font style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
+                <Font style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
             </ScrollView>
         </View>
     );

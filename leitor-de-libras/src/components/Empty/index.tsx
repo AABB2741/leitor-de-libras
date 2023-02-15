@@ -43,8 +43,8 @@ export default function Empty({ icon, title, desc, options, visible = true, cont
     return (
         <View style={[styles.container, contentContainerStyle]}>
             {icon ? icon({ color: colors.desc3, size: 24 }) : <MagnifyingGlassMinus color={colors.desc3} weight="fill" size={36} />}
-            <Font preset="subtitle" style={styles.title}>{title ?? lang.empty.title}</Font>
-            <Font preset="desc" style={styles.desc}>{desc ?? lang.empty.desc}</Font>
+            <Font family="ubuntu" style={styles.title}>{title ?? lang.empty.title}</Font>
+            <Font style={styles.desc}>{desc ?? lang.empty.desc}</Font>
             <View style={styles.options}>
                 {options?.map(({ highlight, label, ...rest }, i) => (
                     <Button

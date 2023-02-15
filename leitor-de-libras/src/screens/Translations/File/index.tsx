@@ -87,8 +87,8 @@ export default function File({ id, state, favorited, archived, locked, disabled,
                     />
                 </View>
                 <Image style={styles.thumbnail} source={thumbnail} />
-                <Font preset="text" style={styles.title} numberOfLines={1}>{title}</Font>
-                <Font preset="text" style={styles.date} numberOfLines={1}>{`15min ∙ ${moment(date).fromNow()}`}</Font>
+                <Font style={styles.title} numberOfLines={1}>{title}</Font>
+                <Font style={styles.date} numberOfLines={1}>{`15min ∙ ${moment(date).fromNow()}`}</Font>
             </Animatable.View>
         </TouchableOpacity>
     );
@@ -114,14 +114,14 @@ function getStateIcon({ state, colors, lang }: GetIconProps) {
             return (
                 <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
                     <DownloadSimple color={colors.desc3} size={14} />
-                    <Font preset="text" style={{ fontSize: 10, color: colors.desc3, marginLeft: 5, flex: 1 }} numberOfLines={1}>{lang.translations.file.downloading}</Font>
+                    <Font style={{ fontSize: 10, color: colors.desc3, marginLeft: 5, flex: 1 }} numberOfLines={1}>{lang.translations.file.downloading}</Font>
                 </View>
             );
         case "synching":
             return (
                 <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
                     <ArrowsClockwise color={colors.desc3} size={14} />
-                    <Font preset="text" style={{ fontSize: 10, color: colors.desc3, marginLeft: 5, flex: 1 }} numberOfLines={1}>{lang.translations.file.synching}</Font>
+                    <Font style={{ fontSize: 10, color: colors.desc3, marginLeft: 5, flex: 1 }} numberOfLines={1}>{lang.translations.file.synching}</Font>
                 </View>
             )
     }
