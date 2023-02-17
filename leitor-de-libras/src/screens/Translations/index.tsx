@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import {
     Archive,
+    CheckCircle,
     CloudCheck,
     DotsThreeVertical,
     Download,
@@ -53,6 +54,8 @@ export default function Translations({ navigation }: Props) {
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
     const [order, setOrder] = useState<Order>("asc");
+
+    const allSelected = selectedFiles?.length === files?.length;
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
@@ -139,7 +142,12 @@ export default function Translations({ navigation }: Props) {
             />
             <View style={styles.container}>
                 <View style={[styles.selected, selectedFiles.length < 1 && { display: "none" }]}>
-                    <Font style={styles.selectedLabel}>{selectedFiles.length === 1 ? lang.translations.selected_single.replace("%s", selectedFiles.length.toString()) : lang.translations.selected.replace("%s", selectedFiles.length.toString())}</Font>
+                    <View style={styles.selection}>
+                        <TouchableOpacity onPress={() => setSelectedFiles(files.map(f => f.id))}>
+                            <CheckCircle weight={allSelected ? "fill" : "regular"} color={allSelected ? colors.accent : colors.font} size={16} />
+                        </TouchableOpacity>
+                        <Font style={styles.selectedLabel}>{selectedFiles.length === 1 ? lang.translations.selected_singular.replace("%s", selectedFiles.length.toString()) : lang.translations.selected.replace("%s", selectedFiles.length.toString())}</Font>
+                    </View>
                     <TouchableOpacity onPress={() => setSelectedFiles([])}>
                         <X size={16} color={colors.font} />
                     </TouchableOpacity>

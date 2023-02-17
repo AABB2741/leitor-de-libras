@@ -197,7 +197,7 @@
         }
     },
     "translations": {
-        "selected_single": "%s selecionado",
+        "selected_singular": "%s selecionado",
         "selected": "%s selecionados",
         "options": {
             "create": "Criar tradução",
@@ -239,9 +239,9 @@
             "title": "Diga \"X\"!"
         },
         "request_permission": {
-            "title": "Permita-nos acessar a sua câmera.",
-            "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
-            "learn_more": "Saiba como usamos seus dados"
+            "title": "Não conseguimos acessar sua câmera.",
+            "text": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
+            "button": "Abrir configurações"
         }
     },
     "conversations": {

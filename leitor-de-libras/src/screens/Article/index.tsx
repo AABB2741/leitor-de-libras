@@ -55,7 +55,6 @@ export default function Article({ navigation, route }: ArticleProps) {
                     <Font style={styles.credits}>{lang.article.credits.replace("%s1", curiosity.credits.author ?? "??").replace("%s2", curiosity.credits.via)}</Font>
                 </View>
                 <Font style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
-                <Font style={styles.article}>{lang.dashboard.tips[route.params.id].long}</Font>
             </ScrollView>
         </View>
     );

@@ -25,9 +25,16 @@ export default ({ colors }: TranslationsStyle) => StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    selection: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start"
+    },
     selectedLabel: {
         fontSize: 13,
-        color: colors.font
+        color: colors.font,
+        marginLeft: 10
     },
     top: {
         padding: 20,
