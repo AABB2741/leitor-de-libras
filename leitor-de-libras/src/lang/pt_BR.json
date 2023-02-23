@@ -7,6 +7,7 @@
     },
     "general": {
         "anonymous": "Usuário",
+        "local_account": "Conta local",
         "login": "Fazer login",
         "signup": "Criar uma conta",
         "filter": "Procurar...",

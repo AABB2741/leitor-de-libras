@@ -62,6 +62,13 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     }
 
     if (!permission.granted) {
+        if (permission.canAskAgain) {
+            requestPermission().then(response => {
+                console.log(response);
+            });
+            return <View style={styles.container} />;
+        }
+        
         return (
             <Message
                 title={lang.camera.request_permission.title}
