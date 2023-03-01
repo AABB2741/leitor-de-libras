@@ -33,7 +33,7 @@ export default function AppRoutes() {
                     borderTopWidth: 0,
                     shadowColor: "transparent"
                 }
-            }} tabBar={() => null}>
+            }}>
                 <Tab.Screen
                     name="DashboardRoutes"
                     component={DashboardRoutes}

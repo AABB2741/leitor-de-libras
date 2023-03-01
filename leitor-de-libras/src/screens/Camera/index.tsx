@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import {
     ImageBackground,
+    Modal,
     StatusBar,
     TouchableOpacity,
     useWindowDimensions,
@@ -22,10 +23,10 @@ import Message from "../../components/Message";
 import createStyles from "./styles";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useFocusEffect } from "@react-navigation/native";
-import { CameraRotate, FilmStrip, Lightning, LightningSlash, VideoCamera } from "phosphor-react-native";
+import { CameraRotate, FilmStrip, Lightning, LightningSlash, VideoCamera, X } from "phosphor-react-native";
 
 interface CameraProps {
-    navigation: BottomTabNavigationProp<AppScreens, "Camera">;
+    navigation: BottomTabNavigationProp<AppRoutes, "Camera">;
 }
 
 export default function Camera({ navigation, ...rest }: CameraProps) {
@@ -35,7 +36,7 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     const styles = createStyles({ colors });
 
     const [focused, setFocused] = useState(false);
-    const [flash, setFlash] = useState<number | FlashMode | undefined>(FlashMode.off);
+    const [flash, setFlash] = useState<FlashMode>(FlashMode.off);
     const [type, setType] = useState<CameraType.back | CameraType.front>(CameraType.back);
     const [permission, requestPermission] = ExpoCamera.useCameraPermissions();
 
@@ -85,30 +86,36 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     }
     
     return (
-        <View style={styles.container}>
-            {/* <ImageBackground source={require("../../../assets/camera-example.png")} style={styles.camera} /> */}
-            <StatusBar barStyle="light-content" />
-            <ExpoCamera style={styles.camera} type={type} flashMode={flash} ratio="16:9">
-                <View style={styles.overlay}>
-                    <View style={styles.top}>
-                        <TouchableOpacity onPress={() => setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off)}>
-                            {flash === FlashMode.off && <LightningSlash color={colors.font2} />}
-                            {flash === FlashMode.torch && <Lightning weight="fill" color={colors.font2} />}
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.bottom}>
-                        <View style={styles.options}>
-                            <FilmStrip size={24} color={colors.font2} />
-                            <TouchableOpacity style={styles.record}>
-                                <VideoCamera size={36} color={colors.font2} />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => setType(type === CameraType.back ? CameraType.front : CameraType.back)}>
-                                <CameraRotate size={24} color={colors.font2} />
-                            </TouchableOpacity>
+        <Modal onRequestClose={navigation.goBack}>
+            <StatusBar translucent backgroundColor="transparent" />
+            <View style={styles.container}>
+                <View style={styles.content}>
+                    <ExpoCamera style={styles.camera} type={type} flashMode={flash} ratio="16:9">
+                        <View style={styles.overlay}>
+                            <View style={styles.top}>
+                                <TouchableOpacity onPress={() => setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off)}>
+                                    {flash === FlashMode.off && <LightningSlash color={colors.font2} />}
+                                    {flash === FlashMode.torch && <Lightning weight="fill" color={colors.font2} />}
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={navigation.goBack}>
+                                    <X color={colors.font2} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bottom}>
+                                <View style={styles.options}>
+                                    <FilmStrip size={32} color={colors.font2} />
+                                    <TouchableOpacity style={styles.record}>
+                                        <VideoCamera size={32} color={colors.font2} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => setType(type === CameraType.back ? CameraType.front : CameraType.back)}>
+                                        <CameraRotate size={32} color={colors.font2} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
                         </View>
-                    </View>
+                    </ExpoCamera>
                 </View>
-            </ExpoCamera>
-        </View>
+            </View>
+        </Modal>
     );
 }

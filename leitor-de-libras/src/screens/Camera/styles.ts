@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import { ThemeProps } from '../../theme/getTheme';
 
-import Constants from 'expo-constants';
-
 interface CameraStyle {
     colors: ThemeProps;
 }
@@ -16,8 +14,15 @@ export default ({ colors }: CameraStyle) => StyleSheet.create({
         alignItems: "center"
     },
     container: {
-        backgroundColor: colors.background,
         flex: 1
+    },
+    content: {
+        backgroundColor: colors.background,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
     },
     camera: {
         flex: 1,
@@ -30,13 +35,13 @@ export default ({ colors }: CameraStyle) => StyleSheet.create({
         zIndex: 1
     },
     top: {
-        paddingTop: Constants.statusBarHeight + 10,
+        paddingTop: 10,
         paddingBottom: 10,
         paddingHorizontal: 20,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "space-between"
     },
     bottom: {
         padding: 20,
@@ -49,8 +54,8 @@ export default ({ colors }: CameraStyle) => StyleSheet.create({
     },
     record: {
         backgroundColor: colors.accent,
-        padding: 10,
+        padding: 15,
         borderRadius: 100,
-        marginHorizontal: 30
+        marginHorizontal: 50
     }
 });

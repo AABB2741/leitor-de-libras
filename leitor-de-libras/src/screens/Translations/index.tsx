@@ -23,7 +23,7 @@ import {
 } from "phosphor-react-native";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useFocusEffect } from "@react-navigation/native";
 
 import Order from "../../@types/Order";
@@ -42,7 +42,9 @@ import FILES from "../../constants/recordings";
 import log from "../../utils/log";
 import Loading from "../../components/Loading";
 
-type Props = NativeStackScreenProps<AppScreens, "TranslationsRoutes">;
+interface Props {
+    navigation: NativeStackNavigationProp<AppRoutes, "TranslationsRoutes">;
+}
 
 export default function Translations({ navigation }: Props) {
     const lang = useLang();
