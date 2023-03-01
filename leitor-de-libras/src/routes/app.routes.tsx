@@ -19,7 +19,7 @@ import Camera from "../screens/Camera";
 import TalkRoutes from "./conversation.routes";
 import Profile from "../screens/Profile";
 
-const Tab = createBottomTabNavigator<AppScreens>();
+const Tab = createBottomTabNavigator<AppRoutes>();
 
 export default function AppRoutes() {
     const { user, signed } = useUser();
@@ -33,7 +33,7 @@ export default function AppRoutes() {
                     borderTopWidth: 0,
                     shadowColor: "transparent"
                 }
-            }}>
+            }} tabBar={() => null}>
                 <Tab.Screen
                     name="DashboardRoutes"
                     component={DashboardRoutes}

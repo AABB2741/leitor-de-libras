@@ -5,7 +5,12 @@ type SettingsLocation = {
     more: "update" | "dev_tools" | "about";
 }
 
-type AppScreens = {
+type ModeRoutes = {
+    App: undefined;
+    Camera: undefined;
+}
+
+type AppRoutes = {
     DashboardRoutes: undefined;
     TranslationsRoutes: undefined;
     Camera: undefined;
