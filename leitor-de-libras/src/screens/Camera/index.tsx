@@ -1,7 +1,15 @@
-import { useState, useCallback } from "react";
 import {
+    useEffect,
+    useState,
+    useCallback,
+    useRef
+} from "react";
+import {
+    BackHandler,
     ImageBackground,
+    Linking,
     Modal,
+    Platform,
     StatusBar,
     TouchableOpacity,
     useWindowDimensions,
@@ -13,17 +21,28 @@ import {
     FlashMode,
     PermissionResponse
 } from "expo-camera";
+import {
+    CameraRotate,
+    FilmStrip,
+    Lightning,
+    LightningSlash,
+    Stop,
+    VideoCamera,
+    X
+} from "phosphor-react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 
 import Font from "../../components/Font";
+import VideoConfirm from "./VideoConfirm";
 import Loading from "../../components/Loading";
 import Message from "../../components/Message";
+import Popup, { PopupProps } from "../../components/Popup";
 
-import createStyles from "./styles";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { useFocusEffect } from "@react-navigation/native";
-import { CameraRotate, FilmStrip, Lightning, LightningSlash, VideoCamera, X } from "phosphor-react-native";
+import createStyles from "./styles";
+import log from "../../utils/log";
 
 interface CameraProps {
     navigation: BottomTabNavigationProp<AppRoutes, "Camera">;
@@ -35,26 +54,98 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const cameraRef = useRef<ExpoCamera>(null);
+    const [videoConfirmVisible, setVideoConfirmVisible] = useState(false);
+    const [message, setMessage] = useState<PopupProps | null>(null);
+    const [recording, setRecording] = useState(false);
     const [focused, setFocused] = useState(false);
     const [flash, setFlash] = useState<FlashMode>(FlashMode.off);
     const [type, setType] = useState<CameraType.back | CameraType.front>(CameraType.back);
     const [permission, requestPermission] = ExpoCamera.useCameraPermissions();
+    const [microphonePermission, requestMicrophonePermission] = ExpoCamera.useMicrophonePermissions();
 
     async function handleRequestPermission() {
-        console.log("Solicitando permissão")
-        console.log(permission?.canAskAgain)
+        if (Platform.OS === "android") {
+            Linking.openSettings();
+        } else {
+            Linking.canOpenURL("app-settings:").then(supported => {
+                if (supported) {
+
+                } else {
+                    setMessage({
+                        title: lang.camera.open_settings_failed.title,
+                        text: lang.camera.open_settings_failed.text
+                    });
+                }
+            });
+        }
     }
 
     useFocusEffect(useCallback(() => {
+        log("Iniciando câmera...", { color: "fgGray" });
         setFocused(true);
         return () => setFocused(false);
     }, []));
 
+    useEffect(useCallback(() => {
+        console.log("Usando effect")
+        function handleBack() {
+            console.log("Handlandl back")
+            if (videoConfirmVisible) {
+                setVideoConfirmVisible(false);
+                return true;
+            }
+
+            if (recording) {
+                console.log("Cancelando");
+                handleStopRecording();
+                return true;
+            }
+
+            return false;
+        }
+
+        console.log("subscrevendo");
+        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
+        return () => {
+            console.log("Cancelando subscrição");
+            sub.remove();
+        };
+    }, [videoConfirmVisible, recording]));
+
     if (!focused) {
         return null;
     }
+
+    async function handleStartRecording() {
+        log("Iniciando gravação de vídeo");
+        if (!cameraRef.current)
+            return;
+        
+        try {
+            cameraRef.current.stopRecording();
+            setRecording(true);
+            const video = await cameraRef.current.recordAsync();
+            console.log("Gravação concluída");
+            console.log(video);
+        } catch (e) {
+            log(`Erro ao iniciar gravação de vídeo:\n${e}`, { color: "fgRed" });
+            setRecording(false);
+            setMessage({ title: lang.camera.recording_failed.title, text: lang.camera.recording_failed.text.replace("%s", e as string), onRequestClose: () => setMessage(null) });
+        }
+    }
+
+    function handleStopRecording() {
+        if (!cameraRef.current)
+            return;
+
+        cameraRef.current.stopRecording();
+        setRecording(false);
+    }
+
     // TODO: Fazer função para pedir permissão. Se não tiver como pedir, exibir a mensagem de erro para abrir as configurações
-    if (!permission) {
+    if (!permission || !microphonePermission) {
+        log("Verificando permissões...", { color: "fgGray" });
         return (
             <View style={styles.loading}>
                 <Loading />
@@ -62,9 +153,19 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         );
     }
 
-    if (!permission.granted) {
-        if (permission.canAskAgain) {
+    if (!permission.granted || !microphonePermission.granted) {
+        log("Permissão não concedida", { color: "fgGray" });
+        if (!permission.granted && permission.canAskAgain) {
+            log("Solicitando permissão para usar câmera", { color: "fgGray" });
             requestPermission().then(response => {
+                console.log(response);
+            });
+            return <View style={styles.container} />;
+        }
+
+        if (!microphonePermission.granted && microphonePermission.canAskAgain) {
+            log("Solicitando permissão para usar microfone", { color: "fgGray" });
+            requestMicrophonePermission().then(response => {
                 console.log(response);
             });
             return <View style={styles.container} />;
@@ -73,7 +174,7 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         return (
             <Message
                 title={lang.camera.request_permission.title}
-                text={lang.camera.request_permission.text}
+                text={lang.camera.request_permission.text.replace("%s", lang.camera.request_permission.button)}
                 image={colors.themeType === "light" ? require("../../../assets/imgs/camera-permission-light.png") : require("../../../assets/imgs/camera-permission-dark.png")}
                 options={[{
                     label: lang.camera.request_permission.button,
@@ -85,12 +186,15 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         );
     }
     
+    log("Renderizando câmera", { color: "fgGray" });
     return (
-        <Modal onRequestClose={navigation.goBack}>
+        <Modal onRequestClose={recording ? () => null : navigation.goBack}>
             <StatusBar translucent backgroundColor="transparent" />
+            {message && <Popup { ...message } visible />}
+            <VideoConfirm visible={videoConfirmVisible} />
             <View style={styles.container}>
                 <View style={styles.content}>
-                    <ExpoCamera style={styles.camera} type={type} flashMode={flash} ratio="16:9">
+                    <ExpoCamera style={styles.camera} type={type} flashMode={flash} ratio="16:9" ref={cameraRef}>
                         <View style={styles.overlay}>
                             <View style={styles.top}>
                                 <TouchableOpacity onPress={() => setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off)}>
@@ -103,13 +207,15 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
                             </View>
                             <View style={styles.bottom}>
                                 <View style={styles.options}>
-                                    <FilmStrip size={32} color={colors.font2} />
-                                    <TouchableOpacity style={styles.record}>
-                                        <VideoCamera size={32} color={colors.font2} />
+                                    {!recording && <FilmStrip size={32} color={colors.font2} />}
+                                    <TouchableOpacity style={styles.record} onPress={recording ? handleStopRecording : handleStartRecording}>
+                                        {recording ? <Stop size={32} color={colors.font2} weight="fill" /> : <VideoCamera size={32} color={colors.font2} />}
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => setType(type === CameraType.back ? CameraType.front : CameraType.back)}>
-                                        <CameraRotate size={32} color={colors.font2} />
-                                    </TouchableOpacity>
+                                    {!recording && (
+                                        <TouchableOpacity onPress={() => setType(type === CameraType.back ? CameraType.front : CameraType.back)}>
+                                            <CameraRotate size={32} color={colors.font2} />
+                                        </TouchableOpacity>
+                                    )}
                                 </View>
                             </View>
                         </View>

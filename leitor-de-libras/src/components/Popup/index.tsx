@@ -18,7 +18,7 @@ import createStyles from "./styles";
 
 export type PopupOption = "ok" | "confirm" | "boolean";
 
-interface PopupProps extends ModalProps {
+export interface PopupProps extends ModalProps {
     type?: PopupOption;
     title?: string;
     text?: string;

@@ -36,7 +36,8 @@
     "react-native-web": "~0.18.9",
     "ts-deepmerge": "^5.0.0",
     "uuid": "^9.0.0",
-    "expo-speech": "~11.0.0"
+    "expo-speech": "~11.0.0",
+    "expo-av": "~13.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

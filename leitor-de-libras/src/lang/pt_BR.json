@@ -249,9 +249,22 @@
             "title": "Diga \"X\"!"
         },
         "request_permission": {
-            "title": "Não conseguimos acessar sua câmera.",
-            "text": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
+            "title": "Não conseguimos acessar sua câmera ou microfone.",
+            "text": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera e microfone.\nToque em %s para abrir as configurações do seu dispositivo.",
             "button": "Abrir configurações"
+        },
+        "open_settings_failed": {
+            "title": "Não foi possível conceder permissões",
+            "text": "Não conseguimos abrir as configurações para solicitar as permissões necessárias. Acesse as configurações do seu dispositivo e nos dê permissão para acessar a câmera e o microfone"
+        },
+        "recording_finished": {
+            "text": "Gravação concluída",
+            "discard": "Descartar",
+            "ok": "Ok"
+        },
+        "recording_failed": {
+            "title": "Não foi possível iniciar a gravação",
+            "text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
         }
     },
     "conversations": {
