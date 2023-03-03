@@ -11,7 +11,7 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         backgroundColor: colors.background
     },
     video: {
-        backgroundColor: "red",
+        backgroundColor: colors.background2,
         flex: 1,
         maxHeight: 200
     },

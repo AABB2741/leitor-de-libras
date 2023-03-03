@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
-import * as Tts from "../../utils/Tts";
+import * as Tts from "../../services/Tts";
 import * as Storage from "../../services/Storage";
 
 import { RouteProp } from "@react-navigation/native";

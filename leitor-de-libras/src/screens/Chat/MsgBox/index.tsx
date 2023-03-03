@@ -4,7 +4,7 @@ import {
     View
 } from "react-native";
 import { SpeakerHigh, SpeakerNone } from "phosphor-react-native";
-import * as Tts from "../../../utils/Tts";
+import * as Tts from "../../../services/Tts";
 
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
@@ -29,6 +29,7 @@ export default function MsgBox({ message, from, date, pov, forceSpeaking }: MsgB
 
     const d = new Date(date);
 
+    // TODO: Colocar para mudar o idioma de fala
     function handleSpeak() {
         Tts.speak(message, {
             onStart: () => setSpeaking(true),
