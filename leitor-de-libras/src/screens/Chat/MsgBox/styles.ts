@@ -13,8 +13,8 @@ export default ({ colors, from, invert }: MsgBoxStyle) => StyleSheet.create({
         paddingHorizontal: 20
     },
     box: {
-        flexDirection: "row",
-        justifyContent: invert ? "flex-start" : "flex-end",
+        flexDirection: invert ? "row-reverse" : "row",
+        justifyContent: "flex-end",
         alignItems: "center"
     },
     speak: {

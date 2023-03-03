@@ -13,6 +13,7 @@
         "filter": "Procurar...",
         "warning": "Aviso: %s",
         "resource_not_available": "Recurso não disponível",
+        "tts_lang": "pt",
         "user": {
             "anonymous": "Anônimo",
             "loading":  "Carregando usuário..."
@@ -184,6 +185,14 @@
                 "reduce_animations": "Reduzir animações"
             }
         },
+        "accessibility": {
+            "title": "Acessibilidade",
+            "litalks": {
+                "title": "Configurações do LiTalks",
+                "tts_on_msg": "Falar texto em voz alta ao enviar mensagem",
+                "tts_say_name": "Incluir na fala o nome do autor da mensagem"
+            }
+        },
         "more": {
             "title": "Mais configurações",
             "check_updates": {
@@ -285,7 +294,79 @@
         },
         "chat": {
             "placeholder": "Conversar com %s",
-            "guest": "Convidado(a)"
+            "guest": "Convidado(a)",
+            "tts_prefix": "%s1 disse: %s2"
+        },
+        "suggestions": {
+            "greetings": {
+                "msg": "Olá, tudo bem?",
+                "respondsTo": ["olá", "oi"]
+            },
+            "im_ok": {
+                "msg": "Tudo ótimo!",
+                "respondsTo": ["tudo bem"]
+            },
+            "ask_bathroom": {
+                "msg": "Onde fica o banheiro?",
+                "respondsTo": ["precisa", "tudo ótimo"]
+            },
+            "ask_help": {
+                "msg": "Pode me ajudar?",
+                "respondsTo": ["tudo ótimo"]
+            },
+            "what_you_need": {
+                "msg": "Do que você precisa?",
+                "respondsTo": ["ajuda", "ok"]
+            },
+            "ask_hospital": {
+                "shortMsg": "Onde tem hospital?",
+                "msg": "Você sabe onde tem algum hospital por perto?",
+                "respondsTo": ["precisa"]
+            },
+            "nevermind": {
+                "msg": "Deixa pra lá",
+                "respondsTo": ["precisa"]
+            },
+            "ill_check": {
+                "msg": "Vou verificar",
+                "respondsTo": ["onde", "você sabe"]
+            },
+            "idk": {
+                "msg": "Não sei",
+                "respondsTo": ["onde", "você sabe"]
+            },
+            "no": {
+                "msg": "Não",
+                "respondsTo": ["mais algum", "você sabe", "onde"]
+            },
+            "thanks": {
+                "msg": "Obrigado!"
+            },
+            "ok_thanks": {
+                "msg": "Ok, obrigado!",
+                "respondsTo": ["Não sei"]
+            },
+            "youre_welcome": {
+                "msg": "De nada",
+                "respondsTo": ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu"]
+            },
+            "anything_else": {
+                "shortMsg": "Mais algo?",
+                "msg": "Precisa de mais alguma coisa?",
+                "respondsTo": ["obrigado", "obrigada", "ok", "obrigado", "vlw", "valeu"]
+            },
+            "need_to_go": {
+                "msg": "Preciso ir",
+                "respondsTo": ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
+            },
+            "ok": {
+                "msg": "Ok",
+                "respondsTo": ["preciso ir", "prefiro", "vou verificar", "não", "nada"]
+            },
+            "bye": {
+                "msg": "Tchau",
+                "respondsTo": ["tchau", "flw", "preciso ir", "até a próxima"]
+            }
         }
     },
     "profile": {

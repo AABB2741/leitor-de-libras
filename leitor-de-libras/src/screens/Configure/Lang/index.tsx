@@ -11,9 +11,9 @@ import styles from "./styles";
 import getLang, { LangName, LANGS } from "../../../lang/getLang";
 
 export default function Lang() {
-    const {settings, saveSettings} = useSettings();
+    const { settings, saveSettings } = useSettings();
     const lang = useLang();
-    
+
     return (
         <View style={styles.container}>
             <FixedCategory
@@ -31,7 +31,7 @@ export default function Lang() {
                         value: l.name
                     }))]}
                     value={settings.display.lang}
-                    onValueChange={lang => saveSettings({display: { lang }} as {display: {lang: LangName}})}
+                    onValueChange={lang => saveSettings({ display: { lang } } as { display: { lang: LangName } })}
                 />
             </FixedCategory>
             <FixedCategory

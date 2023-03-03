@@ -1,38 +1,54 @@
-import { SpeakerHigh } from "phosphor-react-native";
+import { useState } from "react";
 import {
     TouchableOpacity,
     View
 } from "react-native";
+import { SpeakerHigh, SpeakerNone } from "phosphor-react-native";
+import * as Tts from "../../../utils/Tts";
 
-import Font from "../../../components/Font";
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
+
+import Font from "../../../components/Font";
 
 import createStyles from "./styles";
 
 interface MsgBoxProps extends Msg {
     pov: "owner" | "guest";
+    forceSpeaking?: boolean;
 }
 
-export default function MsgBox({ message, from, date, pov }: MsgBoxProps) {
+export default function MsgBox({ message, from, date, pov, forceSpeaking }: MsgBoxProps) {
     const invert = from !== pov;
 
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors, from, invert });
 
+    const [speaking, setSpeaking] = useState(forceSpeaking ?? false);
+
     const d = new Date(date);
+
+    function handleSpeak() {
+        Tts.speak(message, {
+            onStart: () => setSpeaking(true),
+            onDone: () => setSpeaking(false),
+            onStopped: () => setSpeaking(false)
+        });
+    }
+
+    function handleStopSpeaking() {
+        Tts.stop();
+        setSpeaking(false);
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.box}>
-                <TouchableOpacity style={[styles.speak, invert && { display: "none" }]}>
-                    <SpeakerHigh color={colors.desc3} size={18} />
+                <TouchableOpacity style={styles.speak} onPress={speaking ? handleStopSpeaking : handleSpeak}>
+                    {speaking ? <SpeakerHigh color={colors.font} size={18} weight="fill" /> : <SpeakerNone color={colors.desc3} size={18} />}
                 </TouchableOpacity>
                 <Font style={styles.text}>{message}</Font>
-                <TouchableOpacity style={[styles.speak, !invert && { display: "none" }]}>
-                    <SpeakerHigh color={colors.desc3} size={18} />
-                </TouchableOpacity>
             </View>
             <Font style={styles.date}>{lang.general.formats.time.replace("hh", `${d.getHours().toString().padStart(2, "0")}`).replace("mm", d.getMinutes().toString().padStart(2, "0"))}</Font>
         </View>

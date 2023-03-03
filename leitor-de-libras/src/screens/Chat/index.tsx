@@ -7,12 +7,16 @@ import {
     Keyboard,
     View,
 } from "react-native";
+import Constants from "expo-constants";
+
+import * as Tts from "../../utils/Tts";
+import * as Storage from "../../services/Storage";
+
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import * as Storage from "../../services/Storage";
-import Constants from "expo-constants";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
+import { useSettings } from "../../contexts/settings";
 
 import Frame from "./Frame";
 import Loading from "../../components/Loading";
@@ -29,6 +33,7 @@ interface ChatProps {
 
 export default function Chat({ navigation, route }: ChatProps) {
     const lang = useLang();
+    const { settings } = useSettings();
     const colors = useColors();
     const styles = createStyles({ colors });
 
@@ -70,6 +75,10 @@ export default function Chat({ navigation, route }: ChatProps) {
     function handleSendMessage({ from, message }: Omit<Msg, "date">) {
         if (!message.trim())
             return;
+
+        if (settings.accessibility.litalks.tts_on_msg) {
+            Tts.speak(message);
+        }
 
         const newMessages = messages ? [...messages] : [];
         newMessages.push({

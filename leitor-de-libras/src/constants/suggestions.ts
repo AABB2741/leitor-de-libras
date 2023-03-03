@@ -1,3 +1,5 @@
+import { LangProps } from "../lang/getLang";
+
 export type SuggestionProps = {
     msg: string;
     shortMsg?: string;
@@ -5,61 +7,46 @@ export type SuggestionProps = {
     initial?: boolean;
 }
 
-const SUGGESTIONS: SuggestionProps[] = [{
-    msg: "Olá, tudo bem?",
-    respondsTo: ["olá", "oi"],
-    initial: true
-}, {
-    msg: "Tudo ótimo!",
-    respondsTo: ["tudo bem"]
-}, {
-    msg: "Onde fica o banheiro?",
-    initial: true,
-    respondsTo: ["precisa", "tudo ótimo"]
-}, {
-    msg: "Pode me ajudar?",
-    initial: true,
-    respondsTo: ["tudo ótimo"]
-}, {
-    msg: "Do que você precisa?",
-    respondsTo: ["ajuda", "ok"]
-}, {
-    shortMsg: "Onde tem hospital?",
-    msg: "Você sabe onde tem algum hospital por perto?",
-    respondsTo: ["precisa"]
-}, {
-    msg: "Deixa pra lá",
-    respondsTo: ["precisa"]
-}, {
-    msg: "Vou verificar",
-    respondsTo: ["onde", "você sabe"]
-}, {
-    msg: "Não sei",
-    respondsTo: ["onde", "você sabe"]
-}, {
-    msg: "Não",
-    respondsTo: ["mais algum", "você sabe", "onde"]
-}, {
-    msg: "Obrigado!"
-}, {
-    msg: "Ok, obrigado!",
-    respondsTo: ["Não sei"]
-}, {
-    msg: "De nada",
-    respondsTo: ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu"]
-}, {
-    shortMsg: "Mais algo?",
-    msg: "Precisa de mais alguma coisa?",
-    respondsTo: ["obrigado", "obrigada", "ok", "obrigado", "vlw", "valeu"]
-}, {
-    msg: "Preciso ir",
-    respondsTo: ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
-}, {
-    msg: "Ok",
-    respondsTo: ["preciso ir", "prefiro", "vou verificar", "não", "nada"]
-}, {
-    msg: "Tchau",
-    respondsTo: ["tchau", "flw", "preciso ir", "até a próxima"]
-}];
+export default function getSuggestions(lang: LangProps) {
+    const SUGGESTIONS: SuggestionProps[] = [{
+        ...lang.conversations.suggestions.greetings,
+        initial: true
+    }, {
+        ...lang.conversations.suggestions.im_ok
+    }, {
+        ...lang.conversations.suggestions.ask_bathroom,
+        initial: true,
+    }, {
+        ...lang.conversations.suggestions.ask_help,
+        initial: true
+    }, {
+        ...lang.conversations.suggestions.what_you_need,
+        respondsTo: ["ajuda", "ok"]
+    }, {
+        ...lang.conversations.suggestions.ask_hospital
+    }, {
+        ...lang.conversations.suggestions.nevermind
+    }, {
+        ...lang.conversations.suggestions.ill_check
+    }, {
+        ...lang.conversations.suggestions.idk
+    }, {
+        ...lang.conversations.suggestions.no
+    }, {
+        ...lang.conversations.suggestions.thanks
+    }, {
+        ...lang.conversations.suggestions.ok_thanks
+    }, {
+        ...lang.conversations.suggestions.youre_welcome
+    }, {
+        ...lang.conversations.suggestions.anything_else
+    }, {
+        ...lang.conversations.suggestions.need_to_go
+    }, {
+        ...lang.conversations.suggestions.ok
+    }, {
+        ...lang.conversations.suggestions.bye
+    }];
 
-export default SUGGESTIONS;
+    return SUGGESTIONS;
+}

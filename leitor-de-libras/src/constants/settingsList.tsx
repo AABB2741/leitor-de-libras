@@ -1,4 +1,5 @@
 import {
+    ChatsCircle,
     ClockClockwise,
     Code,
     Gauge,
@@ -14,6 +15,8 @@ import Appearance from "../screens/Configure/Appearance";
 import DevTools from "../screens/Configure/DevTools";
 import Lang from "../screens/Configure/Lang";
 import Performance from "../screens/Configure/Performance";
+
+import LiTalks from "../screens/Configure/LiTalks";
 
 export type Category = {
     category: keyof SettingsLocation;
@@ -55,6 +58,15 @@ export default function getSettings({ lang }: getSettingsProps) {
             desc: lang.settings.display.performance.desc,
             icon: props => <Gauge {...props} />,
             component: Performance
+        }]
+    }, {
+        category: "accessibility",
+        title: lang?.settings?.accessibility?.title,
+        settings: [{
+            location: "litalks",
+            title: lang.settings.accessibility.litalks.title,
+            icon: props => <ChatsCircle {...props} />,
+            component: LiTalks
         }]
     }, {
         category: "more",

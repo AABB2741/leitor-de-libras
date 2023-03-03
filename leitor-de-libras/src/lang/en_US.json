@@ -6,8 +6,25 @@
         
     },
     "general": {
+        "anonymous": "User",
+        "local_account": "Local account",
         "login": "Sign in",
+        "signup": "Sign up",
         "filter": "Search...",
+        "warning": "Warning: %s",
+        "resource_not_available": "Feature not available",
+        "tts_lang": "en",
+        "user": {
+            "anonymous": "Anonymous",
+            "loading":  "Loading user..."
+        },
+        "modal": {
+            "ok": "Ok",
+            "yes": "Sim",
+            "no": "Não",
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
+        },
         "order": {
             "date": "Date",
             "name": "Name",
@@ -39,6 +56,8 @@
     "dashboard": {
         "signed_welcome": "Welcome to %s1, %s2!",
         "welcome": "Welcome to %s!",
+        "cellular": "You are using mobile data. We recommend you to connect to a Wi-Fi network to use the app and prevent additional charging.",
+        "disconnected": "You have no network connection. You can only use %s and open locally saved files.",
         "tips": {
             "curiosity": "Did you know?",
             "tip": "Tip:",
@@ -146,6 +165,122 @@
             "title": "Permita-nos acessar a sua câmera.",
             "desc": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera.",
             "learn_more": "Saiba como usamos seus dados"
+        }
+    },
+    "conversations": {
+        "title": "Li Talks",
+        "meet_label": "Messages to %s",
+        "untitled": "Chat with %s",
+        "whos_talking": "You are talking with %s",
+        "presentation": {
+            "intro": "Apresentando o %s",
+            "text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
+        },
+        "empty": {
+            "title": "No conversations",
+            "desc": "You don't have saved conversations yet. Create a new conversation to start.",
+            "try": "Create a conversation",
+            "learn_more": "Learn how it works"
+        },
+        "create": {
+            "title": "Create new conversation",
+            "name": {
+                "label": "Name",
+                "placeholder": "Who are you talking to?"
+            },
+            "meet_name": {
+                "label": "Conversation name",
+                "placeholder": "Insert a title"
+            }
+        },
+        "left_chat_confirm": {
+            "title": "Leave conversation?",
+            "text": "Maybe you have unsaved messages, and leaving will delete them.\nAre you sure that you want do leave?"
+        },
+        "delete": {
+            "title": "Delete conversation",
+            "text": "Are you sure you want to delete the conversation \"%s\"? All messages will be deleted."
+        },
+        "delete_err": {
+            "title": "Failed to delete conversation",
+            "text": "Sorry, there was an error while trying to delete conversation \"%s\". If the error persists, tell us."
+        },
+        "chat": {
+            "placeholder": "Talk to %s",
+            "guest": "Guest",
+            "tts_prefix": "%s1 says: %s2"
+        },
+        "suggestions": {
+            "greetings": {
+                "msg": "Hello, how are you?",
+                "respondsTo": ["hello", "hi"]
+            },
+            "im_ok": {
+                "msg": "I'm fine!",
+                "respondsTo": ["how are you"]
+            },
+            "ask_bathroom": {
+                "shortMsg": "Where's bathroom?",
+                "msg": "Do you know where is the bathroom?",
+                "respondsTo": ["need", "i'm fine"]
+            },
+            "ask_help": {
+                "msg": "Can you help me?",
+                "respondsTo": ["i'm fine"]
+            },
+            "what_you_need": {
+                "msg": "What do you need?",
+                "respondsTo": ["help me", "help", "ok"]
+            },
+            "ask_hospital": {
+                "shortMsg": "Where's hospital?",
+                "msg": "Do you know a near hospital?",
+                "respondsTo": ["need"]
+            },
+            "nevermind": {
+                "msg": "Nevermind",
+                "respondsTo": ["need"]
+            },
+            "ill_check": {
+                "msg": "I'll check",
+                "respondsTo": ["where", "do you know"]
+            },
+            "idk": {
+                "msg": "I don't know",
+                "respondsTo": ["where", "do you know"]
+            },
+            "no": {
+                "msg": "No",
+                "respondsTo": ["something else", "do you know", "where"]
+            },
+            "thanks": {
+                "msg": "Thank you!"
+            },
+            "ok_thanks": {
+                "msg": "Ok, thanks!",
+                "respondsTo": ["i don't know", "idk"]
+            },
+            "youre_welcome": {
+                "msg": "You're welcome!",
+                "respondsTo": ["thank you", "thankyou", "ok, thanks", "ty"]
+            },
+            "anything_else": {
+                "shortMsg": "Mais algo?",
+                "msg": "Precisa de mais alguma coisa?",
+                "respondsTo": ["thank you", "thankyou", "ok", "thanks", "ty"]
+            },
+            "need_to_go": {
+                "msg": "I gotta go",
+                "respondsTo": ["thank you", "thankyou", "ok, thanks", "ty", "you're welcome", "youre welcome", "you are welcome"]
+            },
+            "ok": {
+                "msg": "Ok",
+                "respondsTo": ["i gotta go", "i'll check", "no", "nothing"]
+            },
+            "bye": {
+                "msg": "Bye",
+                "respondsTo": ["bye", "gb", "i gotta go", "goodbye"]
+            }
         }
     }
 }

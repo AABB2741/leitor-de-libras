@@ -13,6 +13,12 @@ export interface SettingsProps {
         performance: {
             reduce_animations: boolean;
         }
+    },
+    accessibility: {
+        litalks: {
+            tts_on_msg: boolean;
+            tts_say_name: boolean;
+        }
     }
 }
 
@@ -22,11 +28,17 @@ const SETTINGS: SettingsProps = {
             theme: "auto",
             default_dark_mode: "dark",
             custom_fonts: true,
-            connection_alerts: true   
+            connection_alerts: true
         },
         lang: "auto",
         performance: {
             reduce_animations: false
+        }
+    },
+    accessibility: {
+        litalks: {
+            tts_on_msg: true,
+            tts_say_name: false
         }
     }
 }

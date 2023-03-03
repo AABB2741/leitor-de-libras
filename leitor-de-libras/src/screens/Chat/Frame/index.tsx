@@ -18,7 +18,7 @@ import { useUser } from "../../../contexts/user";
 import { useLang } from "../../../contexts/lang";
 import { useColors } from "../../../contexts/colors";
 import normalize from "../../../utils/normalize";
-import SUGGESTIONS, { SuggestionProps } from "../../../constants/suggestions";
+import getSuggestions, { SuggestionProps } from "../../../constants/suggestions";
 
 import createStyles from "./styles";
 
@@ -47,6 +47,7 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors, guest, mode });
+    const SUGGESTIONS = getSuggestions(lang);
 
     const [msg, setMsg] = useState("");
     const [suggestions, setSuggestions] = useState<SuggestionProps[]>([]);
