@@ -1,12 +1,13 @@
 import { useState, useEffect, createContext, useContext } from "react";
 
-import USER, { UserProps } from "../constants/user";
+import USER from "../constants/user";
 
 import log from "../utils/log";
 
 type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
+    token?: string;
     logOut: () => void;
 }
 
@@ -37,7 +38,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, signed, logOut }}>
+        <UserContext.Provider value={{ user, signed, token:"AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", logOut }}>
             {children}
         </UserContext.Provider>
     );
