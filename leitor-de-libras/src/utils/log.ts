@@ -38,5 +38,5 @@ export interface LogConfigs {
 
 export default function log(msg: string, { color, from, tab }: LogConfigs = {}) {
     const d = new Date();
-    console.log(`${colors.fgGray}[${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}]${tab ? "  ↳ " : ""}${from ? ` ${colors.fgYellow}${from}${colors[color ?? "fgGray"]}:` : ""} ${colors[color ?? "fgWhite"]}${msg}${colors.reset}`);
+    console.log(`${colors.fgGray}[${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}]${tab ? "  ↳ " : ""}${from ? ` ${tab ? colors.fgGray : colors.fgYellow}${from}${colors[color ?? "fgGray"]}:` : ""} ${colors[color ?? "fgWhite"]}${msg}${colors.reset}`);
 }

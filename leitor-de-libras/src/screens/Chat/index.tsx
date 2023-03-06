@@ -1,8 +1,10 @@
 import {
+    useCallback,
     useEffect,
     useState
 } from "react";
 import {
+    BackHandler,
     FlatList,
     Keyboard,
     View,
@@ -12,7 +14,7 @@ import Constants from "expo-constants";
 import * as Tts from "../../services/Tts";
 import * as Storage from "../../services/Storage";
 
-import { RouteProp } from "@react-navigation/native";
+import { RouteProp, useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
@@ -44,6 +46,18 @@ export default function Chat({ navigation, route }: ChatProps) {
     const [inverted, setInverted] = useState(false);
     const [occupied, setOccupied] = useState<null | boolean | "loading" | "saving">("loading");
     const [leftConfirm, setLeftConfirm] = useState(false);
+
+    useFocusEffect(useCallback(() => {
+        function handleBack() {
+            if (settings.features.litalks.confirm_back) {
+                setLeftConfirm(true);
+                return true;
+            }
+        }
+
+        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
+        return sub.remove;
+    }, []));
 
     useEffect(() => {
         log("Obtendo conversas do bate-papo " + route.params.id, { color: "fgGray" });
