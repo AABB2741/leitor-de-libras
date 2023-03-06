@@ -76,7 +76,7 @@ export default function Chat({ navigation, route }: ChatProps) {
         if (!message.trim())
             return;
 
-        if (settings.accessibility.litalks.tts_on_msg) {
+        if (settings.features.litalks.tts_on_msg) {
             Tts.speak(message);
         }
 
@@ -106,7 +106,9 @@ export default function Chat({ navigation, route }: ChatProps) {
         if (!messages?.length)
             return navigation.goBack();
 
-        setLeftConfirm(true);
+        if (settings.features.litalks.confirm_back) {
+            setLeftConfirm(true);
+        } else navigation.goBack();
     }
 
     if (chatInfos === null || messages === null) {

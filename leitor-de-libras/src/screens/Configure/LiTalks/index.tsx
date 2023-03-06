@@ -16,14 +16,19 @@ export default function LiTalks() {
     return (
         <View style={styles.container}>
             <Toggle
-                label={lang.settings.accessibility.litalks.tts_on_msg}
-                value={settings.accessibility.litalks.tts_on_msg}
-                onValueChange={tts_on_msg => saveSettings({ accessibility: { litalks: { tts_on_msg } } })}
+                label={lang.settings.features.litalks.tts_on_msg}
+                value={settings.features.litalks.tts_on_msg}
+                onValueChange={tts_on_msg => saveSettings({ features: { litalks: { tts_on_msg } } })}
             />
             <Toggle
-                label={lang.settings.accessibility.litalks.tts_say_name}
-                value={settings.accessibility.litalks.tts_say_name}
-                onValueChange={tts_say_name => saveSettings({ accessibility: { litalks: { tts_say_name } } })}
+                label={lang.settings.features.litalks.tts_say_name}
+                value={settings.features.litalks.tts_say_name}
+                onValueChange={tts_say_name => saveSettings({ features: { litalks: { tts_say_name } } })}
+            />
+            <Toggle
+                label={lang.settings.features.litalks.confirm_back}
+                value={settings.features.litalks.confirm_back}
+                onValueChange={confirm_back => saveSettings({ features: { litalks: { confirm_back } } })}
             />
         </View>
     );

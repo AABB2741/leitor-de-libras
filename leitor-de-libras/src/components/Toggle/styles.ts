@@ -15,6 +15,9 @@ export default ({ colors }: ToggleStyle) => StyleSheet.create({
         marginBottom: 20
     },
     label: {
-
+        
+    },
+    toggle: {
+        
     }
 });

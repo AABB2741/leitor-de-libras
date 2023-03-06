@@ -60,11 +60,11 @@ export default function getSettings({ lang }: getSettingsProps) {
             component: Performance
         }]
     }, {
-        category: "accessibility",
-        title: lang?.settings?.accessibility?.title,
+        category: "features",
+        title: lang?.settings?.features?.title,
         settings: [{
             location: "litalks",
-            title: lang.settings.accessibility.litalks.title,
+            title: lang.settings.features.litalks.title,
             icon: props => <ChatsCircle {...props} />,
             component: LiTalks
         }]

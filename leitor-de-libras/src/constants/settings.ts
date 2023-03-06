@@ -14,10 +14,11 @@ export interface SettingsProps {
             reduce_animations: boolean;
         }
     },
-    accessibility: {
+    features: {
         litalks: {
             tts_on_msg: boolean;
             tts_say_name: boolean;
+            confirm_back: boolean;
         }
     }
 }
@@ -35,10 +36,11 @@ const SETTINGS: SettingsProps = {
             reduce_animations: false
         }
     },
-    accessibility: {
+    features: {
         litalks: {
             tts_on_msg: true,
-            tts_say_name: false
+            tts_say_name: false,
+            confirm_back: true
         }
     }
 }

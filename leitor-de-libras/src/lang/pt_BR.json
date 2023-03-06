@@ -185,12 +185,13 @@
                 "reduce_animations": "Reduzir animações"
             }
         },
-        "accessibility": {
-            "title": "Acessibilidade",
+        "features": {
+            "title": "Recursos",
             "litalks": {
                 "title": "Configurações do LiTalks",
                 "tts_on_msg": "Falar texto em voz alta ao enviar mensagem",
-                "tts_say_name": "Incluir na fala o nome do autor da mensagem"
+                "tts_say_name": "Incluir na fala o nome do autor da mensagem",
+                "confirm_back": "Pedir confirmação para sair da conversa"
             }
         },
         "more": {
