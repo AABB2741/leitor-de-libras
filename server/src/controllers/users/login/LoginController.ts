@@ -1,9 +1,13 @@
+import jwt from "jsonwebtoken";
+
 import { Request, Response } from "express";
 import { AppError } from "../../../errors/AppError";
-import { getLang } from "../../../lang/getLang";
-import { RequestBody } from "../../../utils/RequestBody";
 
 import { LoginUseCase, UserLoginData } from "./LoginUseCase";
+
+import { RequestBody } from "../../../utils/RequestBody";
+import { getLang } from "../../../lang/getLang";
+import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
     async handle(req: RequestBody<UserLoginData>, res: Response) {
@@ -22,7 +26,14 @@ export class LoginController {
         if (!user) {
             throw new AppError(lang.login.err.invalid_email_or_password);
         } else {
+            const token = jwt.sign(
+                { id: user.id },
+                SECRET,
+                { expiresIn: 60 * 60} // 1 hora
+            );
+
             res.status(200).json({
+                token,
                 avatar: user.avatar,
                 name: user.name,
                 email
