@@ -1,4 +1,4 @@
-class AppError {
+export class AppError {
     public readonly message: string;
     public readonly status: number;
 
