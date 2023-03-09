@@ -1,16 +1,20 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import * as Storage from "../services/Storage";
+import axios from "axios";
 
 import USER from "../constants/user";
 
+import api from "../constants/api.json";
 import log from "../utils/log";
+import ApiResponse from "../constants/ApiResponse";
 
 type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
     usingLocal: boolean | null;
     token?: string;
-    logOut: () => void;
+    login: (email: string, password: string) => Promise<boolean>;
+    logOut: () => Promise<boolean>;
 }
 
 interface UserProviderProps {
@@ -24,7 +28,21 @@ export default function UserProvider({ children }: UserProviderProps) {
     const [signed, setSigned] = useState<boolean | null>(null);
     const [usingLocal, setUsingLocal] = useState<boolean | null>(null);
 
-    async function logOut(): Promise<boolean> {
+    async function login(email: string, password: string) {
+        if (!email.trim() || !password.trim())
+            return false;
+
+        // TODO: Terminar requisição de login
+        const response = await axios.post<ApiResponse<UserProps & { token: string }>>(`${api.address}/user/login`, {
+            email,
+            password
+        });
+
+        if (response.data.status)
+        return false;
+    }
+
+    async function logOut() {
         log("Desconectando-se...", { color: "fgGray" });
         await Storage.deleteItem("user");
         setUser(null);
@@ -51,7 +69,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, signed, usingLocal, token:"AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", logOut }}>
+        <UserContext.Provider value={{ user, signed, usingLocal, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
             {children}
         </UserContext.Provider>
     );
