@@ -21,18 +21,21 @@ import Empty from "../../components/Empty";
 import Input from "../../components/Input";
 import Font from "../../components/Font";
 import FixedCategory from "../../components/FixedCategory";
+import LoginForm from "../../components/LoginForm";
 
 import createStyles from "./styles";
 import log from "../../utils/log";
 
 export default function Profile() {
     const lang = useLang();
-    const { user, signed } = useUser();
+    const { user, signed, logOut } = useUser();
     const colors = useColors();
 
     const styles = createStyles({ colors });
 
+    const [loading, setLoading] = useState(false);
     const [signOutVisible, setSignOutVisible] = useState(false);
+    const [loginFormVisible, setLoginFormVisible] = useState(false);
 
     useFocusEffect(useCallback(() => {
         function handleBack() {
@@ -48,6 +51,9 @@ export default function Profile() {
     if (!user || !signed) {
         return (
             <>
+                <LoginForm
+                    visible={loginFormVisible}
+                />
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                     <Empty
                         icon={props => <UserCircleMinus {...props} />}
@@ -56,7 +62,7 @@ export default function Profile() {
                         options={[{
                             label: lang.general.login,
                             highlight: true,
-                            // onPress: () => setRoute("LoginRoutes") // navigation.navigate("LoginRoutes")
+                            onPress: () => setLoginFormVisible(true)
                         }]}
                     />
                 </ScrollView>
@@ -73,6 +79,18 @@ export default function Profile() {
                 visible={signOutVisible}
                 caution
                 onRequestClose={() => setSignOutVisible(false)}
+                loading={loading}
+                onRespondBoolean={async response => {
+                    setLoading(true);
+                    await logOut();
+
+                    if (response) {
+                        setLoginFormVisible(true);
+                    }
+
+                    setLoading(false);
+                    setSignOutVisible(false);
+                }}
             />
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View style={styles.header}>

@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { ThemeProps } from "../../../theme/getTheme";
-import Constants from "expo-constants";
 
 interface LoginStyle {
     colors: ThemeProps;
@@ -9,8 +8,7 @@ interface LoginStyle {
 export default ({ colors }: LoginStyle) => StyleSheet.create({
     wrapper: {
         backgroundColor: colors.background,
-        flex: 1,
-        paddingTop: Constants.statusBarHeight
+        flex: 1
     },
     container: {
         flex: 1
@@ -21,7 +19,8 @@ export default ({ colors }: LoginStyle) => StyleSheet.create({
     title: {
         flex: 1,
         textAlign: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        fontSize: 20
     },
     desc: {
         textAlign: "center",

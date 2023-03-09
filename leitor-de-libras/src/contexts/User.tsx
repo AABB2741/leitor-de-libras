@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from "react";
+import * as Storage from "../services/Storage";
 
 import USER from "../constants/user";
 
@@ -23,22 +24,30 @@ export default function UserProvider({ children }: UserProviderProps) {
     const [signed, setSigned] = useState<boolean | null>(null);
     const [usingLocal, setUsingLocal] = useState<boolean | null>(null);
 
-    async function logOut() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(false);
-            }, 2500);
-        });
+    async function logOut(): Promise<boolean> {
+        log("Desconectando-se...", { color: "fgGray" });
+        await Storage.deleteItem("user");
+        setUser(null);
+        setSigned(false);
+        setUsingLocal(false);
+        log("Desconectado", { tab: true });
+        return true;
     }
 
     // TODO: Verificar alterações de conexão; se estiver usando conta local e achar internet, tentar conectar
     useEffect(() => {
         log("Carregando informações do usuário...", { color: "fgGray" });
-        setTimeout(() => {
-            setUser(USER);
-            setSigned(true);
-            setUsingLocal(true);
-        }, 2500);
+        Storage.getItem("user").then(user => {
+            if (!user) {
+                setUser(null);
+                setSigned(false);
+                setUsingLocal(false);
+            } else {
+                setUser(user);
+                setSigned(true);
+                setUsingLocal(false);
+            }
+        });
     }, []);
 
     return (

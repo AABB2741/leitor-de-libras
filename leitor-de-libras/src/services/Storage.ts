@@ -7,6 +7,7 @@ import { SettingsProps } from "../constants/settings";
 import { DeepPartial } from "../utils/DeepPartial";
 
 type Saves = {
+    "user": UserProps,
     "@settings": SettingsProps;
     "@introduction": {
         "skip_login": boolean;
@@ -45,6 +46,13 @@ export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartia
     const res = merge(data, value);
     await setItem(key, res as DeepPartial<Saves[T]> & Object, true);
     dbLog(`Itens de "${key}" fundidos.`, { tab: true });
+}
+
+export async function deleteItem<T extends keyof Saves>(key: T, tab?: boolean): Promise<Saves[T] | null> {
+    dbLog(`Excluindo "${key}"`);
+    const data = await getItem(key);
+    await AsyncStorage.default.removeItem(key);
+    return data;
 }
 
 export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[] ? Saves[T][number] : never>(key: T, value: U): Promise<U & { id: string }> {

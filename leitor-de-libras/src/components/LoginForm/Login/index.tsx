@@ -11,7 +11,6 @@ import {
 } from "@react-navigation/native";
 
 import { Globe } from "phosphor-react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Storage from "../../../services/Storage";
 
 import { useLang } from "../../../contexts/lang";
@@ -24,12 +23,13 @@ import Input from "../../Input";
 import Button from "../../Button";
 
 import createStyles from "./styles";
+import { Location } from "../";
 
 interface LoginProps {
-    navigation: NativeStackNavigationProp<LoginParamList, "Login">;
+    setLocation: React.Dispatch<React.SetStateAction<Location>>;
 }
 
-export default function Login({ navigation }: LoginProps) {
+export default function Login({ setLocation }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -45,7 +45,6 @@ export default function Login({ navigation }: LoginProps) {
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
     }, []));
-
 
     return (
         <View style={styles.wrapper}>
@@ -70,7 +69,7 @@ export default function Login({ navigation }: LoginProps) {
                     <Button
                         accentColor={colors.accent2}
                         label={lang.profile.personal_data.password_forgot}
-                        onPress={() => navigation.navigate("ResetPassword")}
+                        onPress={() => setLocation("ResetPassword")}
                         labelStyle={{ fontSize: 12 }}
                     />
                     <Button
@@ -80,7 +79,7 @@ export default function Login({ navigation }: LoginProps) {
                     />
                     <Button
                         label={lang.general.signup}
-                        onPress={() => navigation.navigate("SignUp")}
+                        onPress={() => setLocation("SignUp")}
                     />
                 </FixedCategory>
             </ScrollView>
