@@ -22,7 +22,7 @@ export class CreateUserController {
         const createUserUsecase = new CreateUserUseCase();
         const user = await createUserUsecase.execute({ name, email, password, userLang: req.body?.lang });
 
-        res.json({
+        res.status(201).json({
             avatar: "", // TODO: definir depois o avatar
             name: user?.name,
             email: user?.email
