@@ -1,0 +1,13 @@
+{
+    "signUp": {
+        "err": {
+            "empty_fields": "Nome, e-mail ou senha vazio.",
+            "email_in_use": "Endereço de e-mail em uso."
+        }
+    },
+    "login": {
+        "err": {
+            "empty_fields": "E-mail ou senha vazios."
+        }
+    }
+}

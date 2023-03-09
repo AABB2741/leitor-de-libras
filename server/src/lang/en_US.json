@@ -1,0 +1,13 @@
+{
+    "signUp": {
+        "err": {
+            "empty_fields": "Name, e-mail or password empty.",
+            "email_in_use": "E-mail address already in use."
+        }
+    },
+    "login": {
+        "err": {
+            "empty_fields": "E-mail or password empty."
+        }
+    }
+}
