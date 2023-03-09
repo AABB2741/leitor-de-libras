@@ -1,14 +1,10 @@
 import { useCallback, useState } from "react";
 import {
-    BackHandler,
     ScrollView,
     TouchableOpacity,
     View,
     Image
 } from "react-native";
-import {
-    useFocusEffect
-} from "@react-navigation/native";
 
 import { Globe } from "phosphor-react-native";
 import * as Storage from "../../../services/Storage";
@@ -36,15 +32,6 @@ export default function Login({ setLocation }: LoginProps) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    useFocusEffect(useCallback(() => {
-        function handleBack() {
-            return true;
-        }
-
-        const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
-        return sub.remove;
-    }, []));
 
     return (
         <View style={styles.wrapper}>

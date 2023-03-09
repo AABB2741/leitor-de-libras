@@ -27,13 +27,12 @@ export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps)
 
     const [location, setLocation] = useState(screen);
 
-    console.log("Location: " + location);
     // Evita que vários modais de login estejam abertos em telas diferentes. Este IF faz com que nada seja exibido caso o usuário já esteja logado
     if (signed)
         return null;
 
     return (
-        <Modal {...rest} statusBarTranslucent animationType="slide" onRequestClose={!rest.onRequestClose && location !== "Login" ? (() => setLocation("Login")) : rest.onRequestClose}>
+        <Modal {...rest} statusBarTranslucent animationType="slide" onRequestClose={!rest.onRequestClose || location !== "Login" ? (() => setLocation("Login")) : rest.onRequestClose}>
             <StatusBar barStyle="light-content" />
             <View style={styles.container}>
                 {location === "Login" && <Login setLocation={setLocation} />}

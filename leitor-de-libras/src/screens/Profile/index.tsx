@@ -53,6 +53,7 @@ export default function Profile() {
             <>
                 <LoginForm
                     visible={loginFormVisible}
+                    onRequestClose={() => setLoginFormVisible(false)}
                 />
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                     <Empty
