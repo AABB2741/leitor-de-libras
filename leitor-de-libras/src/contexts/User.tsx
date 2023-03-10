@@ -93,7 +93,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         });
     }, []);
 
-    return (
+    return ( //FIXME: Arrumar esse problema
         <UserContext.Provider value={{ user, signed, usingLocal, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
             {children}
         </UserContext.Provider>
