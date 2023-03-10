@@ -28,6 +28,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     const [usingLocal, setUsingLocal] = useState<boolean | null>(null);
 
     async function login(email: string, password: string) {
+        log("Fazendo login...", { color: "fgGray" });
         if (!email.trim() || !password.trim())
             return false;
 

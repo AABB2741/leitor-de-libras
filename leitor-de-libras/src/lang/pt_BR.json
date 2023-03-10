@@ -59,7 +59,9 @@
     "login": {
         "title": "Conecte-se a uma conta",
         "desc": "Com uma conta fica tudo melhor. Salve seus vídeos na nuvem e personalize o seu perfil.",
-        "ignore": "Ignorar por enquanto"
+        "ignore": "Ignorar por enquanto",
+        "empty_fields": "Insira seu endereço de e-mail e senha.",
+        "invalid_credentials": "Endereço de e-mai ou senha inválidos."
     },
     "reset_password": {
         "title": "Alterar senha",
