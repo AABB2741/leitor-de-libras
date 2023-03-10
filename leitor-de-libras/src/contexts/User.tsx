@@ -1,18 +1,20 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import * as Storage from "../services/Storage";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import USER from "../constants/user";
 
 import api from "../constants/api.json";
 import log from "../utils/log";
 
+type ResponseCode = "ok" | "empty_fields" | "invalid_credentials"  | "network_err";
+
 type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
     usingLocal: boolean | null;
     token?: string;
-    login: (email: string, password: string) => Promise<boolean>;
+    login: (email: string, password: string) => Promise<ResponseCode> | "empty_fields";
     logOut: () => Promise<boolean>;
 }
 
@@ -27,20 +29,42 @@ export default function UserProvider({ children }: UserProviderProps) {
     const [signed, setSigned] = useState<boolean | null>(null);
     const [usingLocal, setUsingLocal] = useState<boolean | null>(null);
 
-    async function login(email: string, password: string) {
-        log("Fazendo login...", { color: "fgGray" });
+    // async function login(email: string, password: string) {
+    //     log("Fazendo login...", { color: "fgGray" });
+    //     if (!email.trim() || !password.trim())
+    //         return "empty_fields";
+
+    //     // TODO: Terminar requisição de login
+    //     try {
+    //         const response = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
+    //             email,
+    //             password
+    //         }, { timeout: 5000 });
+    //         console.log(response);
+            
+    //         return "ok";
+    //     } catch (e) {
+    //         log("Erro ao fazer login:\n" + e, { color: "fgRed" });
+    //         return "network_err";
+    //     }
+    // }
+
+    function login(email: string, password: string) {
         if (!email.trim() || !password.trim())
-            return false;
+            return "empty_fields";
 
-        // TODO: Terminar requisição de login
-        const response = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
-            email,
-            password
+        return new Promise((resolve, reject) => {
+            axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
+                email,
+                password
+            }).then(response => {
+                resolve("ok");
+            }).catch(e => {
+                if (e.response.status === 401) {
+                    resolve("invalid_credentials");
+                } else resolve("network_err");
+            });
         });
-
-        console.log(response);
-
-        return false;
     }
 
     async function logOut() {

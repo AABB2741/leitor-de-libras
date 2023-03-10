@@ -11,6 +11,7 @@ import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
     async handle(req: RequestBody<UserLoginData>, res: Response) {
+        console.log("Requisitando login");
         const lang = getLang(req.body?.lang);
 
         const email = req.body?.email?.trim();
@@ -24,7 +25,7 @@ export class LoginController {
         const user = await loginUseCase.execute({ email, password });
 
         if (!user) {
-            throw new AppError(lang.login.err.invalid_email_or_password);
+            throw new AppError(lang.login.err.invalid_email_or_password, 401);
         } else {
             const token = jwt.sign(
                 { id: user.id },

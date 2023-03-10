@@ -16,7 +16,7 @@ import { useColors } from "../../../contexts/colors";
 import { useUser } from "../../../contexts/user";
 
 import Font from "../../Font";
-
+import Popup, { PopupProps } from "../../Popup";
 import FixedCategory from "../../FixedCategory";
 import Input from "../../Input";
 import Button from "../../Button";
@@ -39,31 +39,40 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
     const [password, setPassword] = useState("");
     const [warning, setWarning] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState<PopupProps | null>(null);
 
     async function handleLogin() {
         setWarning(null);
-        
+
         if (!email.trim() || !password.trim()) {
-            setWarning(lang.login.empty_fields);
+            setWarning(lang.login.err.empty_fields);
             setLoading(false);
             setCanClose(true);
             return;
         }
-        
+
         setLoading(true);
         setCanClose(false);
         const response = await login(email.trim(), password.trim());
 
-        if (!response) {
-            setWarning(lang.login.invalid_credentials);
+        switch (response) {
+            case "ok":
+                setLoading(false);
+                setCanClose(true);
+                return;
+            default:
+                setWarning(lang.login.err[response]);
         }
-        
+
+        console.log(response);
+
         setLoading(false);
         setCanClose(true);
     }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+            {alert && <Popup {...alert} />}
             <View style={styles.wrapper}>
                 <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                     <Font family="black" style={styles.title}>{lang.login.title}</Font>
@@ -108,7 +117,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
                     </FixedCategory>
                 </ScrollView>
                 <View style={styles.options}>
-                    <TouchableOpacity style={styles.lang}>
+                    <TouchableOpacity disabled={loading} style={styles.lang}>
                         <Globe color={colors.font} size={24} />
                         <Font family="ubuntu" style={{ marginLeft: 10 }}>{lang.locale}</Font>
                     </TouchableOpacity>

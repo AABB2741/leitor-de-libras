@@ -60,8 +60,12 @@
         "title": "Conecte-se a uma conta",
         "desc": "Com uma conta fica tudo melhor. Salve seus vídeos na nuvem e personalize o seu perfil.",
         "ignore": "Ignorar por enquanto",
-        "empty_fields": "Insira seu endereço de e-mail e senha.",
-        "invalid_credentials": "Endereço de e-mai ou senha inválidos."
+        "err": {
+            "cant_login_title": "Não foi possível fazer login",
+            "empty_fields": "Insira seu endereço de e-mail e senha.",
+            "invalid_credentials": "Endereço de e-mai ou senha inválidos.",
+            "network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde."
+        }
     },
     "reset_password": {
         "title": "Alterar senha",
