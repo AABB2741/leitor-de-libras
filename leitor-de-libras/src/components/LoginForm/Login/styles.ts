@@ -31,6 +31,12 @@ export default ({ colors }: LoginStyle) => StyleSheet.create({
         height: 200,
         alignSelf: "center"
     },
+    warning: {
+        color: colors.critic,
+        fontSize: 12,
+        textAlign: "center",
+        marginBottom: 10
+    },
     options: {
         backgroundColor: colors.header,
         flexDirection: "row",

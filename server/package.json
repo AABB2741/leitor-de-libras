@@ -21,7 +21,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --exit-child --resolveJsonModule --transpile-only --ignore node_modules src/server.ts"
+    "dev": "ts-node-dev --exit-child --transpile-only --ignore node_modules src/server.ts"
   },
   "keywords": [],
   "author": "",

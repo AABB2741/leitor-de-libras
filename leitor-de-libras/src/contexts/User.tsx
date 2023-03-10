@@ -6,7 +6,6 @@ import USER from "../constants/user";
 
 import api from "../constants/api.json";
 import log from "../utils/log";
-import ApiResponse from "../constants/ApiResponse";
 
 type UserContextValue = {
     user: UserProps | null;
@@ -33,12 +32,13 @@ export default function UserProvider({ children }: UserProviderProps) {
             return false;
 
         // TODO: Terminar requisição de login
-        const response = await axios.post<ApiResponse<UserProps & { token: string }>>(`${api.address}/user/login`, {
+        const response = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
             email,
             password
         });
 
-        if (response.data.status)
+        console.log(response);
+
         return false;
     }
 

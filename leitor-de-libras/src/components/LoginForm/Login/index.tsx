@@ -11,6 +11,7 @@ import * as Storage from "../../../services/Storage";
 
 import { useLang } from "../../../contexts/lang";
 import { useColors } from "../../../contexts/colors";
+import { useUser } from "../../../contexts/user";
 
 import Font from "../../Font";
 
@@ -23,15 +24,33 @@ import { Location } from "../";
 
 interface LoginProps {
     setLocation: React.Dispatch<React.SetStateAction<Location>>;
+    setCanClose: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Login({ setLocation }: LoginProps) {
+export default function Login({ setLocation, setCanClose }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
+    const { login } = useUser();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [warning, setWarning] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    async function handleLogin() {
+        if (!email.trim() || !password.trim()) {
+            setWarning("Vazio o bagulho");
+            setLoading(false);
+            setCanClose(true);
+            return;
+        }
+        
+        setLoading(true);
+        setCanClose(false);
+        const response = await login(email.trim(), password.trim());
+        setWarning(null);
+    }
 
     return (
         <View style={styles.wrapper}>
@@ -45,6 +64,7 @@ export default function Login({ setLocation }: LoginProps) {
                         placeholder={lang.profile.personal_data.email_placeholder}
                         onChangeText={email => setEmail(email)}
                         value={email}
+                        editable={!loading}
                     />
                     <Input
                         label={lang.profile.personal_data.password}
@@ -52,21 +72,27 @@ export default function Login({ setLocation }: LoginProps) {
                         secureTextEntry
                         onChangeText={password => setPassword(password)}
                         value={password}
+                        editable={!loading}
                     />
+                    {warning && <Font style={styles.warning}>{warning}</Font>}
                     <Button
                         accentColor={colors.accent2}
                         label={lang.profile.personal_data.password_forgot}
                         onPress={() => setLocation("ResetPassword")}
                         labelStyle={{ fontSize: 12 }}
+                        disabled={loading}
                     />
                     <Button
                         highlight
                         label={lang.general.login}
                         style={{ marginTop: 20 }}
+                        loading={loading}
+                        onPress={handleLogin}
                     />
                     <Button
                         label={lang.general.signup}
                         onPress={() => setLocation("SignUp")}
+                        disabled={loading}
                     />
                 </FixedCategory>
             </ScrollView>
