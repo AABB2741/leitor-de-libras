@@ -22,6 +22,7 @@ import Input from "../../components/Input";
 import Font from "../../components/Font";
 import FixedCategory from "../../components/FixedCategory";
 import LoginForm from "../../components/LoginForm";
+import Avatar from "../../components/Avatar";
 
 import createStyles from "./styles";
 import log from "../../utils/log";
@@ -95,10 +96,10 @@ export default function Profile() {
             />
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View style={styles.header}>
-                    <Image style={styles.avatar} source={user.avatar} />
+                    <Avatar style={styles.avatar} />
                     <View style={styles.userInfos}>
                         <Font family="ubuntu" style={styles.userName}>{user.name}</Font>
-                        <Font style={styles.userEmail}>{user.email}</Font>
+                        <Font style={styles.userEmail} numberOfLines={1}>{user.email}</Font>
                     </View>
                     <TouchableOpacity onPress={() => setSignOutVisible(true)}>
                         <SignOut color={colors.critic} size={24} />

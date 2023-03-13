@@ -1,16 +1,22 @@
 import {
     View,
-    ScrollView,
     FlatList,
     TouchableOpacity,
-    Image
 } from "react-native";
 import {
     useEffect,
     useState
 } from "react";
-import { Crown, Lightning, Microphone, PaperPlane, PaperPlaneRight, UserCircle, UserCirclePlus, X } from "phosphor-react-native";
+import {
+    Crown,
+    Lightning,
+    Microphone,
+    PaperPlaneRight,
+    UserCirclePlus,
+    X
+} from "phosphor-react-native";
 
+import Avatar from "../../../components/Avatar";
 import Font from "../../../components/Font";
 import Input from "../../../components/Input";
 import MsgBox from "../MsgBox";
@@ -85,7 +91,7 @@ export default function Frame({ messages, guest, inverted, mode, keyboardVisible
                 ListFooterComponent={(
                     <View style={styles.whoami}>
                         {guest && <UserCirclePlus weight="fill" size={36} color={colors.desc3} />}
-                        {!guest && (signed ? <Image style={styles.userAvatar} source={user?.avatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
+                        {!guest && (signed ? <Avatar style={styles.userAvatar} /> : <Crown weight="fill" size={36} color={colors.desc3} />)}
                         <Font family="ubuntu" style={styles.sayMyName}>{guest ? guestName : (signed ? (user?.name ?? lang.general.user.anonymous) : lang.general.user.anonymous)}</Font>
                         <Font style={styles.whosTalking}>{lang.conversations.whos_talking.replace("%s", !guest ? guestName : (signed ? (user?.name ?? lang.general.user.anonymous) : lang.general.user.anonymous))}</Font>
                     </View>

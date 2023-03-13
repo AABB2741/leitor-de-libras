@@ -3,14 +3,16 @@ import {
 } from "react";
 import {
     TouchableOpacity,
-    View,
-    Image
+    View
 } from "react-native";
 import {
     Trash
 } from "phosphor-react-native";
 import moment from "moment";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import Avatar from "../../../components/Avatar";
 import Popup from "../../../components/Popup";
 import Font from "../../../components/Font";
 import { useLang } from "../../../contexts/lang";
@@ -18,8 +20,6 @@ import { useUser } from "../../../contexts/user";
 import { useColors } from "../../../contexts/colors";
 
 import styles from "./styles";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface Props extends MeetProps {
     handleDeleteMeet: (id: string) => Promise<boolean>;
@@ -73,10 +73,7 @@ export default function Meet({ id, title, guestName, date, handleDeleteMeet }: P
                 visible={deleteErrVisible}
             />
             <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Chat", { id })}>
-                <Image
-                    source={user?.avatar}
-                    style={styles.avatar}
-                />
+                <Avatar style={styles.avatar} />
                 <View style={styles.infos}>
                     <Font
                         family="ubuntu"

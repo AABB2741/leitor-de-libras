@@ -12,7 +12,6 @@ type ResponseCode = "ok" | "empty_fields" | "invalid_credentials"  | "network_er
 type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
-    usingLocal: boolean | null;
     token?: string;
     login: (email: string, password: string) => Promise<ResponseCode> | "empty_fields";
     logOut: () => Promise<boolean>;
@@ -26,8 +25,7 @@ const UserContext = createContext<UserContextValue>({} as UserContextValue);
 
 export default function UserProvider({ children }: UserProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
-    const [signed, setSigned] = useState<boolean | null>(null);
-    const [usingLocal, setUsingLocal] = useState<boolean | null>(null);
+    const signed = !!user;
 
     // async function login(email: string, password: string) {
     //     log("Fazendo login...", { color: "fgGray" });
@@ -66,8 +64,6 @@ export default function UserProvider({ children }: UserProviderProps) {
                 }).then(u => {
                     log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
                     setUser(u);
-                    setSigned(true);
-                    setUsingLocal(false);
                     resolve("ok");
                 });
             }).catch(e => {
@@ -82,8 +78,6 @@ export default function UserProvider({ children }: UserProviderProps) {
         log("Desconectando-se...", { color: "fgGray" });
         await Storage.deleteItem("user");
         setUser(null);
-        setSigned(false);
-        setUsingLocal(false);
         log("Desconectado", { tab: true });
         return true;
     }
@@ -94,18 +88,12 @@ export default function UserProvider({ children }: UserProviderProps) {
         Storage.getItem("user").then(user => {
             if (!user) {
                 setUser(null);
-                setSigned(false);
-                setUsingLocal(false);
-            } else {
-                setUser(user);
-                setSigned(true);
-                setUsingLocal(false);
-            }
+            } else setUser(user);
         });
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, signed, usingLocal, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
+        <UserContext.Provider value={{ user, signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
             {children}
         </UserContext.Provider>
     );

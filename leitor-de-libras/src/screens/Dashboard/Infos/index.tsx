@@ -15,11 +15,12 @@ import { useColors } from "../../../contexts/colors";
 import { useUser } from "../../../contexts/user";
 import { useLang } from "../../../contexts/lang";
 
+import Font from "../../../components/Font";
+import Avatar from "../../../components/Avatar";
 import Loading from "../../../components/Loading";
 
 import createStyles from "./styles";
 
-import Font from "../../../components/Font";
 
 interface InfosProps {
     navigation: NativeStackNavigationProp<DashboardParamList, "Dashboard">;
@@ -48,7 +49,7 @@ export default function Infos({ navigation }: InfosProps) {
             )}
             {signed && (
                 <View style={styles.userContainer}>
-                    <Image source={user?.avatar} style={styles.avatar} />
+                    <Avatar style={styles.avatar} />
                     <View style={styles.userData}>
                         <Font family="ubuntu" numberOfLines={1} style={styles.username}>{user?.name}</Font>
                         <Font numberOfLines={1} style={styles.email}>{user?.email}</Font>

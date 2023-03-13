@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import {
     Books,
     House,
@@ -12,6 +12,8 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { useUser } from "../contexts/user";
 import { useColors } from "../contexts/colors";
+
+import Avatar from "../components/Avatar";
 
 import DashboardRoutes from "./dashboard.routes";
 import TranslationsRoutes from "./translations.routes";
@@ -75,7 +77,7 @@ export default function AppRoutes() {
                     component={Profile}
                     options={{
                         tabBarIcon: ({ focused, size }) => signed ? (
-                            <Image source={user?.avatar} style={{
+                            <Avatar style={{
                                 width: size,
                                 height: size,
                                 borderRadius: size,
