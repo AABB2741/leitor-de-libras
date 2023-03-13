@@ -33,7 +33,7 @@ export async function getItem<T extends keyof Saves>(key: T, tab?: boolean): Pro
     return data ? JSON.parse(data) : null;
 }
 
-export async function setItem<T extends keyof Saves>(key: T, value: Object, tab?: boolean): Promise<Object> {
+export async function setItem<T extends keyof Saves>(key: T, value: Saves[T], tab?: boolean): Promise<Saves[T]> {
     dbLog(`Definindo dados em "${key}"`, { tab });
     await AsyncStorage.default.setItem(key, JSON.stringify(value));
     log(`Dados definidos para "${key}".`, { color: "fgGray", tab: true })
@@ -43,9 +43,19 @@ export async function setItem<T extends keyof Saves>(key: T, value: Object, tab?
 export async function mergeItem<T extends keyof Saves>(key: T, value: DeepPartial<Saves[T]>) {
     dbLog(`Fundindo dados de "${key}"`);
     const data = await getItem(key, true) ?? {};
-    const res = merge(data, value);
-    await setItem(key, res as DeepPartial<Saves[T]> & Object, true);
-    dbLog(`Itens de "${key}" fundidos.`, { tab: true });
+    const resTemp = merge(data, value);
+    // TODO: Verificar se isso funciona
+    if (isSavesOfType<T>(resTemp)) {
+        const res = resTemp;
+        await setItem(key, res, true);
+        dbLog(`Itens de "${key}" fundidos.`, { tab: true });
+    } else {
+        throw new Error(`Tipo inválido para ${key}`);
+    }
+
+    function isSavesOfType<T extends keyof Saves>(value: unknown): value is Saves[T] {
+        return typeof value === "object" && value !== null;
+    }
 }
 
 export async function deleteItem<T extends keyof Saves>(key: T, tab?: boolean): Promise<Saves[T] | null> {
@@ -60,14 +70,14 @@ export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[]
     const data = await getItem(key, true) ?? [] as unknown[T];
     if (!Array.isArray(data))
         throw new TypeError(`Tentando inserir um elemento em uma base de dados que não é um array (${key}).`);
-    
+
     const item = {
         ...value,
         id: uuid4()
     }
 
     data.push(item);
-    await setItem(key, data, true);
+    await setItem(key, data as Saves[T], true);
     dbLog(`Dados inseridos em "${key}"`, { tab: true });
     return item;
 }
@@ -89,7 +99,7 @@ export async function updateItem<T extends keyof Saves, U extends Saves[T] exten
         data.push(newItem);
     } else data[index] = newItem;
 
-    setItem(key, data);
+    setItem(key, data as U);
     return newItem;
 }
 
@@ -118,7 +128,7 @@ export async function removeItem<T extends keyof Saves, U extends Saves[T] exten
 
     const exclude = data[index];
     data.splice(index, 1);
-    await setItem(key, data, true);
+    await setItem(key, data as U, true);
     dbLog(`Dado de "${key}" excluído`);
     return exclude;
 }

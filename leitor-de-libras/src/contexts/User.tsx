@@ -58,7 +58,18 @@ export default function UserProvider({ children }: UserProviderProps) {
                 email,
                 password
             }).then(response => {
-                resolve("ok");
+                const { data } = response;
+                Storage.setItem("user", {
+                    avatar: data.avatar,
+                    name: data.name,
+                    email: data.email
+                }).then(u => {
+                    log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
+                    setUser(u);
+                    setSigned(true);
+                    setUsingLocal(false);
+                    resolve("ok");
+                });
             }).catch(e => {
                 if (e.response.status === 401) {
                     resolve("invalid_credentials");

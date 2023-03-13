@@ -33,7 +33,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
-    const { login } = useUser();
+    const { signed, login } = useUser();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -59,6 +59,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
             case "ok":
                 setLoading(false);
                 setCanClose(true);
+                setLocation("SetProfilePicture");
                 return;
             default:
                 setWarning(lang.login.err[response]);
@@ -82,6 +83,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
                         <Input
                             label={lang.profile.personal_data.email}
                             placeholder={lang.profile.personal_data.email_placeholder}
+                            keyboardType="email-address"
                             onChangeText={email => setEmail(email)}
                             value={email}
                             editable={!loading}

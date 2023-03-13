@@ -11,12 +11,13 @@ import { useUser } from "../../contexts/user";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ResetPassword from "./ResetPassword";
+import SetProfilePicture from "./SetProfilePicture";
 
 import styles from "./styles";
 
 const Stack = createNativeStackNavigator<LoginParamList>();
 
-export type Location = "Login" | "SignUp" | "ResetPassword";
+export type Location = "Login" | "SignUp" | "ResetPassword" | "SetProfilePicture";
 
 interface LoginFormProps extends ModalProps {
     screen?: Location;
@@ -29,7 +30,7 @@ export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps)
     const [canClose, setCanClose] = useState(true);
 
     // Evita que vários modais de login estejam abertos em telas diferentes. Este IF faz com que nada seja exibido caso o usuário já esteja logado
-    if (signed)
+    if (signed && location !== "SetProfilePicture")
         return null;
 
     return (
@@ -44,6 +45,7 @@ export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps)
                 {location === "Login" && <Login setLocation={setLocation} setCanClose={setCanClose} />}
                 {location === "SignUp" && <SignUp />}
                 {location === "ResetPassword" && <ResetPassword />}
+                {location === "SetProfilePicture" && <SetProfilePicture />}
             </View>
         </Modal>
     );
