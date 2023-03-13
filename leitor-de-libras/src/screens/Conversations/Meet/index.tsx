@@ -16,7 +16,6 @@ import Avatar from "../../../components/Avatar";
 import Popup from "../../../components/Popup";
 import Font from "../../../components/Font";
 import { useLang } from "../../../contexts/lang";
-import { useUser } from "../../../contexts/user";
 import { useColors } from "../../../contexts/colors";
 
 import styles from "./styles";
@@ -28,7 +27,6 @@ interface Props extends MeetProps {
 export default function Meet({ id, title, guestName, date, handleDeleteMeet }: Props) {
     const lang = useLang();
     const colors = useColors();
-    const { user } = useUser();
 
     const [deleteVisible, setDeleteVisible] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
