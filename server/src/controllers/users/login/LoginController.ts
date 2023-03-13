@@ -35,6 +35,7 @@ export class LoginController {
                 token,
                 avatar: user.avatar,
                 name: user.name,
+                about_me: user.about_me,
                 email
             });
         }
