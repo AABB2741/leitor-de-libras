@@ -6,26 +6,24 @@ import { AppError } from "../../../errors/AppError";
 import { LoginUseCase, UserLoginData } from "./LoginUseCase";
 
 import { RequestBody } from "../../../utils/RequestBody";
-import { getLang } from "../../../lang/getLang";
 import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
     async handle(req: RequestBody<UserLoginData>, res: Response) {
         console.log("Requisitando login");
-        const lang = getLang(req.body?.lang);
 
         const email = req.body?.email?.trim();
         const password = req.body?.password?.trim();
 
         if (!email || !password) {
-            throw new AppError(lang.login.err.empty_fields, 400);
+            throw new AppError("empty_fields", 400);
         }
 
         const loginUseCase = new LoginUseCase();
         const user = await loginUseCase.execute({ email, password });
 
         if (!user) {
-            throw new AppError(lang.login.err.invalid_email_or_password, 401);
+            throw new AppError("invalid_credentials", 401);
         } else {
             const token = jwt.sign(
                 { id: user.id },

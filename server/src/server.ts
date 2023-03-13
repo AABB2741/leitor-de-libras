@@ -15,13 +15,13 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof AppError) {
         return res.status(err.status).json({
             status: "error",
-            message: err.message
+            code: err.code
         });
     }
 
     return res.status(500).json({
         status: "error",
-        message: `Erro interno no servidor: ${err.message}`
+        code: `Erro interno no servidor: ${err.message}`
     });
 });
 

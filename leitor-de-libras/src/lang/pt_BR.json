@@ -64,7 +64,8 @@
             "cant_login_title": "Não foi possível fazer login",
             "empty_fields": "Insira seu endereço de e-mail e senha.",
             "invalid_credentials": "Endereço de e-mai ou senha inválidos.",
-            "network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde."
+            "network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde.",
+            "email_in_use": "Endereço de e-mail em já em uso."
         }
     },
     "reset_password": {

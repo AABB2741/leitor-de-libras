@@ -7,6 +7,5 @@ import { AppError } from "../errors/AppError";
 export function check(req: Request) {
     const token = req.headers["x-access-token"];
 
-    if (!token)
-        throw new AppError("");
+    
 }

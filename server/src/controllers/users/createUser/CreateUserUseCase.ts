@@ -4,22 +4,14 @@ import { User } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { AppError } from "../../../errors/AppError";
 
-import { getLang, LangProps } from "../../../lang/getLang";
-
 export type UserSignUpData = {
     name: string;
     email: string;
     password: string;
 }
 
-interface CreateUserUseCaseProps extends UserSignUpData {
-    userLang?: Lang;
-}
-
 export class CreateUserUseCase {
-    async execute({ name, email, password, userLang }: CreateUserUseCaseProps): Promise<User | null> {
-        const lang = getLang(userLang);
-
+    async execute({ name, email, password }: UserSignUpData): Promise<User | null> {
         // Verifica se já existe um usuário com este e-mail cadastrado
         const alreadyExists = await prisma.user.findUnique({
             where: {
@@ -28,7 +20,7 @@ export class CreateUserUseCase {
         });
 
         if (alreadyExists) { // Se houver, recusar a requisição
-            throw new AppError("Email already in use");
+            throw new AppError("email_already_in_use");
         }
 
         // Se não houver, será cadastrado um novo usuário
