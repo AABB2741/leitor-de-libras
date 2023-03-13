@@ -20,21 +20,23 @@ export class CreateUserUseCase {
     async execute({ name, email, password, userLang }: CreateUserUseCaseProps): Promise<User | null> {
         const lang = getLang(userLang);
 
+        // Verifica se já existe um usuário com este e-mail cadastrado
         const alreadyExists = await prisma.user.findUnique({
             where: {
                 email
             }
         });
 
-        if (alreadyExists) {
+        if (alreadyExists) { // Se houver, recusar a requisição
             throw new AppError("Email already in use");
         }
 
+        // Se não houver, será cadastrado um novo usuário
         const user = await prisma.user.create({
             data: {
                 name,
                 email,
-                password: CryptoJS.SHA256(password).toString()
+                password: CryptoJS.SHA256(password).toString() // Criptografa a senha
             }
         });
 

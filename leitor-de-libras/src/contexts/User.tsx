@@ -49,7 +49,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     //     }
     // }
 
-    function login(email: string, password: string) {
+    function login(email: string, password: string): Promise<ResponseCode> | "empty_fields" {
         if (!email.trim() || !password.trim())
             return "empty_fields";
 
@@ -93,7 +93,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         });
     }, []);
 
-    return ( //FIXME: Arrumar esse problema
+    return (
         <UserContext.Provider value={{ user, signed, usingLocal, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
             {children}
         </UserContext.Provider>
