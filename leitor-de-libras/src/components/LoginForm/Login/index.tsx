@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useRef, useState } from "react";
 import {
     KeyboardAvoidingView,
     Platform,
@@ -70,7 +70,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
         setLoading(false);
         setCanClose(true);
     }
-
+    
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
             {alert && <Popup {...alert} />}
@@ -95,6 +95,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
                             onChangeText={password => setPassword(password)}
                             value={password}
                             editable={!loading}
+                            onSubmitEditing={handleLogin}
                         />
                         {warning && <Font style={styles.warning}>{warning}</Font>}
                         <Button

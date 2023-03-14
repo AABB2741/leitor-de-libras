@@ -22,3 +22,13 @@ model User {
 
   @@map("users")
 }
+
+model Log {
+  id          String   @id @default(uuid())
+  user_id     String
+  action_code String
+  details     String?
+  created_at  DateTime @default(now())
+
+  @@map("logs")
+}
