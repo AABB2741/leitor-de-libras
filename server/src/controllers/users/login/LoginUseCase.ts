@@ -2,6 +2,8 @@ import CryptoJS from "crypto-js";
 
 import { prisma } from "../../../prisma/client";
 
+import log from "../../../utils/log";
+
 export type UserLoginData = {
     email: string;
     password: string;
@@ -15,6 +17,31 @@ export class LoginUseCase {
                 password: CryptoJS.SHA256(password).toString()
             }
         });
+
+        try {
+            if (user) {
+                prisma.log.create({
+                    data: {
+                        action_code: "user/login",
+                        details: `Entrou em usuário com e-mail "${user.email}".`,
+                        user_id: user.id
+                    }
+                }).then(_ => {
+                    log(`Login com usuário ${user.name}`, { color: "fgGray" });
+                });
+            } else {
+                prisma.log.create({
+                    data: {
+                        action_code: "user/login-try",
+                        details: `Tentativa de login mal-sucedida. E-mail utilizado: ${email}`
+                    }
+                }).then(_ => {
+                    log(`Tentativa de login. E-mail utilizado: ${email}`, { color: "fgGray" });
+                });
+            }
+        } catch (e) {
+            log("Ocorreu um erro ao registrar login de usuário: " + e);
+        }
 
         return user;
     }
