@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ThemeProps } from "../../theme/getTheme";
+import { ThemeProps } from "../../../theme/getTheme";
 import Constants from "expo-constants"
 
 interface SignUptStyle {
@@ -8,9 +8,8 @@ interface SignUptStyle {
 
 export default ({ colors }: SignUptStyle) => StyleSheet.create({
     wrapper: {
-        flex: 1,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        flex: 1
     },
     container: {
         flex: 1
@@ -21,10 +20,17 @@ export default ({ colors }: SignUptStyle) => StyleSheet.create({
     title: {
         flex: 1,
         textAlign: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        fontSize: 20
     },
     desc: {
-        flex: 1,
-        textAlign: "center"
+        textAlign: "center",
+        flex: 1
+    },
+    warning: {
+        color: colors.critic,
+        fontSize: 12,
+        textAlign: "center",
+        marginVertical: 10
     }
 });

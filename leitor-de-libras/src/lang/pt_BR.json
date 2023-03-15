@@ -75,7 +75,9 @@
     },
     "sign_up": {
         "title": "Cadastrar-se",
-        "desc": "Crie sua conta agora e receba bons benefícios!"
+        "desc": "Crie sua conta agora e receba bons benefícios!",
+        "confirm": "Crie sua conta!",
+        "cancel": "Já tenho uma conta"
     },
     "set_profile_picture": {
         "title": "Boas-vindas de volta, %s!",
