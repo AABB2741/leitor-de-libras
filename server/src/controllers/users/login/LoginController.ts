@@ -10,14 +10,14 @@ import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
     async handle(req: RequestBody<UserLoginData>, res: Response) {
-        console.log("Requisitando login");
-
         const email = req.body?.email?.trim();
         const password = req.body?.password?.trim();
 
-        if (!email || !password) {
+        if (!email || !password)
             throw new AppError("empty_fields", 400);
-        }
+
+        if (!email)
+            throw new AppError("invalid_fields");
 
         const loginUseCase = new LoginUseCase();
         const user = await loginUseCase.execute({ email, password });
@@ -28,7 +28,7 @@ export class LoginController {
             const token = jwt.sign(
                 { id: user.id },
                 SECRET,
-                { expiresIn: 60 * 60} // 1 hora
+                { expiresIn: 60 * 60 } // 1 hora
             );
 
             res.status(200).json({

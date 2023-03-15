@@ -27,7 +27,7 @@ export class LoginUseCase {
                         user_id: user.id
                     }
                 }).then(_ => {
-                    log(`Login com usuário ${user.name}`, { color: "fgGray" });
+                    log(`Login com usuário ${user.name} (ID: ${user.id})`, { color: "fgGray" });
                 });
             } else {
                 prisma.log.create({

@@ -1,11 +1,21 @@
 import jwt from "jsonwebtoken";
 
-import { Request } from "express";
+import { NextFunction, Request, Response } from "express";
 import { SECRET } from "./secret";
 import { AppError } from "../errors/AppError";
 
-export function check(req: Request) {
-    const token = req.headers["x-access-token"];
+// TODO: Terminar de aprender a utilizar o JWT
+export function check(req: Request, res: Response, next: NextFunction) {
+    const token = req.headers["x-access-token"] as string | null;
 
-    
+    if (!token)
+        throw new AppError("invalid_token");
+
+    jwt.verify(token, SECRET, (err, decoded) => {
+        if (err)
+            throw new AppError("invalid_token", 401);
+        
+        req.id = decoded.id;
+        next();
+    });
 }

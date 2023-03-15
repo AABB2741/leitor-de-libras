@@ -14,9 +14,11 @@ export class CreateUserController {
         const password = body?.password?.trim();
 
         // Se não houver um nome de usuário, um e-mail ou senha, a solicitação de cadastro será rejeitada com o código 400 (bad request)
-        if (!name || !password || !email) {
+        if (!name || !password || !email)
             throw new AppError("empty_fields", 400);
-        }
+
+        if (!email.includes("@"))
+            throw new AppError("invalid_fields");
 
         // Faz a conexão com o arquivo responsável pela conexão com o banco (CreateUserUsecase)
         const createUserUsecase = new CreateUserUseCase();
