@@ -2,33 +2,41 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+    provider = "mysql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id         String   @id @default(uuid())
-  email      String   @unique
-  name       String
-  about_me   String?
-  avatar     String?
-  password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+    id         String   @id @default(uuid())
+    email      String   @unique
+    name       String
+    about_me   String?
+    avatar     String?
+    password   String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 
-  @@map("users")
+    @@map("users")
+}
+
+model Avatar {
+    id   String @id @default(uuid())
+    code String @unique
+    url  String
+
+    @@map("avatars")
 }
 
 model Log {
-  id          String   @id @default(uuid())
-  user_id     String?
-  action_code String
-  details     String?
-  created_at  DateTime @default(now())
+    id          String   @id @default(uuid())
+    user_id     String?
+    action_code String
+    details     String?
+    created_at  DateTime @default(now())
 
-  @@map("logs")
+    @@map("logs")
 }
