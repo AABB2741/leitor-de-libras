@@ -18,7 +18,7 @@ interface InputProps extends TextInputProps {
 
 export default function Input({ label, transparent, containerStyle, ...rest }: InputProps) {
     const colors = useColors();
-    const styles = createStyles({ colors, transparent });
+    const styles = createStyles({ colors, transparent, editable: !!rest.editable });
 
     return (
         <View style={[styles.container, containerStyle]}>

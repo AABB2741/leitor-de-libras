@@ -36,5 +36,12 @@ export default ({ colors }: ProfileStyle) => StyleSheet.create({
     userEmail: {
         fontSize: 14,
         color: colors.desc
+    },
+    options: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    reload: {
+        marginRight: 10
     }
 });

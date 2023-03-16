@@ -7,6 +7,7 @@ import {
     BackHandler
 } from "react-native";
 import {
+    ArrowCounterClockwise,
     SignOut,
     UserCircleMinus
 } from "phosphor-react-native";
@@ -16,6 +17,7 @@ import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { useUser } from "../../contexts/user";
 
+import Loading from "../../components/Loading";
 import Popup from "../../components/Popup";
 import Empty from "../../components/Empty";
 import Input from "../../components/Input";
@@ -48,6 +50,14 @@ export default function Profile() {
         const sub = BackHandler.addEventListener("hardwareBackPress", handleBack);
         return sub.remove;
     }, []));
+
+    async function handleReload() {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 10000);
+    }
 
     if (!user || !signed) {
         return (
@@ -101,26 +111,36 @@ export default function Profile() {
                         <Font family="ubuntu" style={styles.userName}>{user.name}</Font>
                         <Font style={styles.userEmail} numberOfLines={1}>{user.email}</Font>
                     </View>
-                    <TouchableOpacity onPress={() => setSignOutVisible(true)}>
-                        <SignOut color={colors.critic} size={24} />
-                    </TouchableOpacity>
+                    <View style={styles.options}>
+                        <TouchableOpacity disabled={loading} style={styles.reload} onPress={handleReload}>
+                            {!loading && <ArrowCounterClockwise color={colors.font} size={24} />}
+                            {loading && <Loading size={16} />}
+                        </TouchableOpacity>
+                        <TouchableOpacity disabled={loading} onPress={() => setSignOutVisible(true)}>
+                            <SignOut color={loading ? colors.disabled : colors.critic} size={24} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <FixedCategory title={lang.profile.personal_data.title}>
                     <Input
                         label={lang.profile.personal_data.username}
                         placeholder={lang.profile.personal_data.username}
                         value={user.name}
+                        editable={!loading}
                     />
                     <Input
                         label={lang.profile.personal_data.email}
                         placeholder={lang.profile.personal_data.email}
                         value={user.email}
+                        editable={!loading}
                     />
                     <Input
                         label={lang.profile.personal_data.about_me}
                         placeholder={lang.profile.personal_data.about_me}
+                        value={user.about_me}
                         multiline
                         numberOfLines={3}
+                        editable={!loading}
                     />
                 </FixedCategory>
             </ScrollView>

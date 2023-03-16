@@ -4,9 +4,10 @@ import { ThemeProps } from "../../theme/getTheme";
 interface InputStyle {
     colors: ThemeProps;
     transparent?: boolean;
+    editable: boolean;
 }
 
-export default ({ colors, transparent }: InputStyle) => StyleSheet.create({
+export default ({ colors, transparent, editable }: InputStyle) => StyleSheet.create({
     container: {
         paddingBottom: transparent ? 0 : 10
     },
@@ -21,6 +22,6 @@ export default ({ colors, transparent }: InputStyle) => StyleSheet.create({
         fontSize: 14,
         borderRadius: 12,
         fontFamily: "Rubik",
-        color: colors.font
+        color: editable ? colors.font : colors.disabled
     }
 });
