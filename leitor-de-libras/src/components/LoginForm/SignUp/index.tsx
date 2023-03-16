@@ -18,8 +18,8 @@ export default function SignUp() {
     const colors = useColors();
     const styles = createStyles({ colors });
 
-    const [warning, setWarning] = useState<string | null>("Boa noite, brasileiros!");
-    const [loading, setLoading] = useState(false);
+    const [warning, setWarning] = useState<ResponseCode | null>(null);
+    const [loading, setLoading] = useState(true);
     
     return (
         <View style={styles.wrapper}>
@@ -33,13 +33,18 @@ export default function SignUp() {
                         editable={!loading}
                     />
                     <Input
-                        placeholder={lang.profile.personal_data.email}
-                        label={lang.profile.personal_data.email_placeholder}
+                        placeholder={lang.profile.personal_data.email_placeholder}
+                        label={lang.profile.personal_data.email}
                         editable={!loading}
                     />
                     <Input
-                        placeholder={lang.profile.personal_data.password}
-                        label={lang.profile.personal_data.password_placeholder}
+                        placeholder={lang.profile.personal_data.password_placeholder}
+                        label={lang.profile.personal_data.password}
+                        editable={!loading}
+                    />
+                    <Input
+                        placeholder={lang.profile.personal_data.password_confirm_placeholder}
+                        label={lang.profile.personal_data.password_confirm}
                         editable={!loading}
                     />
                 </FixedCategory>

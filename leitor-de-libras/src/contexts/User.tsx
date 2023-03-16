@@ -7,8 +7,6 @@ import USER from "../constants/user";
 import api from "../constants/api.json";
 import log from "../utils/log";
 
-type ResponseCode = "ok" | "empty_fields" | "invalid_credentials"  | "network_err";
-
 type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
@@ -55,7 +53,7 @@ export default function UserProvider({ children }: UserProviderProps) {
             axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
                 email,
                 password
-            }).then(response => {
+            }, { timeout: 15000 }).then(response => {
                 const { data } = response;
                 Storage.setItem("user", {
                     avatar: data.avatar,
@@ -67,7 +65,7 @@ export default function UserProvider({ children }: UserProviderProps) {
                     resolve("ok");
                 });
             }).catch(e => {
-                if (e.response.status === 401) {
+                if (e?.response?.status === 401) {
                     resolve("invalid_credentials");
                 } else resolve("network_err");
             });

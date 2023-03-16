@@ -1,4 +1,4 @@
-type Code =
+type ResponseCode =
     "ok" |
     "network_err" |
     "empty_fields" |

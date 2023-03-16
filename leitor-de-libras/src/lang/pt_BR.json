@@ -1,424 +1,490 @@
 {
-    "appName": "Li Libras",
-    "langName": "Português (Brasil)",
-    "locale": "pt",
-    "formats": {
-        
-    },
-    "general": {
-        "anonymous": "Usuário",
-        "local_account": "Conta local",
-        "login": "Fazer login",
-        "signup": "Criar uma conta",
-        "filter": "Procurar...",
-        "warning": "Aviso: %s",
-        "resource_not_available": "Recurso não disponível",
-        "tts_lang": "pt",
-        "user": {
-            "anonymous": "Anônimo",
-            "loading":  "Carregando usuário..."
-        },
-        "modal": {
-            "ok": "Ok",
-            "yes": "Sim",
-            "no": "Não",
-            "confirm": "Confirmar",
-            "cancel": "Cancelar",
-            "skip": "Pular"
-        },
-        "order": {
-            "date": "Data",
-            "name": "Nome",
-            "length": "Comprimento"
-        },
-        "unity": {
-            "future": "em %s",
-            "past": "há %s",
-            "s": "pouco tempo",
-            "ss": "seg",
-            "m": "1min",
-            "mm": "%dmin",
-            "h": "1h",
-            "hh": "%dh",
-            "d": "1d",
-            "dd": "%dd",
-            "w": "1s",
-            "ww": "%ds",
-            "M": "1m",
-            "MM": "%dm",
-            "y": "1a",
-            "yy": "%da"
-        },
-        "formats": {
-            "time": "hh:mm"
-        }
-    },
-    "empty": {
-        "title": "Tudo está vazio...",
-        "desc": "Parece que não há conteúdo a ser exibido."
-    },
-    "login": {
-        "title": "Conecte-se a uma conta",
-        "desc": "Com uma conta fica tudo melhor. Salve seus vídeos na nuvem e personalize o seu perfil.",
-        "ignore": "Ignorar por enquanto",
-        "err": {
-            "cant_login_title": "Não foi possível fazer login",
-            "empty_fields": "Insira seu endereço de e-mail e senha.",
-            "invalid_credentials": "Endereço de e-mai ou senha inválidos.",
-            "network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde.",
-            "email_in_use": "Endereço de e-mail em já em uso."
-        }
-    },
-    "reset_password": {
-        "title": "Alterar senha",
-        "desc": "Se você esqueceu sua senha ou quer colocar uma mais forte, preencha todas as informações necessárias."
-    },
-    "sign_up": {
-        "title": "Cadastrar-se",
-        "desc": "Crie sua conta agora e receba bons benefícios!",
-        "confirm": "Crie sua conta!",
-        "cancel": "Já tenho uma conta"
-    },
-    "set_profile_picture": {
-        "title": "Boas-vindas de volta, %s!",
-        "text": "Mostre para outros usuários quem é você. Adicione uma foto de perfil para começar."
-    },
-    "dashboard": {
-        "signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
-        "welcome": "Bem-vindo(a) ao %s!",
-        "cellular": "Você está utilizando os dados móveis. Para usar o aplicativo, recomendamos que você se conecte à uma rede Wi-Fi para evitar que cobranças adicionais sejam feitas.",
-        "disconnected": "Você não está conectado(a) à rede. Sem uma conexão com a internet, você só poderá acessar o %s e os arquivos salvos localmente.",
-        "local_account": "Não foi possível conectar ao servidor para recuperar suas informações. Você só poderá acessar e gerenciar o conteúdo salvo localmente. Abra as configurações para tentar conectar-se novamente.",
-        "tips": {
-            "curiosity": "Você sabia?",
-            "tip": "Dica:",
-            "learn_more": "Saiba mais",
-            "about_libras": {
-                "title": "Libras não se resume aos sinais manuais",
-                "short": "Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.",
-                "long": "Uma questão bastante curiosa é que Libras não se resume aos sinais manuais. Se fosse assim ficaria bem complicado já que, por ser uma língua nova, em construção, ela possui apenas cerca de 15 mil sinais. Isso para dar conta de 600 mil palavras do português.\n\nO que torna essa mágica possível são os chamados classificadores. São estratégias usadas por surdos e intérpretes para comunicarem, ali onde faltam os sinais.\n\nAlém disso as expressões faciais, e outros parâmetros da língua se unem para tornar a língua eficiente e eficaz."
-            },
-            "different": {
-                "title": "Libras é diferente de português",
-                "short": "Comunicar em libras não é falar o português convencional.",
-                "long": "A maneira em que as informações são passadas em Libras é diferente do português convencional. Isso porque, diferente da linguagem falada, em Libras não existem algumas regras do português, como tempos verbais e artigos."
-            },
-            "adaptation": {
-                "title": "Libras não é uma adaptação do português falado",
-                "short": "Libras não é somente uma adaptação da linguagem falada.",
-                "long": "A Língua Brasileira de Sinais (Libras) é reconhecida oficialmente como uma língua brasileira desde 2002 pela Lei nº 10.436. Isso quer dizer que Libras é uma linguagem completa, que possui uma estrutura gramatical própria, o que significa que ela não é apenas uma adaptação da língua oral."
-            },
-            "illiterate": {
-                "title": "Cerca de 80% dos surdos do mundo são analfabetos nas línguas escritas",
-                "short": "80% dos surdos de todo o mundo são analfabetos, ou seja, não entendem ou têm dificuldades para ler e escrever.",
-                "long": "De acordo com a WFD (Federação Mundial dos Surdos, na sigla em inglês), 80% dos surdos de todo o mundo têm baixa escolaridade e problemas de alfabetização. E no Brasil a situação não é diferente, já que a grande maioria dos surdos não tem uma boa compreensão do português, ou seja, não entendem ou têm dificuldades para ler e escrever. Por conta disso isso, eles dependem exclusivamente da língua de sinais para se comunicar e obter informação. A dificuldade de aprendizado da língua portuguesa escrita pode estar ligada a diversos fatores, como a impossibilidade de aprender através da fonética e som, a aquisição de linguagem tardia, ou mesmo, a diferença da estrutura gramatical da Libras e do português."
-            }
-        },
-        "what_to_do": {
-            "create": "Nova tradução",
-            "view_translations": "Suas traduções",
-            "clear": "Limpar traduções",
-            "archived": "Arquivados"
-        }
-    },
-    "article": {
-        "_comment": "Tela que aparecerá quando o usuário pressionar Saiba mais em uma dica ou curiosidade",
-        "credits": "por %s1 via %s2",
-        "credits_no_author": "disponível em %s",
-        "full_article": "Ver artigo completo",
-        "cant_open_url": "Desculpe, mas não é possível abrir esta URL. Caso queira inserir manualmente, este é o link:\n\n%s"
-    },
-    "settings": {
-        "title": "Configurações",
-        "restart_required": "Foram feitas alterações que podem precisar que o APP seja reiniciado para funcionarem corretamente.",
-        "tips": {
-            "settings_sync": "Você pode fazer login para salvar suas configurações online e sincronizar com outros dispositivos.",
-            "theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
-            "lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
-        },
-        "not_found": {
-            "title": "Configuração não encontrada",
-            "desc": "Desculpe, não encontramos a configuração solicitada.",
-            "back": "Voltar"
-        },
-        "display": {
-            "title": "Exibição",
-            "appearance": {
-                "title": "Aparência",
-                "desc": "Altere a maneira que o %s é exibido.",
-                "theme": {
-                    "title": "Tema",
-                    "desc": "Escolha a paleta de cores que será usada para apresentar o %s.",
-                    "hello_world": "Olá, mundo!",
-                    "auto": {
-                        "name": "Tema automático",
-                        "example": "Tema escolhido com base na configuração do seu dispositivo. Atualiza ao ativar ou desativar o modo noturno."
-                    },
-                    "light": {
-                        "name": "Tema claro",
-                        "example": "Este é o tema claro, ótimo para locais com alta luminosidade."
-                    },
-                    "dark": {
-                        "name": "Tema escuro",
-                        "example": "Este é o tema escuro, ótimo para locais com baixa luminosidade e para não forçar a vista."
-                    },
-                    "amoled": {
-                        "name": "Modo AMOLED",
-                        "example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
-                    },
-                    "contrast": {
-                        "name": "Alto contraste",
-                        "example": "Se você tem problema em diferenciar cores, o tema de alto contraste pode ajudar você."
-                    },
-                    "midnight": {
-                        "name": "Meia-noite",
-                        "example": "Este é o modo Darkula. Muito loko, né?"
-                    }
-                },
-                "other": {
-                    "title": "Outras configurações",
-                    "custom_fonts": "Permitir fontes personalizadas",
-                    "connection_alerts": "Exibir alertas de estado da conexão de rede"
-                }
-            },
-            "lang": {
-                "title": "Idioma",
-                "desc": "Altere o idioma de exibição.",
-                "lang": {
-                    "title": "Idioma de exibição",
-                    "desc": "Selecione o idioma que você deseja que o coteúdo seja exibido.",
-                    "auto": "Automático (%s)"
-                },
-                "auto_translate": {
-                    "title": "Tradução automática",
-                    "desc": "Ative a tradução automática do Google para traduzir o aplicativo para um idioma não traduzido oficialmente. A tradução pode não ser totalmente precisa e é necessário estar conectado à internet."
-                }
-            },
-            "performance": {
-                "title": "Desempenho",
-                "desc": "Está presenciando problemas de desempenho no aplicativo? Estas configurações podem ajudar",
-                "reduce_animations": "Reduzir animações"
-            }
-        },
-        "features": {
-            "title": "Recursos",
-            "litalks": {
-                "title": "Configurações do LiTalks",
-                "tts_on_msg": "Falar texto em voz alta ao enviar mensagem",
-                "tts_say_name": "Incluir na fala o nome do autor da mensagem",
-                "confirm_back": "Pedir confirmação para sair da conversa"
-            }
-        },
-        "more": {
-            "title": "Mais configurações",
-            "check_updates": {
-                "title": "Verificar atualizações"
-            },
-            "dev_tools": {
-                "title": "Opções de desenvolvedor"
-            },
-            "about": {
-                "title": "Sobre o %s"
-            }
-        }
-    },
-    "translations": {
-        "selected_singular": "%s selecionado",
-        "selected": "%s selecionados",
-        "options": {
-            "create": "Criar tradução",
-            "delete": "Excluir",
-            "favorite": "Favorito",
-            "lock": "Bloquear",
-            "import": "Importar",
-            "export": "Exportar",
-            "archive": "Arquivar",
-            "load": "Carregar"
-        },
-        "title": "Minhas traduções",
-        "filter": "Procurar traduções...",
-        "file": {
-            "downloading": "Baixando...",
-            "synching": "Sincronizando..."
-        },
-        "empty_search": {
-            "title": "Sem resultados",
-            "desc": "Não encontramos traduções com o nome inserido. Verifique se você digitou corretamente e tente novamente."
-        },
-        "empty_files": {
-            "title": "Você ainda não tem traduções",
-            "desc": "Comece a traduzir pressionando \"%s\" para criar ou importar gravações.",
-            "send_option": "Enviar vídeo",
-            "create_option": "Criar vídeo"
-        }
-    },
-    "watch": {
-        "options": {
-            "share": "Compartilhar",
-            "copy": "Copiar texto",
-            "edit": "Editar",
-            "details": "Detalhes"
-        }
-    },
-    "camera": {
-        "presentation": {
-            "title": "Diga \"X\"!"
-        },
-        "request_permission": {
-            "title": "Não conseguimos acessar sua câmera ou microfone.",
-            "text": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera e microfone.\nToque em %s para abrir as configurações do seu dispositivo.",
-            "button": "Abrir configurações"
-        },
-        "open_settings_failed": {
-            "title": "Não foi possível conceder permissões",
-            "text": "Não conseguimos abrir as configurações para solicitar as permissões necessárias. Acesse as configurações do seu dispositivo e nos dê permissão para acessar a câmera e o microfone"
-        },
-        "recording_finished": {
-            "text": "Gravação concluída",
-            "discard": "Descartar",
-            "ok": "Ok"
-        },
-        "recording_failed": {
-            "title": "Não foi possível iniciar a gravação",
-            "text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
-        }
-    },
-    "conversations": {
-        "title": "Li Talks",
-        "meet_label": "Mensagens com %s",
-        "untitled": "Conversa com %s",
-        "whos_talking": "Você está conversando com %s",
-        "presentation": {
-            "intro": "Apresentando o %s",
-            "text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
-        },
-        "empty": {
-            "title": "Sem conversas",
-            "desc": "Você não tem conversas salvas. Crie uma nova conversa para começar.",
-            "try": "Criar uma conversa",
-            "learn_more": "Saiba como funciona"
-        },
-        "create": {
-            "title": "Criar nova conversa",
-            "name": {
-                "label": "Nome",
-                "placeholder": "Com quem você conversará?"
-            },
-            "meet_name": {
-                "label": "Nome da conversa",
-                "placeholder": "Insira um título"
-            }
-        },
-        "left_chat_confirm": {
-            "title": "Sair?",
-            "text": "Talvez você tenha mensagens que ainda não foram salvas. Sair fará com que essas mensagens sejam excluídas.\nTem certeza de que deseja sair?"
-        },
-        "delete": {
-            "title": "Excluir conversa",
-            "text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
-        },
-        "delete_err": {
-            "title": "Erro ao excluir conversa",
-            "text": "Desculpe, ocorreu um erro ao excluir a conversa \"%s\". Se o erro persistir, avise-nos."
-        },
-        "chat": {
-            "placeholder": "Conversar com %s",
-            "guest": "Convidado(a)",
-            "tts_prefix": "%s1 disse: %s2"
-        },
-        "suggestions": {
-            "greetings": {
-                "msg": "Olá, tudo bem?",
-                "respondsTo": ["olá", "oi"]
-            },
-            "im_ok": {
-                "msg": "Tudo ótimo!",
-                "respondsTo": ["tudo bem"]
-            },
-            "ask_bathroom": {
-                "msg": "Onde fica o banheiro?",
-                "respondsTo": ["precisa", "tudo ótimo"]
-            },
-            "ask_help": {
-                "msg": "Pode me ajudar?",
-                "respondsTo": ["tudo ótimo"]
-            },
-            "what_you_need": {
-                "msg": "Do que você precisa?",
-                "respondsTo": ["ajuda", "ok"]
-            },
-            "ask_hospital": {
-                "shortMsg": "Onde tem hospital?",
-                "msg": "Você sabe onde tem algum hospital por perto?",
-                "respondsTo": ["precisa"]
-            },
-            "nevermind": {
-                "msg": "Deixa pra lá",
-                "respondsTo": ["precisa"]
-            },
-            "ill_check": {
-                "msg": "Vou verificar",
-                "respondsTo": ["onde", "você sabe"]
-            },
-            "idk": {
-                "msg": "Não sei",
-                "respondsTo": ["onde", "você sabe"]
-            },
-            "no": {
-                "msg": "Não",
-                "respondsTo": ["mais algum", "você sabe", "onde"]
-            },
-            "thanks": {
-                "msg": "Obrigado!"
-            },
-            "ok_thanks": {
-                "msg": "Ok, obrigado!",
-                "respondsTo": ["Não sei"]
-            },
-            "youre_welcome": {
-                "msg": "De nada",
-                "respondsTo": ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu"]
-            },
-            "anything_else": {
-                "shortMsg": "Mais algo?",
-                "msg": "Precisa de mais alguma coisa?",
-                "respondsTo": ["obrigado", "obrigada", "ok", "obrigado", "vlw", "valeu"]
-            },
-            "need_to_go": {
-                "msg": "Preciso ir",
-                "respondsTo": ["obrigado", "obrigada", "ok, obrigado", "vlw", "valeu", "de nada", "por nada", "por nd"]
-            },
-            "ok": {
-                "msg": "Ok",
-                "respondsTo": ["preciso ir", "prefiro", "vou verificar", "não", "nada"]
-            },
-            "bye": {
-                "msg": "Tchau",
-                "respondsTo": ["tchau", "flw", "preciso ir", "até a próxima"]
-            }
-        }
-    },
-    "profile": {
-        "not_signed": {
-            "title": "Você não está conectado(a)",
-            "desc": "Para alterar as configurações do seu perfil, é necessário que você se conecte a uma conta."
-        },
-        "logout": {
-            "title": "Desconectar-se?",
-            "text": "Os vídeos e conversas que estiverem salvos somente online não estarão disponíveis até que você faça login novamente."
-        },
-        "personal_data": {
-            "title": "Dados pessoais",
-            "avatar": "Foto de perfil",
-            "username": "Nome de usuário",
-            "about_me": "Sobre mim",
-            "email": "E-mail",
-            "email_placeholder": "Insira seu e-mail",
-            "password": "Senha",
-            "password_placeholder": "Insira sua senha",
-            "password_forgot": "Esqueci minha senha",
-            "gender": "Sexo",
-            "change_password": "Alterar sua senha"
-        }
-    }
+	"appName": "Li Libras",
+	"langName": "Português (Brasil)",
+	"locale": "pt",
+	"formats": {},
+	"general": {
+		"anonymous": "Usuário",
+		"local_account": "Conta local",
+		"login": "Fazer login",
+		"signup": "Criar uma conta",
+		"filter": "Procurar...",
+		"warning": "Aviso: %s",
+		"resource_not_available": "Recurso não disponível",
+		"tts_lang": "pt",
+		"user": {
+			"anonymous": "Anônimo",
+			"loading": "Carregando usuário..."
+		},
+		"modal": {
+			"ok": "Ok",
+			"yes": "Sim",
+			"no": "Não",
+			"confirm": "Confirmar",
+			"cancel": "Cancelar",
+			"skip": "Pular"
+		},
+		"order": {
+			"date": "Data",
+			"name": "Nome",
+			"length": "Comprimento"
+		},
+		"unity": {
+			"future": "em %s",
+			"past": "há %s",
+			"s": "pouco tempo",
+			"ss": "seg",
+			"m": "1min",
+			"mm": "%dmin",
+			"h": "1h",
+			"hh": "%dh",
+			"d": "1d",
+			"dd": "%dd",
+			"w": "1s",
+			"ww": "%ds",
+			"M": "1m",
+			"MM": "%dm",
+			"y": "1a",
+			"yy": "%da"
+		},
+		"formats": {
+			"time": "hh:mm"
+		},
+		"err_codes": {
+			"ok": "Confirmado",
+			"network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde",
+			"empty_fields": "Preencha todos os campos obrigatórios!",
+            "invalid_fields": "Algum campo possui um valor inválido. Verifique as informações inseridas e tente novamente.",
+			"invalid_credentials": "Endereço de e-mail ou senha inválidos.",
+            "invalid_email": "Endereço de e-mail inválido.",
+			"email_already_in_use": "O endereço de e-mail inserido já está em uso.",
+			"invalid_token": "Sessão inválida."
+		}
+	},
+	"empty": {
+		"title": "Tudo está vazio...",
+		"desc": "Parece que não há conteúdo a ser exibido."
+	},
+	"login": {
+		"title": "Conecte-se a uma conta",
+		"desc": "Com uma conta fica tudo melhor. Salve seus vídeos na nuvem e personalize o seu perfil.",
+		"ignore": "Ignorar por enquanto"
+	},
+	"reset_password": {
+		"title": "Alterar senha",
+		"desc": "Se você esqueceu sua senha ou quer colocar uma mais forte, preencha todas as informações necessárias."
+	},
+	"sign_up": {
+		"title": "Cadastrar-se",
+		"desc": "Vamos criar sua nova conta. É rápido, fácil e prático!",
+        "loading": "Quase lá!",
+		"confirm": "Crie sua conta!",
+		"cancel": "Já tenho uma conta"
+	},
+	"set_profile_picture": {
+		"title": "Boas-vindas de volta, %s!",
+		"text": "Mostre para outros usuários quem é você. Adicione uma foto de perfil para começar."
+	},
+	"dashboard": {
+		"signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
+		"welcome": "Bem-vindo(a) ao %s!",
+		"cellular": "Você está utilizando os dados móveis. Para usar o aplicativo, recomendamos que você se conecte à uma rede Wi-Fi para evitar que cobranças adicionais sejam feitas.",
+		"disconnected": "Você não está conectado(a) à rede. Sem uma conexão com a internet, você só poderá acessar o %s e os arquivos salvos localmente.",
+		"local_account": "Não foi possível conectar ao servidor para recuperar suas informações. Você só poderá acessar e gerenciar o conteúdo salvo localmente. Abra as configurações para tentar conectar-se novamente.",
+		"tips": {
+			"curiosity": "Você sabia?",
+			"tip": "Dica:",
+			"learn_more": "Saiba mais",
+			"about_libras": {
+				"title": "Libras não se resume aos sinais manuais",
+				"short": "Libras não se resume a escrever palavras, mas usa outros parâmetros, como expressões faciais e gestos.",
+				"long": "Uma questão bastante curiosa é que Libras não se resume aos sinais manuais. Se fosse assim ficaria bem complicado já que, por ser uma língua nova, em construção, ela possui apenas cerca de 15 mil sinais. Isso para dar conta de 600 mil palavras do português.\n\nO que torna essa mágica possível são os chamados classificadores. São estratégias usadas por surdos e intérpretes para comunicarem, ali onde faltam os sinais.\n\nAlém disso as expressões faciais, e outros parâmetros da língua se unem para tornar a língua eficiente e eficaz."
+			},
+			"different": {
+				"title": "Libras é diferente de português",
+				"short": "Comunicar em libras não é falar o português convencional.",
+				"long": "A maneira em que as informações são passadas em Libras é diferente do português convencional. Isso porque, diferente da linguagem falada, em Libras não existem algumas regras do português, como tempos verbais e artigos."
+			},
+			"adaptation": {
+				"title": "Libras não é uma adaptação do português falado",
+				"short": "Libras não é somente uma adaptação da linguagem falada.",
+				"long": "A Língua Brasileira de Sinais (Libras) é reconhecida oficialmente como uma língua brasileira desde 2002 pela Lei nº 10.436. Isso quer dizer que Libras é uma linguagem completa, que possui uma estrutura gramatical própria, o que significa que ela não é apenas uma adaptação da língua oral."
+			},
+			"illiterate": {
+				"title": "Cerca de 80% dos surdos do mundo são analfabetos nas línguas escritas",
+				"short": "80% dos surdos de todo o mundo são analfabetos, ou seja, não entendem ou têm dificuldades para ler e escrever.",
+				"long": "De acordo com a WFD (Federação Mundial dos Surdos, na sigla em inglês), 80% dos surdos de todo o mundo têm baixa escolaridade e problemas de alfabetização. E no Brasil a situação não é diferente, já que a grande maioria dos surdos não tem uma boa compreensão do português, ou seja, não entendem ou têm dificuldades para ler e escrever. Por conta disso isso, eles dependem exclusivamente da língua de sinais para se comunicar e obter informação. A dificuldade de aprendizado da língua portuguesa escrita pode estar ligada a diversos fatores, como a impossibilidade de aprender através da fonética e som, a aquisição de linguagem tardia, ou mesmo, a diferença da estrutura gramatical da Libras e do português."
+			}
+		},
+		"what_to_do": {
+			"create": "Nova tradução",
+			"view_translations": "Suas traduções",
+			"clear": "Limpar traduções",
+			"archived": "Arquivados"
+		}
+	},
+	"article": {
+		"_comment": "Tela que aparecerá quando o usuário pressionar Saiba mais em uma dica ou curiosidade",
+		"credits": "por %s1 via %s2",
+		"credits_no_author": "disponível em %s",
+		"full_article": "Ver artigo completo",
+		"cant_open_url": "Desculpe, mas não é possível abrir esta URL. Caso queira inserir manualmente, este é o link:\n\n%s"
+	},
+	"settings": {
+		"title": "Configurações",
+		"restart_required": "Foram feitas alterações que podem precisar que o APP seja reiniciado para funcionarem corretamente.",
+		"tips": {
+			"settings_sync": "Você pode fazer login para salvar suas configurações online e sincronizar com outros dispositivos.",
+			"theme": "Você pode alterar a paleta de cores do aplicativo acessando %s > %s > %s > %s",
+			"lang": "Você pode alterar o idioma do aplicativo acessando %s > %s > %s > %s"
+		},
+		"not_found": {
+			"title": "Configuração não encontrada",
+			"desc": "Desculpe, não encontramos a configuração solicitada.",
+			"back": "Voltar"
+		},
+		"display": {
+			"title": "Exibição",
+			"appearance": {
+				"title": "Aparência",
+				"desc": "Altere a maneira que o %s é exibido.",
+				"theme": {
+					"title": "Tema",
+					"desc": "Escolha a paleta de cores que será usada para apresentar o %s.",
+					"hello_world": "Olá, mundo!",
+					"auto": {
+						"name": "Tema automático",
+						"example": "Tema escolhido com base na configuração do seu dispositivo. Atualiza ao ativar ou desativar o modo noturno."
+					},
+					"light": {
+						"name": "Tema claro",
+						"example": "Este é o tema claro, ótimo para locais com alta luminosidade."
+					},
+					"dark": {
+						"name": "Tema escuro",
+						"example": "Este é o tema escuro, ótimo para locais com baixa luminosidade e para não forçar a vista."
+					},
+					"amoled": {
+						"name": "Modo AMOLED",
+						"example": "Este é o modo AMOLED. Em dispositivos compatíveis, esse modo pode ajudar a economizar bateria."
+					},
+					"contrast": {
+						"name": "Alto contraste",
+						"example": "Se você tem problema em diferenciar cores, o tema de alto contraste pode ajudar você."
+					},
+					"midnight": {
+						"name": "Meia-noite",
+						"example": "Este é o modo Darkula. Muito loko, né?"
+					}
+				},
+				"other": {
+					"title": "Outras configurações",
+					"custom_fonts": "Permitir fontes personalizadas",
+					"connection_alerts": "Exibir alertas de estado da conexão de rede"
+				}
+			},
+			"lang": {
+				"title": "Idioma",
+				"desc": "Altere o idioma de exibição.",
+				"lang": {
+					"title": "Idioma de exibição",
+					"desc": "Selecione o idioma que você deseja que o coteúdo seja exibido.",
+					"auto": "Automático (%s)"
+				},
+				"auto_translate": {
+					"title": "Tradução automática",
+					"desc": "Ative a tradução automática do Google para traduzir o aplicativo para um idioma não traduzido oficialmente. A tradução pode não ser totalmente precisa e é necessário estar conectado à internet."
+				}
+			},
+			"performance": {
+				"title": "Desempenho",
+				"desc": "Está presenciando problemas de desempenho no aplicativo? Estas configurações podem ajudar",
+				"reduce_animations": "Reduzir animações"
+			}
+		},
+		"features": {
+			"title": "Recursos",
+			"litalks": {
+				"title": "Configurações do LiTalks",
+				"tts_on_msg": "Falar texto em voz alta ao enviar mensagem",
+				"tts_say_name": "Incluir na fala o nome do autor da mensagem",
+				"confirm_back": "Pedir confirmação para sair da conversa"
+			}
+		},
+		"more": {
+			"title": "Mais configurações",
+			"check_updates": {
+				"title": "Verificar atualizações"
+			},
+			"dev_tools": {
+				"title": "Opções de desenvolvedor"
+			},
+			"about": {
+				"title": "Sobre o %s"
+			}
+		}
+	},
+	"translations": {
+		"selected_singular": "%s selecionado",
+		"selected": "%s selecionados",
+		"options": {
+			"create": "Criar tradução",
+			"delete": "Excluir",
+			"favorite": "Favorito",
+			"lock": "Bloquear",
+			"import": "Importar",
+			"export": "Exportar",
+			"archive": "Arquivar",
+			"load": "Carregar"
+		},
+		"title": "Minhas traduções",
+		"filter": "Procurar traduções...",
+		"file": {
+			"downloading": "Baixando...",
+			"synching": "Sincronizando..."
+		},
+		"empty_search": {
+			"title": "Sem resultados",
+			"desc": "Não encontramos traduções com o nome inserido. Verifique se você digitou corretamente e tente novamente."
+		},
+		"empty_files": {
+			"title": "Você ainda não tem traduções",
+			"desc": "Comece a traduzir pressionando \"%s\" para criar ou importar gravações.",
+			"send_option": "Enviar vídeo",
+			"create_option": "Criar vídeo"
+		}
+	},
+	"watch": {
+		"options": {
+			"share": "Compartilhar",
+			"copy": "Copiar texto",
+			"edit": "Editar",
+			"details": "Detalhes"
+		}
+	},
+	"camera": {
+		"presentation": {
+			"title": "Diga \"X\"!"
+		},
+		"request_permission": {
+			"title": "Não conseguimos acessar sua câmera ou microfone.",
+			"text": "Para que possamos fazer a leitura dos sinais, é necessário que você nos dê permissão para acessar sua câmera e microfone.\nToque em %s para abrir as configurações do seu dispositivo.",
+			"button": "Abrir configurações"
+		},
+		"open_settings_failed": {
+			"title": "Não foi possível conceder permissões",
+			"text": "Não conseguimos abrir as configurações para solicitar as permissões necessárias. Acesse as configurações do seu dispositivo e nos dê permissão para acessar a câmera e o microfone"
+		},
+		"recording_finished": {
+			"text": "Gravação concluída",
+			"discard": "Descartar",
+			"ok": "Ok"
+		},
+		"recording_failed": {
+			"title": "Não foi possível iniciar a gravação",
+			"text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
+		}
+	},
+	"conversations": {
+		"title": "Li Talks",
+		"meet_label": "Mensagens com %s",
+		"untitled": "Conversa com %s",
+		"whos_talking": "Você está conversando com %s",
+		"presentation": {
+			"intro": "Apresentando o %s",
+			"text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
+		},
+		"empty": {
+			"title": "Sem conversas",
+			"desc": "Você não tem conversas salvas. Crie uma nova conversa para começar.",
+			"try": "Criar uma conversa",
+			"learn_more": "Saiba como funciona"
+		},
+		"create": {
+			"title": "Criar nova conversa",
+			"name": {
+				"label": "Nome",
+				"placeholder": "Com quem você conversará?"
+			},
+			"meet_name": {
+				"label": "Nome da conversa",
+				"placeholder": "Insira um título"
+			}
+		},
+		"left_chat_confirm": {
+			"title": "Sair?",
+			"text": "Talvez você tenha mensagens que ainda não foram salvas. Sair fará com que essas mensagens sejam excluídas.\nTem certeza de que deseja sair?"
+		},
+		"delete": {
+			"title": "Excluir conversa",
+			"text": "Tem certeza de que deseja excluir a conversa \"%s\"? Todas as mensagens apagadas."
+		},
+		"delete_err": {
+			"title": "Erro ao excluir conversa",
+			"text": "Desculpe, ocorreu um erro ao excluir a conversa \"%s\". Se o erro persistir, avise-nos."
+		},
+		"chat": {
+			"placeholder": "Conversar com %s",
+			"guest": "Convidado(a)",
+			"tts_prefix": "%s1 disse: %s2"
+		},
+		"suggestions": {
+			"greetings": {
+				"msg": "Olá, tudo bem?",
+				"respondsTo": [
+					"olá",
+					"oi"
+				]
+			},
+			"im_ok": {
+				"msg": "Tudo ótimo!",
+				"respondsTo": [
+					"tudo bem"
+				]
+			},
+			"ask_bathroom": {
+				"msg": "Onde fica o banheiro?",
+				"respondsTo": [
+					"precisa",
+					"tudo ótimo"
+				]
+			},
+			"ask_help": {
+				"msg": "Pode me ajudar?",
+				"respondsTo": [
+					"tudo ótimo"
+				]
+			},
+			"what_you_need": {
+				"msg": "Do que você precisa?",
+				"respondsTo": [
+					"ajuda",
+					"ok"
+				]
+			},
+			"ask_hospital": {
+				"shortMsg": "Onde tem hospital?",
+				"msg": "Você sabe onde tem algum hospital por perto?",
+				"respondsTo": [
+					"precisa"
+				]
+			},
+			"nevermind": {
+				"msg": "Deixa pra lá",
+				"respondsTo": [
+					"precisa"
+				]
+			},
+			"ill_check": {
+				"msg": "Vou verificar",
+				"respondsTo": [
+					"onde",
+					"você sabe"
+				]
+			},
+			"idk": {
+				"msg": "Não sei",
+				"respondsTo": [
+					"onde",
+					"você sabe"
+				]
+			},
+			"no": {
+				"msg": "Não",
+				"respondsTo": [
+					"mais algum",
+					"você sabe",
+					"onde"
+				]
+			},
+			"thanks": {
+				"msg": "Obrigado!"
+			},
+			"ok_thanks": {
+				"msg": "Ok, obrigado!",
+				"respondsTo": [
+					"Não sei"
+				]
+			},
+			"youre_welcome": {
+				"msg": "De nada",
+				"respondsTo": [
+					"obrigado",
+					"obrigada",
+					"ok, obrigado",
+					"vlw",
+					"valeu"
+				]
+			},
+			"anything_else": {
+				"shortMsg": "Mais algo?",
+				"msg": "Precisa de mais alguma coisa?",
+				"respondsTo": [
+					"obrigado",
+					"obrigada",
+					"ok",
+					"obrigado",
+					"vlw",
+					"valeu"
+				]
+			},
+			"need_to_go": {
+				"msg": "Preciso ir",
+				"respondsTo": [
+					"obrigado",
+					"obrigada",
+					"ok, obrigado",
+					"vlw",
+					"valeu",
+					"de nada",
+					"por nada",
+					"por nd"
+				]
+			},
+			"ok": {
+				"msg": "Ok",
+				"respondsTo": [
+					"preciso ir",
+					"prefiro",
+					"vou verificar",
+					"não",
+					"nada"
+				]
+			},
+			"bye": {
+				"msg": "Tchau",
+				"respondsTo": [
+					"tchau",
+					"flw",
+					"preciso ir",
+					"até a próxima"
+				]
+			}
+		}
+	},
+	"profile": {
+		"not_signed": {
+			"title": "Você não está conectado(a)",
+			"desc": "Para alterar as configurações do seu perfil, é necessário que você se conecte a uma conta."
+		},
+		"logout": {
+			"title": "Desconectar-se?",
+			"text": "Os vídeos e conversas que estiverem salvos somente online não estarão disponíveis até que você faça login novamente."
+		},
+		"personal_data": {
+			"title": "Dados pessoais",
+			"avatar": "Foto de perfil",
+			"username": "Nome de usuário",
+			"about_me": "Sobre mim",
+			"email": "E-mail",
+			"email_placeholder": "Insira seu e-mail",
+			"password": "Senha",
+			"password_placeholder": "Insira sua senha",
+            "password_confirm": "Confirmar senha",
+            "password_confirm_placeholder": "Digite novamente sua senha",
+			"password_forgot": "Esqueci minha senha",
+			"gender": "Sexo",
+			"change_password": "Alterar sua senha"
+		}
+	}
 }

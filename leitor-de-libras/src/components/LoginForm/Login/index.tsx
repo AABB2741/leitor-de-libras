@@ -37,7 +37,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [warning, setWarning] = useState<string | null>(null);
+    const [warning, setWarning] = useState<ResponseCode | "invalid_email" | null>(null);
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState<PopupProps | null>(null);
 
@@ -45,7 +45,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
         setWarning(null);
 
         if (!email.trim() || !password.trim()) {
-            setWarning(lang.login.err.empty_fields);
+            setWarning("empty_fields");
             setLoading(false);
             setCanClose(true);
             return;
@@ -62,7 +62,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
                 setLocation("SetProfilePicture");
                 return;
             default:
-                setWarning(lang.login.err[response]);
+                setWarning(response);
         }
 
         console.log(response);
@@ -97,7 +97,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
                             editable={!loading}
                             onSubmitEditing={handleLogin}
                         />
-                        {warning && <Font style={styles.warning}>{warning}</Font>}
+                        {warning && <Font style={styles.warning}>{lang.general.err_codes[warning] ?? warning}</Font>}
                         <Button
                             accentColor={colors.accent2}
                             label={lang.profile.personal_data.password_forgot}

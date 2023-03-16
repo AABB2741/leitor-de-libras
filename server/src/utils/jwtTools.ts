@@ -15,6 +15,7 @@ export function check(req: Request, res: Response, next: NextFunction) {
         if (err)
             throw new AppError("invalid_token", 401);
         
+        // FIXME: arrumar e tentar fazer a verificação de token
         req.id = decoded.id;
         next();
     });
