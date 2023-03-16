@@ -11,6 +11,7 @@ type UserContextValue = {
     user: UserProps | null;
     signed: null | boolean; // null significa que ainda não foi carregado
     token?: string;
+    signUp: (name: string, email: string, password: string) => Promise<ResponseCode>;
     login: (email: string, password: string) => Promise<ResponseCode> | "empty_fields";
     logOut: () => Promise<boolean>;
 }
@@ -45,32 +46,65 @@ export default function UserProvider({ children }: UserProviderProps) {
     //     }
     // }
 
-    function login(email: string, password: string): Promise<ResponseCode> | "empty_fields" {
+    async function signUp(name: string, email: string, password: string): Promise<ResponseCode> {
+        return "network_err";
+    }
+
+    async function login(email: string, password: string): Promise<ResponseCode> {
         if (!email.trim() || !password.trim())
             return "empty_fields";
 
-        return new Promise((resolve, reject) => {
-            axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
+        try {
+            const { data } = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
                 email,
                 password
-            }, { timeout: 15000 }).then(response => {
-                const { data } = response;
-                Storage.setItem("user", {
-                    avatar: data.avatar,
-                    name: data.name,
-                    email: data.email
-                }).then(u => {
-                    log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
-                    setUser(u);
-                    resolve("ok");
-                });
-            }).catch(e => {
-                if (e?.response?.status === 401) {
-                    resolve("invalid_credentials");
-                } else resolve("network_err");
+            }, { timeout: 15000 });
+
+            const u = await Storage.setItem("user", {
+                avatar: data.avatar,
+                name: data.name,
+                email: data.email
             });
-        });
+
+            log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
+            setUser(u);
+            return "ok";
+        } catch (e) {
+            const err: any = e;
+            log(`Erro ao solicitar login à API: ${err}`, { color: "fgRed" });
+
+            if (err?.response?.status === 401) {
+                return "invalid_credentials";
+            } else return "unknown_err";
+        }
     }
+
+    // function login(email: string, password: string): Promise<ResponseCode> | "empty_fields" {
+    //     if (!email.trim() || !password.trim())
+    //         return "empty_fields";
+
+    //     return new Promise((resolve, reject) => {
+    //         axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
+    //             email,
+    //             password
+    //         }, { timeout: 15000 }).then(response => {
+    //             const { data } = response;
+    //             Storage.setItem("user", {
+    //                 avatar: data.avatar,
+    //                 name: data.name,
+    //                 email: data.email
+    //             }).then(u => {
+    //                 log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
+    //                 setUser(u);
+    //                 resolve("ok");
+    //             });
+    //         }).catch(e => {
+    //             if (e?.response?.status === 401) {
+    //                 resolve("invalid_credentials");
+    //             } else resolve("network_err");
+    //         });
+    //     });
+    // }
 
     async function logOut() {
         log("Desconectando-se...", { color: "fgGray" });
@@ -91,7 +125,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", login, logOut }}>
+        <UserContext.Provider value={{ user, signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", signUp, login, logOut }}>
             {children}
         </UserContext.Provider>
     );

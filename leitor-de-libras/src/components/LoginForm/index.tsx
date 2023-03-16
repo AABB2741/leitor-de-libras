@@ -43,7 +43,7 @@ export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps)
             <StatusBar barStyle="light-content" />
             <View style={styles.container}>
                 {location === "Login" && <Login setLocation={setLocation} setCanClose={setCanClose} />}
-                {location === "SignUp" && <SignUp />}
+                {location === "SignUp" && <SignUp setLocation={setLocation} setCanClose={setCanClose} />}
                 {location === "ResetPassword" && <ResetPassword />}
                 {location === "SetProfilePicture" && <SetProfilePicture />}
             </View>

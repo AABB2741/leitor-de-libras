@@ -44,12 +44,11 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
     async function handleLogin() {
         setWarning(null);
 
-        if (!email.trim() || !password.trim()) {
-            setWarning("empty_fields");
-            setLoading(false);
-            setCanClose(true);
-            return;
-        }
+        if (!email.trim() || !password.trim())
+            return setWarning("empty_fields");
+
+        if (!email.includes("@"))
+            return setWarning("invalid_email");
 
         setLoading(true);
         setCanClose(false);
@@ -64,8 +63,6 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
             default:
                 setWarning(response);
         }
-
-        console.log(response);
 
         setLoading(false);
         setCanClose(true);
