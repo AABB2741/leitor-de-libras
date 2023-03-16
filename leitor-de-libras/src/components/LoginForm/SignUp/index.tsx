@@ -103,6 +103,7 @@ export default function SignUp({ setCanClose, setLocation }: SignUpProps) {
                             secureTextEntry
                             value={confirmPassword}
                             onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
+                            onSubmitEditing={handleSignUp}
                         />
                     </FixedCategory>
                     {warning && <Font style={styles.warning}>{lang.general.err_codes[warning] ?? warning}</Font>}
