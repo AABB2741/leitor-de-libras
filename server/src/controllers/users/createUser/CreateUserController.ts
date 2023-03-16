@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import { AppError } from "../../../errors/AppError";
 import { RequestBody } from "../../../utils/RequestBody";
 
+import jwt from "jsonwebtoken";
+import { SECRET } from "../../../utils/secret";
+
 import { CreateUserUseCase, UserSignUpData } from "./CreateUserUseCase";
 
 export class CreateUserController {
@@ -20,15 +23,29 @@ export class CreateUserController {
         if (!email.includes("@"))
             throw new AppError("invalid_fields");
 
+        if (password.length < 8 || password.length > 32)
+            throw new AppError("invalid_password_length");
+
         // Faz a conexão com o arquivo responsável pela conexão com o banco (CreateUserUsecase)
         const createUserUsecase = new CreateUserUseCase();
         const user = await createUserUsecase.execute({ name, email, password });
 
+        if (!user)
+            throw new AppError("unknown_err", 500);
+
+        const token = jwt.sign(
+            { id: user?.id },
+            SECRET,
+            { expiresIn: 60 * 60 } // 1 hora
+        );
+
         // Retorna as informações de avatar, nome e email do usuário para o frontend
         res.status(201).json({
+            token,
             avatar: "", // TODO: definir depois o avatar
             name: user?.name,
-            email: user?.email
+            email: user?.email,
+            about_me: user?.about_me
         });
     }
 }

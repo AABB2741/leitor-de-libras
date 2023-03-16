@@ -35,7 +35,7 @@ export class CreateUserUseCase {
                 log("Erro ao registrar criação de usuário existente: " + e);
             }
 
-            throw new AppError("email_already_in_use");
+            throw new AppError("email_already_in_use", 409);
         }
 
         // Se não houver, será cadastrado um novo usuário

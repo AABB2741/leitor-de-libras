@@ -47,7 +47,43 @@ export default function UserProvider({ children }: UserProviderProps) {
     // }
 
     async function signUp(name: string, email: string, password: string): Promise<ResponseCode> {
-        return "network_err";
+        if (!name.trim() || !email.trim() || !password.trim())
+            return "empty_fields";
+
+        if (!email.includes("@"))
+            return "invalid_email";
+
+        if (password.length < 8)
+            return "invalid_password_length";
+
+        try {
+            const { data } = await axios.post<UserProps & { token: string }>(`${api.address}/user/signUp`, {
+                name,
+                email,
+                password
+            });
+
+            if (!data)
+                return "unknown_err";
+
+            const u = await Storage.setItem("user", {
+                avatar: user?.avatar,
+                name: data?.name,
+                email: data?.email,
+                about_me: data?.about_me
+            });
+
+            setUser(u);
+
+            return "ok";
+        } catch (e) {
+            const err: any = e;
+            log(`Erro ao solicitar cadastro à API: ${err}`, { color: "fgRed" });
+
+            if (err?.response?.status === 409) {
+                return "email_already_in_use";
+            } else return err?.response?.code ?? "unknown_err";
+        }
     }
 
     async function login(email: string, password: string): Promise<ResponseCode> {
@@ -61,12 +97,13 @@ export default function UserProvider({ children }: UserProviderProps) {
             }, { timeout: 15000 });
 
             const u = await Storage.setItem("user", {
-                avatar: data.avatar,
-                name: data.name,
-                email: data.email
+                avatar: data?.avatar,
+                name: data?.name,
+                email: data?.email,
+                about_me: data?.about_me
             });
 
-            log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
+            log(`Conectado. Token de acesso: ${data.token}`);
             setUser(u);
             return "ok";
         } catch (e) {

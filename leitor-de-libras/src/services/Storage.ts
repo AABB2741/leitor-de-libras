@@ -8,6 +8,7 @@ import { DeepPartial } from "../utils/DeepPartial";
 
 type Saves = {
     "user": UserProps,
+    "#session_token": string;
     "@settings": SettingsProps;
     "@introduction": {
         "skip_login": boolean;

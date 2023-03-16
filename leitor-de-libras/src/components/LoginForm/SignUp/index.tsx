@@ -56,7 +56,7 @@ export default function SignUp({ setCanClose, setLocation }: SignUpProps) {
 
         switch (response) {
             case "ok":
-                console.log("Ok");
+                
                 break;
             default:
                 setWarning(response);
@@ -86,6 +86,7 @@ export default function SignUp({ setCanClose, setLocation }: SignUpProps) {
                             editable={!loading}
                             value={email}
                             onChangeText={email => setEmail(email)}
+                            keyboardType="email-address"
                         />
                         <Input
                             placeholder={lang.profile.personal_data.password_placeholder}

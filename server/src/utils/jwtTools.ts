@@ -5,6 +5,7 @@ import { SECRET } from "./secret";
 import { AppError } from "../errors/AppError";
 
 // TODO: Terminar de aprender a utilizar o JWT
+// [ ] Colocar função de criar tokens (não deixar através do jwt.sign)
 export function check(req: Request, res: Response, next: NextFunction) {
     const token = req.headers["x-access-token"] as string | null;
 
