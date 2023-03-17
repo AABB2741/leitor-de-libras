@@ -8,8 +8,14 @@ export class GetAvatarsController {
         const getAvatarsUseCase = new GetAvatarsUseCase();
         const avatars = await getAvatarsUseCase.execute();
 
-        if (!avatars) {
+        if (!avatars)
             throw new AppError("internal_server_error", 500);
-        }
+
+        res.json({
+            avatars: avatars.map(a => ({
+                code: a.code,
+                url: a.url
+            }))
+        });
     }
 }
