@@ -112,7 +112,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
             if (err?.response?.status === 401) {
                 return "invalid_credentials";
-            } else return "unknown_err";
+            } else return "network_err";
         }
     }
 

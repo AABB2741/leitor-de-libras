@@ -94,9 +94,9 @@ export default function Profile() {
                 loading={loading}
                 onRespondBoolean={async response => {
                     setLoading(true);
-                    await logOut();
-
+                    
                     if (response) {
+                        await logOut();
                         setLoginFormVisible(true);
                     }
 

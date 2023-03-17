@@ -75,7 +75,7 @@
 	},
 	"reset_password": {
 		"title": "Alterar senha",
-		"desc": "Se você esqueceu sua senha ou quer colocar uma mais forte, preencha todas as informações necessárias."
+		"desc": "Se você esqueceu sua senha ou quer colocar uma mais forte, insira seu endereço de e-mail que enviaremos um código que você deve utilizar para confirmar a alteração."
 	},
 	"sign_up": {
 		"title": "Cadastrar-se",
