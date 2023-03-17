@@ -32,8 +32,5 @@ export default ({ colors }: ResetPasswordStyle) => StyleSheet.create({
         fontSize: 12,
         textAlign: "center",
         marginBottom: 10
-    },
-    instructions: {
-        marginTop: 20
     }
 });

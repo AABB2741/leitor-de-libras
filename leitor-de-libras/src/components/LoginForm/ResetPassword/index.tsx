@@ -114,10 +114,10 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                 <ScrollView style={styles.container} contentContainerStyle={styles.content}>
                     <Font family="black" style={styles.title}>{lang.reset_password.title}</Font>
                     <Font style={styles.desc}>{lang.reset_password.desc}</Font>
-                    <FixedCategory title={lang.reset_password.form_title}>
+                    <FixedCategory title={lang.reset_password.send_email.title}>
                         <Input
-                            placeholder={lang.reset_password.email_placeholder}
-                            label={lang.reset_password.email}
+                            placeholder={lang.reset_password.send_email.email_placeholder}
+                            label={lang.reset_password.send_email.email}
                             editable={!loading && !sent}
                             value={email}
                             onChangeText={email => setEmail(email)}
@@ -126,23 +126,23 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                         />
                         {warning && <Font style={styles.warning}>{lang.general.err_codes[warning] ?? warning}</Font>}
                         <Button
-                            label={lang.reset_password.confirm}
+                            label={lang.reset_password.send_email.confirm}
                             onPress={handleChangePassword}
                             loading={loading && !sent}
                             disabled={sent}
                             highlight
                         />
                         <Button
-                            label={lang.reset_password.return}
+                            label={lang.reset_password.send_email.return}
                             style={{ display: sent ? "none" : "flex" }}
                             disabled={loading}
                             onPress={() => setLocation("Login")}
                         />
                     </FixedCategory>
-                    <View style={[styles.instructions, { display: sent ? "flex" : "none" }]}>
+                    <FixedCategory title={lang.reset_password.confirm_code.title} style={{ display: sent ? "flex" : "none" }}>
                         <Input
-                            label={lang.reset_password.email_check}
-                            placeholder={lang.reset_password.check_code}
+                            label={lang.reset_password.confirm_code.email_check}
+                            placeholder={lang.reset_password.confirm_code.check_code}
                             keyboardType="numeric"
                             maxLength={6}
                             value={code}
@@ -152,19 +152,19 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                         />
                         {codeWarning && <Font style={styles.warning}>{lang.general.err_codes[codeWarning] ?? codeWarning}</Font>}
                         <Button
-                            label={lang.reset_password.confirm_code}
+                            label={lang.reset_password.confirm_code.confirm}
                             onPress={handleCheckCode}
                             highlight
                             disabled={loading || code.length !== 6}
                             loading={confirmLoading}
                         />
                         <Button
-                            label={lang.reset_password.cancel}
+                            label={lang.reset_password.confirm_code.cancel}
                             onPress={handleCancel}
                             loading={loading}
                             disabled={confirmLoading}
                         />
-                    </View>
+                    </FixedCategory>
                 </ScrollView>
             </View>
         </KeyboardAvoidingView>

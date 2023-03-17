@@ -75,17 +75,22 @@
 		"ignore": "Ignorar por enquanto"
 	},
 	"reset_password": {
-		"title": "Alterar senha",
+        "title": "Alterar senha",
 		"desc": "Altere a sua senha caso você tenha esquecido ou queira colocar uma mais forte.",
-        "form_title": "Alterar senha da conta",
-        "email": "Endereço de e-mail",
-        "email_placeholder": "E-mail de recuperação ou da conta",
-        "confirm": "Enviar",
-        "return": "Voltar ao login",
-        "cancel": "Cancelar",
-        "email_check": "Enviamos um código para %s. Insira o código que você recebeu abaixo para continuar com a alteração da senha.",
-        "check_code": "Código de verificação",
-        "confirm_code": "Verificar código"
+        "send_email": {
+            "title": "Inserir endereço de e-mail",
+            "email": "Endereço de e-mail",
+            "email_placeholder": "Endereço de e-mail da sua conta",
+            "confirm": "Enviar",
+            "return": "Voltar ao login"
+        },
+        "confirm_code": {
+            "title": "Confirmar código de verificação",
+            "email_check": "Enviamos um código para %s. Insira o código que você recebeu abaixo para continuar com a alteração da senha.",
+            "check_code": "Código de verificação",
+            "confirm": "Verificar código",
+            "cancel": "Cancelar"
+        }
 	},
 	"sign_up": {
 		"title": "Cadastrar-se",
