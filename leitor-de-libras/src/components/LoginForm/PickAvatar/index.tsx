@@ -38,6 +38,7 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
     const [chosenSuggestion, setChosenSuggestion] = useState<Suggestion["code"] | null>(null);
     const [avatar, setAvatar] = useState<ImageSourcePropType | null>(null);
     const [loading, setLoading] = useState(true);
+    // TODO: Colocar mensagem de erro caso dê erro
     const [error, setError] = useState(false);
 
     const uri = avatarList.find(a => a.code === chosenSuggestion)?.url;
