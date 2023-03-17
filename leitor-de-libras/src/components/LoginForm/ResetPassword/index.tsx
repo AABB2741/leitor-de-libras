@@ -21,6 +21,20 @@ interface ResetPasswordProps {
     setLocation: React.Dispatch<React.SetStateAction<Location>>;
 }
 
+function censureEmail(email: string) {
+    // Obter o nome de usuário e o domínio do e-mail
+    const [nome, dominio] = email.split('@');
+
+    // Substituir os caracteres do nome por asteriscos, deixando apenas a primeira e última letra
+    const nomeCensurado = nome.charAt(0) + nome.slice(1, -1).replace(/./g, '*') + nome.charAt(nome.length - 1);
+
+    // Juntar o nome censurado e o domínio para formar o e-mail censurado
+    const emailCensurado = nomeCensurado + '@' + dominio;
+
+    // Retornar o e-mail censurado
+    return emailCensurado;
+}
+
 function changePassword(email: string): Promise<ResponseCode> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -71,7 +85,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         setWarning(null);
         setLoading(true);
         setCanClose(false);
-        
+
         const response = await changePassword(email);
         if (response === "ok") {
             setSent(true);
@@ -141,7 +155,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                     </FixedCategory>
                     <FixedCategory title={lang.reset_password.confirm_code.title} style={{ display: sent ? "flex" : "none" }}>
                         <Input
-                            label={lang.reset_password.confirm_code.email_check}
+                            label={lang.reset_password.confirm_code.email_check.replace("%s", censureEmail(email))}
                             placeholder={lang.reset_password.confirm_code.check_code}
                             keyboardType="numeric"
                             maxLength={6}
