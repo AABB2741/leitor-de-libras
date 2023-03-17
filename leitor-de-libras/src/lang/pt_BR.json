@@ -100,10 +100,15 @@
 		"confirm": "Crie sua conta!",
 		"cancel": "Já tenho uma conta"
 	},
-	"set_profile_picture": {
-		"title": "Boas-vindas de volta, %s!",
-		"text": "Mostre para outros usuários quem é você. Adicione uma foto de perfil para começar."
-	},
+	"pick_avatar": {
+        "title": "Diga \"X\"!",
+        "text": "Queremos saber quem você é. Vamos colocar uma foto sua!",
+        "pick_from_gallery": "Escolher uma foto da galeria",
+        "suggestions": {
+            "title": "Sugestões de avatares",
+            "text": "Ou se você quiser também, pode escolher uma foto da nossa lista de avatares."
+        }
+    },
 	"dashboard": {
 		"signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
 		"welcome": "Bem-vindo(a) ao %s!",
