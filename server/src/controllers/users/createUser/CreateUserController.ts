@@ -27,8 +27,8 @@ export class CreateUserController {
             throw new AppError("invalid_password_length");
 
         // Faz a conexão com o arquivo responsável pela conexão com o banco (CreateUserUsecase)
-        const createUserUsecase = new CreateUserUseCase();
-        const user = await createUserUsecase.execute({ name, email, password });
+        const createUserUseCase = new CreateUserUseCase();
+        const user = await createUserUseCase.execute({ name, email, password });
 
         if (!user)
             throw new AppError("unknown_err", 500);

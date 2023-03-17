@@ -62,7 +62,8 @@
             "unknown_err": "Erro desconhecido.",
             "password_not_match": "As senhas não combinam.",
             "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos.",
-            "invalid_code": "Código inválido. Tente novamente."
+            "invalid_code": "Código inválido. Tente novamente.",
+            "internal_server_error": "Erro interno no servidor. Por favor, tente novamente mais tarde."
 		}
 	},
 	"empty": {
