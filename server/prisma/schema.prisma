@@ -24,11 +24,22 @@ model User {
 }
 
 model Avatar {
-    id   String @id @default(uuid())
+    id   Int    @id @default(autoincrement())
     code String @unique
     url  String
 
     @@map("avatars")
+}
+
+model RecoveryCode {
+    id         String   @id @default(uuid())
+    email      String
+    code       String
+    active     Boolean
+    expires_in DateTime
+    created_at DateTime @default(now())
+
+    @@map("recovery_codes")
 }
 
 model Log {
