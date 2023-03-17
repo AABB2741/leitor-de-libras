@@ -8,9 +8,8 @@ interface ResetPasswordStyle {
 
 export default ({ colors }: ResetPasswordStyle) => StyleSheet.create({
     wrapper: {
-        flex: 1,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        flex: 1
     },
     container: {
         flex: 1
@@ -19,12 +18,22 @@ export default ({ colors }: ResetPasswordStyle) => StyleSheet.create({
         padding: 20
     },
     title: {
-        textAlign: "center",
         flex: 1,
-        marginBottom: 10
+        textAlign: "center",
+        marginBottom: 10,
+        fontSize: 20
     },
     desc: {
-        flex: 1,
-        textAlign: "center"
+        textAlign: "center",
+        flex: 1
+    },
+    warning: {
+        color: colors.critic,
+        fontSize: 12,
+        textAlign: "center",
+        marginBottom: 10
+    },
+    instructions: {
+        marginTop: 20
     }
 });

@@ -44,7 +44,7 @@ export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps)
             <View style={styles.container}>
                 {location === "Login" && <Login setLocation={setLocation} setCanClose={setCanClose} />}
                 {location === "SignUp" && <SignUp setLocation={setLocation} setCanClose={setCanClose} />}
-                {location === "ResetPassword" && <ResetPassword />}
+                {location === "ResetPassword" && <ResetPassword setLocation={setLocation} setCanClose={setCanClose} />}
                 {location === "SetProfilePicture" && <SetProfilePicture />}
             </View>
         </Modal>
