@@ -1,7 +1,7 @@
 import { CheckCircle } from "phosphor-react-native";
 import {
     Image,
-    View
+    TouchableOpacity
 } from "react-native";
 import { useColors } from "../../../../contexts/colors";
 import { useLang } from "../../../../contexts/lang";
@@ -20,12 +20,12 @@ interface AvatarSuggestionProps extends Suggestion {
     setChosenSuggestion: React.Dispatch<React.SetStateAction<Suggestion["code"] | null>>;
 }
 
-export default function AvatarSuggestion({ code, url }: AvatarSuggestionProps) {
+export default function AvatarSuggestion({ code, url, chosenSuggestion, setChosenSuggestion }: AvatarSuggestionProps) {
     const colors = useColors();
     const lang = useLang();
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => setChosenSuggestion(code)}>
             <Image
                 source={{ uri: url }}
                 style={styles.image}
@@ -33,8 +33,8 @@ export default function AvatarSuggestion({ code, url }: AvatarSuggestionProps) {
             <CheckCircle
                 color={colors.check}
                 weight="fill"
-                style={styles.status}
+                style={[styles.status, { display: code === chosenSuggestion ? "flex" : "none"}]}
             />
-        </View>
+        </TouchableOpacity>
     );
 }

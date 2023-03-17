@@ -40,6 +40,8 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+    const uri = avatarList.find(a => a.code === chosenSuggestion)?.url;
+
     useEffect(() => {
         axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`).then(response => {
             if (!response)
@@ -59,7 +61,7 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
                     <Font style={styles.desc}>{lang.pick_avatar.text}</Font>
                     <Image
                         style={styles.currentAvatar}
-                        source={avatar ?? user?.avatar}
+                        source={uri ? { uri } : avatar ?? user?.avatar}
                     />
                     <Font family="black" style={styles.username}>{user?.name ?? lang.general.user.anonymous}</Font>
                     <Font style={styles.about}>Sobre mim. Escrevi um texto muito louco sobre eu mesmo</Font>
