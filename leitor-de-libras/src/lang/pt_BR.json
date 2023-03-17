@@ -61,7 +61,8 @@
 			"invalid_token": "Sessão inválida.",
             "unknown_err": "Erro desconhecido.",
             "password_not_match": "As senhas não combinam.",
-            "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos."
+            "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos.",
+            "invalid_code": "Código inválido. Tente novamente."
 		}
 	},
 	"empty": {
@@ -80,6 +81,7 @@
         "email": "Endereço de e-mail",
         "email_placeholder": "E-mail de recuperação ou da conta",
         "confirm": "Enviar",
+        "return": "Voltar ao login",
         "cancel": "Cancelar",
         "email_check": "Enviamos um código para %s. Insira o código que você recebeu abaixo para continuar com a alteração da senha.",
         "check_code": "Código de verificação",

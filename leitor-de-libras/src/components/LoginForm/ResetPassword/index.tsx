@@ -37,11 +37,22 @@ function cancel(email: string): Promise<ResponseCode> {
     });
 }
 
+function checkCode(email: string, code: string): Promise<ResponseCode> {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (code === "123456") {
+                resolve("ok");
+            } else resolve("invalid_code");
+        }, 3000)
+    })
+}
+
 export default function ResetPassword({ setCanClose, setLocation }: ResetPasswordProps) {
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
 
+    const [confirmLoading, setConfirmLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
 
@@ -67,12 +78,10 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         } else setWarning(response);
 
         setLoading(false);
-        setCanClose(true);
     }
 
     async function handleCancel() {
         setLoading(true);
-        setCanClose(false);
 
         const response = await cancel(email);
 
@@ -87,6 +96,16 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
     async function handleCheckCode() {
         if (!code.trim())
             return setCodeWarning("empty_fields");
+
+        setCodeWarning(null);
+        setConfirmLoading(true);
+        const response = await checkCode(email, code);
+
+        if (response === "ok") {
+
+        } else setCodeWarning(response);
+
+        setConfirmLoading(false);
     }
 
     return (
@@ -113,6 +132,11 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             disabled={sent}
                             highlight
                         />
+                        <Button
+                            label={lang.reset_password.return}
+                            style={{ display: sent ? "none" : "flex" }}
+                            disabled={loading}
+                        />
                     </FixedCategory>
                     <View style={[styles.instructions, { display: sent ? "flex" : "none" }]}>
                         <Input
@@ -122,7 +146,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             maxLength={6}
                             value={code}
                             onChangeText={code => setCode(code)}
-                            editable={!loading}
+                            editable={!loading && !confirmLoading}
                             onSubmitEditing={handleCheckCode}
                         />
                         {codeWarning && <Font style={styles.warning}>{lang.general.err_codes[codeWarning] ?? codeWarning}</Font>}
@@ -130,13 +154,14 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             label={lang.reset_password.confirm_code}
                             onPress={handleCheckCode}
                             highlight
-                            disabled={code.length !== 6}
-                            loading={loading}
+                            disabled={loading || code.length !== 6}
+                            loading={confirmLoading}
                         />
                         <Button
                             label={lang.reset_password.cancel}
                             onPress={handleCancel}
                             loading={loading}
+                            disabled={confirmLoading}
                         />
                     </View>
                 </ScrollView>

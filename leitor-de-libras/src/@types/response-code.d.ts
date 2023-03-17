@@ -9,4 +9,5 @@ type ResponseCode =
     "invalid_token" |
     "password_not_match" |
     "invalid_password_length" |
+    "invalid_code" |
     "unknown_err";
