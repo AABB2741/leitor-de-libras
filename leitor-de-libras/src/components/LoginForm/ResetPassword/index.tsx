@@ -136,6 +136,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             label={lang.reset_password.return}
                             style={{ display: sent ? "none" : "flex" }}
                             disabled={loading}
+                            onPress={() => setLocation("Login")}
                         />
                     </FixedCategory>
                     <View style={[styles.instructions, { display: sent ? "flex" : "none" }]}>
