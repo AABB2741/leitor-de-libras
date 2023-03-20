@@ -40,7 +40,7 @@ export class LoginUseCase {
                 });
             }
         } catch (e) {
-            log("Ocorreu um erro ao registrar login de usuário: " + e);
+            log("Ocorreu um erro ao registrar login de usuário: " + e, { color: "fgRed" });
         }
 
         return user;

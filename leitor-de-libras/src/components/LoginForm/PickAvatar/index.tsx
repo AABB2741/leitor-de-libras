@@ -8,7 +8,8 @@ import {
     View
 } from "react-native";
 import {
-    Image as ImageIcon
+    Image as ImageIcon,
+    Warning
 } from "phosphor-react-native";
 import axios from "axios";
 import { useColors } from "../../../contexts/colors";
@@ -19,10 +20,12 @@ import { Location } from "../";
 import Font from "../../Font";
 import FixedCategory from "../../FixedCategory";
 import Loading from "../../Loading";
+import AvatarSuggestion, { Suggestion } from "./AvatarSuggestion";
 
 import api from "../../../constants/api.json";
 import getStyles from "./styles";
-import AvatarSuggestion, { Suggestion } from "./AvatarSuggestion";
+import log from "../../../utils/log";
+import Empty from "../../Empty";
 
 interface PickAvatarProps {
     setLocation: React.Dispatch<React.SetStateAction<Location>>;
@@ -37,21 +40,37 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
     const [avatarList, setAvatarList] = useState<Suggestion[]>([])
     const [chosenSuggestion, setChosenSuggestion] = useState<Suggestion["code"] | null>(null);
     const [avatar, setAvatar] = useState<ImageSourcePropType | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     // TODO: Colocar mensagem de erro caso dê erro
-    const [error, setError] = useState(false);
+    const [error, setError] = useState<null | ResponseCode>(null);
 
     const uri = avatarList.find(a => a.code === chosenSuggestion)?.url;
 
-    useEffect(() => {
-        axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`).then(response => {
+    async function handleLoadSuggestions() {
+        try {
+            setError(null);
+            setLoading(true);
+            
+            const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 10000 });
             if (!response)
-                return setError(true);
-
+                return setError("unknown_err");
+    
             const { data } = response;
             setAvatarList(data.avatars);
             setLoading(false);
-        });
+        } catch (e) {
+            const err: any = e;
+            log(`Ocorreu um erro ao carregar lista de avatares: ${err}`, { color: "fgRed" });
+            if (err?.response?.status === 500) {
+                setError("internal_server_error")
+            } else setError("unknown_err");
+        }
+
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        handleLoadSuggestions();
     }, []);
 
     return (
@@ -78,6 +97,18 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
                         desc={lang.pick_avatar.suggestions.text}
                     >
                         {loading && <Loading size={24} style={styles.loading} />}
+                        {(error && !loading) && (
+                            <Empty
+                                icon={({ ...props }) => <Warning {...props} />}
+                                title={lang.pick_avatar.suggestions.err.title}
+                                desc={lang.pick_avatar.suggestions.err.text.replace("%s", lang.general.err_codes[error])}
+                                options={[{
+                                    label: lang.pick_avatar.suggestions.err.try_again,
+                                    highlight: true,
+                                    onPress: handleLoadSuggestions
+                                }]}
+                            />
+                        )}
                     </FixedCategory>
                 </>
             )}

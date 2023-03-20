@@ -19,7 +19,7 @@ export class GetAvatarsUseCase {
 
             return avatars;
         } catch (e) {
-            log(`Erro ao obter lista de avatares: ${e}`);
+            log(`Erro ao obter lista de avatares: ${e}`, { color: "fgRed" });
             return null;
         }
     }

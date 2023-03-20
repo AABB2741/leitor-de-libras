@@ -42,6 +42,15 @@ model RecoveryCode {
     @@map("recovery_codes")
 }
 
+model Tip {
+    id     Int     @id @default(autoincrement())
+    author String?
+    via    String
+    url    String
+
+    @@map("tips")
+}
+
 model Log {
     id          String   @id @default(uuid())
     user_id     String?

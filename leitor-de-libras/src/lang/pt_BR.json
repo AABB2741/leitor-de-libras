@@ -52,9 +52,9 @@
 		},
 		"err_codes": {
 			"ok": "Confirmado",
-			"network_err": "Não foi possível conectar-se ao servidor. Tente novamente mais tarde",
+			"network_err": "Não foi possível conectar-se ao servidor.",
 			"empty_fields": "Preencha todos os campos obrigatórios!",
-            "invalid_fields": "Algum campo possui um valor inválido. Verifique as informações inseridas e tente novamente.",
+            "invalid_fields": "Algum campo possui um valor inválido.",
 			"invalid_credentials": "Endereço de e-mail ou senha inválidos.",
             "invalid_email": "Insira um endereço de e-mail válido.",
 			"email_already_in_use": "O endereço de e-mail inserido já está em uso.",
@@ -63,7 +63,7 @@
             "password_not_match": "As senhas não combinam.",
             "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos.",
             "invalid_code": "Código inválido. Tente novamente.",
-            "internal_server_error": "Erro interno no servidor. Por favor, tente novamente mais tarde."
+            "internal_server_error": "Erro interno no servidor."
 		}
 	},
 	"empty": {
@@ -101,12 +101,17 @@
 		"cancel": "Já tenho uma conta"
 	},
 	"pick_avatar": {
-        "title": "Diga \"X\"!",
+        "title": "Diga X!",
         "text": "Queremos saber quem você é. Vamos colocar uma foto sua!",
         "pick_from_gallery": "Escolher uma foto da galeria",
         "suggestions": {
             "title": "Sugestões de avatares",
-            "text": "Ou se você quiser também, pode escolher uma foto da nossa lista de avatares."
+            "text": "Se você quiser, você também pode escolher uma foto da nossa lista de avatares.",
+            "err": {
+                "title": "Ocorreu um erro :(",
+                "text": "Não conseguimos carregar a lista de avatares: %s",
+                "try_again": "Tente novamente"
+            }
         }
     },
 	"dashboard": {

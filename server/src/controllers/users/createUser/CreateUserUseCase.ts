@@ -32,7 +32,7 @@ export class CreateUserUseCase {
                     log(`Tentativa de cadastro com e-mail já existente: ${email}`, { color: "fgGray" });
                 });
             } catch (e) {
-                log("Erro ao registrar criação de usuário existente: " + e);
+                log("Erro ao registrar criação de usuário existente: " + e, { color: "fgRed" });
             }
 
             throw new AppError("email_already_in_use", 409);
