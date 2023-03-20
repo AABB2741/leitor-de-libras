@@ -104,6 +104,8 @@
         "title": "Diga X!",
         "text": "Queremos saber quem você é. Vamos colocar uma foto sua!",
         "pick_from_gallery": "Escolher uma foto da galeria",
+        "confirm": "Está ótimo!",
+        "skip": "Agora não",
         "suggestions": {
             "title": "Sugestões de avatares",
             "text": "Se você quiser, você também pode escolher uma foto da nossa lista de avatares.",

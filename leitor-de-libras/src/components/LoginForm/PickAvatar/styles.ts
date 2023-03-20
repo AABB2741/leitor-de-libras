@@ -23,6 +23,12 @@ export default ({ colors }: PickAvatarStyle) => StyleSheet.create({
         textAlign: "center",
         flex: 1
     },
+    options: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 20
+    },
     currentAvatar: {
         backgroundColor: colors.background2,
         width: 150,

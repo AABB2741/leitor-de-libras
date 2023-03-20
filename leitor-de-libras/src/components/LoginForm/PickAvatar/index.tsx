@@ -17,6 +17,8 @@ import { useLang } from "../../../contexts/lang";
 import { useUser } from "../../../contexts/user";
 import { Location } from "../";
 
+import Empty from "../../Empty";
+import Button from "../../Button";
 import Font from "../../Font";
 import FixedCategory from "../../FixedCategory";
 import Loading from "../../Loading";
@@ -25,7 +27,6 @@ import AvatarSuggestion, { Suggestion } from "./AvatarSuggestion";
 import api from "../../../constants/api.json";
 import getStyles from "./styles";
 import log from "../../../utils/log";
-import Empty from "../../Empty";
 
 interface PickAvatarProps {
     setLocation: React.Dispatch<React.SetStateAction<Location>>;
@@ -48,13 +49,14 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
 
     async function handleLoadSuggestions() {
         try {
+            setAvatarList([]);
             setError(null);
             setLoading(true);
-            
+
             const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 10000 });
             if (!response)
                 return setError("unknown_err");
-    
+
             const { data } = response;
             setAvatarList(data.avatars);
             setLoading(false);
@@ -77,6 +79,16 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
         <FlatList
             ListHeaderComponent={(
                 <>
+                    <View style={styles.options}>
+                        <Button
+                            label={lang.pick_avatar.skip}
+                        />
+                        <Button
+                            label={lang.pick_avatar.confirm}
+                            disabled={!avatar && !chosenSuggestion}
+                            highlight
+                        />
+                    </View>
                     <Font style={styles.title} family="black">{lang.pick_avatar.title}</Font>
                     <Font style={styles.desc}>{lang.pick_avatar.text}</Font>
                     <Image
