@@ -6,7 +6,7 @@ import { router } from "./routes";
 import { AppError } from "./errors/AppError";
 
 const app = express();
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(router);

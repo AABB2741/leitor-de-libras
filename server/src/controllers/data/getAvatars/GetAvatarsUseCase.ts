@@ -15,11 +15,12 @@ export class GetAvatarsUseCase {
                 }
             }).then(() => {
                 log("Obtida a lista de avatares", { color: "fgGray" });
-            });
+            }).catch(e => {
+                log(`Erro ao obter lista de avatares: ${e}`, { color: "fgRed" });
+            })
 
             return avatars;
         } catch (e) {
-            log(`Erro ao obter lista de avatares: ${e}`, { color: "fgRed" });
             return null;
         }
     }
