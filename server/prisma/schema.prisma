@@ -11,14 +11,16 @@ datasource db {
 }
 
 model User {
-    id         String   @id @default(uuid())
-    email      String   @unique
-    name       String
-    about_me   String?
-    avatar     String?
-    password   String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    id           String         @id @default(uuid())
+    email        String         @unique
+    name         String
+    about_me     String?
+    avatar       String?
+    password     String
+    created_at   DateTime       @default(now())
+    updated_at   DateTime       @updatedAt
+    RecoveryCode RecoveryCode[]
+    Log          Log[]
 
     @@map("users")
 }
@@ -32,12 +34,14 @@ model Avatar {
 }
 
 model RecoveryCode {
-    id         String   @id @default(uuid())
-    email      String
-    code       String
-    active     Boolean
-    expires_in DateTime
-    created_at DateTime @default(now())
+    id                 String   @id @default(uuid())
+    email              User     @relation(fields: [user_email], references: [email])
+    user_email         String
+    code               String
+    active             Boolean
+    permission_granted Boolean
+    expires_in         DateTime
+    created_at         DateTime @default(now())
 
     @@map("recovery_codes")
 }
@@ -53,7 +57,8 @@ model Tip {
 
 model Log {
     id          String   @id @default(uuid())
-    user_id     String?
+    owner       User?    @relation(fields: [owner_id], references: [id])
+    owner_id    String?
     action_code String
     details     String?
     created_at  DateTime @default(now())
