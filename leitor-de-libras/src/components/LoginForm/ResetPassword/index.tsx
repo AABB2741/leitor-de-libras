@@ -133,7 +133,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             placeholder={lang.reset_password.send_email.email_placeholder}
                             label={lang.reset_password.send_email.email}
                             editable={!loading && !sent}
-                            value={email}
+                            value={(sent || loading) ? email.replace(/./g, "*") : email}
                             onChangeText={email => setEmail(email)}
                             onSubmitEditing={handleChangePassword}
                             keyboardType="email-address"
