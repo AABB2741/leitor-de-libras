@@ -1,5 +1,6 @@
 import { AppError } from "../../../errors/AppError";
 import { prisma } from "../../../prisma/client";
+import {  } from "@prisma/client";
 import { censureEmail } from "../../../utils/censureEmail";
 import log from "../../../utils/log";
 
@@ -10,12 +11,14 @@ export interface RecoveryCodeProps {
 export class RequestRecoveryCodeUseCase {
     // Checar primeiro se tem outro código de verificação ativo. Se houver, rejeitar solicitação
     async execute({ email }: RecoveryCodeProps): Promise<boolean> {
+        const gte = new Date();
+        console.log(gte);
         const exists = await prisma.recoveryCode.findFirst({
             where: {
-                user_email: email,
+                userEmail: email,
                 active: true,
                 expires_in: {
-                    gt: new Date() // gt -> maior que: pega somente os que possuírem data de expiração maior que a atual
+                    gte // gt -> maior que: pega somente os que possuírem data de expiração maior que a atual
                 }
             }
         });
@@ -37,14 +40,15 @@ export class RequestRecoveryCodeUseCase {
         }
 
         const code = Math.round(Math.random() * 100000).toString();
-        const expires_in = new Date(Date.now() * 60 * 60 * 1000); // 1 hora
+        const d = new Date();
+        d.setHours(d.getHours() + 1); // adiciona uma hora
 
         const response = await prisma.recoveryCode.create({
             data: {
-                user_email: email,
+                userEmail: email,
                 active: true,
                 code,
-                expires_in: expires_in.toISOString()
+                expires_in: d
             }
         });
 

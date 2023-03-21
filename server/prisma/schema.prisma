@@ -37,7 +37,7 @@ model RecoveryCode {
     id         Int      @id @default(autoincrement())
     email      User     @relation(fields: [userEmail], references: [email])
     userEmail  String
-    code       String
+    code       String   @db.VarChar(6)
     active     Boolean
     expires_in DateTime
     created_at DateTime @default(now())

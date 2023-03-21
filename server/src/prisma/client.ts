@@ -1,5 +1,3 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient({
-    log: [{emit: "stdout", level: "query"}]
-});
+export const prisma = new PrismaClient();
