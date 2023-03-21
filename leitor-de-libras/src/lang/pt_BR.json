@@ -91,6 +91,14 @@
             "check_code": "Código de verificação",
             "confirm": "Verificar código",
             "cancel": "Cancelar"
+        },
+        "reset": {
+            "title": "Redefinir sua senha",
+            "new_pass": "Insira uma senha que você se lembre facilmente. Se precisar, anote em algum papel ou outro lugar seguro.",
+            "new_pass_placeholder": "Nova senha",
+            "repeat_new_pass": "Confirmar nova senha",
+            "repeat_new_pass_placeholder": "Insira novamente sua senha",
+            "confirm": "Confirmar nova senha"
         }
 	},
 	"sign_up": {

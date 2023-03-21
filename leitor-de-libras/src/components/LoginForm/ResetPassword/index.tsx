@@ -69,9 +69,13 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
+    const [checked, setChecked] = useState(false);
 
     const [email, setEmail] = useState("");
     const [code, setCode] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const [warning, setWarning] = useState<ResponseCode | null>(null);
     const [codeWarning, setCodeWarning] = useState<ResponseCode | null>(null);
 
@@ -116,7 +120,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         const response = await checkCode(email, code);
 
         if (response === "ok") {
-
+            setChecked(true);
         } else setCodeWarning(response);
 
         setConfirmLoading(false);
@@ -177,6 +181,29 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             onPress={handleCancel}
                             loading={loading}
                             disabled={confirmLoading}
+                        />
+                    </FixedCategory>
+                    <FixedCategory title={lang.reset_password.reset.title} style={{ display: checked ? "flex" : "none" }}>
+                        {/* FIXME: Ver porque o input fica cinza escuro quando n tem editable */}
+                        <Input
+                            label={lang.reset_password.reset.new_pass}
+                            placeholder={lang.reset_password.reset.new_pass_placeholder}
+                            value={password}
+                            onChangeText={password => setPassword(password)}
+                            editable
+                            secureTextEntry
+                        />
+                        <Input
+                            label={lang.reset_password.reset.repeat_new_pass}
+                            placeholder={lang.reset_password.reset.repeat_new_pass_placeholder}
+                            value={confirmPassword}
+                            onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
+                            editable
+                            secureTextEntry
+                        />
+                        <Button
+                            label={lang.reset_password.reset.confirm}
+                            highlight
                         />
                     </FixedCategory>
                 </ScrollView>
