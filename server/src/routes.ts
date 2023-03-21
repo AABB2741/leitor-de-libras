@@ -10,6 +10,7 @@ import { CreateUserController } from "./controllers/users/createUser/CreateUserC
 import { UpdateUserController } from "./controllers/users/updateUser/UpdateUserController";
 import { DeleteUserController } from "./controllers/users/deleteUser/DeleteUserController";
 import { RequestRecoveryCodeController } from "./controllers/users/requestRecoveryCode/RequestRecoveryCodeController";
+import { DeleteRecoveryCodeController } from "./controllers/users/deleteRecoveryCode/DeleteRecoveryCodeController";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ const createUser = new CreateUserController();
 const updateUser = new UpdateUserController();
 const deleteUser = new DeleteUserController();
 const requestRecoveryCodeController = new RequestRecoveryCodeController();
+const deleteRecoveryCodeController = new DeleteRecoveryCodeController();
 
 router.get("/ping", ping.handle);
 
@@ -33,5 +35,6 @@ router.put("/user/edit", updateUser.handle);
 router.delete("/user/delete", deleteUser.handle);
 
 router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
+router.delete("/user/deleteRecoveryCode", deleteRecoveryCodeController.handle);
 
 export { router };

@@ -24,7 +24,7 @@ export class CreateUserUseCase {
         if (alreadyExists) { // Se houver, recusar a requisição
             prisma.log.create({
                 data: {
-                    action_code: "user/create-try",
+                    action_code: "user/create/email_already_in_use",
                     details: `Tentou cadastrar com e-mail "${email}" que já pertece a ${alreadyExists.name} (ID: ${alreadyExists.id})`
                 }
             }).then(_ => {
@@ -47,7 +47,7 @@ export class CreateUserUseCase {
 
         prisma.log.create({
             data: {
-                action_code: "user/create",
+                action_code: "user/create/ok",
                 ownerId: user.id,
                 details: `Criado usuário "${user.name}" com e-mail "${user.email}"`
             }

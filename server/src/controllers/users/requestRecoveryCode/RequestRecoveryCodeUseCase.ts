@@ -27,6 +27,16 @@ export class RequestRecoveryCodeUseCase {
 
         if (exists) {
             log("Criação de código rejeitada: Código ativo já existe", { color: "fgRed" });
+            prisma.log.create({
+                data: {
+                    action_code: "recovery_code/create/code_already_active",
+                    details: `E-mail utilizado: ${email}`
+                }
+            }).then(_ => {
+                log(`Rejeitada a criação de código, pois já existe um código ativo com este e-mail: ${email}`, { color: "fgGray" });
+            }).catch(e => {
+                log("Não foi possível registrar rejeição de código: " + e, { color: "fgRed" });
+            });
             throw new AppError("recovery_code_already_active", 403);
         }
 
@@ -38,6 +48,16 @@ export class RequestRecoveryCodeUseCase {
 
         if (!user) {
             log("Criação de código rejeitada: Usuário não encontrado", { color: "fgRed" });
+            prisma.log.create({
+                data: {
+                    action_code: "recovery_code/create/user_not_found",
+                    details: `E-mail utilizado: ${email}`
+                }
+            }).then(_ => {
+                log("Rejeitada a criação de código pois não foi encontrado um usuário ativo com e-mail " + email);
+            }).catch(e => {
+                log("Não foi possível registrar rejeição de código: " + e, { color: "fgRed" });
+            });
             throw new AppError("user_not_found", 404);
         }
 
@@ -58,6 +78,18 @@ export class RequestRecoveryCodeUseCase {
             log("Criação de código rejeitada: Não houve resposta ao criar código", { color: "fgRed" });
             throw new AppError("internal_server_error", 500);
         }
+
+        prisma.log.create({
+            data: {
+                action_code: "recovery_code/create/ok",
+                details: `Criado código de recuperação ${code} com expiração em ${d.toString()}.`,
+                ownerId: user.id
+            }
+        }).then(_ => {
+            log("Criado código de recuperação ${code} para ${user.name} (ID: ${user.id}) com e-mail ${email}. O código expira em ${d.toString()}", { color: "fgGray" });
+        }).catch(e => {
+            log("Não foi possível registrar criação de código: " + e, { color: "fgRed" });
+        });
 
         return true;
     }

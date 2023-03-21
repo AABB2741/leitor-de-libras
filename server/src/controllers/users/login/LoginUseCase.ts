@@ -21,7 +21,7 @@ export class LoginUseCase {
         if (user) {
             prisma.log.create({
                 data: {
-                    action_code: "user/login",
+                    action_code: "user/login/ok",
                     details: `Entrou em usuário com e-mail "${user.email}".`,
                     ownerId: user.id
                 }
@@ -33,7 +33,7 @@ export class LoginUseCase {
         } else {
             prisma.log.create({
                 data: {
-                    action_code: "user/login-try",
+                    action_code: "user/login/user_not_found",
                     details: `Tentativa de login mal-sucedida. E-mail utilizado: ${email}`
                 }
             }).then(_ => {
