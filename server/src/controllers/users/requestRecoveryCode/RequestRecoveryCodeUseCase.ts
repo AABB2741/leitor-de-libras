@@ -2,6 +2,8 @@ import { AppError } from "../../../errors/AppError";
 import { prisma } from "../../../prisma/client";
 import {  } from "@prisma/client";
 import { censureEmail } from "../../../utils/censureEmail";
+
+import { createCode } from "../../../utils/createCode";
 import log from "../../../utils/log";
 
 export interface RecoveryCodeProps {
@@ -39,7 +41,7 @@ export class RequestRecoveryCodeUseCase {
             throw new AppError("user_not_found", 404);
         }
 
-        const code = Math.round(Math.random() * 100000).toString();
+        const code = createCode();
         const d = new Date();
         d.setHours(d.getHours() + 1); // adiciona uma hora
 

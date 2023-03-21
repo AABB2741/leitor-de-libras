@@ -24,6 +24,9 @@ export class RequestRecoveryCodeController {
         }
 
         log("Solicitado criação de código de recuperação. E-mail: " + email, { color: "fgGray" });
-        res.status(200);
+        res.status(201).send({
+            status: "created",
+            code: "ok"
+        });
     }
 }
