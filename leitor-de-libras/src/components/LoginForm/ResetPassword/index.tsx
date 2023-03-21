@@ -165,7 +165,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             maxLength={6}
                             value={code}
                             onChangeText={code => setCode(code)}
-                            editable={!loading && !confirmLoading}
+                            editable={!loading && !confirmLoading && !checked}
                             onSubmitEditing={handleCheckCode}
                         />
                         {codeWarning && <Font style={styles.warning}>{lang.general.err_codes[codeWarning] ?? codeWarning}</Font>}
@@ -173,14 +173,14 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             label={lang.reset_password.confirm_code.confirm}
                             onPress={handleCheckCode}
                             highlight
-                            disabled={loading || code.length !== 6}
+                            disabled={loading || code.length !== 6 || checked}
                             loading={confirmLoading}
                         />
                         <Button
                             label={lang.reset_password.confirm_code.cancel}
                             onPress={handleCancel}
                             loading={loading}
-                            disabled={confirmLoading}
+                            disabled={confirmLoading || checked}
                         />
                     </FixedCategory>
                     <FixedCategory title={lang.reset_password.reset.title} style={{ display: checked ? "flex" : "none" }}>
