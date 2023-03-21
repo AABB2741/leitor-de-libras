@@ -48,7 +48,7 @@ export class CreateUserUseCase {
         prisma.log.create({
             data: {
                 action_code: "user/create",
-                owner_id: user.id,
+                ownerId: user.id,
                 details: `Criado usuário "${user.name}" com e-mail "${user.email}"`
             }
         }).then(_ => {

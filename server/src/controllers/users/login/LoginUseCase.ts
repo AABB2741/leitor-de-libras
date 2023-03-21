@@ -23,7 +23,7 @@ export class LoginUseCase {
                 data: {
                     action_code: "user/login",
                     details: `Entrou em usuário com e-mail "${user.email}".`,
-                    owner_id: user.id
+                    ownerId: user.id
                 }
             }).then(_ => {
                 log(`Login com usuário ${user.name} (ID: ${user.id})`, { color: "fgGray" });
