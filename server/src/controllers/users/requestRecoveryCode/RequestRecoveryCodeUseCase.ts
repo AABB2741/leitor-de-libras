@@ -86,7 +86,7 @@ export class RequestRecoveryCodeUseCase {
                 ownerId: user.id
             }
         }).then(_ => {
-            log("Criado código de recuperação ${code} para ${user.name} (ID: ${user.id}) com e-mail ${email}. O código expira em ${d.toString()}", { color: "fgGray" });
+            log(`Criado código de recuperação ${code} para ${user.name} (ID: ${user.id}) com e-mail ${email}. O código expira em ${d.toString()}`, { color: "fgGray" });
         }).catch(e => {
             log("Não foi possível registrar criação de código: " + e, { color: "fgRed" });
         });
