@@ -34,15 +34,15 @@ model Avatar {
 }
 
 model RecoveryCode {
-    id         Int      @id @default(autoincrement())
-    email      User     @relation(fields: [userEmail], references: [email])
-    userEmail  String
-    using      Boolean  @default(false)
-    changeCode String?
-    code       String   @db.VarChar(6)
-    active     Boolean
-    expires_in DateTime
-    created_at DateTime @default(now())
+    id          Int      @id @default(autoincrement())
+    email       User     @relation(fields: [userEmail], references: [email])
+    userEmail   String
+    using       Boolean  @default(false)
+    change_code String?
+    code        String   @db.VarChar(6)
+    active      Boolean
+    expires_in  DateTime
+    created_at  DateTime @default(now())
 
     @@map("recovery_codes")
 }
