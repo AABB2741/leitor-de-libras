@@ -36,6 +36,17 @@ export class CheckRecoveryCodeUseCase {
 
             throw new AppError("invalid_code", 403);
         }
+    
+        // TODO: Quando o código inserido for válido:
+        // [ ] Gerar um UUID
+        // [ ] Setar o código atual como desativado
+        // [ ] Setar o change_code como sendo esse ID
+        // [ ] Setar o campo "using" do código para true
+        // [ ] Enviar o código para o usuário
+
+        // TODO: Na rota de troca de senha:
+        // [ ] Verificar se existe algum código com esse change_code e se está setado como true o campo "using"
+        // [ ] Caso esteja, setar a nova senha e colocar como false o campo "using"
 
         return true;
     }
