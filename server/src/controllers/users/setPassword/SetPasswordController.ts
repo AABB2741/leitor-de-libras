@@ -10,7 +10,7 @@ export class SetPasswordContoller {
         const password = req.body?.password?.trim();
         const change_secret = req.body?.change_secret;
 
-        if (!password || !change_secret) {
+        if (!password) {
             log("Erro ao alterar senha: Nova senha ou código não inserido(s)", { color: "fgYellow" });
             throw new AppError("empty_fields");
         }
@@ -18,6 +18,11 @@ export class SetPasswordContoller {
         if (password.length < 8 || password.length > 32) {
             log("Erro ao alterar senha: Tamanho inválido de senha", { color: "fgYellow" });
             throw new AppError("invalid_password_length");
+        }
+        
+        if (!change_secret) {
+            log("Erro ao alterar senha: Código não recebido", { color: "fgYellow" });
+            throw new AppError("invalid_code");
         }
 
         const setPasswordControllerUseCase = new SetPasswordControllerUseCase();

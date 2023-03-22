@@ -70,6 +70,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
 
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [passwordLoading, setPasswordLoading] = useState(false);
     const [sent, setSent] = useState(false);
     const [checked, setChecked] = useState(false);
 
@@ -80,6 +81,8 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
 
     const [warning, setWarning] = useState<ResponseCode | null>(null);
     const [codeWarning, setCodeWarning] = useState<ResponseCode | null>(null);
+    const [passwordWarning, setPasswordWarning] = useState<ResponseCode | null>(null);
+
     const [changeSecret, setChangeSecret] = useState<string | null>(null);
 
     async function requestRecoveryCode() {
@@ -151,6 +154,8 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             }, { timeout: 15000 });
 
             if (response.data.code === "ok") {
+                console.log(response);
+                // FIXME: Código não sendo recebido
                 setChangeSecret(response.data.change_secret);
                 setChecked(true);
             }
@@ -165,6 +170,38 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             }
         } finally {
             setConfirmLoading(false);
+        }
+    }
+
+    async function changePassword() {
+        if (!password.trim())
+            return setPasswordWarning("empty_fields");
+
+        if (password.length < 8 || password.length > 32)
+            return setPasswordWarning("invalid_password_length");
+
+        if (password !== confirmPassword)
+            return setPasswordWarning("password_not_match");
+
+        setPasswordWarning(null);
+        setPasswordLoading(true);
+
+        try {
+            console.log(changeSecret);
+            const response = await axios.put(`${api.address}/user/setPassword`, {
+                password,
+                change_secret: changeSecret
+            }, { timeout: 15000 });
+
+            if (response.status === 200) {
+                console.log("Senha alterada!");
+            }
+        } catch (e) {
+            const err = e as any;
+            log("Erro ao alterar senha: " + err, { color: "fgRed" });
+            setPasswordWarning(err?.response?.data?.code ?? "unknown_err");
+        } finally {
+            setPasswordLoading(false);
         }
     }
 
@@ -242,10 +279,13 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
                             editable
                             secureTextEntry
+                            onSubmitEditing={changePassword}
                         />
+                        {passwordWarning && <Font style={styles.warning}>{lang.general.err_codes[passwordWarning] ?? passwordWarning}</Font>}
                         <Button
                             label={lang.reset_password.reset.confirm}
                             highlight
+                            onPress={changePassword}
                         />
                     </FixedCategory>
                 </ScrollView>
