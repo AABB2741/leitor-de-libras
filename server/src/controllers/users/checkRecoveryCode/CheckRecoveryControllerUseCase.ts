@@ -1,5 +1,6 @@
 import { AppError } from "../../../errors/AppError";
 import { prisma } from "../../../prisma/client";
+import { v4 as uuid } from "uuid";
 
 import log from "../../../utils/log";
 
@@ -40,14 +41,26 @@ export class CheckRecoveryCodeUseCase {
         // TODO: Quando o código inserido for válido:
         // [ ] Gerar um UUID
         // [ ] Setar o código atual como desativado
-        // [ ] Setar o change_code como sendo esse ID
+        // [ ] Setar o change_secret como sendo esse ID
         // [ ] Setar o campo "using" do código para true
         // [ ] Enviar o código para o usuário
 
-        // TODO: Na rota de troca de senha:
-        // [ ] Verificar se existe algum código com esse change_code e se está setado como true o campo "using"
-        // [ ] Caso esteja, setar a nova senha e colocar como false o campo "using"
+        const change_secret = uuid();
 
-        return true;
+        const changed = await prisma.recoveryCode.update({
+            where: {
+                id: exists.id
+            },
+            data: {
+                active: false,
+                using: true,
+                change_secret
+            }
+        });
+
+        return change_secret;
+        // TODO: Na rota de troca de senha:
+        // [ ] Verificar se existe algum código com esse change_secret e se está setado como true o campo "using"
+        // [ ] Caso esteja, setar a nova senha e colocar como false o campo "using"
     }
 }

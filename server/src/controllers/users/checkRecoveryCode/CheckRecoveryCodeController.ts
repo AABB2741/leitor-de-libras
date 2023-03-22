@@ -27,11 +27,12 @@ export class CheckRecoveryCodeController {
         }
 
         const checkRecoveryCodeUseCase = new CheckRecoveryCodeUseCase();
-        const response = await checkRecoveryCodeUseCase.execute({ email, code });
+        const changeSecret = await checkRecoveryCodeUseCase.execute({ email, code });
 
         if (response) {
             res.status(200).json({
-                code: "ok"
+                code: "ok",
+                changeSecret
             });
         }
     }
