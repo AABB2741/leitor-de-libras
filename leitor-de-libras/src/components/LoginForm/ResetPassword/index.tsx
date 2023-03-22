@@ -151,7 +151,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             }, { timeout: 15000 });
 
             if (response.data.code === "ok") {
-                setChangeSecret(response.data.changeSecret);
+                setChangeSecret(response.data.change_secret);
                 setChecked(true);
             }
         } catch (e) {

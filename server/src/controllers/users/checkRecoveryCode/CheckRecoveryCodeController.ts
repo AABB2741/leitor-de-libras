@@ -27,12 +27,12 @@ export class CheckRecoveryCodeController {
         }
 
         const checkRecoveryCodeUseCase = new CheckRecoveryCodeUseCase();
-        const changeSecret = await checkRecoveryCodeUseCase.execute({ email, code });
+        const change_secret = await checkRecoveryCodeUseCase.execute({ email, code });
 
-        if (changeSecret) {
+        if (change_secret) {
             res.status(200).json({
                 code: "ok",
-                changeSecret
+                changeSecret: change_secret
             });
         } else throw new AppError("internal_server_error", 500);
     }

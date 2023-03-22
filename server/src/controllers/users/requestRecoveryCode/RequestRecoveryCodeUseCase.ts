@@ -15,17 +15,20 @@ export class RequestRecoveryCodeUseCase {
     async execute({ email }: RecoveryCodeProps): Promise<boolean> {
         const gte = new Date();
         console.log(gte);
-        const exists = await prisma.recoveryCode.findFirst({
+        const alreadyExists = await prisma.recoveryCode.findFirst({
             where: {
                 userEmail: email,
-                active: true,
                 expires_in: {
                     gte // gt -> maior que: pega somente os que possuírem data de expiração maior que a atual
+                },
+                OR: {
+                    active: true,
+                    using: true
                 }
             }
         });
 
-        if (exists) {
+        if (alreadyExists) {
             log("Criação de código rejeitada: Código ativo já existe", { color: "fgRed" });
             prisma.log.create({
                 data: {
