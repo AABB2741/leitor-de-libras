@@ -96,7 +96,10 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             const response = await axios.post(`${api.address}/user/requestRecoveryCode`, {
                 email
             }, { timeout: 15000 });
-            console.log(response);
+            
+            if (response.status === 200 || response.status === 201) {
+                setSent(true);
+            }
         } catch (e) {
             const err = e as any;
             log("Erro ao solicitar criação de código: " + err, { color: "fgRed" });
@@ -117,14 +120,20 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
     async function cancelRecoveryCode() {
         setLoading(true);
 
-        const response = await cancel(email);
+        try {
+            await axios.delete(`${api.address}/user/deleteRecoveryCode/${email}`, { timeout: 15000 });
+        } catch (e) {
+            const err = e as any;
+            log("Erro ao solicitar exclusão de código: " + err, { color: "fgRed" });
 
-        if (response === "ok") {
+            if (err?.response?.status !== 404) {
+                setWarning(err?.response?.data?.code ?? "unknown_err");
+            }
+        } finally {
+            setLoading(false);
+            setCanClose(true);
             setSent(false);
         }
-
-        setLoading(false);
-        setCanClose(true);
     }
 
     async function checkRecoveryCode() {
@@ -133,13 +142,14 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
 
         setCodeWarning(null);
         setConfirmLoading(true);
-        const response = await checkCode(email, code);
+        
+        try {
+            // TODO: Verificar código no back
+        } catch (e) {
 
-        if (response === "ok") {
-            setChecked(true);
-        } else setCodeWarning(response);
-
-        setConfirmLoading(false);
+        } finally {
+            setConfirmLoading(false);
+        }
     }
 
     return (

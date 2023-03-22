@@ -8,7 +8,7 @@ import { DeleteRecoveryCodeUseCase } from "./DeleteRecoveryCodeUseCase";
 
 export class DeleteRecoveryCodeController {
     async handle(req: RequestBody<RecoveryCodeProps>, res: Response) {
-        const email = req.body?.email?.trim();
+        const email = req.params?.email?.trim();
 
         if (!email) {
             log("Rejeitada exclusão de código: E-mail não inserido", { color: "fgRed" });

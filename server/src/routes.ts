@@ -35,6 +35,6 @@ router.put("/user/edit", updateUser.handle);
 router.delete("/user/delete", deleteUser.handle);
 
 router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
-router.delete("/user/deleteRecoveryCode", deleteRecoveryCodeController.handle);
+router.delete("/user/deleteRecoveryCode/:email", deleteRecoveryCodeController.handle);
 
 export { router };
