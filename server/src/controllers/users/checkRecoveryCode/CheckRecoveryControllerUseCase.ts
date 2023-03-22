@@ -37,7 +37,7 @@ export class CheckRecoveryCodeUseCase {
 
             throw new AppError("invalid_code", 403);
         }
-    
+
         // TODO: Quando o código inserido for válido:
         // [ ] Gerar um UUID
         // [ ] Setar o código atual como desativado
@@ -56,6 +56,31 @@ export class CheckRecoveryCodeUseCase {
                 using: true,
                 change_secret
             }
+        });
+
+        if (!changed) {
+            prisma.log.create({
+                data: {
+                    action_code: "recovery_code/check/error",
+                    details: `Tentativa de verificação de código com e-mail ${email} e código ${code}`
+                }
+            }).then(_ => {
+                log("Rejeitada verificação de código: Erro interno", { color: "fgGray" });
+            }).catch(e => {
+                log("Não foi possível registrar falha na verificação de código: " + e, { color: "fgRed" });
+            });
+            throw new AppError("internal_server_error", 500);
+        }
+
+        prisma.log.create({
+            data: {
+                action_code: "recovery_code/check/ok",
+                details: `Verificado código com ${email} e código ${code}. Foi gerado o código secreto de alteração "${change_secret}"`
+            }
+        }).then(_ => {
+            log("Verificação de código confirmada", { color: "fgGray" });
+        }).catch(e => {
+            log("Não foi possível registrar confirmação na verificação de código: " + e, { color: "fgRed" });
         });
 
         return change_secret;

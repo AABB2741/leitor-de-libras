@@ -36,7 +36,8 @@ export class DeleteRecoveryCodeUseCase {
                 id: code.id,
             },
             data: {
-                active: false
+                active: false,
+                using: false
             }
         });
 
