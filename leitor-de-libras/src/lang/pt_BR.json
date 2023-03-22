@@ -63,7 +63,10 @@
             "password_not_match": "As senhas não combinam.",
             "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos.",
             "invalid_code": "Código inválido. Tente novamente.",
-            "internal_server_error": "Erro interno no servidor."
+            "internal_server_error": "Erro interno no servidor.",
+            "recovery_code_already_active": "Este e-mail já possui um código ativo",
+            "recovery_code_not_found": "Código de recuperação inválido",
+            "user_not_found": "Usuário não encontrado"
 		}
 	},
 	"empty": {

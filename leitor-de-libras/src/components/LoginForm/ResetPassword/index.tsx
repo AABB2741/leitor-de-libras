@@ -4,7 +4,9 @@ import {
     View,
     ScrollView
 } from "react-native";
+import axios from "axios";
 import { Location } from "../";
+import api from "../../../constants/api.json";
 
 import { useColors } from "../../../contexts/colors";
 import { useLang } from "../../../contexts/lang";
@@ -15,6 +17,7 @@ import Input from "../../Input";
 import Button from "../../Button";
 
 import createStyles from "./styles";
+import log from "../../../utils/log";
 
 interface ResetPasswordProps {
     setCanClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,7 +63,6 @@ function checkCode(email: string, code: string): Promise<ResponseCode> {
         }, 3000)
     })
 }
-
 export default function ResetPassword({ setCanClose, setLocation }: ResetPasswordProps) {
     const lang = useLang();
     const colors = useColors();
@@ -79,7 +81,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
     const [warning, setWarning] = useState<ResponseCode | null>(null);
     const [codeWarning, setCodeWarning] = useState<ResponseCode | null>(null);
 
-    async function handleChangePassword() {
+    async function requestRecoveryCode() {
         if (!email.trim())
             return setWarning("empty_fields");
 
@@ -90,15 +92,29 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         setLoading(true);
         setCanClose(false);
 
-        const response = await changePassword(email);
-        if (response === "ok") {
-            setSent(true);
-        } else setWarning(response);
+        try {
+            const response = await axios.post(`${api.address}/user/requestRecoveryCode`, {
+                email
+            }, { timeout: 15000 });
+            console.log(response);
+        } catch (e) {
+            const err = e as any;
+            log("Erro ao solicitar criação de código: " + err, { color: "fgRed" });
+            console.log(err?.response?.data);
 
-        setLoading(false);
+            switch (err?.response?.status) {
+                case 403:
+                    setSent(true);
+                    break;
+                default:
+                    setWarning(err?.response?.data?.code ?? "unknown_err");
+            }
+        } finally {
+            setLoading(false);
+        }
     }
 
-    async function handleCancel() {
+    async function cancelRecoveryCode() {
         setLoading(true);
 
         const response = await cancel(email);
@@ -111,7 +127,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         setCanClose(true);
     }
 
-    async function handleCheckCode() {
+    async function checkRecoveryCode() {
         if (!code.trim())
             return setCodeWarning("empty_fields");
 
@@ -139,13 +155,13 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             editable={!loading && !sent}
                             value={(sent || loading) ? email.replace(/./g, "*") : email}
                             onChangeText={email => setEmail(email)}
-                            onSubmitEditing={handleChangePassword}
+                            onSubmitEditing={requestRecoveryCode}
                             keyboardType="email-address"
                         />
                         {warning && <Font style={styles.warning}>{lang.general.err_codes[warning] ?? warning}</Font>}
                         <Button
                             label={lang.reset_password.send_email.confirm}
-                            onPress={handleChangePassword}
+                            onPress={requestRecoveryCode}
                             loading={loading && !sent}
                             disabled={sent}
                             highlight
@@ -166,19 +182,19 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             value={code}
                             onChangeText={code => setCode(code)}
                             editable={!loading && !confirmLoading && !checked}
-                            onSubmitEditing={handleCheckCode}
+                            onSubmitEditing={checkRecoveryCode}
                         />
                         {codeWarning && <Font style={styles.warning}>{lang.general.err_codes[codeWarning] ?? codeWarning}</Font>}
                         <Button
                             label={lang.reset_password.confirm_code.confirm}
-                            onPress={handleCheckCode}
+                            onPress={checkRecoveryCode}
                             highlight
                             disabled={loading || code.length !== 6 || checked}
                             loading={confirmLoading}
                         />
                         <Button
                             label={lang.reset_password.confirm_code.cancel}
-                            onPress={handleCancel}
+                            onPress={cancelRecoveryCode}
                             loading={loading}
                             disabled={confirmLoading || checked}
                         />

@@ -11,4 +11,7 @@ type ResponseCode =
     "invalid_password_length" |
     "invalid_code" |
     "internal_server_error" |
+    "recovery_code_already_active" |
+    "recovery_code_not_found" |
+    "user_not_found" |
     "unknown_err";
