@@ -80,6 +80,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
 
     const [warning, setWarning] = useState<ResponseCode | null>(null);
     const [codeWarning, setCodeWarning] = useState<ResponseCode | null>(null);
+    const [changeSecret, setChangeSecret] = useState<string | null>(null);
 
     async function requestRecoveryCode() {
         if (!email.trim())
@@ -144,9 +145,24 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         setConfirmLoading(true);
         
         try {
-            // TODO: Verificar código no back
-        } catch (e) {
+            const response = await axios.post(`${api.address}/user/checkRecoveryCode`, {
+                email,
+                code
+            }, { timeout: 15000 });
 
+            if (response.data.code === "ok") {
+                setChangeSecret(response.data.changeSecret);
+                setChecked(true);
+            }
+        } catch (e) {
+            const err = e as any;
+            log("Erro ao verificar código: " + err, { color: "fgRed" });
+
+            switch (err?.response?.status) {
+                // Caso precise de verificação de outros códigos
+                default:
+                    setCodeWarning(err?.response?.data?.code ?? "unknown_err");
+            }
         } finally {
             setConfirmLoading(false);
         }

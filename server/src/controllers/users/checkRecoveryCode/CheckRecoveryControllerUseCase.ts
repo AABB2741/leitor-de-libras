@@ -46,6 +46,8 @@ export class CheckRecoveryCodeUseCase {
         // [ ] Enviar o código para o usuário
 
         const change_secret = uuid();
+        const d = new Date();
+        d.setMinutes(d.getMinutes() + 5);
 
         const changed = await prisma.recoveryCode.update({
             where: {
@@ -54,7 +56,8 @@ export class CheckRecoveryCodeUseCase {
             data: {
                 active: false,
                 using: true,
-                change_secret
+                change_secret,
+                expires_in: d
             }
         });
 
