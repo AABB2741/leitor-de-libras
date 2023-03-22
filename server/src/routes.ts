@@ -9,8 +9,10 @@ import { LoginController } from "./controllers/users/login/LoginController";
 import { CreateUserController } from "./controllers/users/createUser/CreateUserController";
 import { UpdateUserController } from "./controllers/users/updateUser/UpdateUserController";
 import { DeleteUserController } from "./controllers/users/deleteUser/DeleteUserController";
+
 import { RequestRecoveryCodeController } from "./controllers/users/requestRecoveryCode/RequestRecoveryCodeController";
 import { DeleteRecoveryCodeController } from "./controllers/users/deleteRecoveryCode/DeleteRecoveryCodeController";
+import { CheckRecoveryCodeController } from "./controllers/users/checkRecoveryCode/CheckRecoveryCodeController";
 
 const router = Router();
 
@@ -22,8 +24,10 @@ const login = new LoginController();
 const createUser = new CreateUserController();
 const updateUser = new UpdateUserController();
 const deleteUser = new DeleteUserController();
+
 const requestRecoveryCodeController = new RequestRecoveryCodeController();
 const deleteRecoveryCodeController = new DeleteRecoveryCodeController();
+const checkRecoveryCodeController = new CheckRecoveryCodeController();
 
 router.get("/ping", ping.handle);
 
@@ -36,5 +40,6 @@ router.delete("/user/delete", deleteUser.handle);
 
 router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
 router.delete("/user/deleteRecoveryCode/:email", deleteRecoveryCodeController.handle);
+router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 
 export { router };
