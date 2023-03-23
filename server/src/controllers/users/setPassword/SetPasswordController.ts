@@ -22,7 +22,7 @@ export class SetPasswordContoller {
         
         if (!change_secret) {
             log("Erro ao alterar senha: Código não recebido", { color: "fgYellow" });
-            throw new AppError("invalid_code");
+            throw new AppError("secret_not_sent", 401);
         }
 
         const setPasswordControllerUseCase = new SetPasswordControllerUseCase();

@@ -8,7 +8,8 @@ import log from "../../../utils/log";
 
 export class RequestRecoveryCodeController {
     async handle(req: RequestBody<RecoveryCodeProps>, res: Response) {
-        const email = req.body?.email?.trim();
+        const email = req.body?.email?.toLowerCase()?.trim();
+        console.log(email);
 
         if (!email) {
             log(`Criação de código rejeitada: E-mail não inserido`, { color: "fgRed" });

@@ -107,7 +107,6 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         } catch (e) {
             const err = e as any;
             log("Erro ao solicitar criação de código: " + err, { color: "fgRed" });
-            console.log(err?.response?.data);
 
             switch (err?.response?.status) {
                 case 403:
@@ -137,6 +136,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             setLoading(false);
             setCanClose(true);
             setSent(false);
+            setChecked(false);
         }
     }
 
@@ -154,7 +154,7 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
             }, { timeout: 15000 });
 
             if (response.data.code === "ok") {
-                console.log(response);
+                log("Verificando código: " + JSON.stringify(response.data.change_secret), { color: "fgGray" });
                 // FIXME: Código não sendo recebido
                 setChangeSecret(response.data.change_secret);
                 setChecked(true);
@@ -187,7 +187,6 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
         setPasswordLoading(true);
 
         try {
-            console.log(changeSecret);
             const response = await axios.put(`${api.address}/user/setPassword`, {
                 password,
                 change_secret: changeSecret
@@ -286,6 +285,10 @@ export default function ResetPassword({ setCanClose, setLocation }: ResetPasswor
                             label={lang.reset_password.reset.confirm}
                             highlight
                             onPress={changePassword}
+                        />
+                        <Button
+                            label={lang.reset_password.confirm_code.cancel}
+                            onPress={cancelRecoveryCode}
                         />
                     </FixedCategory>
                 </ScrollView>

@@ -14,4 +14,6 @@ type Code =
     "recovery_code_already_active" |
     "recovery_code_not_found" |
     "user_not_found" |
+    "invalid_secret" |
+    "secret_not_sent" |
     "unknown_err";

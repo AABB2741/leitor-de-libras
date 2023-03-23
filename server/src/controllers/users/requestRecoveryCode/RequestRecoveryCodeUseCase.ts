@@ -13,13 +13,11 @@ export interface RecoveryCodeProps {
 export class RequestRecoveryCodeUseCase {
     // Checar primeiro se tem outro código de verificação ativo. Se houver, rejeitar solicitação
     async execute({ email }: RecoveryCodeProps): Promise<boolean> {
-        const gte = new Date();
-        console.log(gte);
         const alreadyExists = await prisma.recoveryCode.findFirst({
             where: {
                 userEmail: email,
                 expires_in: {
-                    gte // gt -> maior que: pega somente os que possuírem data de expiração maior que a atual
+                    gt: new Date() // gt -> maior que: pega somente os que possuírem data de expiração maior que a atual
                 },
                 OR: {
                     active: true,

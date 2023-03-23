@@ -23,7 +23,7 @@ export class SetPasswordControllerUseCase {
 
         if (!recoveryCode) {
             // 
-            throw new AppError("invalid_code");
+            throw new AppError("invalid_secret", 401);
         }
 
         const user = await prisma.user.update({
