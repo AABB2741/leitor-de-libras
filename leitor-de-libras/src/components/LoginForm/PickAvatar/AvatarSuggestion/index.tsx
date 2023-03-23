@@ -23,7 +23,7 @@ interface AvatarSuggestionProps extends Suggestion {
 export default function AvatarSuggestion({ code, url, chosenSuggestion, setChosenSuggestion }: AvatarSuggestionProps) {
     const colors = useColors();
     const lang = useLang();
-
+    console.log("URL: " + url)
     return (
         <TouchableOpacity style={styles.container} onPress={() => setChosenSuggestion(code)}>
             <Image

@@ -40,12 +40,12 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
 
     const [avatarList, setAvatarList] = useState<Suggestion[]>([])
     const [chosenSuggestion, setChosenSuggestion] = useState<Suggestion["code"] | null>(null);
-    const [avatar, setAvatar] = useState<ImageSourcePropType | null>(null);
     const [loading, setLoading] = useState(false);
     // TODO: Colocar mensagem de erro caso dê erro
     const [error, setError] = useState<null | ResponseCode>(null);
 
     const uri = avatarList.find(a => a.code === chosenSuggestion)?.url;
+    const avatar = { uri };
 
     async function handleLoadSuggestions() {
         try {
@@ -53,28 +53,28 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
             setError(null);
             setLoading(true);
 
-            const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 10000 });
+            const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 15000 });
             if (!response)
                 return setError("unknown_err");
 
             const { data } = response;
+            
             setAvatarList(data.avatars);
-            setLoading(false);
         } catch (e) {
             const err: any = e;
             log(`Ocorreu um erro ao carregar lista de avatares: ${err}`, { color: "fgRed" });
             if (err?.response?.status === 500) {
                 setError("internal_server_error")
             } else setError("unknown_err");
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     }
 
     useEffect(() => {
         handleLoadSuggestions();
     }, []);
-
+    
     return (
         <FlatList
             ListHeaderComponent={(
