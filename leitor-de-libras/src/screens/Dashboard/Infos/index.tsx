@@ -51,8 +51,8 @@ export default function Infos({ navigation }: InfosProps) {
                 <View style={styles.userContainer}>
                     <Avatar style={styles.avatar} />
                     <View style={styles.userData}>
-                        <Font family="ubuntu" numberOfLines={1} style={styles.username}>{user?.name}</Font>
-                        <Font numberOfLines={1} style={styles.email}>{user?.email}</Font>
+                        <Font family="ubuntu" numberOfLines={1} style={styles.username}>{user.name}</Font>
+                        <Font numberOfLines={1} style={styles.email}>{user.email}</Font>
                     </View>
                 </View>
             )}

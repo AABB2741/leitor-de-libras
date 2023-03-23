@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import * as Storage from "../services/Storage";
 import axios, { AxiosResponse } from "axios";
+import { useLang } from "./lang";
 
 import USER from "../constants/user";
 
@@ -8,7 +9,7 @@ import api from "../constants/api.json";
 import log from "../utils/log";
 
 type UserContextValue = {
-    user: UserProps | null;
+    user: UserProps;
     signed: null | boolean; // null significa que ainda não foi carregado
     token?: string;
     signUp: (name: string, email: string, password: string) => Promise<ResponseCode>;
@@ -23,7 +24,10 @@ interface UserProviderProps {
 const UserContext = createContext<UserContextValue>({} as UserContextValue);
 
 export default function UserProvider({ children }: UserProviderProps) {
+    const lang = useLang();
+
     const [user, setUser] = useState<UserProps | null>(null);
+    const [baseUser, setBaseUser] = useState<UserProps | null>(null);
     const signed = !!user;
 
     // async function login(email: string, password: string) {
@@ -156,13 +160,17 @@ export default function UserProvider({ children }: UserProviderProps) {
         log("Carregando informações do usuário...", { color: "fgGray" });
         Storage.getItem("user").then(user => {
             if (!user) {
-                setUser(null);
+                setBaseUser({
+                    avatar: require("../../assets/imgs/profile-picture.jpg"),
+                    name: lang.general.anonymous
+                });
             } else setUser(user);
         });
     }, []);
 
+    const finalUser = { ...baseUser, ...user } as UserProps;
     return (
-        <UserContext.Provider value={{ user, signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", signUp, login, logOut }}>
+        <UserContext.Provider value={{ user: finalUser , signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", signUp, login, logOut }}>
             {children}
         </UserContext.Provider>
     );

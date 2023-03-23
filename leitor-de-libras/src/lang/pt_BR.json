@@ -117,8 +117,8 @@
         "pick_from_gallery": "Escolher uma foto da galeria",
         "confirm": "Continuar",
         "skip": "Agora não",
-        "praise": "Você está ótimo!",
-        "instructions": "%s1\nAssim que tudo estiver pronto, pressione o botão %s2 para confirmar.",
+        "praise": "Você está ótimo, %s!",
+        "instructions": "Assim que tudo estiver pronto, pressione o botão %s para confirmar.",
         "suggestions": {
             "title": "Sugestões de avatares",
             "text": "Se você quiser, você também pode escolher uma foto da nossa lista de avatares.",

@@ -3,5 +3,5 @@ type UserProps = {
     avatar: ImageSourcePropType;
     about_me?: string;
     name: string;
-    email: string;
+    email?: string;
 }

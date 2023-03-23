@@ -34,7 +34,7 @@ interface PickAvatarProps {
 
 export default function PickAvatar({ setLocation }: PickAvatarProps) {
     const lang = useLang();
-    const { user } = useUser();
+    const { user, signed } = useUser();
     const colors = useColors();
     const styles = getStyles({ colors });
 
@@ -93,10 +93,10 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
                     <Font style={styles.desc}>{lang.pick_avatar.text}</Font>
                     <Image
                         style={styles.currentAvatar}
-                        source={uri ? { uri } : avatar ?? user?.avatar}
+                        source={avatar ?? user.avatar}
                     />
-                    <Font family="black" style={styles.username}>{user?.name ?? lang.general.user.anonymous}</Font>
-                    <Font style={styles.about}>Sobre mim. Escrevi um texto muito louco sobre eu mesmo</Font>
+                    <Font family="black" style={styles.username}>{avatar ? lang.pick_avatar.praise.replace("%s", user.name) : user.name}</Font>
+                    <Font style={styles.about}>{lang.pick_avatar.instructions.replace("%s", lang.pick_avatar.confirm)}</Font>
                     <TouchableOpacity style={styles.pickFromGallery}>
                         <ImageIcon
                             color={colors.accent}
