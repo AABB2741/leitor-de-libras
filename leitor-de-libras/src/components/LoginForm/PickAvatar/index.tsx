@@ -53,6 +53,7 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
             setError(null);
             setLoading(true);
 
+            log("Obtendo a lista de sugestão de avatares...");
             const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 15000 });
             if (!response)
                 return setError("unknown_err");
@@ -63,8 +64,11 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
         } catch (e) {
             const err: any = e;
             log(`Ocorreu um erro ao carregar lista de avatares: ${err}`, { color: "fgRed" });
+            
             if (err?.response?.status === 500) {
                 setError("internal_server_error")
+            } else if (err?.code === "ECONNABORTED") {
+                setError("network_err");
             } else setError("unknown_err");
         } finally {
             setLoading(false);

@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import { AppError } from "../../../errors/AppError";
 import { GetAvatarsUseCase } from "./GetAvatarsUseCase";
 
+import log from "../../../utils/log";
+
 export class GetAvatarsController {
     // TODO: Pegar ID do usuário através do JWT
     async handle(req: Request, res: Response) {
+        log("Solicitação de lista de avatares", { color: "fgGray" });
+
         const getAvatarsUseCase = new GetAvatarsUseCase();
         const avatars = await getAvatarsUseCase.execute();
 

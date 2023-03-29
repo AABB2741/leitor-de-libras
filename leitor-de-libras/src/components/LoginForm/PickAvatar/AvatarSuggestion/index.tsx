@@ -9,6 +9,7 @@ import { useLang } from "../../../../contexts/lang";
 import Font from "../../../Font";
 
 import styles from "./styles";
+import log from "../../../../utils/log";
 
 export type Suggestion = {
     code: string;
@@ -23,7 +24,8 @@ interface AvatarSuggestionProps extends Suggestion {
 export default function AvatarSuggestion({ code, url, chosenSuggestion, setChosenSuggestion }: AvatarSuggestionProps) {
     const colors = useColors();
     const lang = useLang();
-    console.log("URL: " + url)
+    log(`Obtida a sugestão de avatar ${code}. URL: ${url}`, { color: "fgGray", tab: true });
+    
     return (
         <TouchableOpacity style={styles.container} onPress={() => setChosenSuggestion(code)}>
             <Image
