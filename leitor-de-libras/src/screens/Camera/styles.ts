@@ -43,8 +43,15 @@ export default ({ colors }: CameraStyle) => StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    mode: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 15
+    },
     bottom: {
         padding: 20,
+        paddingTop: 10,
         backgroundColor: "rgba(0, 0, 0, 0.75)"
     },
     options: {

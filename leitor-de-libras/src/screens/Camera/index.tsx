@@ -22,6 +22,7 @@ import {
     PermissionResponse
 } from "expo-camera";
 import {
+    Camera as CameraIcon,
     CameraRotate,
     FilmStrip,
     Lightning,
@@ -35,6 +36,7 @@ import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { AVPlaybackSource } from "expo-av/build/AV.types";
 
+import Button from "../../components/Button";
 import Font from "../../components/Font";
 import VideoConfirm from "./VideoConfirm";
 import Loading from "../../components/Loading";
@@ -56,6 +58,8 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     const styles = createStyles({ colors });
 
     const cameraRef = useRef<ExpoCamera>(null);
+
+    const [mode, setMode] = useState<"video" | "photo">("photo");
     const [videoConfirmVisible, setVideoConfirmVisible] = useState(false);
     const [message, setMessage] = useState<PopupProps | null>(null);
     const [recording, setRecording] = useState(false);
@@ -221,10 +225,25 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.bottom}>
+                                <View style={styles.mode}>
+                                    <Button
+                                        label="Foto"
+                                        highlight={mode === "photo"}
+                                        accentColor={colors.accent2}
+                                        onPress={() => setMode("photo")}
+                                    />
+                                    <Button
+                                        label="Vídeo"
+                                        highlight={mode === "video"}
+                                        accentColor={colors.accent2}
+                                        onPress={() => setMode("video")}
+                                    />
+                                </View>
                                 <View style={styles.options}>
                                     {!recording && <FilmStrip size={32} color={colors.font2} />}
                                     <TouchableOpacity style={styles.record} onPress={recording ? () => handleStopRecording(true) : handleStartRecording}>
-                                        {recording ? <Stop size={32} color={colors.font2} weight="fill" /> : <VideoCamera size={32} color={colors.font2} />}
+                                        {mode === "video" && (recording ? <Stop size={32} color={colors.font2} weight="fill" /> : <VideoCamera size={32} color={colors.font2} />)}
+                                        {mode === "photo" && <CameraIcon size={32} color={colors.font2} />}
                                     </TouchableOpacity>
                                     {!recording && (
                                         <TouchableOpacity onPress={() => setType(type === CameraType.back ? CameraType.front : CameraType.back)}>
