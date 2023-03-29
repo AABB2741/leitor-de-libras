@@ -75,6 +75,7 @@ export default function UserProvider({ children }: UserProviderProps) {
             return "empty_fields";
 
         try {
+            log("Tentando fazer login...");
             const { data } = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
                 email,
                 password
@@ -91,7 +92,7 @@ export default function UserProvider({ children }: UserProviderProps) {
                 return "data_retrieve_error";
 
             await Storage.setItem("#session_token", data.token);
-            log(`Conectado. Token de acesso: ${data.token}`);
+            log(`Conectado. Token de acesso: ${data.token}`, { color: "fgGray", tab: true });
             setUser(u);
             setToken(data.token);
             return "ok";
@@ -106,29 +107,44 @@ export default function UserProvider({ children }: UserProviderProps) {
     }
 
     async function logOut() {
-        log("Desconectando-se...", { color: "fgGray" });
+        log("Desconectando-se...");
+        log("Excluindo token de autenticação...", { color: "fgGray", tab: true });
+        await Storage.deleteItem("#session_token");
+
+        try {
+            log("Solicitando à API a exclusão do token", { color: "fgGray", tab: true });
+        } catch (e) {
+            log("Erro ao solicitar exclusão do token: " + e);
+        }
+
+        log("Excluindo usuário salvo localmente...", { color: "fgGray", tab: true });
         await Storage.deleteItem("user");
         setUser(null);
-        log("Desconectado", { tab: true });
+        log("Desconectado", { tab: true, color: "fgGray" });
         return true;
     }
 
     // TODO: Verificar alterações de conexão; se estiver usando conta local e achar internet, tentar conectar
     useEffect(() => {
-        log("Carregando informações do usuário...", { color: "fgGray" });
-        Storage.getItem("user").then(user => {
+        async function loadUser() {
+            log("Obtendo token de sessão salvo...", { color: "fgGray" });
+            const token = await Storage.getItem("#session_token");
+            log(token ? `Token encontrado: ${token}` : "Não há um token de autenticação salvo.", { color: "fgGray", tab: true });
+            setToken(token);
+            log("Carregando informações do usuário...", { color: "fgGray" });
+            const user = await Storage.getItem("user");
             setUser(user);
-        });
+        }
+        loadUser();
     }, []);
 
     const baseUser: Partial<UserProps> = {
         name: lang.general.anonymous,
         avatar: require("../../assets/imgs/profile-picture.jpg")
     }
-    console.log(baseUser);
-    console.log(user);
+
     const finalUser = { ...baseUser, ...user } as UserProps;
-    console.log(finalUser);
+    
     return (
         <UserContext.Provider value={{ user: finalUser , signed, token, signUp, login, logOut }}>
             {children}

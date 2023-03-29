@@ -227,13 +227,13 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
                             <View style={styles.bottom}>
                                 <View style={styles.mode}>
                                     <Button
-                                        label="Foto"
+                                        label={lang.camera.mode.photo}
                                         highlight={mode === "photo"}
                                         accentColor={colors.accent2}
                                         onPress={() => setMode("photo")}
                                     />
                                     <Button
-                                        label="Vídeo"
+                                        label={lang.camera.mode.video}
                                         highlight={mode === "video"}
                                         accentColor={colors.accent2}
                                         onPress={() => setMode("video")}

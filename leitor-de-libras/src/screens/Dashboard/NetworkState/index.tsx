@@ -31,7 +31,7 @@ export default function NetworkState() {
     const [networkState, setNetworkState] = useState<NetState>(null);
 
     useEffect(() => {
-        log("Atualizando informações de conexão");
+        log("Atualizando informações de conexão", { color: "fgGray" });
         if (infos.isConnected) {
             if (infos.type === "cellular") {
                 setNetworkState("cellular");

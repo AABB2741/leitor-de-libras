@@ -52,20 +52,21 @@
 		},
 		"err_codes": {
 			"ok": "Confirmado",
-			"network_err": "Não foi possível conectar-se ao servidor.",
+			"network_err": "Não foi possível conectar-se ao servidor",
 			"empty_fields": "Preencha todos os campos obrigatórios!",
-            "invalid_fields": "Algum campo possui um valor inválido.",
-			"invalid_credentials": "Endereço de e-mail ou senha inválidos.",
-            "invalid_email": "Insira um endereço de e-mail válido.",
-			"email_already_in_use": "O endereço de e-mail inserido já está em uso.",
-			"invalid_token": "Sessão inválida.",
-            "unknown_err": "Erro desconhecido.",
-            "password_not_match": "As senhas não combinam.",
-            "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos.",
-            "invalid_code": "Código inválido. Tente novamente.",
-            "internal_server_error": "Erro interno no servidor.",
+            "invalid_fields": "Algum campo possui um valor inválido",
+			"invalid_credentials": "Endereço de e-mail ou senha inválidos",
+            "invalid_email": "Insira um endereço de e-mail válido",
+			"email_already_in_use": "O endereço de e-mail inserido já está em uso",
+			"invalid_token": "Sessão inválida",
+            "unknown_err": "Erro desconhecido",
+            "password_not_match": "As senhas não combinam",
+            "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos",
+            "invalid_code": "Código inválido. Tente novamente",
+            "internal_server_error": "Erro interno no servidor",
             "recovery_code_already_active": "Este e-mail já possui um código ativo",
             "recovery_code_not_found": "Código de recuperação inválido",
+            "data_retrieve_error": "Erro na obtenção de dados",
             "user_not_found": "Usuário não encontrado"
 		}
 	},
@@ -327,7 +328,11 @@
 		"recording_failed": {
 			"title": "Não foi possível iniciar a gravação",
 			"text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
-		}
+		},
+        "mode": {
+            "photo": "Foto",
+            "video": "Vídeo"
+        }
 	},
 	"conversations": {
 		"title": "Li Talks",
