@@ -25,6 +25,7 @@ import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useFocusEffect } from "@react-navigation/native";
+import { useUser } from "../../contexts/user";
 
 import Order from "../../@types/Order";
 import Option, { OptionProps as OptionProps } from "./Option";
@@ -47,6 +48,7 @@ interface Props {
 }
 
 export default function Translations({ navigation }: Props) {
+    const { token } = useUser();
     const lang = useLang();
     const colors = useColors();
     const styles = createStyles({ colors });
@@ -80,6 +82,10 @@ export default function Translations({ navigation }: Props) {
             setFiles(FILES);
         }, 2500);
     }, []);
+
+    async function loadFiles() {
+
+    }
 
     function handleSelectFile(id: string) {
         const newSelectedFiles = [...selectedFiles];
