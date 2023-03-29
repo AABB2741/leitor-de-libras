@@ -26,7 +26,7 @@ interface LoginFormProps extends ModalProps {
 export default function LoginForm({ screen = "Login", ...rest }: LoginFormProps) {
     const { signed } = useUser();
 
-    const [location, setLocation] = useState<Location>("PickAvatar"); //useState(screen);
+    const [location, setLocation] = useState<Location>("Login"); //useState(screen);
     const [canClose, setCanClose] = useState(true);
 
     // Evita que vários modais de login estejam abertos em telas diferentes. Este IF faz com que nada seja exibido caso o usuário já esteja logado

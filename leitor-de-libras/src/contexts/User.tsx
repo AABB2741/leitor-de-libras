@@ -27,28 +27,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     const lang = useLang();
 
     const [user, setUser] = useState<UserProps | null>(null);
-    const [baseUser, setBaseUser] = useState<UserProps | null>(null);
     const signed = !!user;
-
-    // async function login(email: string, password: string) {
-    //     log("Fazendo login...", { color: "fgGray" });
-    //     if (!email.trim() || !password.trim())
-    //         return "empty_fields";
-
-    //     // TODO: Terminar requisição de login
-    //     try {
-    //         const response = await axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
-    //             email,
-    //             password
-    //         }, { timeout: 5000 });
-    //         console.log(response);
-            
-    //         return "ok";
-    //     } catch (e) {
-    //         log("Erro ao fazer login:\n" + e, { color: "fgRed" });
-    //         return "network_err";
-    //     }
-    // }
 
     async function signUp(name: string, email: string, password: string): Promise<ResponseCode> {
         if (!name.trim() || !email.trim() || !password.trim())
@@ -120,33 +99,6 @@ export default function UserProvider({ children }: UserProviderProps) {
         }
     }
 
-    // function login(email: string, password: string): Promise<ResponseCode> | "empty_fields" {
-    //     if (!email.trim() || !password.trim())
-    //         return "empty_fields";
-
-    //     return new Promise((resolve, reject) => {
-    //         axios.post<UserProps & { token: string }>(`${api.address}/user/login`, {
-    //             email,
-    //             password
-    //         }, { timeout: 15000 }).then(response => {
-    //             const { data } = response;
-    //             Storage.setItem("user", {
-    //                 avatar: data.avatar,
-    //                 name: data.name,
-    //                 email: data.email
-    //             }).then(u => {
-    //                 log(`Conectado. Dados recebidos: ${JSON.stringify(u)}`);
-    //                 setUser(u);
-    //                 resolve("ok");
-    //             });
-    //         }).catch(e => {
-    //             if (e?.response?.status === 401) {
-    //                 resolve("invalid_credentials");
-    //             } else resolve("network_err");
-    //         });
-    //     });
-    // }
-
     async function logOut() {
         log("Desconectando-se...", { color: "fgGray" });
         await Storage.deleteItem("user");
@@ -159,16 +111,18 @@ export default function UserProvider({ children }: UserProviderProps) {
     useEffect(() => {
         log("Carregando informações do usuário...", { color: "fgGray" });
         Storage.getItem("user").then(user => {
-            if (!user) {
-                setBaseUser({
-                    avatar: require("../../assets/imgs/profile-picture.jpg"),
-                    name: lang.general.anonymous
-                });
-            } else setUser(user);
+            setUser(user);
         });
     }, []);
 
+    const baseUser: Partial<UserProps> = {
+        name: lang.general.anonymous,
+        avatar: require("../../assets/imgs/profile-picture.jpg")
+    }
+    console.log(baseUser);
+    console.log(user);
     const finalUser = { ...baseUser, ...user } as UserProps;
+    console.log(finalUser);
     return (
         <UserContext.Provider value={{ user: finalUser , signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", signUp, login, logOut }}>
             {children}

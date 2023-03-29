@@ -58,7 +58,7 @@ export default function Login({ setLocation, setCanClose }: LoginProps) {
             case "ok":
                 setLoading(false);
                 setCanClose(true);
-                setLocation("SetProfilePicture");
+                setLocation("PickAvatar");
                 return;
             default:
                 setWarning(response);
