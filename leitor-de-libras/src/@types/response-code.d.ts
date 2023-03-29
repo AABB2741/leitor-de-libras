@@ -14,4 +14,5 @@ type ResponseCode =
     "recovery_code_already_active" |
     "recovery_code_not_found" |
     "user_not_found" |
+    "data_retrieve_error" |
     "unknown_err";

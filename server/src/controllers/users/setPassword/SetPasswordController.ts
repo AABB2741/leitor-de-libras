@@ -5,7 +5,7 @@ import { RequestBody } from "../../../utils/RequestBody";
 import { SetPasswordControllerUseCase, SetPasswordProps } from "./SetPasswordControllerUseCase";
 import log from "../../../utils/log";
 
-export class SetPasswordContoller {
+export class SetPasswordController {
     async handle(req: RequestBody<SetPasswordProps>, res: Response) {
         const password = req.body?.password?.trim();
         const change_secret = req.body?.change_secret;

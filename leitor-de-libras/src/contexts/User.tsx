@@ -11,7 +11,7 @@ import log from "../utils/log";
 type UserContextValue = {
     user: UserProps;
     signed: null | boolean; // null significa que ainda não foi carregado
-    token?: string;
+    token: string | null;
     signUp: (name: string, email: string, password: string) => Promise<ResponseCode>;
     login: (email: string, password: string) => Promise<ResponseCode> | "empty_fields";
     logOut: () => Promise<boolean>;
@@ -27,6 +27,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     const lang = useLang();
 
     const [user, setUser] = useState<UserProps | null>(null);
+    const [token, setToken] = useState<string | null>(null);
     const signed = !!user;
 
     async function signUp(name: string, email: string, password: string): Promise<ResponseCode> {
@@ -86,8 +87,13 @@ export default function UserProvider({ children }: UserProviderProps) {
                 about_me: data?.about_me
             });
 
+            if (!data?.token)
+                return "data_retrieve_error";
+
+            await Storage.setItem("#session_token", data.token);
             log(`Conectado. Token de acesso: ${data.token}`);
             setUser(u);
+            setToken(data.token);
             return "ok";
         } catch (e) {
             const err: any = e;
@@ -124,7 +130,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     const finalUser = { ...baseUser, ...user } as UserProps;
     console.log(finalUser);
     return (
-        <UserContext.Provider value={{ user: finalUser , signed, token: "AS(VU*KDasu8k9dvu8k9sadv89alsdJ*)", signUp, login, logOut }}>
+        <UserContext.Provider value={{ user: finalUser , signed, token, signUp, login, logOut }}>
             {children}
         </UserContext.Provider>
     );

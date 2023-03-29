@@ -13,7 +13,9 @@ import { DeleteUserController } from "./controllers/users/deleteUser/DeleteUserC
 import { RequestRecoveryCodeController } from "./controllers/users/requestRecoveryCode/RequestRecoveryCodeController";
 import { DeleteRecoveryCodeController } from "./controllers/users/deleteRecoveryCode/DeleteRecoveryCodeController";
 import { CheckRecoveryCodeController } from "./controllers/users/checkRecoveryCode/CheckRecoveryCodeController";
-import { SetPasswordContoller } from "./controllers/users/setPassword/SetPasswordController";
+import { SetPasswordController } from "./controllers/users/setPassword/SetPasswordController";
+
+import { GetTranslationsController } from "./controllers/data/getTranslations/GetTranslationsController";
 
 const router = Router();
 
@@ -29,7 +31,9 @@ const deleteUser = new DeleteUserController();
 const requestRecoveryCodeController = new RequestRecoveryCodeController();
 const deleteRecoveryCodeController = new DeleteRecoveryCodeController();
 const checkRecoveryCodeController = new CheckRecoveryCodeController();
-const setPasswordController = new SetPasswordContoller();
+const setPasswordController = new SetPasswordController();
+
+const getTranslationsController = new GetTranslationsController();
 
 router.get("/ping", ping.handle);
 
@@ -44,5 +48,7 @@ router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
 router.delete("/user/deleteRecoveryCode/:email", deleteRecoveryCodeController.handle);
 router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 router.put("/user/setPassword", setPasswordController.handle);
+
+router.get("/user/getTranslations", getTranslationsController.handle);
 
 export { router };
