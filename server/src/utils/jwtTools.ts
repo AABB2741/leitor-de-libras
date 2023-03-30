@@ -1,23 +1,23 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
+const secret = process.env.JWT_TOKEN as string;
 
-import { NextFunction, Request, Response } from "express";
-import { SECRET } from "./secret";
-import { AppError } from "../errors/AppError";
+function verify(token: string) {
+    if (typeof token !== "string")
+        throw new TypeError("Token inserido não é do tipo string");
 
-// TODO: Terminar de aprender a utilizar o JWT
-// [ ] Colocar função de criar tokens (não deixar através do jwt.sign)
-export function check(req: Request, res: Response, next: NextFunction) {
-    const token = req.headers["x-access-token"] as string | null;
-
-    if (!token)
-        throw new AppError("invalid_token");
-
-    jwt.verify(token, SECRET, (err, decoded) => {
-        if (err)
-            throw new AppError("invalid_token", 401);
-        
-        // FIXME: arrumar e tentar fazer a verificação de token
-        req.id = decoded.id;
-        next();
+    jwt.verify(token, secret, (err, decoded) => {
+        console.log("Responsa:");
+        console.log(decoded);
+        console.log("Err:");
+        console.log(err);
     });
 }
+
+function sign(payload: JwtPayload) {
+
+}
+
+export {
+    verify,
+    sign
+};
