@@ -23,8 +23,12 @@ function verify(token: string): Promise<[jwt.VerifyErrors | null, jwt.JwtPayload
     });
 }
 
-function sign(payload: JwtPayload) {
-
+function sign(id: string, expiresIn: number = 60 * 60) {
+    return jwt.sign(
+        { id },
+        secret,
+        { expiresIn } // 1 hora
+    );
 }
 
 export {
