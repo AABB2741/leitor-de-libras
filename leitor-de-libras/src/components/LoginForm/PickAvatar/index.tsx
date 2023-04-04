@@ -27,6 +27,7 @@ import AvatarSuggestion, { Suggestion } from "./AvatarSuggestion";
 import api from "../../../constants/api.json";
 import getStyles from "./styles";
 import log from "../../../utils/log";
+import client from "../../../utils/client";
 
 interface PickAvatarProps {
     setLocation: React.Dispatch<React.SetStateAction<Location>>;
@@ -54,7 +55,8 @@ export default function PickAvatar({ setLocation }: PickAvatarProps) {
             setLoading(true);
 
             log("Obtendo a lista de sugestão de avatares...");
-            const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 15000 });
+            const response = await client.get<{ avatars: Suggestion[] }>(`/data/getAvatars`, { timeout: 15000 });
+            // const response = await axios.get<{ avatars: Suggestion[] }>(`${api.address}/data/getAvatars`, { timeout: 15000 });
             if (!response)
                 return setError("unknown_err");
 

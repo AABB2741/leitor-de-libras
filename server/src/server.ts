@@ -10,6 +10,7 @@ import { AppError } from "./errors/AppError";
 import log from "./utils/log";
 
 const app = express();
+// express.static("/public")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

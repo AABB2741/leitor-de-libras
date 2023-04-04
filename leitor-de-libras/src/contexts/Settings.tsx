@@ -33,7 +33,7 @@ export default function SettingsProvider({ children }: SettingsProviderProps) {
 
     async function saveSettings(config: DeepPartial<SettingsProps>) {
         log(`Atualizando novas configurações: ${JSON.stringify(config)}`);
-        const newSettings = merge(settings ?? {}, config);
+        const newSettings = merge(settings ?? {}, config) as SettingsProps;
         await Storage.setItem("@settings", newSettings);
         setSettings(newSettings);
     }
