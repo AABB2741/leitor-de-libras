@@ -1,10 +1,10 @@
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 const secret = process.env.JWT_SECRET as string;
 
-function verify(token: string): Promise<[jwt.VerifyErrors | null, JwtPayload | string | undefined]> {
+function verify<T extends JwtPayload>(token: string): Promise<[jwt.VerifyErrors | null, JwtPayload | string | undefined]> {
     return new Promise(resolve => {
         jwt.verify(token, secret, (err, decoded) => {
-            resolve([err, decoded]);
+            resolve([err, decoded] as [typeof err, T]);
         });
     });
 }

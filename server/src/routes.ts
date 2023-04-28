@@ -17,6 +17,9 @@ import { SetPasswordController } from "./controllers/users/setPassword/SetPasswo
 
 import { GetTranslationsController } from "./controllers/data/getTranslations/GetTranslationsController";
 
+import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
+import { UploadTranslationController } from "./controllers/upload/uploadTranslation/UploadTranslationController";
+
 const router = Router();
 
 const ping = new PingController();
@@ -35,6 +38,9 @@ const setPasswordController = new SetPasswordController();
 
 const getTranslationsController = new GetTranslationsController();
 
+const uploadImageController = new UploadImageController();
+const uploadTranslationController = new UploadTranslationController();
+
 router.get("/ping", ping.handle);
 
 router.get("/data/getAvatars", getAvatars.handle);
@@ -50,5 +56,8 @@ router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 router.put("/user/setPassword", setPasswordController.handle);
 
 router.get("/user/getTranslations", getTranslationsController.handle);
+
+router.post("/upload/image", uploadImageController.handle);
+router.post("/upload/translation", uploadTranslationController.handle);
 
 export { router };

@@ -21,6 +21,7 @@ model User {
     updated_at   DateTime       @updatedAt
     RecoveryCode RecoveryCode[]
     Log          Log[]
+    Translation  Translation[]
 
     @@map("users")
 }
@@ -54,6 +55,21 @@ model Tip {
     url    String
 
     @@map("tips")
+}
+
+model Translation {
+    id         String   @id @default(uuid())
+    author     User     @relation(fields: [authorId], references: [id])
+    authorId   String
+    title      String
+    archived   Boolean  @default(false)
+    favorited  Boolean  @default(false)
+    password   String?
+    deleted    Boolean  @default(false)
+    source     String
+    created_at DateTime @default(now())
+
+    @@map("translations")
 }
 
 model Log {
