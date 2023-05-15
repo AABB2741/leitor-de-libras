@@ -329,6 +329,9 @@
 			"title": "Não foi possível iniciar a gravação",
 			"text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
 		},
+        "picture_finished": {
+            "title": "Confirmar imagem"
+        },
         "mode": {
             "photo": "Foto",
             "video": "Vídeo"

@@ -33,11 +33,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-    console.log("Passando pelo middleware")
-    next();
-});
-
 app.listen(8000, () => {
     console.log("Servidor rodando na porta 8000");
 });

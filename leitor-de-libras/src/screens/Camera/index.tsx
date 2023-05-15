@@ -19,7 +19,8 @@ import {
     Camera as ExpoCamera,
     CameraType,
     FlashMode,
-    PermissionResponse
+    PermissionResponse,
+    CameraCapturedPicture
 } from "expo-camera";
 import {
     Camera as CameraIcon,
@@ -46,6 +47,7 @@ import Popup, { PopupProps } from "../../components/Popup";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import createStyles from "./styles";
 import log from "../../utils/log";
+import { ImageConfirm } from "./ImageConfirm";
 
 interface CameraProps {
     navigation: BottomTabNavigationProp<AppRoutes, "Camera">;
@@ -69,6 +71,7 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
     const [permission, requestPermission] = ExpoCamera.useCameraPermissions();
     const [microphonePermission, requestMicrophonePermission] = ExpoCamera.useMicrophonePermissions();
     const [videoSource, setVideoSource] = useState<null | AVPlaybackSource>(null);
+    const [pictureSource, setPictureSource] = useState<CameraCapturedPicture | null>(null);
 
     async function handleRequestPermission() {
         if (Platform.OS === "android") {
@@ -122,6 +125,17 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         return null;
     }
 
+    function trigger() {
+        // recording ? () => handleStopRecording(true) : handleStartRecording
+        if (mode === "photo") {
+            handleTakePhoto();
+        } else {
+            if (recording) {
+                handleStopRecording(true);
+            } else handleStartRecording();
+        }
+    }
+
     async function handleStartRecording() {
         if (!cameraRef.current)
             return;
@@ -151,6 +165,15 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         if (userAction) {
             setVideoConfirmVisible(true);
         }
+    }
+
+    async function handleTakePhoto() {
+        if (!cameraRef.current)
+            return;
+
+        log("Tirando foto!");
+        const photo = await cameraRef.current.takePictureAsync();
+        setPictureSource(photo);
     }
 
     // TODO: Fazer função para pedir permissão. Se não tiver como pedir, exibir a mensagem de erro para abrir as configurações
@@ -206,6 +229,15 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         );
     }
 
+    if (pictureSource) {
+        return (
+            <ImageConfirm
+                pictureSource={pictureSource}
+                setPictureSource={setPictureSource}
+            />
+        );
+    }
+
     log("Renderizando câmera", { color: "fgGray" });
     return (
         <Modal onRequestClose={recording ? () => null : navigation.goBack}>
@@ -241,7 +273,7 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
                                 </View>
                                 <View style={styles.options}>
                                     {!recording && <FilmStrip size={32} color={colors.font2} />}
-                                    <TouchableOpacity style={styles.record} onPress={recording ? () => handleStopRecording(true) : handleStartRecording}>
+                                    <TouchableOpacity style={styles.record} onPress={trigger}>
                                         {mode === "video" && (recording ? <Stop size={32} color={colors.font2} weight="fill" /> : <VideoCamera size={32} color={colors.font2} />)}
                                         {mode === "photo" && <CameraIcon size={32} color={colors.font2} />}
                                     </TouchableOpacity>
