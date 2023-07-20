@@ -15,17 +15,20 @@ export default ({ colors }: ImageConfirmStyle) => StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: 20
+        padding: 20,
+        justifyContent: "space-between"
     },
     title: {
-        flex: 1,
         textAlign: "center",
         marginBottom: 10,
         fontSize: 20
     },
     image: {
         resizeMode: "contain",
-        maxHeight: 250
+        width: "100%",
+        flex: 1,
+        backgroundColor: "red",
+        borderRadius: 16
     },
     options: {
         flexDirection: "row",

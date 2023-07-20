@@ -2,6 +2,7 @@ import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 import { router } from "./routes";
@@ -10,11 +11,13 @@ import { AppError } from "./errors/AppError";
 import log from "./utils/log";
 
 const app = express();
-// express.static("/public")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(express.static("public"));
+
+// Serve static files from the "public/uploads" folder
+app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
+
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -23,13 +26,13 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof AppError) {
         return res.status(err.status).json({
             status: "error",
-            code: err.code
+            code: err.code,
         });
     }
 
     return res.status(500).json({
         status: "error",
-        code: `internal_server_error`
+        code: `internal_server_error`,
     });
 });
 

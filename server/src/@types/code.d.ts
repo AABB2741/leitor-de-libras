@@ -3,6 +3,7 @@ type Code =
     "network_err" |                  // Erro de conexão - cliente ou servidor
     "empty_fields" |                 // Um ou mais campos estão vazios
     "invalid_fields" |               // Um ou mais campos possuem valores inválidos
+    "invalid_media" |                // Mídia inválida
     "invalid_credentials" |          // Credenciais erradas - senha, email ou outros
     "invalid_email" |                // Endereço de e-mail inválido (geralmente quando falta um @)
     "email_already_in_use" |         // Endereço já está em uso

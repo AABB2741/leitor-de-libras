@@ -66,9 +66,9 @@ export default function Dashboard({ navigation }: DashboardProps) {
             <NetworkState />
             <WhatToDo />
             <Tips navigation={navigation} />
-            <TouchableOpacity style={{ paddingHorizontal: 20, paddingVertical: 5 }} onPress={ping}>
+            {/* <TouchableOpacity style={{ paddingHorizontal: 20, paddingVertical: 5 }} onPress={ping}>
                 <Text style={{ color: "white" }}>Ping</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </ScrollView>
     );
 }

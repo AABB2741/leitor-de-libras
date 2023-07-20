@@ -10,6 +10,7 @@ import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
     async handle(req: RequestBody<UserLoginData>, res: Response) {
+        console.log("Tentando fazer login")
         const email = req.body?.email?.trim();
         const password = req.body?.password?.trim();
 

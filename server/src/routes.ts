@@ -1,6 +1,11 @@
 import { Router } from "express";
+import multer from "multer";
+import { v4 as UUID } from "uuid"
+import { AppError } from "./errors/AppError";
+import { extname, resolve } from "node:path"
 
 // Importar controllers aqui
+
 import { PingController } from "./controllers/server/ping/PingController";
 
 import { GetAvatarsController } from "./controllers/data/getAvatars/GetAvatarsController";
@@ -19,6 +24,29 @@ import { GetTranslationsController } from "./controllers/data/getTranslations/Ge
 
 import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
 import { UploadTranslationController } from "./controllers/upload/uploadTranslation/UploadTranslationController";
+
+const imageStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/")
+    },
+    filename: (req, file, cb) => {
+        const fileId = UUID();
+        const extension = extname(file.originalname)
+        const filename = fileId.concat(extension)
+        cb(null, filename)
+    },
+})
+const uploadImage = multer({
+    limits: {
+        fileSize: 10_485_760 // 10mb
+    },
+    fileFilter: (req, file, callback) => {
+        const mimetypeRegex = /^(image)\/[a-zA-Z]+/
+        const isValidFileFormat = mimetypeRegex.test(file.mimetype)
+        callback(null, isValidFileFormat)
+    },
+    storage: imageStorage
+});
 
 const router = Router();
 
@@ -57,7 +85,7 @@ router.put("/user/setPassword", setPasswordController.handle);
 
 router.get("/user/getTranslations", getTranslationsController.handle);
 
-router.post("/upload/image", uploadImageController.handle);
+router.post("/upload/image", uploadImage.single("file"), uploadImageController.handle);
 router.post("/upload/translation", uploadTranslationController.handle);
 
 export { router };

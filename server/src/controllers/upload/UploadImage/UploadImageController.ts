@@ -1,40 +1,27 @@
 import { Response } from "express";
 import { RequestBody } from "../../../utils/RequestBody";
-import path from "path";
+import { resolve } from "node:path"
 
-import multer from "multer";
 import { AppError } from "../../../errors/AppError";
-const parser = multer({
-    storage: multer.diskStorage({
-        destination: "public/uploads",
-        filename: function (req, file, cb) {
-            const extension = path.extname(file.originalname);
-            const newFilename = file.fieldname + "-" + Date.now() + extension;
-            cb(null, newFilename);
-        },
-    }),
-}).single("image");
+import multer from "multer";
+import { z } from "zod";
+import jwt from "jsonwebtoken"
 
+import { prisma } from "../../../prisma/client";
+
+const secret = process.env.JWT_SECRET as string
 
 export class UploadImageController {
-    async handle(req: RequestBody<{}>, res: Response) {
-        console.log("Requisição de upload de imagem");
+    async handle(req: RequestBody<{ file: any }>, res: Response) {
 
-        parser(req, res, (err) => {
-            console.log(err);
-            if (err || !req.file) {
-                throw new AppError("internal_server_error", 500);
-            }
+        if (!req.file)
+            throw new AppError("invalid_media")
 
-            const image = {
-                id: req.file.filename,
-                url: `/uploads/${req.file.filename}`,
-            };
+        const fullUrl = req.protocol.concat("://").concat(req.hostname)
+        const fileUrl = new URL(`/uploads/${req.file.filename}`, fullUrl).toString()
 
-            console.log("Retornando imagem: " + JSON.stringify(image));
-            res.status(200).json({
-                url: image.url,
-            });
-        });
+        res.json({
+            url: fileUrl
+        })
     }
 }
