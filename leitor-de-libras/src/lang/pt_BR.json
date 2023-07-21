@@ -297,7 +297,13 @@
 			"desc": "Comece a traduzir pressionando \"%s\" para criar ou importar gravações.",
 			"send_option": "Enviar vídeo",
 			"create_option": "Criar vídeo"
-		}
+		},
+        "loading_files_error": {
+            "title": "Vish! Ocorreu um erro ao carregar suas traduções.",
+            "text": "Certifique-se de que você está conectado(a) à internet.",
+            "try_again": "Tentar novamente",
+            "use_offline": "Usar offline"
+        }
 	},
 	"watch": {
 		"options": {
@@ -335,6 +341,11 @@
         "mode": {
             "photo": "Foto",
             "video": "Vídeo"
+        },
+        "media_sent": {
+            "title": "Está tudo certo!",
+            "text": "Seu arquivo já foi enviado e está sendo traduzido!",
+            "back": "Voltar"
         }
 	},
 	"conversations": {

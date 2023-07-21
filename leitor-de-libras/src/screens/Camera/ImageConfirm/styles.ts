@@ -34,5 +34,11 @@ export default ({ colors }: ImageConfirmStyle) => StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 40
+    },
+    sentIcon: {
+        alignItems: "center"
+    },
+    text: {
+        textAlign: "center"
     }
 });

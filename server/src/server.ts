@@ -39,3 +39,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.listen(8000, () => {
     console.log("Servidor rodando na porta 8000");
 });
+
+app.get("/", (req, res) => {
+    res.json({
+        message: "Olá, munde!"
+    })
+})

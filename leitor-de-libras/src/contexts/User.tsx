@@ -90,6 +90,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
 		try {
 			log("Tentando fazer login...");
+
 			const { data } = await api.post<UserProps & { token: string }>(
 				"/user/login",
 				{

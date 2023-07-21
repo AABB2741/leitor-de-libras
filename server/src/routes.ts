@@ -83,7 +83,7 @@ router.delete("/user/deleteRecoveryCode/:email", deleteRecoveryCodeController.ha
 router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 router.put("/user/setPassword", setPasswordController.handle);
 
-router.get("/user/getTranslations", getTranslationsController.handle);
+router.get("/translations", getTranslationsController.handle);
 
 router.post("/upload/image", uploadImage.single("file"), uploadImageController.handle);
 router.post("/upload/translation", uploadTranslationController.handle);

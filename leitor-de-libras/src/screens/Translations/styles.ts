@@ -17,6 +17,11 @@ export default ({ colors }: TranslationsStyle) => StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
+    error: {
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20
+    },
     selected: {
         backgroundColor: colors.header,
         paddingHorizontal: 20,
