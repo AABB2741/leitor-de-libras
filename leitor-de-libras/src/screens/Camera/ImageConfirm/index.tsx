@@ -47,6 +47,9 @@ export function ImageConfirm({
 	const [confirmed, setConfirmed] = useState(false);
 	const [uploaded, setUploaded] = useState(false);
 
+	const [id, setId] = useState<null | string>(null);
+	console.log(`ID setado: ${id}`);
+
 	async function upload() {
 		// Salva o arquivo na nuvem
 		setLoading(true);
@@ -62,7 +65,7 @@ export function ImageConfirm({
 					type: "image/jpeg",
 					uri: pictureSource.uri,
 				} as any);
-				const uploadResponse = await api.post(
+				const uploadResponse = await api.post<FileProps>(
 					"/upload/image",
 					imageData,
 					{
@@ -75,7 +78,16 @@ export function ImageConfirm({
 				);
 
 				if (uploadResponse.status === 201) {
-					setUploaded(true);
+					console.log(`Atualizando id: ${id}`);
+					Storage.updateItem("translations", (f) => f.id === id, {
+						...uploadResponse.data,
+						uploaded: true,
+					});
+
+					setLoading(false);
+					setConfirmed(false);
+					setPictureSource(null);
+					setId(null);
 				}
 			} catch (err) {
 				setLoading(false);
@@ -93,6 +105,7 @@ export function ImageConfirm({
 
 		dayjs.locale(lang.locale === "pt" ? pt : en);
 		const id = uuid();
+		console.log(`ID criado: ${id}`);
 		const title = dayjs(new Date())
 			.format(lang.camera.date_format)
 			.concat(` - ${id}`);
@@ -113,26 +126,27 @@ export function ImageConfirm({
 			imageName: title,
 		};
 
-		await Storage.pushItem("translations", file);
+		console.log(await Storage.pushItem("translations", file, true));
 
+		setId(id);
 		setLoading(false);
+		setConfirmed(true);
 	}
 
 	function cancel() {
 		setLoading(false);
 		setPictureSource(null);
 		setConfirmed(false);
-		setUploaded(false);
+		setId(null);
 	}
 
 	function back() {
 		setLoading(false);
-		setUploaded(false);
 		setPictureSource(null);
 		setConfirmed(false);
 	}
 
-	if (confirmed && !uploaded) {
+	if (confirmed) {
 		return (
 			<View style={styles.container}>
 				<View style={styles.upload}>
@@ -145,10 +159,10 @@ export function ImageConfirm({
 						</Font>
 					</View>
 					<View>
-						<Button highlight onPress={upload}>
+						<Button highlight onPress={upload} loading={loading}>
 							{lang.camera.media_sent.upload}
 						</Button>
-						<Button onPress={back}>
+						<Button onPress={back} disabled={loading}>
 							{lang.camera.media_sent.cancel}
 						</Button>
 					</View>

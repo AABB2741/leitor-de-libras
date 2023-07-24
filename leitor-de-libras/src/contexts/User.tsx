@@ -111,7 +111,6 @@ export default function UserProvider({ children }: UserProviderProps) {
 			if (!data?.token) return "data_retrieve_error";
 
 			// TODO: Remover uso do storage para guardar token
-			await Storage.setItem("#session_token", data.token);
 			await SecureStore.setItemAsync("token", data.token);
 
 			log(`Conectado. Token de acesso: ${data.token}`, {
@@ -137,7 +136,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 			color: "fgGray",
 			tab: true,
 		});
-		await Storage.deleteItem("#session_token");
+
 		await SecureStore.deleteItemAsync("token");
 
 		try {

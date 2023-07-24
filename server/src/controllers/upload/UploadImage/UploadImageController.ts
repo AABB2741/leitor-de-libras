@@ -47,6 +47,6 @@ export class UploadImageController {
             }
         });
 
-        res.status(201).send();
+        res.status(201).send(response);
     }
 }

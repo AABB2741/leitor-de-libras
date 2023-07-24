@@ -11,7 +11,6 @@ import { FileProps } from "../screens/Translations/File";
 
 type Saves = {
     "user": UserProps,
-    "#session_token": string;
     "@settings": SettingsProps;
     "@introduction": {
         "skip_login": boolean;
@@ -69,15 +68,18 @@ export async function deleteItem<T extends keyof Saves>(key: T, tab?: boolean): 
     return data;
 }
 
-export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[] ? Saves[T][number] : never>(key: T, value: U): Promise<U & { id: string }> {
+export async function pushItem<T extends keyof Saves, U = Saves[T] extends any[] ? Saves[T][number] : never>(key: T, value: U, noId?: boolean): Promise<U | (U & { id: string })> {
     dbLog(`Inserindo dados em "${key}"`);
     const data = await getItem(key, true) ?? [] as unknown[T];
     if (!Array.isArray(data))
         throw new TypeError(`Tentando inserir um elemento em uma base de dados que não é um array (${key}).`);
 
-    const item = {
-        ...value,
-        id: uuid4()
+    let item = { ...value };
+    if (!noId) {
+        item = {
+            ...value,
+            id: uuid4()
+        }
     }
 
     data.push(item);
@@ -137,4 +139,4 @@ export async function removeItem<T extends keyof Saves, U extends Saves[T] exten
     return exclude;
 }
 
-export const clear = () => AsyncStorage.default.multiRemove(["@settings", "@introduction", "@talk:conversations", "@talk:messages"]);
+export const clear = () => AsyncStorage.default.multiRemove(["@settings", "@introduction", "@talk:conversations", "@talk:messages", "user", "translations"]);
