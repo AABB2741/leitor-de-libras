@@ -31,7 +31,9 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { useUser } from "../../contexts/user";
 import { api } from "../../lib/api";
+
 import * as SecureStore from "expo-secure-store";
+import * as Storage from "../../services/Storage";
 
 import Order from "../../@types/Order";
 import Option, { OptionProps as OptionProps } from "./Option";
@@ -96,6 +98,17 @@ export default function Translations({ navigation }: Props) {
 		setFiles(null);
 		setError(null);
 
+		// Pegando arquivos locais...
+		const localFiles = ((await Storage.getItem("translations")) ?? []).sort(
+			(a, b) =>
+				new Date(a.createdAt).getTime() >
+				new Date(b.createdAt).getTime()
+					? -1
+					: 1
+		); // ...e ordenando pela data (depois aplicar com o filtro)
+
+		// Pegando arquivos da nuvem
+
 		const token = await SecureStore.getItemAsync("token");
 
 		if (!token) {
@@ -105,13 +118,19 @@ export default function Translations({ navigation }: Props) {
 		}
 
 		try {
-			const request = await api.get("/translations", {
+			const request = await api.get<FileProps[]>("/translations", {
 				headers: {
 					Authorization: token,
 				},
+				timeout: 15000,
 			});
 
-			console.log(request);
+			// TODO: ordenar seguindo o filtro do usuário
+			const files = localFiles.concat(
+				request.data.map((d) => ({ ...d, uploaded: true })) ?? [] // adicionando "uploaded: true" para todos os arquivos da internet
+			);
+
+			setFiles(files);
 		} catch (e) {
 			setError("unknown_err");
 			setFiles([]);
@@ -298,7 +317,12 @@ export default function Translations({ navigation }: Props) {
 							key={index}
 						/>
 					)}
-					refreshControl={<RefreshControl refreshing={refreshing} />}
+					refreshControl={
+						<RefreshControl
+							refreshing={refreshing}
+							onRefresh={loadFiles}
+						/>
+					}
 					ListEmptyComponent={
 						search && files.length > 0 ? (
 							<Empty

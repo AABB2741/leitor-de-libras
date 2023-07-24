@@ -36,7 +36,7 @@ export class CreateUserController {
         const token = jwt.sign(
             { id: user?.id },
             SECRET,
-            { expiresIn: 60 * 60 } // 1 hora
+            { expiresIn: 60 * 60 * 24 * 30 } // 1 mês
         );
 
         // Retorna as informações de avatar, nome e email do usuário para o frontend

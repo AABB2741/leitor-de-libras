@@ -21,6 +21,7 @@ import { CheckRecoveryCodeController } from "./controllers/users/checkRecoveryCo
 import { SetPasswordController } from "./controllers/users/setPassword/SetPasswordController";
 
 import { GetTranslationsController } from "./controllers/data/getTranslations/GetTranslationsController";
+import { WatchTranslationController } from "./controllers/data/watchTranslation/WatchTranslationController";
 
 import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
 import { UploadTranslationController } from "./controllers/upload/uploadTranslation/UploadTranslationController";
@@ -65,6 +66,7 @@ const checkRecoveryCodeController = new CheckRecoveryCodeController();
 const setPasswordController = new SetPasswordController();
 
 const getTranslationsController = new GetTranslationsController();
+const watchTranslationController = new WatchTranslationController();
 
 const uploadImageController = new UploadImageController();
 const uploadTranslationController = new UploadTranslationController();
@@ -84,6 +86,7 @@ router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 router.put("/user/setPassword", setPasswordController.handle);
 
 router.get("/translations", getTranslationsController.handle);
+router.get("/watch", watchTranslationController.handle);
 
 router.post("/upload/image", uploadImage.single("file"), uploadImageController.handle);
 router.post("/upload/translation", uploadTranslationController.handle);

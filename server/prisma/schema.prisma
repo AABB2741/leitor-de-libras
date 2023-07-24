@@ -58,16 +58,16 @@ model Tip {
 }
 
 model Translation {
-    id         String   @id @default(uuid())
-    author     User     @relation(fields: [authorId], references: [id])
-    authorId   String
-    title      String
-    archived   Boolean  @default(false)
-    favorited  Boolean  @default(false)
-    password   String?
-    deleted    Boolean  @default(false)
-    image_name String
-    created_at DateTime @default(now())
+    id        String   @id @default(uuid())
+    author    User     @relation(fields: [authorId], references: [id])
+    authorId  String
+    title     String
+    archived  Boolean  @default(false)
+    favorited Boolean  @default(false)
+    password  String?
+    deleted   Boolean  @default(false)
+    imageName String
+    createdAt DateTime @default(now())
 
     @@map("translations")
 }

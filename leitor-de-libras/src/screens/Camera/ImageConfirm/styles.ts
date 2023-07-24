@@ -18,6 +18,11 @@ export default ({ colors }: ImageConfirmStyle) => StyleSheet.create({
         padding: 20,
         justifyContent: "space-between"
     },
+    upload: {
+        flex: 1,
+        justifyContent: "center",
+        padding: 20
+    },
     title: {
         textAlign: "center",
         marginBottom: 10,
@@ -27,18 +32,21 @@ export default ({ colors }: ImageConfirmStyle) => StyleSheet.create({
         resizeMode: "contain",
         width: "100%",
         flex: 1,
-        backgroundColor: "red",
         borderRadius: 16
     },
     options: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 40
+        justifyContent: "space-between"
     },
     sentIcon: {
         alignItems: "center"
     },
     text: {
         textAlign: "center"
+    },
+    error: {
+        color: colors.critic,
+        textAlign: "center",
+        marginTop: 10
     }
 });

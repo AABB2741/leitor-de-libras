@@ -68,6 +68,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 				email: data?.email,
 				about_me: data?.about_me,
 			});
+			await SecureStore.setItemAsync("token", data.token);
 
 			setUser(u);
 

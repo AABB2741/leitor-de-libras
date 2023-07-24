@@ -1,7 +1,14 @@
 import { Image, ScrollView, View } from "react-native";
 import { CameraCapturedPicture } from "expo-camera";
 import { extname, resolve } from "node:path";
+import { v4 as uuid } from "uuid";
+import dayjs from "dayjs";
+import pt from "dayjs/locale/pt-br";
+import en from "dayjs/locale/en";
+
 import * as SecureStore from "expo-secure-store";
+import * as FileSystem from "expo-file-system";
+import * as Storage from "../../../services/Storage";
 
 import Button from "../../../components/Button";
 import { useLang } from "../../../contexts/lang";
@@ -15,6 +22,8 @@ import axios from "axios";
 import log from "../../../utils/log";
 import { api } from "../../../lib/api";
 import { CheckCircle } from "phosphor-react-native";
+import { FileProps } from "../../Translations/File";
+import { useUser } from "../../../contexts/user";
 
 interface ImageConfirmProps {
 	pictureSource: CameraCapturedPicture;
@@ -31,33 +40,80 @@ export function ImageConfirm({
 	const colors = useColors();
 	const styles = createStyles({ colors });
 
+	const { user } = useUser();
+
+	const [error, setError] = useState<null | ResponseCode>(null);
 	const [loading, setLoading] = useState(false);
-	const [sent, setSent] = useState(false);
+	const [confirmed, setConfirmed] = useState(false);
+	const [uploaded, setUploaded] = useState(false);
 
 	async function upload() {
+		// Salva o arquivo na nuvem
 		setLoading(true);
+		setError(null);
 
 		const token = await SecureStore.getItemAsync("token");
-		console.log(`Token: ${token}`);
 
 		if (token) {
-			const imageData = new FormData();
-			imageData.append("file", {
-				name: `image.jpg`,
-				type: "image/jpeg",
-				uri: pictureSource.uri,
-			} as any);
-			const uploadResponse = await api.post("/upload/image", imageData, {
-				headers: {
-					Authorization: token,
-					"Content-Type": "multipart/form-data",
-				},
-			});
+			try {
+				const imageData = new FormData();
+				imageData.append("file", {
+					name: `image.jpg`,
+					type: "image/jpeg",
+					uri: pictureSource.uri,
+				} as any);
+				const uploadResponse = await api.post(
+					"/upload/image",
+					imageData,
+					{
+						headers: {
+							Authorization: token,
+							"Content-Type": "multipart/form-data",
+						},
+						timeout: 15000,
+					}
+				);
 
-			if (uploadResponse.status === 201) {
-				setSent(true);
+				if (uploadResponse.status === 201) {
+					setUploaded(true);
+				}
+			} catch (err) {
+				setLoading(false);
+				setError("unknown_err");
+				log("Erro ao enviar imagem: " + err, { color: "fgRed" });
 			}
 		}
+
+		setLoading(false);
+	}
+
+	async function save() {
+		// Salva o arquivo localmente
+		setLoading(true);
+
+		dayjs.locale(lang.locale === "pt" ? pt : en);
+		const id = uuid();
+		const title = dayjs(new Date())
+			.format(lang.camera.date_format)
+			.concat(` - ${id}`);
+		const location = `${FileSystem.documentDirectory}${title}.jpg`;
+
+		await FileSystem.copyAsync({
+			from: pictureSource.uri,
+			to: location,
+		});
+
+		const file: Partial<FileProps> = {
+			authorId: user.id,
+			createdAt: new Date(),
+			id,
+			title,
+			uploaded: false,
+			location,
+			imageName: title,
+		};
+
+		await Storage.pushItem("translations", file);
 
 		setLoading(false);
 	}
@@ -65,35 +121,36 @@ export function ImageConfirm({
 	function cancel() {
 		setLoading(false);
 		setPictureSource(null);
+		setConfirmed(false);
+		setUploaded(false);
 	}
 
 	function back() {
 		setLoading(false);
-		setSent(false);
+		setUploaded(false);
 		setPictureSource(null);
+		setConfirmed(false);
 	}
 
-	if (sent) {
+	if (confirmed && !uploaded) {
 		return (
 			<View style={styles.container}>
-				<View style={styles.content}>
+				<View style={styles.upload}>
 					<View>
 						<Font family="black" style={styles.title}>
 							{lang.camera.media_sent.title}
 						</Font>
-						<Font family="regular" style={styles.text}>
+						<Font style={styles.text}>
 							{lang.camera.media_sent.text}
 						</Font>
 					</View>
-					<View style={styles.sentIcon}>
-						<CheckCircle color={colors.check} size={128} />
-					</View>
 					<View>
-						<Button
-							onPress={back}
-							label={lang.camera.media_sent.back}
-							highlight
-						/>
+						<Button highlight onPress={upload}>
+							{lang.camera.media_sent.upload}
+						</Button>
+						<Button onPress={back}>
+							{lang.camera.media_sent.cancel}
+						</Button>
 					</View>
 				</View>
 			</View>
@@ -107,16 +164,22 @@ export function ImageConfirm({
 					{lang.camera.picture_finished.title}
 				</Font>
 				<Image source={pictureSource} style={styles.image} />
+				{error && (
+					<Font style={styles.error}>
+						{lang.general.err_codes[error]}
+					</Font>
+				)}
 				<View style={styles.options}>
 					<Button
 						label={lang.general.modal.cancel}
 						onPress={cancel}
+						disabled={loading}
 					/>
 					<Button
 						label={lang.general.modal.confirm}
 						highlight
 						loading={loading}
-						onPress={upload}
+						onPress={save}
 					/>
 				</View>
 			</View>

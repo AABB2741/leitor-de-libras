@@ -40,7 +40,9 @@ type DashboardParamList = {
 
 type TranslationsParamList = {
     Translations: undefined;
-    Watch: undefined;
+    Watch: {
+        id: string
+    };
 }
 
 type TalkParamList = {

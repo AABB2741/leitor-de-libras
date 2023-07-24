@@ -6,6 +6,9 @@ import merge from "ts-deepmerge";
 import { SettingsProps } from "../constants/settings";
 import { DeepPartial } from "../utils/DeepPartial";
 
+import log, { LogConfigs } from "../utils/log";
+import { FileProps } from "../screens/Translations/File";
+
 type Saves = {
     "user": UserProps,
     "#session_token": string;
@@ -19,9 +22,9 @@ type Saves = {
         conversationId: string;
         messages: Msg[];
     }[];
+    "translations": FileProps[]
 };
 
-import log, { LogConfigs } from "../utils/log";
 
 function dbLog(msg: string, options?: LogConfigs) {
     log(msg, { from: "DB", ...options });

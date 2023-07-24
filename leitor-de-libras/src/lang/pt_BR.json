@@ -343,10 +343,12 @@
             "video": "Vídeo"
         },
         "media_sent": {
-            "title": "Está tudo certo!",
-            "text": "Seu arquivo já foi enviado e está sendo traduzido!",
-            "back": "Voltar"
-        }
+            "title": "Salvar na nuvem?",
+            "text": "A mídia capturada está salva no seu dispositivo, mas não na nuvem. Para acessar este arquivo em outros dispositivos, você precisa enviá-lo.",
+            "upload": "Enviar",
+            "cancel": "Cancelar"
+        },
+        "date_format": "[Captura de ]D[ de ]MMMM[, ]YYYY[ - ]hh[:]mm"
 	},
 	"conversations": {
 		"title": "Li Talks",

@@ -10,6 +10,22 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
+    fullScreen: {
+        flex: 1,
+        height: "100%",
+        width: "100%",
+        resizeMode: "contain",
+        backgroundColor: colors.background
+    },
+    loading: {
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    image: {
+        width: "100%",
+        height: "100%",
+        resizeMode: "contain"
+    },
     video: {
         backgroundColor: colors.background2,
         flex: 1,
@@ -43,5 +59,18 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         padding: 20,
         fontSize: 14,
         lineHeight: 20
+    },
+    wordContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 20
+    },
+    word: {
+        fontSize: 28,
+        padding: 20,
+        backgroundColor: colors.background2,
+        borderBottomWidth: 5,
+        borderBottomColor: colors.accent,
+        borderRadius: 12
     }
 });
