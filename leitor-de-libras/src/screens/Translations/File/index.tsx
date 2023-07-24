@@ -10,6 +10,7 @@ import {
 	CheckCircle,
 	Cloud,
 	DeviceMobileCamera,
+	Disc,
 	DownloadSimple,
 	Keyhole,
 	Star,
@@ -107,6 +108,19 @@ export default function File({
 				>
 					{/* {getStateIcon({ state, colors, lang })} */}
 					<View style={styles.props}>
+						{uploaded ? (
+							<Cloud
+								color={colors.desc}
+								size={14}
+								style={{ marginLeft: 5 }}
+							/>
+						) : (
+							<Disc
+								color={colors.desc}
+								size={14}
+								style={{ marginLeft: 5 }}
+							/>
+						)}
 						{/* {locked && !disabled && (
 							<Keyhole
 								color={colors.desc}

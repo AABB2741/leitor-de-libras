@@ -33,6 +33,21 @@ export default ({ colors, guest, mode }: FrameStyle) => StyleSheet.create({
         height: 36,
         borderRadius: 18
     },
+    showAboutMe: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10
+    },
+    showAboutMeLabel: {
+        color: colors.accent,
+        marginRight: 10
+    },
+    aboutMe: {
+        paddingHorizontal: 20,
+        marginTop: 10,
+        textAlign: "center"
+    },
     controls: {
         paddingHorizontal: 20,
         paddingBottom: 20,

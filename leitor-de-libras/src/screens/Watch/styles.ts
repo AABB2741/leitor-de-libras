@@ -63,7 +63,7 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
     wordContainer: {
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 20
+        padding: 20
     },
     word: {
         fontSize: 28,
@@ -71,6 +71,8 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         backgroundColor: colors.background2,
         borderBottomWidth: 5,
         borderBottomColor: colors.accent,
-        borderRadius: 12
+        borderRadius: 12,
+        width: "100%",
+        textAlign: "center"
     }
 });

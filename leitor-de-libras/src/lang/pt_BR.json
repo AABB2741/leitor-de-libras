@@ -355,6 +355,7 @@
 		"meet_label": "Mensagens com %s",
 		"untitled": "Conversa com %s",
 		"whos_talking": "Você está conversando com %s",
+        "meet_user": "Conheça %s",
 		"presentation": {
 			"intro": "Apresentando o %s",
 			"text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
@@ -541,6 +542,7 @@
 			"avatar": "Foto de perfil",
 			"username": "Nome de usuário",
 			"about_me": "Sobre mim",
+            "about_me_placeholder": "Isso será exibido para convidados no LiTalks",
 			"email": "E-mail",
 			"email_placeholder": "Insira seu e-mail",
 			"password": "Senha",

@@ -98,6 +98,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 	if (fullScreen) {
 		return (
 			<TouchableOpacity
+				activeOpacity={0.9}
 				style={styles.fullScreen}
 				onPress={() => setFullScreen(false)}
 			>
@@ -164,7 +165,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 				<View>
 					<View style={styles.wordContainer}>
 						<Font family="black" style={styles.word}>
-							Olá
+							Lorem ipsum dolor sit amet.
 						</Font>
 					</View>
 					{/* <Font style={styles.text}>Jair Messias Bolsonaro</Font> */}
