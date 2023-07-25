@@ -310,7 +310,8 @@
 			"share": "Compartilhar",
 			"copy": "Copiar texto",
 			"edit": "Editar",
-			"details": "Detalhes"
+			"details": "Detalhes",
+            "download": "Baixar"
 		},
         "empty": {
             "text": "O arquivo ainda não foi traduzido",

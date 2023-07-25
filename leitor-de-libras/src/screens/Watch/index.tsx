@@ -8,6 +8,7 @@ import {
 import {
 	ClipboardText,
 	CloudSlash,
+	DownloadSimple,
 	IconProps,
 	Info,
 	PencilSimple,
@@ -133,8 +134,12 @@ export default function Watch({ navigation, route }: WatchProps) {
 			label: lang.watch.options.details,
 			icon: (props) => <Info {...props} />,
 		},
+		{
+			label: lang.watch.options.download,
+			icon: (props) => <DownloadSimple {...props} />,
+		},
 	];
-
+	console.log(data);
 	return (
 		<View style={styles.container}>
 			<Popup visible={outOfSync} type="message">
