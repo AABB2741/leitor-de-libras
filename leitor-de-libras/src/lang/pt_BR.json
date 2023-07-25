@@ -311,7 +311,18 @@
 			"copy": "Copiar texto",
 			"edit": "Editar",
 			"details": "Detalhes"
-		}
+		},
+        "empty": {
+            "text": "O arquivo ainda não foi traduzido",
+            "translate": "Traduzir"
+        },
+        "out_of_sync": {
+            "title": "Conflito de arquivos detectado.",
+            "text": "Encontramos versões diferentes do mesmo arquivo na nuvem e no seu dispositivo. Selecione qual versão você quer manter.",
+            "device": "Dispositivo",
+            "cloud": "Nuvem",
+            "none": "Continuar sem sincronizar"
+        }
 	},
 	"camera": {
 		"presentation": {

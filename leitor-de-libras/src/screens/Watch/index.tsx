@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import {
 	ClipboardText,
+	CloudSlash,
 	IconProps,
 	Info,
 	PencilSimple,
@@ -28,6 +29,8 @@ import { FileProps } from "../Translations/File";
 import { RouteProp } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
+import Popup from "../../components/Popup";
+import Button from "../../components/Button";
 
 type Option = {
 	icon: (props: IconProps) => JSX.Element;
@@ -45,6 +48,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 	const colors = useColors();
 	const styles = createStyles({ colors });
 
+	const [outOfSync, setOutOfSync] = useState(true); // false
 	const [error, setError] = useState<null | ResponseCode>(null);
 	const [data, setData] = useState<null | FileProps>(null);
 	const [fullScreen, setFullScreen] = useState<boolean>(false);
@@ -133,6 +137,53 @@ export default function Watch({ navigation, route }: WatchProps) {
 
 	return (
 		<View style={styles.container}>
+			<Popup visible={outOfSync} type="message">
+				<CloudSlash
+					color={colors.desc}
+					size={24}
+					style={styles.outOfSyncIcon}
+				/>
+				<Font family="ubuntu" style={styles.outOfSyncText}>
+					{lang.watch.out_of_sync.title}
+				</Font>
+				<Font family="regular" style={styles.outOfSyncText}>
+					{lang.watch.out_of_sync.text}
+				</Font>
+				<View style={styles.outOfSyncOptions}>
+					<TouchableOpacity style={styles.outOfSyncOption}>
+						<Image
+							source={require("../../../assets/icons/cloud_sync.png")}
+							style={styles.outOfSyncOptionIcon}
+						/>
+						<Font
+							family="ubuntu"
+							style={styles.outOfSyncOptionText}
+						>
+							{lang.watch.out_of_sync.cloud}
+						</Font>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={[
+							styles.outOfSyncOption,
+							styles.outOfSyncOptionBorder,
+						]}
+					>
+						<Image
+							source={require("../../../assets/icons/mobile.png")}
+							style={styles.outOfSyncOptionIcon}
+						/>
+						<Font
+							family="ubuntu"
+							style={styles.outOfSyncOptionText}
+						>
+							{lang.watch.out_of_sync.device}
+						</Font>
+					</TouchableOpacity>
+				</View>
+				<Button onPress={() => setOutOfSync(false)}>
+					{lang.watch.out_of_sync.none}
+				</Button>
+			</Popup>
 			<Header title="Tradução" />
 			<View style={styles.video}>
 				<TouchableOpacity onPress={() => setFullScreen(true)}>
@@ -164,11 +215,15 @@ export default function Watch({ navigation, route }: WatchProps) {
 				/>
 				<View>
 					<View style={styles.wordContainer}>
-						<Font family="black" style={styles.word}>
-							Lorem ipsum dolor sit amet.
-						</Font>
+						{data.type === "i" && data.content && (
+							<Font family="black" style={styles.word}>
+								{data.content}
+							</Font>
+						)}
+						{data.type === "v" && data.content && (
+							<Font style={styles.text}>{data.content}</Font>
+						)}
 					</View>
-					{/* <Font style={styles.text}>Jair Messias Bolsonaro</Font> */}
 				</View>
 			</ScrollView>
 		</View>

@@ -60,6 +60,7 @@ export default function Translations({ navigation }: Props) {
 	const colors = useColors();
 	const styles = createStyles({ colors });
 
+	const [offline, setOffline] = useState(false);
 	const [error, setError] = useState<ResponseCode | null>(null);
 	const [files, setFiles] = useState<FileProps[] | null>(null);
 	const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
@@ -106,6 +107,11 @@ export default function Translations({ navigation }: Props) {
 					? -1
 					: 1
 		); // ...e ordenando pela data (depois aplicar com o filtro)
+
+		if (offline) {
+			setFiles(localFiles);
+			return;
+		}
 
 		// Pegando arquivos da nuvem
 
@@ -215,6 +221,10 @@ export default function Translations({ navigation }: Props) {
 						{
 							label: lang.translations.loading_files_error
 								.use_offline,
+							onPress: () => {
+								setOffline(true);
+								loadFiles();
+							},
 						},
 					]}
 				/>

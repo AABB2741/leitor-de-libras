@@ -10,6 +10,37 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
+    outOfSyncIcon: {
+        alignSelf: "center",
+        marginBottom: 5
+    },
+    outOfSyncText: {
+        textAlign: "center",
+        marginVertical: 5
+    },
+    outOfSyncOptions: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginVertical: 10
+    },
+    outOfSyncOptionIcon: {
+        width: 54,
+        height: 54
+    },
+    outOfSyncOptionText: {
+        textAlign: "center",
+        marginTop: 5
+    },
+    outOfSyncOption: {
+        alignItems: "center",
+        paddingHorizontal: 20,
+        marginHorizontal: 5
+    },
+    outOfSyncOptionBorder: {
+        borderLeftWidth: 1,
+        borderLeftColor: colors.border
+    },
     fullScreen: {
         flex: 1,
         height: "100%",

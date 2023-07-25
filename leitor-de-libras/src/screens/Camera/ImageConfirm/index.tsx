@@ -59,6 +59,7 @@ export function ImageConfirm({
 
 		if (token) {
 			try {
+				// Upload da imagem
 				const imageData = new FormData();
 				imageData.append("file", {
 					name: `image.jpg`,
@@ -78,7 +79,6 @@ export function ImageConfirm({
 				);
 
 				if (uploadResponse.status === 201) {
-					console.log(`Atualizando id: ${id}`);
 					Storage.updateItem("translations", (f) => f.id === id, {
 						...uploadResponse.data,
 						uploaded: true,
@@ -124,6 +124,7 @@ export function ImageConfirm({
 			uploaded: false,
 			location,
 			imageName: title,
+			type: "i",
 		};
 
 		console.log(await Storage.pushItem("translations", file, true));

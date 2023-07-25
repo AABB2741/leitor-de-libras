@@ -57,17 +57,25 @@ model Tip {
     @@map("tips")
 }
 
+enum MediaType {
+    v
+    i
+}
+
 model Translation {
-    id        String   @id @default(uuid())
-    author    User     @relation(fields: [authorId], references: [id])
+    id        String    @id @default(uuid())
+    author    User      @relation(fields: [authorId], references: [id])
     authorId  String
     title     String
-    archived  Boolean  @default(false)
-    favorited Boolean  @default(false)
+    archived  Boolean   @default(false)
+    favorited Boolean   @default(false)
     password  String?
-    deleted   Boolean  @default(false)
+    deleted   Boolean   @default(false)
     imageName String
-    createdAt DateTime @default(now())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    type      MediaType
+    content   String?
 
     @@map("translations")
 }

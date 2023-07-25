@@ -40,6 +40,7 @@ export interface FileProps {
 	archived?: boolean;
 	authorId?: string;
 	createdAt: Date;
+	updatedAt: Date;
 	deleted?: boolean;
 	favorited?: boolean;
 	imageName: string;
@@ -47,6 +48,8 @@ export interface FileProps {
 	title: string;
 	uploaded: boolean;
 	location: string;
+	type: "i" | "v";
+	content?: string; // O texto traduzido
 }
 
 interface Props extends FileProps {

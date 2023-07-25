@@ -1,5 +1,6 @@
 import { Response } from "express";
 import { RequestBody } from "../../../utils/RequestBody";
+import z from "zod";
 
 import { AppError } from "../../../errors/AppError";
 
@@ -13,7 +14,6 @@ const secret = process.env.JWT_SECRET as string;
 
 export class UploadImageController {
     async handle(req: RequestBody<{ file: any }>, res: Response) {
-        console.log("Upload de imagem");
         const userToken = jwt.verify(req.headers.authorization ?? "", secret);
 
         if (!req.file || !userToken) throw new AppError("invalid_media", 400);
@@ -44,6 +44,7 @@ export class UploadImageController {
                 imageName: req.file.filename,
                 title: `Captura de ${date}`,
                 authorId: (userToken as JwtPayload).id,
+                type: "i"
             }
         });
 
