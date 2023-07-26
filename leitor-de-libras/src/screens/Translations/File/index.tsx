@@ -55,6 +55,7 @@ export interface FileProps {
 interface Props extends FileProps {
 	index: number;
 	selectedFiles: string[];
+	disabled: boolean;
 	handleSelectFile: (id: string) => void;
 }
 
@@ -68,6 +69,7 @@ export default function File({
 	handleSelectFile,
 	uploaded,
 	location,
+	disabled,
 }: Props) {
 	const { settings } = useSettings();
 	const lang = useLang();
@@ -89,13 +91,14 @@ export default function File({
 
 	return (
 		<TouchableOpacity
-			style={styles.container}
+			style={[styles.container, disabled && styles.disabled]}
 			onPress={
 				selectedFiles.length
 					? () => handleSelectFile(id)
 					: () => navigation.navigate("Watch", { id })
 			}
 			onLongPress={() => handleSelectFile(id)}
+			disabled={disabled}
 		>
 			<Animatable.View
 				style={{ flex: 1 }}

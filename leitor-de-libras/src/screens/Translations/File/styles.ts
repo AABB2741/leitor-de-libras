@@ -12,6 +12,9 @@ export default ({ colors }: FileStyle) => StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 20
     },
+    disabled: {
+        opacity: 0.7
+    },
     indicators: {
         marginBottom: 5,
         flexDirection: "row",

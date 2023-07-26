@@ -98,6 +98,7 @@ export default function Translations({ navigation }: Props) {
 	async function loadFiles() {
 		setFiles(null);
 		setError(null);
+		setRefreshing(true);
 
 		// Pegando arquivos locais...
 		const localFiles = ((await Storage.getItem("translations")) ?? []).sort(
@@ -141,6 +142,8 @@ export default function Translations({ navigation }: Props) {
 			setError("unknown_err");
 			setFiles([]);
 		}
+
+		setRefreshing(false);
 	}
 
 	function handleSelectFile(id: string) {
@@ -321,6 +324,7 @@ export default function Translations({ navigation }: Props) {
 					renderItem={({ item, index }) => (
 						<File
 							{...item}
+							disabled={refreshing}
 							selectedFiles={selectedFiles}
 							index={index}
 							handleSelectFile={handleSelectFile}
