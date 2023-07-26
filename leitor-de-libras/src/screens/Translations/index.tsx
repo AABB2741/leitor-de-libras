@@ -45,6 +45,7 @@ import File, { FileProps } from "./File";
 import Filter from "../../components/Filter";
 import Font from "../../components/Font";
 
+import { deduplicate } from "../../utils/deduplicate";
 import normalize from "../../utils/normalize";
 import createStyles from "./styles";
 
@@ -126,7 +127,7 @@ export default function Translations({ navigation }: Props) {
 		}
 
 		try {
-			const request = await api.get<FileProps[]>("/translations", {
+			const { data } = await api.get<FileProps[]>("/translations", {
 				headers: {
 					Authorization: token,
 				},
@@ -134,8 +135,10 @@ export default function Translations({ navigation }: Props) {
 			});
 
 			// TODO: ordenar seguindo o filtro do usuário
-			const files = localFiles.concat(
-				request.data.map((d) => ({ ...d, uploaded: true })) ?? [] // adicionando "uploaded: true" para todos os arquivos da internet
+			const files = deduplicate(
+				data,
+				localFiles,
+				(a, b) => a.id === b.id
 			);
 
 			setFiles(files);
@@ -166,7 +169,7 @@ export default function Translations({ navigation }: Props) {
 			for (let id of selectedFiles) {
 				let file = files.find((f) => f.id === id);
 
-				if (!file) continue;
+				if (!file || !file.location) continue;
 
 				await FileSystem.deleteAsync(file.location);
 			}
