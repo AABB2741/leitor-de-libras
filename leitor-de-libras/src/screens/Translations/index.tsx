@@ -31,6 +31,7 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { useUser } from "../../contexts/user";
 import { api } from "../../lib/api";
+import * as FileSystem from "expo-file-system";
 
 import * as SecureStore from "expo-secure-store";
 import * as Storage from "../../services/Storage";
@@ -156,46 +157,91 @@ export default function Translations({ navigation }: Props) {
 		setSelectedFiles(newSelectedFiles);
 	}
 
+	async function handleDeleteFiles() {
+		try {
+			// Colocar um modal de confirmação antes
+			if (selectedFiles.length <= 0 || !files) return;
+
+			// Excluindo as imagens e vídeos salvas no dispositivo
+			for (let id of selectedFiles) {
+				let file = files.find((f) => f.id === id);
+
+				if (!file) continue;
+
+				await FileSystem.deleteAsync(file.location);
+			}
+
+			// Excluindo os arquivos da listagem do localStorage
+			await Storage.removeMany("translations", (f) =>
+				selectedFiles.includes(f.id)
+			);
+
+			// Excluindo os arquivos do servidor
+			const token = await SecureStore.getItemAsync("token");
+
+			const response = await api.delete<{ count: number }>(
+				`/translations/delete/${selectedFiles
+					.map((f) => `id=${f}`)
+					.join("&")}`,
+				{
+					headers: {
+						authorization: token,
+						"Content-Type": "application/json",
+					},
+					data: {
+						ids: selectedFiles,
+					},
+				}
+			);
+		} catch (err) {
+			console.error(err);
+			setError("unknown_err");
+		} finally {
+			setSelectedFiles([]);
+			loadFiles();
+		}
+	}
+
 	const OPTIONS: OptionProps[] = [
 		{
 			icon: (props) => <PlusCircle {...props} />,
 			label: lang.translations.options.create,
-			multiSelectDisabled: true,
+			checkVisibility: () => selectedFiles.length === 0,
 		},
 		{
 			icon: (props) => <Trash {...props} />,
 			label: lang.translations.options.delete,
-			requireSelect: true,
+			checkVisibility: () => selectedFiles.length > 0,
+			onPress: handleDeleteFiles,
 		},
 		{
 			icon: (props) => <Star {...props} />,
 			label: lang.translations.options.favorite,
-			requireSelect: true,
+			checkVisibility: () => selectedFiles.length > 0,
 		},
 		{
 			icon: (props) => <Keyhole {...props} />,
 			label: lang.translations.options.lock,
-			requireSelect: true,
+			checkVisibility: () => selectedFiles.length > 0,
 		},
 		{
 			icon: (props) => <Download {...props} />,
 			label: lang.translations.options.import,
-			multiSelectDisabled: true,
 		},
 		{
 			icon: (props) => <Export {...props} />,
 			label: lang.translations.options.export,
-			requireSelect: true,
+			checkVisibility: () => false,
 		},
 		{
 			icon: (props) => <Archive {...props} />,
 			label: lang.translations.options.archive,
-			requireSelect: true,
+			checkVisibility: () => true,
 		},
 		{
 			icon: (props) => <CloudCheck {...props} />,
 			label: lang.translations.options.load,
-			requireSelect: true,
+			checkVisibility: () => true,
 		},
 	];
 

@@ -139,4 +139,26 @@ export async function removeItem<T extends keyof Saves, U extends Saves[T] exten
     return exclude;
 }
 
+export async function removeMany<T extends keyof Saves, U extends Saves[T] extends any[] ? Saves[T][number] : never>(key: T, predicate: (value: U, index: number) => boolean): Promise<U[]> {
+    dbLog(`Removendo vários itens de "${key}"`);
+    const data = (await getItem(key, true) ?? []) as U[];
+    if (!Array.isArray(data))
+        throw new TypeError(`Tentando excluir elementos de uma base de dados que não é um array (${key})`);
+
+    const finalData: U[] = [];
+    const deletedItems: U[] = [];
+
+    for (let i in data) {
+        let d = data[parseInt(i)];
+        let res = predicate(d, parseInt(i));
+
+        if (res) {
+            deletedItems.push(d);
+        } else finalData.push(d);
+    }
+
+    await setItem(key, finalData as U, true);
+    return deletedItems;
+}
+
 export const clear = () => AsyncStorage.default.multiRemove(["@settings", "@introduction", "@talk:conversations", "@talk:messages", "user", "translations"]);
