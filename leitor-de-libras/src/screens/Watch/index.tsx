@@ -9,6 +9,8 @@ import {
 	ClipboardText,
 	CloudSlash,
 	DownloadSimple,
+	File,
+	FileDotted,
 	IconProps,
 	Info,
 	PencilSimple,
@@ -32,6 +34,7 @@ import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import Popup from "../../components/Popup";
 import Button from "../../components/Button";
+import Empty from "../../components/Empty";
 
 type Option = {
 	icon: (props: IconProps) => JSX.Element;
@@ -49,7 +52,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 	const colors = useColors();
 	const styles = createStyles({ colors });
 
-	const [outOfSync, setOutOfSync] = useState(true); // false
+	const [outOfSync, setOutOfSync] = useState(false);
 	const [error, setError] = useState<null | ResponseCode>(null);
 	const [data, setData] = useState<null | FileProps>(null);
 	const [fullScreen, setFullScreen] = useState<boolean>(false);
@@ -58,37 +61,100 @@ export default function Watch({ navigation, route }: WatchProps) {
 
 	async function handleGetFile() {
 		const localFiles = (await Storage.getItem("translations")) ?? [];
-		const file = localFiles.find((f) => f.id === id);
+		const localFile = localFiles.find((f) => f.id === id) ?? null;
+		let file: FileProps | null = null;
 
-		// Verifica se o arquivo está salvo localmente
-		if (file) {
-			// Se sim, exibe o salvo no dispositivo
-			setData(file);
-		} else {
-			// Se não, solicita ao servidor
-			try {
-				setError(null);
-				const token = await SecureStore.getItemAsync("token");
+		try {
+			setError(null);
+			const token = await SecureStore.getItemAsync("token");
 
-				const { data } = await api.get<{ file: FileProps }>("/watch", {
-					headers: {
-						Authorization: token,
-						id: route.params.id,
-					},
-				});
+			const { data } = await api.get<FileProps>("/watch", {
+				headers: {
+					Authorization: token,
+					id: route.params.id,
+				},
+			});
 
-				setData({ ...data.file, uploaded: true });
-			} catch (err: any) {
-				if (err.response.status === 401) {
-					setError("invalid_token");
-				}
+			if (data.updatedAt !== localFile?.updatedAt) {
+				setOutOfSync(true);
 			}
+
+			file = data;
+		} catch (err: any) {
+			if (err.response.status === 401) {
+				setError("invalid_token");
+			}
+
+			file = localFile;
+		} finally {
+			file = localFile;
+		}
+
+		if (!file) {
+			setError("file_not_found");
+		}
+
+		setData(file);
+	}
+
+	async function pullServerFile() {
+		setData(null);
+
+		try {
+			setError(null);
+			const token = await SecureStore.getItemAsync("token");
+			const localFile =
+				(await Storage.getItem("translations"))?.find(
+					(f) => f.id === route.params.id
+				) ?? null;
+
+			const { data } = await api.get<FileProps>("/watch", {
+				headers: {
+					Authorization: token,
+					id: route.params.id,
+				},
+			});
+
+			const res = await Storage.updateItem(
+				"translations",
+				(f) => f.id === data.id,
+				{
+					...data,
+					location: localFile?.location ?? data.location,
+				}
+			);
+
+			setData(res);
+			setOutOfSync(false);
+		} catch (err) {
+			setError("unknown_err");
 		}
 	}
+
+	async function pushServerFile() {}
 
 	useEffect(() => {
 		handleGetFile();
 	}, []);
+
+	if (error) {
+		return (
+			<View style={[styles.container, styles.loading]}>
+				<Empty
+					title={lang.watch.error.title}
+					desc={lang.general.err_codes[error]}
+					icon={(props) => <FileDotted {...props} />}
+					options={[
+						{
+							label: lang.watch.error.try,
+							highlight: true,
+							onPress: handleGetFile,
+						},
+					]}
+				/>
+			</View>
+		);
+	}
 
 	if (!data) {
 		return (
@@ -110,7 +176,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 				<Image
 					style={styles.fullScreen}
 					source={{
-						uri: data.uploaded ? imageUrl : data.location,
+						uri: data.location,
 					}}
 				/>
 			</TouchableOpacity>
@@ -139,7 +205,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 			icon: (props) => <DownloadSimple {...props} />,
 		},
 	];
-	console.log(data);
+
 	return (
 		<View style={styles.container}>
 			<Popup visible={outOfSync} type="message">
@@ -155,7 +221,10 @@ export default function Watch({ navigation, route }: WatchProps) {
 					{lang.watch.out_of_sync.text}
 				</Font>
 				<View style={styles.outOfSyncOptions}>
-					<TouchableOpacity style={styles.outOfSyncOption}>
+					<TouchableOpacity
+						style={styles.outOfSyncOption}
+						onPress={pullServerFile}
+					>
 						<Image
 							source={require("../../../assets/icons/cloud_sync.png")}
 							style={styles.outOfSyncOptionIcon}
@@ -195,7 +264,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 					<Image
 						style={styles.image}
 						source={{
-							uri: data.uploaded ? imageUrl : data.location,
+							uri: data.location,
 						}}
 					/>
 				</TouchableOpacity>

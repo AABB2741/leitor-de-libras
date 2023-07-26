@@ -27,8 +27,6 @@ export class WatchTranslationController {
         const watchTranslationUseCase = new WatchTranslationUseCase();
         const file = await watchTranslationUseCase.execute({ id, userId: token.id });
 
-        res.json({
-            file
-        });
+        res.json(file);
     }
 }

@@ -67,7 +67,8 @@
             "recovery_code_already_active": "Este e-mail já possui um código ativo",
             "recovery_code_not_found": "Código de recuperação inválido",
             "data_retrieve_error": "Erro na obtenção de dados",
-            "user_not_found": "Usuário não encontrado"
+            "user_not_found": "Usuário não encontrado",
+            "file_not_found": "Arquivo não encontrado"
 		}
 	},
 	"empty": {
@@ -311,11 +312,12 @@
 			"copy": "Copiar texto",
 			"edit": "Editar",
 			"details": "Detalhes",
-            "download": "Baixar"
+            "download": "Baixar",
+            "upload": "Enviar"
 		},
-        "empty": {
-            "text": "O arquivo ainda não foi traduzido",
-            "translate": "Traduzir"
+        "error": {
+            "title": "Ocorreu um erro ao carregar o arquivo :(",
+            "try": "Tentar novamente"
         },
         "out_of_sync": {
             "title": "Conflito de arquivos detectado.",

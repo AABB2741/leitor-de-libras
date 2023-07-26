@@ -46,7 +46,6 @@ export interface FileProps {
 	imageName: string;
 	password?: string;
 	title: string;
-	uploaded: boolean;
 	location: string;
 	type: "i" | "v";
 	content?: string; // O texto traduzido
@@ -56,6 +55,7 @@ interface Props extends FileProps {
 	index: number;
 	selectedFiles: string[];
 	disabled: boolean;
+	uploaded?: boolean; // Verifica se o arquivo está no servidor
 	handleSelectFile: (id: string) => void;
 }
 

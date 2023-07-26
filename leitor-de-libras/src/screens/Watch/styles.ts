@@ -50,7 +50,8 @@ export default ({ colors }: WatchStyle) => StyleSheet.create({
     },
     loading: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        paddingHorizontal: 20
     },
     image: {
         width: "100%",

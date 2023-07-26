@@ -47,6 +47,7 @@ export class UploadImageController {
                 type: "i"
             }
         });
+        console.log(response);
 
         res.status(201).send(response);
     }

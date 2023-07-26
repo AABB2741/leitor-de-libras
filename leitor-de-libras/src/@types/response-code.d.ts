@@ -15,4 +15,5 @@ type ResponseCode =
     "recovery_code_not_found" |
     "user_not_found" |
     "data_retrieve_error" |
+    "file_not_found" |
     "unknown_err";

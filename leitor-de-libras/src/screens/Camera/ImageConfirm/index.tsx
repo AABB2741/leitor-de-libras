@@ -81,8 +81,8 @@ export function ImageConfirm({
 				if (uploadResponse.status === 201) {
 					Storage.updateItem("translations", (f) => f.id === id, {
 						...uploadResponse.data,
-						uploaded: true,
 					});
+					console.log(uploadResponse.data);
 
 					setLoading(false);
 					setConfirmed(false);
@@ -121,13 +121,12 @@ export function ImageConfirm({
 			createdAt: new Date(),
 			id,
 			title,
-			uploaded: false,
 			location,
 			imageName: title,
 			type: "i",
 		};
 
-		console.log(await Storage.pushItem("translations", file, true));
+		await Storage.pushItem("translations", file, true);
 
 		setId(id);
 		setLoading(false);
