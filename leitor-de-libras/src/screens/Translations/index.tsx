@@ -57,6 +57,8 @@ interface Props {
 	navigation: NativeStackNavigationProp<AppRoutes, "TranslationsRoutes">;
 }
 
+type FilePropsUploaded = FileProps & { uploaded?: boolean };
+
 export default function Translations({ navigation }: Props) {
 	const lang = useLang();
 	const colors = useColors();
@@ -64,7 +66,7 @@ export default function Translations({ navigation }: Props) {
 
 	const [offline, setOffline] = useState(false);
 	const [error, setError] = useState<ResponseCode | null>(null);
-	const [files, setFiles] = useState<FileProps[] | null>(null);
+	const [files, setFiles] = useState<FilePropsUploaded[] | null>(null);
 	const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
 	const [refreshing, setRefreshing] = useState(false);
 	const [search, setSearch] = useState("");
@@ -135,13 +137,21 @@ export default function Translations({ navigation }: Props) {
 			});
 
 			// TODO: ordenar seguindo o filtro do usuário
-			const files = deduplicate(
+			// FIXME: Ver pq n tá funcionando direito a função de desduplicar
+			const [files, serverFiles] = deduplicate(
+				// Pega os arquivos locais e do servidor, e os mescla - os arquivos duplicados vindos do servidor estão em serverFiles
 				data,
 				localFiles,
 				(a, b) => a.id === b.id
 			);
 
-			setFiles(files);
+			const res: FilePropsUploaded[] = files.map<FilePropsUploaded>((f) =>
+				serverFiles.findIndex((s) => f.id === s.id) !== -1
+					? { ...f, uploaded: true }
+					: f
+			);
+
+			setFiles(res);
 		} catch (e) {
 			setError("unknown_err");
 			setFiles([]);
