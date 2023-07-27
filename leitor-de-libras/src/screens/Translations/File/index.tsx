@@ -114,13 +114,14 @@ export default function File({
 				>
 					{/* {getStateIcon({ state, colors, lang })} */}
 					<View style={styles.props}>
-						{uploaded ? (
+						{uploaded && (
 							<Cloud
 								color={colors.desc}
 								size={14}
 								style={{ marginLeft: 5 }}
 							/>
-						) : (
+						)}
+						{location && (
 							<Disc
 								color={colors.desc}
 								size={14}

@@ -7,6 +7,25 @@ interface TranslationsStyle {
 }
 
 export default ({ colors }: TranslationsStyle) => StyleSheet.create({
+    modalTitle: {
+
+    },
+    modalText: {
+        marginVertical: 10
+    },
+    deleteModalSummary: {
+        backgroundColor: colors.background2,
+        padding: 10,
+        marginRight: 10,
+        borderRadius: 12
+    },
+    deleteModalCount: {
+        textAlign: "center",
+        fontSize: 24
+    },
+    deleteModalItems: {
+        fontSize: 10
+    },
     loading: {
         justifyContent: "center",
         alignItems: "center",

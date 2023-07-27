@@ -4,6 +4,7 @@ import {
 	View,
 	RefreshControl,
 	BackHandler,
+	ScrollView,
 	TouchableOpacity,
 } from "react-native";
 import {
@@ -52,6 +53,8 @@ import createStyles from "./styles";
 import FILES from "../../constants/recordings";
 import log from "../../utils/log";
 import Loading from "../../components/Loading";
+import Popup from "../../components/Popup";
+import Button from "../../components/Button";
 
 interface Props {
 	navigation: NativeStackNavigationProp<AppRoutes, "TranslationsRoutes">;
@@ -71,6 +74,8 @@ export default function Translations({ navigation }: Props) {
 	const [refreshing, setRefreshing] = useState(false);
 	const [search, setSearch] = useState("");
 	const [order, setOrder] = useState<Order>("asc");
+
+	const [deleteModalVisible, setDeleteModalVisible] = useState(true);
 
 	const allSelected = selectedFiles?.length === files?.length;
 
@@ -137,19 +142,15 @@ export default function Translations({ navigation }: Props) {
 			});
 
 			// TODO: ordenar seguindo o filtro do usuário
-			// FIXME: Ver pq n tá funcionando direito a função de desduplicar
-			const [files, serverFiles] = deduplicate(
-				// Pega os arquivos locais e do servidor, e os mescla - os arquivos duplicados vindos do servidor estão em serverFiles
-				data,
-				localFiles,
-				(a, b) => a.id === b.id
-			);
+			const res: FilePropsUploaded[] = [...localFiles];
 
-			const res: FilePropsUploaded[] = files.map<FilePropsUploaded>((f) =>
-				serverFiles.findIndex((s) => f.id === s.id) !== -1
-					? { ...f, uploaded: true }
-					: f
-			);
+			for (let file of data) {
+				let index = res.findIndex((f) => f.id === file.id);
+
+				if (index !== -1) {
+					res[index].uploaded = true;
+				} else res.push({ ...file, uploaded: true });
+			}
 
 			setFiles(res);
 		} catch (e) {
@@ -225,7 +226,7 @@ export default function Translations({ navigation }: Props) {
 			icon: (props) => <Trash {...props} />,
 			label: lang.translations.options.delete,
 			checkVisibility: () => selectedFiles.length > 0,
-			onPress: handleDeleteFiles,
+			onPress: () => setDeleteModalVisible(true),
 		},
 		{
 			icon: (props) => <Star {...props} />,
@@ -296,6 +297,70 @@ export default function Translations({ navigation }: Props) {
 
 	return (
 		<>
+			{/* Modais */}
+			<Popup visible={deleteModalVisible} type="message">
+				<Font family="ubuntu" style={styles.modalTitle}>
+					{lang.translations.modal.delete.title}
+				</Font>
+				<Font style={styles.modalText}>
+					{lang.translations.modal.delete.text}
+				</Font>
+				<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+					<View style={styles.deleteModalSummary}>
+						<Font family="black" style={styles.deleteModalCount}>
+							{selectedFiles.length}
+						</Font>
+						<Font style={styles.deleteModalItems}>
+							{lang.translations.modal.delete.selected}
+						</Font>
+					</View>
+					<View style={styles.deleteModalSummary}>
+						<Font family="black" style={styles.deleteModalCount}>
+							{selectedFiles.reduce(
+								(ac, v) =>
+									files.find((f) => f.id === v)?.uploaded
+										? 1
+										: 0,
+								0
+							)}
+						</Font>
+						<Font style={styles.deleteModalItems}>
+							{lang.translations.modal.delete.saved_on_cloud}
+						</Font>
+					</View>
+					<View style={styles.deleteModalSummary}>
+						<Font family="black" style={styles.deleteModalCount}>
+							{selectedFiles.reduce(
+								(ac, v) =>
+									files.find((f) => f.id === v)?.location
+										? 1
+										: 0,
+								0
+							)}
+						</Font>
+						<Font style={styles.deleteModalItems}>
+							{lang.translations.modal.delete.saved_on_device}
+						</Font>
+					</View>
+				</ScrollView>
+				<View>
+					<Button onPress={() => setDeleteModalVisible(false)}>
+						{lang.translations.modal.delete.cancel}
+					</Button>
+					<Button>{lang.translations.modal.delete.archive}</Button>
+					<Button
+						highlight
+						accentColor={colors.critic}
+						onPress={() => {
+							setDeleteModalVisible(false);
+							handleDeleteFiles();
+						}}
+					>
+						{lang.translations.modal.delete.delete}
+					</Button>
+				</View>
+			</Popup>
+			{/* Conteúdo */}
 			<Header
 				title={lang.translations.title}
 				hideBackButton

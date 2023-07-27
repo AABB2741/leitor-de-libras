@@ -304,6 +304,18 @@
             "text": "Certifique-se de que você está conectado(a) à internet.",
             "try_again": "Tentar novamente",
             "use_offline": "Usar offline"
+        },
+        "modal": {
+            "delete": {
+                "title": "Excluir arquivos selecionados?",
+                "text": "Os arquivos selecionados serão excluídos e não poderão ser recuperados.\nVocê realmente quer excluí-los?",
+                "selected": "selecionados",
+                "saved_on_cloud": "salvos na nuvem",
+                "saved_on_device": "salvos no dispositivo",
+                "delete": "Excluir",
+                "cancel": "Cancelar",
+                "archive": "Arquivar"
+            }
         }
 	},
 	"watch": {
