@@ -41,7 +41,8 @@
     "react-native-vision-camera": "^2.15.4",
     "react-native-web": "~0.18.9",
     "ts-deepmerge": "^5.0.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "expo-video-thumbnails": "~7.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

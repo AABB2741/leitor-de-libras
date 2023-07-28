@@ -75,7 +75,7 @@ export default function Translations({ navigation }: Props) {
 	const [search, setSearch] = useState("");
 	const [order, setOrder] = useState<Order>("asc");
 
-	const [deleteModalVisible, setDeleteModalVisible] = useState(true);
+	const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
 	const allSelected = selectedFiles?.length === files?.length;
 
@@ -104,7 +104,7 @@ export default function Translations({ navigation }: Props) {
 		loadFiles();
 	}, []);
 
-	async function loadFiles() {
+	async function loadFiles(forceOffline?: boolean, forceOnline?: boolean) {
 		setFiles(null);
 		setError(null);
 		setRefreshing(true);
@@ -118,8 +118,9 @@ export default function Translations({ navigation }: Props) {
 					: 1
 		); // ...e ordenando pela data (depois aplicar com o filtro)
 
-		if (offline) {
+		if ((offline || forceOffline) && !forceOnline) {
 			setFiles(localFiles);
+			setRefreshing(false);
 			return;
 		}
 
@@ -221,6 +222,7 @@ export default function Translations({ navigation }: Props) {
 			icon: (props) => <PlusCircle {...props} />,
 			label: lang.translations.options.create,
 			checkVisibility: () => selectedFiles.length === 0,
+			onPress: () => navigation.navigate("Camera"),
 		},
 		{
 			icon: (props) => <Trash {...props} />,
@@ -279,14 +281,14 @@ export default function Translations({ navigation }: Props) {
 							label: lang.translations.loading_files_error
 								.try_again,
 							highlight: true,
-							onPress: loadFiles,
+							onPress: () => loadFiles(),
 						},
 						{
 							label: lang.translations.loading_files_error
 								.use_offline,
 							onPress: () => {
 								setOffline(true);
-								loadFiles();
+								loadFiles(true);
 							},
 						},
 					]}
@@ -393,7 +395,7 @@ export default function Translations({ navigation }: Props) {
 						</TouchableOpacity>
 						<Font style={styles.selectedLabel}>
 							{selectedFiles.length === 1
-								? lang.translations.selected_singular.replace(
+								? lang.translations.selected_single.replace(
 										"%s",
 										selectedFiles.length.toString()
 								  )
@@ -407,6 +409,23 @@ export default function Translations({ navigation }: Props) {
 						<X size={16} color={colors.font} />
 					</TouchableOpacity>
 				</View>
+				<TouchableOpacity
+					onPress={() => {
+						setOffline(false);
+						loadFiles(false, true);
+					}}
+					style={[
+						styles.offlineWarning,
+						{ display: offline ? "flex" : "none" },
+					]}
+				>
+					<Font style={styles.offlineWarningText}>
+						{lang.general.warning.replace(
+							"%s",
+							lang.translations.offline_warning
+						)}
+					</Font>
+				</TouchableOpacity>
 				<FlatList
 					ListHeaderComponent={
 						<>

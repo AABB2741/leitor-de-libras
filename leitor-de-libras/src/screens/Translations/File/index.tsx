@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
 	View,
 	Image,
@@ -15,6 +16,8 @@ import {
 	Keyhole,
 	Star,
 } from "phosphor-react-native";
+import { Video } from "expo-av";
+import * as VideoThumbnails from "expo-video-thumbnails";
 import * as Animatable from "react-native-animatable";
 
 import { useColors } from "../../../contexts/colors";
@@ -43,7 +46,7 @@ export interface FileProps {
 	updatedAt: Date;
 	deleted?: boolean;
 	favorited?: boolean;
-	imageName: string;
+	imageName?: string;
 	password?: string;
 	title: string;
 	location: string;
@@ -70,11 +73,14 @@ export default function File({
 	uploaded,
 	location,
 	disabled,
+	type,
 }: Props) {
 	const { settings } = useSettings();
 	const lang = useLang();
 	const colors = useColors();
 	const styles = createStyles({ colors });
+
+	const [thumbnail, setThumbnail] = useState<string | null>(null);
 
 	const navigation =
 		useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
@@ -86,6 +92,25 @@ export default function File({
 			...lang.general.unity,
 		},
 	});
+
+	async function generateThumbnail() {
+		if (type === "i") {
+			setThumbnail(location);
+			return;
+		}
+
+		try {
+			console.log(location);
+			const { uri } = await VideoThumbnails.getThumbnailAsync(location);
+			setThumbnail(uri);
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	useEffect(() => {
+		generateThumbnail();
+	}, []);
 
 	const imageUrl = `${api.getUri()}/uploads/${imageName}`;
 
@@ -128,30 +153,6 @@ export default function File({
 								style={{ marginLeft: 5 }}
 							/>
 						)}
-						{/* {locked && !disabled && (
-							<Keyhole
-								color={colors.desc}
-								size={14}
-								weight="fill"
-								style={{ marginLeft: 5 }}
-							/>
-						)}
-						{archived && !disabled && (
-							<Archive
-								color={colors.desc}
-								size={14}
-								weight="fill"
-								style={{ marginLeft: 5 }}
-							/>
-						)}
-						{favorited && !disabled && (
-							<Star
-								color={colors.desc}
-								size={14}
-								weight="fill"
-								style={{ marginLeft: 5 }}
-							/>
-						)} */}
 					</View>
 				</View>
 				<View
@@ -168,8 +169,13 @@ export default function File({
 				</View>
 				<Image
 					style={styles.thumbnail}
-					source={{ uri: uploaded ? imageUrl : location }}
+					source={{
+						uri:
+							thumbnail ??
+							"../../../../assets/thumbnails/default-thumbnail.jpg",
+					}}
 				/>
+
 				<Font style={styles.title} numberOfLines={1}>
 					{title}
 				</Font>

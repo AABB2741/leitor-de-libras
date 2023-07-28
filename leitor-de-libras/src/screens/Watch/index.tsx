@@ -17,6 +17,7 @@ import {
 	ShareNetwork,
 } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Video } from "expo-av";
 import * as SecureStore from "expo-secure-store";
 import * as Storage from "../../services/Storage";
 
@@ -173,12 +174,16 @@ export default function Watch({ navigation, route }: WatchProps) {
 				style={styles.fullScreen}
 				onPress={() => setFullScreen(false)}
 			>
-				<Image
-					style={styles.fullScreen}
-					source={{
-						uri: data.location,
-					}}
-				/>
+				{data.type === "i" ? (
+					<Image
+						style={styles.fullScreen}
+						source={{
+							uri: data.location,
+						}}
+					/>
+				) : (
+					<Video source={{ uri: data.location }} />
+				)}
 			</TouchableOpacity>
 		);
 	}

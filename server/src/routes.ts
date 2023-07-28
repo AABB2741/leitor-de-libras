@@ -1,8 +1,8 @@
 import { Router } from "express";
 import multer from "multer";
-import { v4 as UUID } from "uuid"
+import { v4 as UUID } from "uuid";
 import { AppError } from "./errors/AppError";
-import { extname, resolve } from "node:path"
+import { extname, resolve } from "node:path";
 
 // Importar controllers aqui
 
@@ -25,29 +25,39 @@ import { WatchTranslationController } from "./controllers/data/watchTranslation/
 import { DeleteTranslationController } from "./controllers/data/deleteTranslations/DeleteTranslationController";
 
 import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
-import { UploadTranslationController } from "./controllers/upload/uploadTranslation/UploadTranslationController";
+import { UploadVideoController } from "./controllers/upload/UploadVideo/UploadVideoController";
 
-const imageStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/")
-    },
-    filename: (req, file, cb) => {
-        const fileId = UUID();
-        const extension = extname(file.originalname)
-        const filename = fileId.concat(extension)
-        cb(null, filename)
-    },
-})
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "uploads/");
+	},
+	filename: (req, file, cb) => {
+		const fileId = UUID();
+		const extension = extname(file.originalname);
+		const filename = fileId.concat(extension);
+		cb(null, filename);
+	},
+});
 const uploadImage = multer({
-    limits: {
-        fileSize: 10_485_760 // 10mb
-    },
-    fileFilter: (req, file, callback) => {
-        const mimetypeRegex = /^(image)\/[a-zA-Z]+/
-        const isValidFileFormat = mimetypeRegex.test(file.mimetype)
-        callback(null, isValidFileFormat)
-    },
-    storage: imageStorage
+	limits: {
+		fileSize: 10_485_760, // 10mb
+	},
+	fileFilter: (req, file, callback) => {
+		const mimetypeRegex = /^(image)\/[a-zA-Z]+/;
+		const isValidFileFormat = mimetypeRegex.test(file.mimetype);
+		callback(null, isValidFileFormat);
+	},
+	storage,
+});
+const uploadVideo = multer({
+	limits: {
+		fileSize: 134_217_728, // 1 GB
+	},
+	fileFilter: (req, file, callback) => {
+		const mimetypeRegex = /^(video)\/[a-zA-Z]+/;
+		const isValidFileFormat = mimetypeRegex.test(file.mimetype);
+		callback(null, isValidFileFormat);
+	},
 });
 
 const router = Router();
@@ -71,7 +81,7 @@ const watchTranslationController = new WatchTranslationController();
 const deleteTranslationController = new DeleteTranslationController();
 
 const uploadImageController = new UploadImageController();
-const uploadTranslationController = new UploadTranslationController();
+const uploadVideoController = new UploadVideoController();
 
 router.get("/ping", ping.handle);
 
@@ -83,7 +93,10 @@ router.put("/user/edit", updateUser.handle);
 router.delete("/user/delete", deleteUser.handle);
 
 router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
-router.delete("/user/deleteRecoveryCode/:email", deleteRecoveryCodeController.handle);
+router.delete(
+	"/user/deleteRecoveryCode/:email",
+	deleteRecoveryCodeController.handle
+);
 router.post("/user/checkRecoveryCode", checkRecoveryCodeController.handle);
 router.put("/user/setPassword", setPasswordController.handle);
 
@@ -91,7 +104,11 @@ router.get("/translations", getTranslationsController.handle);
 router.get("/watch", watchTranslationController.handle);
 router.delete("/translations/delete/:ids", deleteTranslationController.handle);
 
-router.post("/upload/image", uploadImage.single("file"), uploadImageController.handle);
-router.post("/upload/translation", uploadTranslationController.handle);
+router.post(
+	"/upload/image",
+	uploadImage.single("file"),
+	uploadImageController.handle
+);
+router.post("/upload/video", uploadVideoController.handle);
 
 export { router };

@@ -105,7 +105,6 @@ export function ImageConfirm({
 
 		dayjs.locale(lang.locale === "pt" ? pt : en);
 		const id = uuid();
-		console.log(`ID criado: ${id}`);
 		const title = dayjs(new Date())
 			.format(lang.camera.date_format)
 			.concat(` - ${id}`);
@@ -122,7 +121,6 @@ export function ImageConfirm({
 			id,
 			title,
 			location,
-			imageName: title,
 			type: "i",
 		};
 
