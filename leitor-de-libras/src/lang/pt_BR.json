@@ -271,8 +271,9 @@
 		}
 	},
 	"translations": {
-		"selected_singular": "%s selecionado",
+		"selected_single": "%s selecionado",
 		"selected": "%s selecionados",
+        "offline_warning": "Você está utilizando o modo offline. Toque aqui para sair.",
 		"options": {
 			"create": "Criar tradução",
 			"delete": "Excluir",
