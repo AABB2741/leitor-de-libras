@@ -80,7 +80,9 @@ export default function File({
 	const colors = useColors();
 	const styles = createStyles({ colors });
 
-	const [thumbnail, setThumbnail] = useState<string | null>(null);
+	const [thumbnail, setThumbnail] = useState<string>(
+		"../../../../assets/thumbnails/default-thumbnail.jpg"
+	);
 
 	const navigation =
 		useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
@@ -94,13 +96,14 @@ export default function File({
 	});
 
 	async function generateThumbnail() {
+		if (!location) return;
+
 		if (type === "i") {
 			setThumbnail(location);
 			return;
 		}
 
 		try {
-			console.log(location);
 			const { uri } = await VideoThumbnails.getThumbnailAsync(location);
 			setThumbnail(uri);
 		} catch (err) {
@@ -170,9 +173,7 @@ export default function File({
 				<Image
 					style={styles.thumbnail}
 					source={{
-						uri:
-							thumbnail ??
-							"../../../../assets/thumbnails/default-thumbnail.jpg",
+						uri: thumbnail,
 					}}
 				/>
 

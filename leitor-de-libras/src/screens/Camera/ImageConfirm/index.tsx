@@ -48,7 +48,6 @@ export function ImageConfirm({
 	const [uploaded, setUploaded] = useState(false);
 
 	const [id, setId] = useState<null | string>(null);
-	console.log(`ID setado: ${id}`);
 
 	async function upload() {
 		// Salva o arquivo na nuvem
@@ -82,7 +81,6 @@ export function ImageConfirm({
 					Storage.updateItem("translations", (f) => f.id === id, {
 						...uploadResponse.data,
 					});
-					console.log(uploadResponse.data);
 
 					setLoading(false);
 					setConfirmed(false);

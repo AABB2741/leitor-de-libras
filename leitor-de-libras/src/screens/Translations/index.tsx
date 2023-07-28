@@ -321,8 +321,8 @@ export default function Translations({ navigation }: Props) {
 							{selectedFiles.reduce(
 								(ac, v) =>
 									files.find((f) => f.id === v)?.uploaded
-										? 1
-										: 0,
+										? ac + 1
+										: ac,
 								0
 							)}
 						</Font>
@@ -335,8 +335,8 @@ export default function Translations({ navigation }: Props) {
 							{selectedFiles.reduce(
 								(ac, v) =>
 									files.find((f) => f.id === v)?.location
-										? 1
-										: 0,
+										? ac + 1
+										: ac,
 								0
 							)}
 						</Font>

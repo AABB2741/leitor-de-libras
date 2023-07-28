@@ -265,13 +265,28 @@ export default function Watch({ navigation, route }: WatchProps) {
 			</Popup>
 			<Header title="Tradução" />
 			<View style={styles.video}>
-				<TouchableOpacity onPress={() => setFullScreen(true)}>
-					<Image
-						style={styles.image}
-						source={{
-							uri: data.location,
-						}}
-					/>
+				<TouchableOpacity
+					onPress={
+						data.type === "i"
+							? () => setFullScreen(true)
+							: undefined
+					}
+				>
+					{data.type === "i" && (
+						<Image
+							style={styles.image}
+							source={{
+								uri: data.location,
+							}}
+						/>
+					)}
+					{data.type === "v" && (
+						<Video
+							style={styles.image}
+							source={{ uri: data.location }}
+							useNativeControls
+						/>
+					)}
 				</TouchableOpacity>
 			</View>
 			<ScrollView style={styles.scroll}>

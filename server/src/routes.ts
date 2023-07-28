@@ -58,6 +58,7 @@ const uploadVideo = multer({
 		const isValidFileFormat = mimetypeRegex.test(file.mimetype);
 		callback(null, isValidFileFormat);
 	},
+	storage,
 });
 
 const router = Router();
@@ -109,6 +110,10 @@ router.post(
 	uploadImage.single("file"),
 	uploadImageController.handle
 );
-router.post("/upload/video", uploadVideoController.handle);
+router.post(
+	"/upload/video",
+	uploadVideo.single("file"),
+	uploadVideoController.handle
+);
 
 export { router };
