@@ -14,7 +14,6 @@ type JwtPayload = {
 
 export class UploadVideoController {
 	async handle(req: Request, res: Response) {
-		console.log("Rota de upload de vídeo");
 		const headersSchema = z.object({
 			authorization: z.string(),
 		});
