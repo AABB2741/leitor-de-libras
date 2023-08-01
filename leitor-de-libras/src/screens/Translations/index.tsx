@@ -219,6 +219,29 @@ export default function Translations({ navigation }: Props) {
         }
     }
 
+    async function handleArchiveFiles() {
+        if (selectedFiles.length === 0) return;
+
+        try {
+            const token = await SecureStore.getItemAsync("token");
+
+            // TODO: Atualizar os arquivos locais para pegar os arquivos do servidor
+            const editResponse = await api.put<FileProps[]>("/translations/editMultiple", {
+                archived: true,
+                ids: selectedFiles,
+            }, {
+                headers: {
+                    Authorization: token,
+                }
+            });
+
+            console.log(editResponse.data);
+        } catch (err) {
+            console.error(err);
+            setError("unknown_err");
+        }
+    }
+
     const OPTIONS: OptionProps[] = [
         {
             icon: (props) => <PlusCircle {...props} />,
@@ -254,7 +277,8 @@ export default function Translations({ navigation }: Props) {
         {
             icon: (props) => <Archive {...props} />,
             label: lang.translations.options.archive,
-            checkVisibility: () => true,
+            checkVisibility: () => selectedFiles.length > 0,
+            onPress: handleArchiveFiles
         },
         {
             icon: (props) => <CloudCheck {...props} />,

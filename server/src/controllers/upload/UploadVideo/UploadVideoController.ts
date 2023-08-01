@@ -23,23 +23,12 @@ export class UploadVideoController {
 
 		if (!token) throw new AppError("invalid_token", 401);
 
-		const bodySchema = z.object({
-			archived: z.boolean().optional(),
-			createdAt: z.date().optional(),
-			favorited: z.boolean().optional(),
-			password: z.string().optional(),
-			title: z.string().optional(),
-			content: z.string().optional(),
-		});
-
-		const userData = bodySchema.parse(req.body);
-
 		const uploadVideoUseCase = new UploadVideoUseCase();
 		const data = await uploadVideoUseCase.execute({
-			...userData,
 			authorId: token.id,
 			imageName: req.file?.filename as string,
 		});
-		res.json(data);
+
+		res.status(201).json(data);
 	}
 }

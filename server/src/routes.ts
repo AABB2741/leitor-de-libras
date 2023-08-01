@@ -24,6 +24,7 @@ import { GetTranslationsController } from "./controllers/data/getTranslations/Ge
 import { WatchTranslationController } from "./controllers/data/watchTranslation/WatchTranslationController";
 import { DeleteTranslationController } from "./controllers/data/deleteTranslations/DeleteTranslationController";
 import { EditTranslationController } from "./controllers/edit/editTranslation/EditTranslationController";
+import { EditMultipleController } from "./controllers/edit/editMultiple/EditMultipleController";
 
 import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
 import { UploadVideoController } from "./controllers/upload/UploadVideo/UploadVideoController";
@@ -82,6 +83,7 @@ const getTranslationsController = new GetTranslationsController();
 const watchTranslationController = new WatchTranslationController();
 const deleteTranslationController = new DeleteTranslationController();
 const editTranslationController = new EditTranslationController();
+const editMultipleController = new EditMultipleController();
 
 const uploadImageController = new UploadImageController();
 const uploadVideoController = new UploadVideoController();
@@ -107,6 +109,7 @@ router.get("/translations", getTranslationsController.handle);
 router.get("/watch", watchTranslationController.handle);
 router.put("/translations/edit/:id", editTranslationController.handle);
 router.delete("/translations/delete/:ids", deleteTranslationController.handle);
+router.put("/translations/editMultiple", editMultipleController.handle);
 
 router.post(
 	"/upload/image",

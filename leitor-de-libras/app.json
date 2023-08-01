@@ -1,50 +1,54 @@
 {
-  "expo": {
-    "name": "Li libras",
-    "slug": "leitor-de-libras",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/imgs/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "userInterfaceStyle": "automatic"
-    },
-    "android": {
-      "permissions": ["android.permission.RECORD_AUDIO"],
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
-      },
-      "userInterfaceStyle": "automatic"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-        }
-      ],
-      [
-        "expo-av",
-        {
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
-        }
-      ]
-    ]
-  }
+	"expo": {
+		"name": "Li libras",
+		"slug": "leitor-de-libras",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/imgs/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#000000"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"userInterfaceStyle": "automatic"
+		},
+		"android": {
+			"permissions": ["android.permission.RECORD_AUDIO"],
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#000000"
+			},
+			"userInterfaceStyle": "automatic"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			[
+				"expo-camera",
+				{
+					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+				}
+			],
+			[
+				"expo-av",
+				{
+					"microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+				}
+			],
+			[
+				"expo-image-picker",
+				{
+					"photosPermission": "O app usa suas fotos para traduzir arquivos salvos"
+				}
+			]
+		]
+	}
 }

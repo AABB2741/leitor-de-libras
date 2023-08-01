@@ -58,8 +58,6 @@ export function ImageConfirm({
 
         if (token) {
             try {
-                const data = await Storage.findItem("translations", f => f.id === id);
-
                 // Upload da imagem
                 const imageData = new FormData();
                 imageData.append("file", {
@@ -80,6 +78,8 @@ export function ImageConfirm({
                 );
 
                 if (uploadResponse.status === 201 || uploadResponse.status === 200) {
+                    const data = await Storage.findItem("translations", f => f.id === id);
+
                     const updateResponse = await api.put<FileProps>("/translations/edit/" + uploadResponse.data.id, data, {
                         headers: {
                             Authorization: token

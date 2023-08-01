@@ -27,6 +27,7 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
+import * as ImagePicker from "expo-image-picker";
 
 import Button from "../../components/Button";
 import VideoConfirm from "./VideoConfirm";
@@ -177,6 +178,33 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
         setPictureSource(photo);
     }
 
+    async function handlePick() {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [9, 16],
+            quality: 1,
+            allowsMultipleSelection: false
+        });
+
+        if (result.canceled || !result.assets[0]) return;
+
+        let res = result.assets[0];
+
+        if (res.type === "image") {
+            setPictureSource({
+                width: res.width,
+                height: res.height,
+                uri: res.uri,
+            })
+        } else if (res.type === "video") {
+            setVideoSource({
+                uri: res.uri
+            });
+            setVideoConfirmVisible(true);
+        }
+    }
+
     // TODO: Fazer função para pedir permissão. Se não tiver como pedir, exibir a mensagem de erro para abrir as configurações
     if (!permission || !microphonePermission) {
         log("Verificando permissões...", { color: "fgGray" });
@@ -312,10 +340,12 @@ export default function Camera({ navigation, ...rest }: CameraProps) {
                                 </View>
                                 <View style={styles.options}>
                                     {!recording && (
-                                        <FilmStrip
-                                            size={32}
-                                            color={colors.font2}
-                                        />
+                                        <TouchableOpacity onPress={handlePick}>
+                                            <FilmStrip
+                                                size={32}
+                                                color={colors.font2}
+                                            />
+                                        </TouchableOpacity>
                                     )}
                                     <TouchableOpacity
                                         style={styles.record}
