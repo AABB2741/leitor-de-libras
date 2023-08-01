@@ -183,7 +183,9 @@ export default function Translations({ navigation }: Props) {
 
                 if (!file || !file.location) continue;
 
-                await FileSystem.deleteAsync(file.location);
+                await FileSystem.deleteAsync(file.location, {
+                    idempotent: true
+                });
             }
 
             // Excluindo os arquivos da listagem do localStorage

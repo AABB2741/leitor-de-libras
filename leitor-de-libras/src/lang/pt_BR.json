@@ -54,21 +54,21 @@
 			"ok": "Confirmado",
 			"network_err": "Não foi possível conectar-se ao servidor",
 			"empty_fields": "Preencha todos os campos obrigatórios!",
-            "invalid_fields": "Algum campo possui um valor inválido",
+			"invalid_fields": "Algum campo possui um valor inválido",
 			"invalid_credentials": "Endereço de e-mail ou senha inválidos",
-            "invalid_email": "Insira um endereço de e-mail válido",
+			"invalid_email": "Insira um endereço de e-mail válido",
 			"email_already_in_use": "O endereço de e-mail inserido já está em uso",
 			"invalid_token": "Sessão inválida",
-            "unknown_err": "Erro desconhecido",
-            "password_not_match": "As senhas não combinam",
-            "invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos",
-            "invalid_code": "Código inválido. Tente novamente",
-            "internal_server_error": "Erro interno no servidor",
-            "recovery_code_already_active": "Este e-mail já possui um código ativo",
-            "recovery_code_not_found": "Código de recuperação inválido",
-            "data_retrieve_error": "Erro na obtenção de dados",
-            "user_not_found": "Usuário não encontrado",
-            "file_not_found": "Arquivo não encontrado"
+			"unknown_err": "Erro desconhecido",
+			"password_not_match": "As senhas não combinam",
+			"invalid_password_length": "Insira uma senha de pelo menos 8 dígitos e máximo de 32 dígitos",
+			"invalid_code": "Código inválido. Tente novamente",
+			"internal_server_error": "Erro interno no servidor",
+			"recovery_code_already_active": "Este e-mail já possui um código ativo",
+			"recovery_code_not_found": "Código de recuperação inválido",
+			"data_retrieve_error": "Erro na obtenção de dados",
+			"user_not_found": "Usuário não encontrado",
+			"file_not_found": "Arquivo não encontrado"
 		}
 	},
 	"empty": {
@@ -81,56 +81,56 @@
 		"ignore": "Ignorar por enquanto"
 	},
 	"reset_password": {
-        "title": "Alterar senha",
+		"title": "Alterar senha",
 		"desc": "Altere a sua senha caso você tenha esquecido ou queira colocar uma mais forte.",
-        "send_email": {
-            "title": "Inserir endereço de e-mail",
-            "email": "Endereço de e-mail",
-            "email_placeholder": "Endereço de e-mail da sua conta",
-            "confirm": "Enviar",
-            "return": "Voltar ao login"
-        },
-        "confirm_code": {
-            "title": "Confirmar código de verificação",
-            "email_check": "Enviamos um código para %s. Insira o código que você recebeu abaixo para continuar com a alteração da senha.",
-            "check_code": "Código de verificação",
-            "confirm": "Verificar código",
-            "cancel": "Cancelar"
-        },
-        "reset": {
-            "title": "Redefinir sua senha",
-            "new_pass": "Insira uma senha que você se lembre facilmente. Se precisar, anote em algum papel ou outro lugar seguro.",
-            "new_pass_placeholder": "Nova senha",
-            "repeat_new_pass": "Confirmar nova senha",
-            "repeat_new_pass_placeholder": "Insira novamente sua senha",
-            "confirm": "Confirmar nova senha"
-        }
+		"send_email": {
+			"title": "Inserir endereço de e-mail",
+			"email": "Endereço de e-mail",
+			"email_placeholder": "Endereço de e-mail da sua conta",
+			"confirm": "Enviar",
+			"return": "Voltar ao login"
+		},
+		"confirm_code": {
+			"title": "Confirmar código de verificação",
+			"email_check": "Enviamos um código para %s. Insira o código que você recebeu abaixo para continuar com a alteração da senha.",
+			"check_code": "Código de verificação",
+			"confirm": "Verificar código",
+			"cancel": "Cancelar"
+		},
+		"reset": {
+			"title": "Redefinir sua senha",
+			"new_pass": "Insira uma senha que você se lembre facilmente. Se precisar, anote em algum papel ou outro lugar seguro.",
+			"new_pass_placeholder": "Nova senha",
+			"repeat_new_pass": "Confirmar nova senha",
+			"repeat_new_pass_placeholder": "Insira novamente sua senha",
+			"confirm": "Confirmar nova senha"
+		}
 	},
 	"sign_up": {
 		"title": "Cadastrar-se",
 		"desc": "Vamos criar sua nova conta. É rápido, fácil e prático!",
-        "loading": "Quase lá!",
+		"loading": "Quase lá!",
 		"confirm": "Crie sua conta!",
 		"cancel": "Já tenho uma conta"
 	},
 	"pick_avatar": {
-        "title": "Diga X!",
-        "text": "Queremos saber quem você é. Vamos colocar uma foto sua!",
-        "pick_from_gallery": "Escolher uma foto da galeria",
-        "confirm": "Continuar",
-        "skip": "Agora não",
-        "praise": "Você está ótimo, %s!",
-        "instructions": "Assim que tudo estiver pronto, pressione o botão %s para confirmar.",
-        "suggestions": {
-            "title": "Sugestões de avatares",
-            "text": "Se você quiser, você também pode escolher uma foto da nossa lista de avatares.",
-            "err": {
-                "title": "Ocorreu um erro :(",
-                "text": "Não conseguimos carregar a lista de avatares: %s",
-                "try_again": "Tente novamente"
-            }
-        }
-    },
+		"title": "Diga X!",
+		"text": "Queremos saber quem você é. Vamos colocar uma foto sua!",
+		"pick_from_gallery": "Escolher uma foto da galeria",
+		"confirm": "Continuar",
+		"skip": "Agora não",
+		"praise": "Você está ótimo, %s!",
+		"instructions": "Assim que tudo estiver pronto, pressione o botão %s para confirmar.",
+		"suggestions": {
+			"title": "Sugestões de avatares",
+			"text": "Se você quiser, você também pode escolher uma foto da nossa lista de avatares.",
+			"err": {
+				"title": "Ocorreu um erro :(",
+				"text": "Não conseguimos carregar a lista de avatares: %s",
+				"try_again": "Tente novamente"
+			}
+		}
+	},
 	"dashboard": {
 		"signed_welcome": "Bem-vindo(a) ao %s1, %s2!",
 		"welcome": "Bem-vindo(a) ao %s!",
@@ -273,7 +273,7 @@
 	"translations": {
 		"selected_single": "%s selecionado",
 		"selected": "%s selecionados",
-        "offline_warning": "Você está utilizando o modo offline. Toque aqui para sair.",
+		"offline_warning": "Você está utilizando o modo offline. Toque aqui para sair.",
 		"options": {
 			"create": "Criar tradução",
 			"delete": "Excluir",
@@ -300,24 +300,24 @@
 			"send_option": "Enviar vídeo",
 			"create_option": "Criar vídeo"
 		},
-        "loading_files_error": {
-            "title": "Vish! Ocorreu um erro ao carregar suas traduções.",
-            "text": "Certifique-se de que você está conectado(a) à internet.",
-            "try_again": "Tentar novamente",
-            "use_offline": "Usar offline"
-        },
-        "modal": {
-            "delete": {
-                "title": "Excluir arquivos selecionados?",
-                "text": "Os arquivos selecionados serão excluídos e não poderão ser recuperados.\nVocê realmente quer excluí-los?",
-                "selected": "selecionados",
-                "saved_on_cloud": "salvos na nuvem",
-                "saved_on_device": "salvos no dispositivo",
-                "delete": "Excluir",
-                "cancel": "Cancelar",
-                "archive": "Arquivar"
-            }
-        }
+		"loading_files_error": {
+			"title": "Vish! Ocorreu um erro ao carregar suas traduções.",
+			"text": "Certifique-se de que você está conectado(a) à internet.",
+			"try_again": "Tentar novamente",
+			"use_offline": "Usar offline"
+		},
+		"modal": {
+			"delete": {
+				"title": "Excluir arquivos selecionados?",
+				"text": "Os arquivos selecionados serão excluídos e não poderão ser recuperados.\nVocê realmente quer excluí-los?",
+				"selected": "selecionados",
+				"saved_on_cloud": "salvos na nuvem",
+				"saved_on_device": "salvos no dispositivo",
+				"delete": "Excluir",
+				"cancel": "Cancelar",
+				"archive": "Arquivar"
+			}
+		}
 	},
 	"watch": {
 		"options": {
@@ -325,20 +325,24 @@
 			"copy": "Copiar texto",
 			"edit": "Editar",
 			"details": "Detalhes",
-            "download": "Baixar",
-            "upload": "Enviar"
+			"download": "Baixar",
+			"upload": "Enviar"
 		},
-        "error": {
-            "title": "Ocorreu um erro ao carregar o arquivo :(",
-            "try": "Tentar novamente"
-        },
-        "out_of_sync": {
-            "title": "Conflito de arquivos detectado.",
-            "text": "Encontramos versões diferentes do mesmo arquivo na nuvem e no seu dispositivo. Selecione qual versão você quer manter.",
-            "device": "Dispositivo",
-            "cloud": "Nuvem",
-            "none": "Continuar sem sincronizar"
-        }
+		"error": {
+			"title": "Ocorreu um erro ao carregar o arquivo :(",
+			"try": "Tentar novamente"
+		},
+		"not_translated_yet": {
+			"title": "Hmmm... não tem nada aqui",
+			"text": "Parece que o conteúdo ainda não foi traduzido."
+		},
+		"out_of_sync": {
+			"title": "Conflito de arquivos detectado.",
+			"text": "Encontramos versões diferentes do mesmo arquivo na nuvem e no seu dispositivo. Selecione qual versão você quer manter.",
+			"device": "Dispositivo",
+			"cloud": "Nuvem",
+			"none": "Continuar sem sincronizar"
+		}
 	},
 	"camera": {
 		"presentation": {
@@ -362,27 +366,27 @@
 			"title": "Não foi possível iniciar a gravação",
 			"text": "Ocorreu um erro e não foi possível iniciar a gravação. Se o problema persistir, avise-nos.\n\nTalvez isso possa ajudar:\n%s"
 		},
-        "picture_finished": {
-            "title": "Confirmar imagem"
-        },
-        "mode": {
-            "photo": "Foto",
-            "video": "Vídeo"
-        },
-        "media_sent": {
-            "title": "Salvar na nuvem?",
-            "text": "A mídia capturada está salva no seu dispositivo, mas não na nuvem. Para acessar este arquivo em outros dispositivos, você precisa enviá-lo.",
-            "upload": "Enviar",
-            "cancel": "Cancelar"
-        },
-        "date_format": "[Captura de ]D[ de ]MMMM[, ]YYYY[ - ]hh[:]mm"
+		"picture_finished": {
+			"title": "Confirmar imagem"
+		},
+		"mode": {
+			"photo": "Foto",
+			"video": "Vídeo"
+		},
+		"media_sent": {
+			"title": "Salvar na nuvem?",
+			"text": "A mídia capturada está salva no seu dispositivo, mas não na nuvem. Para acessar este arquivo em outros dispositivos, você precisa enviá-lo.",
+			"upload": "Enviar",
+			"cancel": "Cancelar"
+		},
+		"date_format": "[Captura de ]D[ de ]MMMM[, ]YYYY[ - ]hh[:]mm"
 	},
 	"conversations": {
 		"title": "Li Talks",
 		"meet_label": "Mensagens com %s",
 		"untitled": "Conversa com %s",
 		"whos_talking": "Você está conversando com %s",
-        "meet_user": "Conheça %s",
+		"meet_user": "Conheça %s",
 		"presentation": {
 			"intro": "Apresentando o %s",
 			"text": "Converse com qualquer pessoa que não saiba Libras, em qualquer lugar a qualquer momento."
@@ -424,80 +428,51 @@
 		"suggestions": {
 			"greetings": {
 				"msg": "Olá, tudo bem?",
-				"respondsTo": [
-					"olá",
-					"oi"
-				]
+				"respondsTo": ["olá", "oi"]
 			},
 			"im_ok": {
 				"msg": "Tudo ótimo!",
-				"respondsTo": [
-					"tudo bem"
-				]
+				"respondsTo": ["tudo bem"]
 			},
 			"ask_bathroom": {
 				"msg": "Onde fica o banheiro?",
-				"respondsTo": [
-					"precisa",
-					"tudo ótimo"
-				]
+				"respondsTo": ["precisa", "tudo ótimo"]
 			},
 			"ask_help": {
 				"msg": "Pode me ajudar?",
-				"respondsTo": [
-					"tudo ótimo"
-				]
+				"respondsTo": ["tudo ótimo"]
 			},
 			"what_you_need": {
 				"msg": "Do que você precisa?",
-				"respondsTo": [
-					"ajuda",
-					"ok"
-				]
+				"respondsTo": ["ajuda", "ok"]
 			},
 			"ask_hospital": {
 				"shortMsg": "Onde tem hospital?",
 				"msg": "Você sabe onde tem algum hospital por perto?",
-				"respondsTo": [
-					"precisa"
-				]
+				"respondsTo": ["precisa"]
 			},
 			"nevermind": {
 				"msg": "Deixa pra lá",
-				"respondsTo": [
-					"precisa"
-				]
+				"respondsTo": ["precisa"]
 			},
 			"ill_check": {
 				"msg": "Vou verificar",
-				"respondsTo": [
-					"onde",
-					"você sabe"
-				]
+				"respondsTo": ["onde", "você sabe"]
 			},
 			"idk": {
 				"msg": "Não sei",
-				"respondsTo": [
-					"onde",
-					"você sabe"
-				]
+				"respondsTo": ["onde", "você sabe"]
 			},
 			"no": {
 				"msg": "Não",
-				"respondsTo": [
-					"mais algum",
-					"você sabe",
-					"onde"
-				]
+				"respondsTo": ["mais algum", "você sabe", "onde"]
 			},
 			"thanks": {
 				"msg": "Obrigado!"
 			},
 			"ok_thanks": {
 				"msg": "Ok, obrigado!",
-				"respondsTo": [
-					"Não sei"
-				]
+				"respondsTo": ["Não sei"]
 			},
 			"youre_welcome": {
 				"msg": "De nada",
@@ -546,12 +521,7 @@
 			},
 			"bye": {
 				"msg": "Tchau",
-				"respondsTo": [
-					"tchau",
-					"flw",
-					"preciso ir",
-					"até a próxima"
-				]
+				"respondsTo": ["tchau", "flw", "preciso ir", "até a próxima"]
 			}
 		}
 	},
@@ -569,13 +539,13 @@
 			"avatar": "Foto de perfil",
 			"username": "Nome de usuário",
 			"about_me": "Sobre mim",
-            "about_me_placeholder": "Isso será exibido para convidados no LiTalks",
+			"about_me_placeholder": "Isso será exibido para convidados no LiTalks",
 			"email": "E-mail",
 			"email_placeholder": "Insira seu e-mail",
 			"password": "Senha",
 			"password_placeholder": "Insira sua senha",
-            "password_confirm": "Confirmar senha",
-            "password_confirm_placeholder": "Digite novamente sua senha",
+			"password_confirm": "Confirmar senha",
+			"password_confirm_placeholder": "Digite novamente sua senha",
 			"password_forgot": "Esqueci minha senha",
 			"gender": "Sexo",
 			"change_password": "Alterar sua senha"

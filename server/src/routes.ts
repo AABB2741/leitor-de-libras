@@ -23,6 +23,7 @@ import { SetPasswordController } from "./controllers/users/setPassword/SetPasswo
 import { GetTranslationsController } from "./controllers/data/getTranslations/GetTranslationsController";
 import { WatchTranslationController } from "./controllers/data/watchTranslation/WatchTranslationController";
 import { DeleteTranslationController } from "./controllers/data/deleteTranslations/DeleteTranslationController";
+import { EditTranslationController } from "./controllers/edit/editTranslation/EditTranslationController";
 
 import { UploadImageController } from "./controllers/upload/UploadImage/UploadImageController";
 import { UploadVideoController } from "./controllers/upload/UploadVideo/UploadVideoController";
@@ -80,6 +81,7 @@ const setPasswordController = new SetPasswordController();
 const getTranslationsController = new GetTranslationsController();
 const watchTranslationController = new WatchTranslationController();
 const deleteTranslationController = new DeleteTranslationController();
+const editTranslationController = new EditTranslationController();
 
 const uploadImageController = new UploadImageController();
 const uploadVideoController = new UploadVideoController();
@@ -103,6 +105,7 @@ router.put("/user/setPassword", setPasswordController.handle);
 
 router.get("/translations", getTranslationsController.handle);
 router.get("/watch", watchTranslationController.handle);
+router.put("/translations/edit/:id", editTranslationController.handle);
 router.delete("/translations/delete/:ids", deleteTranslationController.handle);
 
 router.post(

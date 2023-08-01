@@ -59,7 +59,6 @@ export function ImageConfirm({
         if (token) {
             try {
                 const data = await Storage.findItem("translations", f => f.id === id);
-                console.log(data);
 
                 // Upload da imagem
                 const imageData = new FormData();
@@ -68,7 +67,6 @@ export function ImageConfirm({
                     type: "image/jpeg",
                     uri: pictureSource.uri,
                 } as any);
-                imageData.append("body", data as any); // Adicionando informações já salvas
                 const uploadResponse = await api.post<FileProps>(
                     "/upload/image",
                     imageData,
@@ -81,10 +79,14 @@ export function ImageConfirm({
                     }
                 );
 
-                if (uploadResponse.status === 201) {
-                    Storage.updateItem("translations", (f) => f.id === id, {
-                        ...uploadResponse.data,
+                if (uploadResponse.status === 201 || uploadResponse.status === 200) {
+                    const updateResponse = await api.put<FileProps>("/translations/edit/" + uploadResponse.data.id, data, {
+                        headers: {
+                            Authorization: token
+                        }
                     });
+
+                    await Storage.updateItem("translations", f => f.id === id, updateResponse.data); // Atualizando arquivo local
 
                     setLoading(false);
                     setConfirmed(false);

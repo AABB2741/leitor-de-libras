@@ -25,26 +25,12 @@ export class UploadImageController {
 
 		if (!token) throw new AppError("invalid_token", 401);
 
-		// Permite a sobreposição de informações
-		const bodySchema = z.object({
-			archived: z.boolean().optional(),
-			createdAt: z.date().optional(),
-			favorited: z.boolean().optional(),
-			password: z.string().optional(),
-			title: z.string().optional(),
-			content: z.string().optional(),
-		});
-
-		console.log(JSON.stringify(req.body));
-		const userData = bodySchema.parse(req.body);
-
 		const uploadImageUseCase = new UploadImageUseCase();
 		const response = await uploadImageUseCase.execute({
-			...userData,
 			authorId: token.id,
 			imageName: req.file.filename,
 		});
 
-		res.json(response);
+		res.status(201).json(response);
 	}
 }

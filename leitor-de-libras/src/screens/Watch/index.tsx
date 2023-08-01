@@ -15,6 +15,7 @@ import {
     Info,
     PencilSimple,
     ShareNetwork,
+    Translate,
 } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Video } from "expo-av";
@@ -170,7 +171,6 @@ export default function Watch({ navigation, route }: WatchProps) {
     }
 
     const mediaUrl = `${api.getUri()}/uploads/${data.imageName}`;
-    console.log(data);
 
     if (fullScreen) {
         return (
@@ -320,6 +320,13 @@ export default function Watch({ navigation, route }: WatchProps) {
                         )}
                         {data.type === "v" && data.content && (
                             <Font style={styles.text}>{data.content}</Font>
+                        )}
+                        {!data.content && (
+                            <Empty
+                                title={lang.watch.not_translated_yet.title}
+                                desc={lang.watch.not_translated_yet.text}
+                                icon={props => <Translate {...props} />}
+                            />
                         )}
                     </View>
                 </View>
