@@ -108,9 +108,10 @@ export default function Translations({ navigation }: Props) {
         setFiles(null);
         setError(null);
         setRefreshing(true);
+        setSelectedFiles([]);
 
         // Pegando arquivos locais...
-        const localFiles = ((await Storage.getItem("translations")) ?? []).sort(
+        const localFiles = ((await Storage.getItem("translations")) ?? []).filter(t => !t.archived).sort(
             (a, b) =>
                 new Date(a.createdAt).getTime() >
                     new Date(b.createdAt).getTime()
@@ -235,11 +236,21 @@ export default function Translations({ navigation }: Props) {
                 }
             });
 
-            console.log(editResponse.data);
+            let translations = await Storage.getItem("translations") ?? [];
+
+            for (let t of translations) {
+                if (selectedFiles.includes(t.id)) {
+                    t.archived = true;
+                }
+            }
+
+            await Storage.setItem("translations", translations);
         } catch (err) {
             console.error(err);
             setError("unknown_err");
         }
+
+        loadFiles();
     }
 
     const OPTIONS: OptionProps[] = [

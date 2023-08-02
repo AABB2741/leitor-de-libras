@@ -1,7 +1,7 @@
 type UserProps = {
-    id?: string;
-    avatar: ImageSourcePropType;
-    about_me?: string;
-    name: string;
-    email?: string;
-}
+	id?: string;
+	avatar: ImageSourcePropType;
+	aboutMe?: string;
+	name: string;
+	email?: string;
+};

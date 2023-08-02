@@ -14,6 +14,7 @@ import { LoginController } from "./controllers/users/login/LoginController";
 import { CreateUserController } from "./controllers/users/createUser/CreateUserController";
 import { UpdateUserController } from "./controllers/users/updateUser/UpdateUserController";
 import { DeleteUserController } from "./controllers/users/deleteUser/DeleteUserController";
+import { GetUserController } from "./controllers/users/getUser/GetUserController";
 
 import { RequestRecoveryCodeController } from "./controllers/users/requestRecoveryCode/RequestRecoveryCodeController";
 import { DeleteRecoveryCodeController } from "./controllers/users/deleteRecoveryCode/DeleteRecoveryCodeController";
@@ -73,6 +74,7 @@ const login = new LoginController();
 const createUser = new CreateUserController();
 const updateUser = new UpdateUserController();
 const deleteUser = new DeleteUserController();
+const getUser = new GetUserController();
 
 const requestRecoveryCodeController = new RequestRecoveryCodeController();
 const deleteRecoveryCodeController = new DeleteRecoveryCodeController();
@@ -96,6 +98,7 @@ router.post("/user/login", login.handle);
 router.post("/user/signUp", createUser.handle);
 router.put("/user/edit", updateUser.handle);
 router.delete("/user/delete", deleteUser.handle);
+router.get("/user/get", getUser.handle);
 
 router.post("/user/requestRecoveryCode", requestRecoveryCodeController.handle);
 router.delete(
