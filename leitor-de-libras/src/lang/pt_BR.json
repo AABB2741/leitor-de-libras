@@ -2,7 +2,6 @@
 	"appName": "Li Libras",
 	"langName": "Português (Brasil)",
 	"locale": "pt",
-	"formats": {},
 	"general": {
 		"anonymous": "Usuário",
 		"local_account": "Conta local",
@@ -48,7 +47,8 @@
 			"yy": "%da"
 		},
 		"formats": {
-			"time": "hh:mm"
+			"time": "hh:mm",
+			"date": "DD/MM/YYYY"
 		},
 		"err_codes": {
 			"ok": "Confirmado",
@@ -342,6 +342,16 @@
 			"device": "Dispositivo",
 			"cloud": "Nuvem",
 			"none": "Continuar sem sincronizar"
+		},
+		"details": {
+			"date": "Data",
+			"length": "Comprimento",
+			"modified": "Modificado em",
+			"saved_on_cloud": "Salvo na nuvem",
+			"visibility": "Visibilidade",
+			"security": "Segurança",
+			"favorite": "Favorito",
+			"translated": "Traduzido"
 		}
 	},
 	"camera": {

@@ -107,4 +107,39 @@ export default ({ colors }: WatchStyle) =>
 			width: "100%",
 			textAlign: "center",
 		},
+		detailsHeader: {
+			flexDirection: "row",
+			alignItems: "center",
+		},
+		detailsPreview: {
+			height: 65,
+			width: 100,
+			borderRadius: 12,
+		},
+		detailsTitle: {
+			flex: 1,
+			paddingLeft: 20,
+			fontSize: 16,
+		},
+		detailsBody: {
+			flexDirection: "row",
+			alignItems: "flex-start",
+			paddingVertical: 10,
+		},
+		detailsColumn: {
+			flex: 1,
+		},
+		detailsColumnLeft: {
+			paddingRight: 20,
+		},
+		detailsCell: {
+			marginBottom: 10,
+		},
+		detailsLabel: {
+			color: colors.desc,
+			fontSize: 11,
+		},
+		detailsValue: {
+			fontSize: 14,
+		},
 	});

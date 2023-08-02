@@ -17,6 +17,7 @@ import {
     ShareNetwork,
     Translate,
 } from "phosphor-react-native";
+import dayjs from "dayjs";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Video } from "expo-av";
 import * as SecureStore from "expo-secure-store";
@@ -62,6 +63,8 @@ export default function Watch({ navigation, route }: WatchProps) {
     const [data, setData] = useState<null | UploadedFile>(null);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
     const [showFullTitle, setShowFullTitle] = useState(false);
+
+    const [detailsVisible, setDetailsVisible] = useState(false);
 
     const { id } = route.params;
 
@@ -213,6 +216,7 @@ export default function Watch({ navigation, route }: WatchProps) {
             label: lang.watch.options.details,
             icon: (props) => <Info {...props} />,
             checkVisibility: () => true,
+            onPress: () => setDetailsVisible(true)
         },
         {
             label: lang.watch.options.download,
@@ -222,7 +226,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 
     return (
         <View style={styles.container}>
-            <Popup visible={outOfSync} type="message">
+            <Popup visible={outOfSync} type="message" onRequestClose={() => setOutOfSync(false)}>
                 <CloudSlash
                     color={colors.desc}
                     size={24}
@@ -263,6 +267,56 @@ export default function Watch({ navigation, route }: WatchProps) {
                     {lang.watch.out_of_sync.none}
                 </Button>
             </Popup>
+
+            <Popup
+                visible={detailsVisible}
+                onRequestClose={() => setDetailsVisible(false)}
+                type="message"
+            >
+                <View style={styles.detailsHeader}>
+                    <Image style={styles.detailsPreview} source={require("../../../assets/thumbnails/default-thumbnail.jpg")} />
+                    <Font family="black" style={styles.detailsTitle}>{data.title}</Font>
+                </View>
+                <View style={styles.detailsBody}>
+                    <View style={[styles.detailsColumn, styles.detailsColumnLeft]}>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.date}</Font>
+                            <Font style={styles.detailsValue}>{dayjs(data.createdAt).format(lang.general.formats.date)}</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.modified}</Font>
+                            <Font style={styles.detailsValue}>{dayjs(data.updatedAt).format(lang.general.formats.date)}</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.visibility}</Font>
+                            <Font style={styles.detailsValue}>--</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.favorite}</Font>
+                            <Font style={styles.detailsValue}>{data.favorited ? lang.general.modal.yes : lang.general.modal.no}</Font>
+                        </View>
+                    </View>
+                    <View style={styles.detailsColumn}>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.length}</Font>
+                            <Font style={styles.detailsValue}>{data.type === "i" ? "--" : "01:41"}</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.saved_on_cloud}</Font>
+                            <Font style={styles.detailsValue}>{data.uploaded ? lang.general.modal.yes : lang.general.modal.no}</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.security}</Font>
+                            <Font style={styles.detailsValue}>{data.password ? lang.general.modal.yes : lang.general.modal.no}</Font>
+                        </View>
+                        <View style={styles.detailsCell}>
+                            <Font style={styles.detailsLabel}>{lang.watch.details.translated}</Font>
+                            <Font style={styles.detailsValue}>{data.content ? lang.general.modal.yes : lang.general.modal.no}</Font>
+                        </View>
+                    </View>
+                </View>
+            </Popup>
+
             <Header title="Tradução" />
             <View style={styles.video}>
                 <TouchableOpacity
@@ -300,7 +354,7 @@ export default function Watch({ navigation, route }: WatchProps) {
                     data={OPTIONS}
                     renderItem={({ item, index }) =>
                         item.checkVisibility?.() ? (
-                            <TouchableOpacity style={styles.option} key={index}>
+                            <TouchableOpacity style={styles.option} key={index} {...item}>
                                 {item.icon({ color: colors.font, size: 16 })}
                                 <Font family="ubuntu" style={styles.optionLabel}>
                                     {item.label}
