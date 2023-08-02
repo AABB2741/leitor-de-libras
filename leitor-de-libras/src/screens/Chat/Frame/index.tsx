@@ -1,6 +1,7 @@
 import { View, FlatList, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import {
+    Camera,
     CaretDown,
     CaretUp,
     Crown,
@@ -243,6 +244,14 @@ export default function Frame({
                             });
                         }}
                     />
+                    <TouchableOpacity
+                        style={styles.action}
+                    >
+                        <Camera
+                            color={colors.font2}
+                            size={18}
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.action}
                         onPress={

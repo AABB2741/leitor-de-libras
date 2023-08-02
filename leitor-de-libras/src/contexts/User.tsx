@@ -176,7 +176,6 @@ export default function UserProvider({ children }: UserProviderProps) {
                 }
             });
 
-            console.log(data);
             res = { ...res, ...data };
         } catch (err) {
             console.error(err);
