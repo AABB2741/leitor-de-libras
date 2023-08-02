@@ -12,7 +12,6 @@ import log from "../utils/log";
 type UserContextValue = {
     user: UserProps;
     signed: null | boolean; // null significa que ainda não foi carregado
-    token: string | null;
     signUp: (
         name: string,
         email: string,
@@ -38,6 +37,10 @@ export default function UserProvider({ children }: UserProviderProps) {
     const [user, setUser] = useState<UserProps | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const signed = !!user;
+
+    useEffect(() => {
+        loadUser();
+    }, []);
 
     async function signUp(
         name: string,
@@ -161,23 +164,39 @@ export default function UserProvider({ children }: UserProviderProps) {
 
     // TODO: Verificar alterações de conexão; se estiver usando conta local e achar internet, tentar conectar
     async function loadUser() {
-        log("Obtendo token de sessão salvo...", { color: "fgGray" });
-        const token = await SecureStore.getItemAsync("token");
-        log(
-            token
-                ? `Token encontrado: ${token}`
-                : "Não há um token de autenticação salvo.",
-            { color: "fgGray", tab: true }
-        );
-        setToken(token);
         log("Carregando informações do usuário...", { color: "fgGray" });
-        const user = await Storage.getItem("user");
-        setUser(user);
-    }
+        const token = await SecureStore.getItemAsync("token");
+        let res = await Storage.getItem("user");
 
-    useEffect(() => {
-        loadUser();
-    }, []);
+        try {
+            log("Obtendo informações do usuário no servidor...", { color: "fgGray" })
+            const { data } = await api.get<UserProps>("/user/get", {
+                headers: {
+                    Authorization: token
+                }
+            });
+
+            console.log(data);
+            res = { ...res, ...data };
+        } catch (err) {
+            console.error(err);
+        }
+
+        setUser(res);
+
+        // log("Obtendo token de sessão salvo...", { color: "fgGray" });
+        // const token = await SecureStore.getItemAsync("token");
+        // log(
+        //     token
+        //         ? `Token encontrado: ${token}`
+        //         : "Não há um token de autenticação salvo.",
+        //     { color: "fgGray", tab: true }
+        // );
+        // setToken(token);
+        // log("Carregando informações do usuário...", { color: "fgGray" });
+        // const user = await Storage.getItem("user");
+        // setUser(user);
+    }
 
     const baseUser: Partial<UserProps> = {
         name: lang.general.anonymous,
@@ -188,7 +207,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
     return (
         <UserContext.Provider
-            value={{ user: finalUser, signed, token, loadUser, signUp, login, logOut }}
+            value={{ user: finalUser, signed, loadUser, signUp, login, logOut }}
         >
             {children}
         </UserContext.Provider>
