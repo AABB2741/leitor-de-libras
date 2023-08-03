@@ -5,6 +5,7 @@ import z from "zod";
 
 import { AppError } from "../../../errors/AppError";
 import { UploadImageUseCase } from "./UploadImageUseCase";
+import { TranslateUseCase } from "../../translations/translate/TranslateUseCase";
 
 const secret = process.env.JWT_SECRET as string;
 
@@ -26,11 +27,27 @@ export class UploadImageController {
 		if (!token) throw new AppError("invalid_token", 401);
 
 		const uploadImageUseCase = new UploadImageUseCase();
-		const response = await uploadImageUseCase.execute({
+		let result = await uploadImageUseCase.execute({
 			authorId: token.id,
 			imageName: req.file.filename,
 		});
 
-		res.status(201).json(response);
+		try {
+			// Tenta traduzir a imagem após upload
+			const translateUseCase = new TranslateUseCase();
+			const [translation, r] = await translateUseCase.execute({
+				authorId: token.id,
+				id: result.id,
+				req,
+			});
+
+			if (r) {
+				result = translation;
+			}
+		} catch (err) {
+			console.error(`Erro ao traduzir imagem: ${err}`);
+		}
+
+		res.status(201).json(result);
 	}
 }

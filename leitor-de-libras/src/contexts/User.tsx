@@ -166,6 +166,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     async function loadUser() {
         log("Carregando informações do usuário...", { color: "fgGray" });
         const token = await SecureStore.getItemAsync("token");
+        console.log(token);
         let res = await Storage.getItem("user");
 
         try {

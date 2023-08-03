@@ -21,27 +21,27 @@ app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    log("Ocorreu um erro: " + err.stack, { color: "fgRed" });
+	log("Ocorreu um erro: " + err.stack, { color: "fgRed" });
 
-    if (err instanceof AppError) {
-        return res.status(err.status).json({
-            status: "error",
-            code: err.code,
-        });
-    }
+	if (err instanceof AppError) {
+		return res.status(err.status).json({
+			status: "error",
+			code: err.code,
+		});
+	}
 
-    return res.status(500).json({
-        status: "error",
-        code: `internal_server_error`,
-    });
+	return res.status(500).json({
+		status: "error",
+		code: `internal_server_error`,
+	});
 });
 
-app.listen(8000, () => {
-    console.log("Servidor rodando na porta 8000");
+export const server = app.listen(8000, () => {
+	console.log("Servidor rodando na porta 8000");
 });
 
 app.get("/", (req, res) => {
-    res.json({
-        message: "Olá, munde!"
-    })
-})
+	res.json({
+		message: "Olá, munde!",
+	});
+});
