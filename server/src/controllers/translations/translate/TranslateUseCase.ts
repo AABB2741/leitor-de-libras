@@ -1,6 +1,7 @@
 import { Request } from "express";
 import { ai } from "../../../lib/ai";
 import { prisma } from "../../../prisma/client";
+import path from "node:path";
 
 import { Translation } from "@prisma/client";
 import { AppError } from "../../../errors/AppError";
@@ -34,7 +35,9 @@ export class TranslateUseCase {
 		if (content) throw new AppError("denied", 406);
 
 		const { protocol, hostname } = req;
-		const url = `${protocol}://${hostname}:8000/uploads/${imageName}`;
+		// const url = `${protocol}://${hostname}:8000/uploads/${imageName}`;
+		const url = path.resolve(__dirname, "../../../../uploads", imageName);
+		console.log(url);
 
 		const res = await ai.post(
 			"/translate",

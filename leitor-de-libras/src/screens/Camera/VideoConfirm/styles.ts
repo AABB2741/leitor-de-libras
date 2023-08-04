@@ -14,17 +14,14 @@ export default ({ colors }: VideoConfirmStyle) =>
 			padding: 20,
 		},
 		video: {
-			flex: 1,
-			position: "absolute",
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0,
+			flex: 2,
 		},
 		title: {
 			fontSize: 16,
+			flex: 1,
 		},
 		options: {
+			flex: 1,
 			marginTop: 10,
 			flexDirection: "row",
 			justifyContent: "space-between",
