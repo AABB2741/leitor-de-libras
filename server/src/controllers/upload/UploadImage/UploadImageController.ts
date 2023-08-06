@@ -15,6 +15,7 @@ type JwtPayload = {
 
 export class UploadImageController {
 	async handle(req: Request, res: Response) {
+		console.log("Upload de imagem");
 		if (!req.file) throw new AppError("invalid_media", 400);
 
 		const headerSchema = z.object({

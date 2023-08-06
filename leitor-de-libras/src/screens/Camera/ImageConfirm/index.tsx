@@ -73,7 +73,6 @@ export function ImageConfirm({
 							Authorization: token,
 							"Content-Type": "multipart/form-data",
 						},
-						timeout: 15000,
 					}
 				);
 
@@ -124,7 +123,8 @@ export function ImageConfirm({
 		dayjs.locale(lang.locale === "pt" ? pt : en);
 		const id = uuid();
 		const title = dayjs(new Date()).format(lang.camera.date_format);
-		const location = `${FileSystem.documentDirectory}${title}.jpg`;
+		const location = `${FileSystem.documentDirectory}${id}.jpg`;
+		console.log(`Copiando para ${location}`);
 
 		await FileSystem.copyAsync({
 			from: pictureSource.uri,
