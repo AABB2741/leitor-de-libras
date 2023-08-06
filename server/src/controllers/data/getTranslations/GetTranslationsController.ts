@@ -3,8 +3,9 @@ import { RequestBody } from "../../../utils/RequestBody";
 
 import jwt from "jsonwebtoken";
 import z from "zod";
+
+import { GetTranslationsUseCase } from "./GetTranslationsUseCase";
 import { AppError } from "../../../errors/AppError";
-import { prisma } from "../../../prisma/client";
 
 const secret = process.env.JWT_SECRET as string;
 
@@ -24,25 +25,11 @@ export class GetTranslationsController {
 
 		if (!token) throw new AppError("invalid_token");
 
-		const authorId = token.id;
-
-		const translations = await prisma.translation.findMany({
-			where: {
-				authorId,
-				deleted: false,
-			},
-			orderBy: {
-				createdAt: "desc",
-			},
-			select: {
-				title: true,
-				createdAt: true,
-				imageName: true,
-				id: true,
-				type: true,
-			},
+		const getTranslationUseCase = new GetTranslationsUseCase();
+		const response = await getTranslationUseCase.execute({
+			authorId: token.id,
 		});
 
-		res.json(translations);
+		res.json(response);
 	}
 }

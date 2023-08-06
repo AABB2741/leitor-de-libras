@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 import { ThemeProps } from "../../theme/getTheme";
 
@@ -18,6 +19,8 @@ export default ({ colors }: CameraStyle) =>
 			flex: 1,
 		},
 		content: {
+			paddingTop: Platform.OS === "ios" ? Constants.statusBarHeight : 0,
+			paddingBottom: Platform.OS === "ios" ? 15 : 0,
 			backgroundColor: "#000",
 			alignItems: "center",
 			justifyContent: "center",

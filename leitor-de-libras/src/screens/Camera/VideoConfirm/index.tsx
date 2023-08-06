@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, ModalProps, TouchableOpacity, View } from "react-native";
+import { Modal, ModalProps, View } from "react-native";
 import { Video, ResizeMode } from "expo-av";
 import dayjs from "dayjs";
 import pt from "dayjs/locale/pt-br";
@@ -187,16 +187,12 @@ export default function VideoConfirm({
 					resizeMode={ResizeMode.CONTAIN}
 				/>
 				<View style={styles.options}>
-					<TouchableOpacity disabled={loading} onPress={close}>
-						<Font family="ubuntu" style={styles.optionLabel}>
-							{lang.camera.recording_finished.discard}
-						</Font>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={save} disabled={loading}>
-						<Font family="ubuntu" style={styles.optionLabel}>
-							{lang.camera.recording_finished.ok}
-						</Font>
-					</TouchableOpacity>
+					<Button disabled={loading} onPress={close}>
+						{lang.camera.recording_finished.discard}
+					</Button>
+					<Button disabled={loading} onPress={save} highlight>
+						{lang.camera.recording_finished.ok}
+					</Button>
 				</View>
 			</View>
 		</Modal>

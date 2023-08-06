@@ -97,15 +97,19 @@ export default ({ colors }: WatchStyle) =>
 			alignItems: "center",
 			padding: 20,
 		},
-		word: {
-			fontSize: 28,
+		wordWrapper: {
 			padding: 20,
 			backgroundColor: colors.background2,
 			borderBottomWidth: 5,
-			borderBottomColor: colors.accent,
+			borderBottomColor: "red",
 			borderRadius: 12,
 			width: "100%",
+			justifyContent: "center",
+			overflow: "hidden",
+		},
+		word: {
 			textAlign: "center",
+			fontSize: 28,
 		},
 		detailsHeader: {
 			flexDirection: "row",
