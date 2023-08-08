@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, ModalProps, View } from "react-native";
 import { Video, ResizeMode } from "expo-av";
+import { useNavigation } from "@react-navigation/native";
 import dayjs from "dayjs";
 import pt from "dayjs/locale/pt-br";
 import en from "dayjs/locale/en";
@@ -19,6 +20,7 @@ import { VideoSource } from "..";
 import createStyles from "./styles";
 import Button from "../../../components/Button";
 import { FileProps } from "../../Translations/File";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface VideoConfirmProps extends ModalProps {
 	source: VideoSource;
@@ -40,6 +42,9 @@ export default function VideoConfirm({
 	const [confirmed, setConfirmed] = useState(false);
 
 	const [id, setId] = useState<string | null>(null);
+
+	const navigation =
+		useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
 
 	function close() {
 		setId(null);
@@ -138,6 +143,9 @@ export default function VideoConfirm({
 			}
 
 			await Storage.updateItem("translations", (f) => f.id === id, res);
+			navigation.navigate("Watch", {
+				id: res.id,
+			});
 		} catch (err) {
 			console.error(err);
 		}

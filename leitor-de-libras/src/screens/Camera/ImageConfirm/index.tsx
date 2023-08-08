@@ -1,10 +1,10 @@
-import { Image, ScrollView, View } from "react-native";
+import { Image, View } from "react-native";
 import { CameraCapturedPicture } from "expo-camera";
-import { extname, resolve } from "node:path";
 import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
 import pt from "dayjs/locale/pt-br";
 import en from "dayjs/locale/en";
+import { useNavigation } from "@react-navigation/native";
 
 import * as SecureStore from "expo-secure-store";
 import * as FileSystem from "expo-file-system";
@@ -18,12 +18,11 @@ import Font from "../../../components/Font";
 
 import createStyles from "./styles";
 import { useState } from "react";
-import axios from "axios";
 import log from "../../../utils/log";
 import { api } from "../../../lib/api";
-import { CheckCircle } from "phosphor-react-native";
 import { FileProps } from "../../Translations/File";
 import { useUser } from "../../../contexts/user";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface ImageConfirmProps {
 	pictureSource: CameraCapturedPicture;
@@ -48,6 +47,9 @@ export function ImageConfirm({
 	const [uploaded, setUploaded] = useState(false);
 
 	const [id, setId] = useState<null | string>(null);
+
+	const navigation =
+		useNavigation<NativeStackNavigationProp<TranslationsParamList>>();
 
 	async function upload() {
 		// Salva o arquivo na nuvem
@@ -100,6 +102,10 @@ export function ImageConfirm({
 						(f) => f.id === id,
 						updateResponse.data
 					); // Atualizando arquivo local
+
+					navigation.navigate("Watch", {
+						id: updateResponse.data.id,
+					});
 
 					setLoading(false);
 					setConfirmed(false);
