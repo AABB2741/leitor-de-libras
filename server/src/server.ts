@@ -3,6 +3,8 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+
+import errorHandler from "./middlewares/errorHandler";
 dotenv.config();
 
 import { router } from "./routes";
@@ -20,21 +22,7 @@ app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
 
 app.use(router);
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-	log("Ocorreu um erro: " + err.stack, { color: "fgRed" });
-
-	if (err instanceof AppError) {
-		return res.status(err.status).json({
-			status: "error",
-			code: err.code,
-		});
-	}
-
-	return res.status(500).json({
-		status: "error",
-		code: `internal_server_error`,
-	});
-});
+app.use(errorHandler);
 
 export const server = app.listen(8000, () => {
 	console.log("Servidor rodando na porta 8000");
