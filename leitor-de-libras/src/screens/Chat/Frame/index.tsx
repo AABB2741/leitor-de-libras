@@ -70,6 +70,9 @@ export default function Frame({
 	const [suggestionsVisible, setSuggestionsVisible] = useState(true);
 	const [aboutMeVisible, setAboutMeVisible] = useState(false);
 
+	const locked =
+		((guest && !inverted) || (!guest && inverted)) && mode !== "normal"; // Verifica se precisa inverter para digitar
+
 	useEffect(() => {
 		if (!messages.length && !guest) {
 			setSuggestions(SUGGESTIONS.filter((s) => s.initial));
@@ -225,25 +228,27 @@ export default function Frame({
 					)}
 				</View>
 				<View style={styles.controls}>
-					<Input
-						placeholder={lang.conversations.chat.placeholder.replace(
-							"%s",
-							guest ? user.name : guestName
-						)}
-						containerStyle={{ flex: 1, paddingBottom: 0 }}
-						style={styles.input}
-						value={msg}
-						onChangeText={(msg) => setMsg(msg)}
-						editable={guest ? inverted : !inverted}
-						selectTextOnFocus={guest ? inverted : !inverted}
-						onSubmitEditing={() => {
-							setMsg("");
-							handleSendMessage({
-								message: msg,
-								from: guest ? "guest" : "owner",
-							});
-						}}
-					/>
+					{locked && <Font>Inverter para digitar</Font>}
+					{!locked && (
+						<Input
+							placeholder={lang.conversations.chat.placeholder.replace(
+								guest ? user.name : guestName
+							)}
+							containerStyle={{ flex: 1, paddingBottom: 0 }}
+							style={styles.input}
+							value={msg}
+							onChangeText={(msg) => setMsg(msg)}
+							editable={guest ? inverted : !inverted}
+							selectTextOnFocus={guest ? inverted : !inverted}
+							onSubmitEditing={() => {
+								setMsg("");
+								handleSendMessage({
+									message: msg,
+									from: guest ? "guest" : "owner",
+								});
+							}}
+						/>
+					)}
 					<TouchableOpacity
 						style={styles.action}
 						onPress={
