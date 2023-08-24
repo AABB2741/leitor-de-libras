@@ -232,6 +232,7 @@ export default function Frame({
 					{!locked && (
 						<Input
 							placeholder={lang.conversations.chat.placeholder.replace(
+								"%s",
 								guest ? user.name : guestName
 							)}
 							containerStyle={{ flex: 1, paddingBottom: 0 }}

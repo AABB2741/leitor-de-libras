@@ -39,19 +39,12 @@ import Popup from "../../components/Popup";
 import Button from "../../components/Button";
 import Empty from "../../components/Empty";
 
-type Option = {
-	icon: (props: IconProps) => JSX.Element;
-	label: string;
-	onPress?: () => void;
-	checkVisibility?: () => boolean;
-};
+import { UploadedFile, useWatchOptions } from "../../hooks/useWatchOptions";
 
 interface WatchProps {
 	navigation: NativeStackNavigationProp<TranslationsParamList, "Watch">;
 	route: RouteProp<TranslationsParamList, "Watch">;
 }
-
-type UploadedFile = FileProps & { uploaded?: boolean };
 
 export default function Watch({ navigation, route }: WatchProps) {
 	const lang = useLang();
@@ -67,6 +60,8 @@ export default function Watch({ navigation, route }: WatchProps) {
 	const [detailsVisible, setDetailsVisible] = useState(false);
 
 	const { id } = route.params;
+
+	const { options } = useWatchOptions({ data, setDetailsVisible });
 
 	async function loadFile() {
 		const localFiles = (await Storage.getItem("translations")) ?? [];
@@ -199,34 +194,6 @@ export default function Watch({ navigation, route }: WatchProps) {
 			</TouchableOpacity>
 		);
 	}
-
-	const OPTIONS: Option[] = [
-		{
-			label: lang.watch.options.share,
-			icon: (props) => <ShareNetwork {...props} />,
-			checkVisibility: () => !!data.uploaded,
-		},
-		{
-			label: lang.watch.options.edit,
-			icon: (props) => <PencilSimple {...props} />,
-			checkVisibility: () => true,
-		},
-		{
-			label: lang.watch.options.copy,
-			icon: (props) => <ClipboardText {...props} />,
-			checkVisibility: () => true,
-		},
-		{
-			label: lang.watch.options.details,
-			icon: (props) => <Info {...props} />,
-			checkVisibility: () => true,
-			onPress: () => setDetailsVisible(true),
-		},
-		{
-			label: lang.watch.options.download,
-			icon: (props) => <DownloadSimple {...props} />,
-		},
-	];
 
 	return (
 		<View style={styles.container}>
@@ -423,7 +390,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 				</TouchableOpacity>
 				<FlatList
 					contentContainerStyle={styles.options}
-					data={OPTIONS}
+					data={options}
 					renderItem={({ item, index }) =>
 						item.checkVisibility?.() ? (
 							<TouchableOpacity
