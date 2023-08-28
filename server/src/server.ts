@@ -7,7 +7,7 @@ import path from "path";
 import errorHandler from "./middlewares/errorHandler";
 dotenv.config();
 
-import { router } from "./routes";
+import router from "./routes/index.routes";
 import { AppError } from "./errors/AppError";
 
 import log from "./utils/log";

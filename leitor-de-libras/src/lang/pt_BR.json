@@ -334,7 +334,8 @@
 		},
 		"not_translated_yet": {
 			"title": "Hmmm... não tem nada aqui",
-			"text": "Parece que o conteúdo ainda não foi traduzido."
+			"text": "Parece que o conteúdo ainda não foi traduzido.",
+			"translate": "Traduzir"
 		},
 		"out_of_sync": {
 			"title": "Conflito de arquivos detectado.",

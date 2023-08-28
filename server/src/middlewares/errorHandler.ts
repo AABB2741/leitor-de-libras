@@ -20,6 +20,7 @@ export default function errorHandler(
 	} else if (err instanceof JsonWebTokenError) {
 		res.status(401).send();
 	} else {
+		console.error(`Ocorreu um erro: ${err}`);
 		res.status(500).send();
 	}
 }

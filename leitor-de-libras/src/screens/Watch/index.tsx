@@ -72,12 +72,15 @@ export default function Watch({ navigation, route }: WatchProps) {
 			setError(null);
 			const token = await SecureStore.getItemAsync("token");
 
-			const { data } = await api.get<UploadedFile>("/watch", {
-				headers: {
-					Authorization: token,
-					id: route.params.id,
-				},
-			});
+			const { data } = await api.get<UploadedFile>(
+				"/translations/watch",
+				{
+					headers: {
+						Authorization: token,
+						id: route.params.id,
+					},
+				}
+			);
 
 			if (data.updatedAt !== localFile?.updatedAt) {
 				setOutOfSync(true);
@@ -140,6 +143,8 @@ export default function Watch({ navigation, route }: WatchProps) {
 	}
 
 	async function pushServerFile() {}
+
+	async function translate() {}
 
 	useEffect(() => {
 		loadFile();
@@ -428,6 +433,13 @@ export default function Watch({ navigation, route }: WatchProps) {
 								title={lang.watch.not_translated_yet.title}
 								desc={lang.watch.not_translated_yet.text}
 								icon={(props) => <Translate {...props} />}
+								options={[
+									{
+										label: lang.watch.not_translated_yet
+											.translate,
+										highlight: true,
+									},
+								]}
 							/>
 						)}
 					</View>
