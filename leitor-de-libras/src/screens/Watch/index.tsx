@@ -64,7 +64,11 @@ export default function Watch({ navigation, route }: WatchProps) {
 
 	const { id } = route.params;
 
-	const { options } = useWatchOptions({ data, setDetailsVisible });
+	const { options } = useWatchOptions({
+		data,
+		setDetailsVisible,
+		hasContent: !!data?.content,
+	});
 
 	async function loadFile() {
 		const localFiles = (await Storage.getItem("translations")) ?? [];

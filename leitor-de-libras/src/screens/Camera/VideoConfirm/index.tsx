@@ -21,6 +21,8 @@ import createStyles from "./styles";
 import Button from "../../../components/Button";
 import { FileProps } from "../../Translations/File";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { uploadVideo } from "../../../services/upload";
+import AppError from "../../../errors/AppError";
 
 interface VideoConfirmProps extends ModalProps {
 	source: VideoSource;
@@ -97,54 +99,16 @@ export default function VideoConfirm({
 		setLoading(true);
 
 		try {
-			const token = await SecureStore.getItemAsync("token");
+			if (!id) throw new AppError("unknown_err");
 
-			const videoData = new FormData();
-			videoData.append("file", {
-				name: "video.mp4",
-				type: "video/mp4",
+			const response = await uploadVideo({
 				uri: source.uri,
-			} as any);
+				id,
+			});
+			if (!response) throw new AppError("unknown_err");
 
-			const uploadResponse = await api.post<FileProps>(
-				"/upload/video",
-				videoData,
-				{
-					headers: {
-						Authorization: token,
-						"Content-Type": "multipart/form-data",
-					},
-				}
-			);
-
-			let res = uploadResponse.data;
-			if (
-				uploadResponse.status === 200 ||
-				uploadResponse.status === 201
-			) {
-				const data = await Storage.findItem(
-					"translations",
-					(f) => f.id === id
-				);
-
-				const updateResponse = await api.put<FileProps>(
-					"/translations/edit/" + uploadResponse.data.id,
-					{
-						data,
-					},
-					{
-						headers: {
-							Authorization: token,
-						},
-					}
-				);
-
-				res = updateResponse.data;
-			}
-
-			await Storage.updateItem("translations", (f) => f.id === id, res);
 			navigation.navigate("Watch", {
-				id: res.id,
+				id: response.id,
 			});
 		} catch (err) {
 			console.error(err);

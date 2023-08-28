@@ -22,11 +22,16 @@ interface WatchOptionProps {
 interface IWatchOptions {
 	data: null | UploadedFile;
 	setDetailsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	hasContent: boolean;
 }
 
 export type UploadedFile = FileProps & { uploaded?: boolean };
 
-export function useWatchOptions({ data, setDetailsVisible }: IWatchOptions) {
+export function useWatchOptions({
+	data,
+	setDetailsVisible,
+	hasContent,
+}: IWatchOptions) {
 	const [options, setOptions] = useState<WatchOptionProps[]>([]);
 
 	const lang = useLang();
@@ -46,7 +51,7 @@ export function useWatchOptions({ data, setDetailsVisible }: IWatchOptions) {
 			{
 				label: lang.watch.options.copy,
 				icon: (props: IconProps) => <ClipboardText {...props} />,
-				checkVisibility: () => true,
+				checkVisibility: () => !!hasContent,
 			},
 			{
 				label: lang.watch.options.details,

@@ -101,7 +101,7 @@ export default ({ colors }: WatchStyle) =>
 			padding: 20,
 			backgroundColor: colors.background2,
 			borderBottomWidth: 5,
-			borderBottomColor: "red",
+			borderBottomColor: colors.accent,
 			borderRadius: 12,
 			width: "100%",
 			justifyContent: "center",

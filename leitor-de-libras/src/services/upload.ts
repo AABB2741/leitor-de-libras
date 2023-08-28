@@ -6,7 +6,7 @@ import * as Storage from "./Storage";
 
 import AppError from "../errors/AppError";
 
-interface UploadImageProps {
+interface UploadProps {
 	uri: string;
 	id: string;
 }
@@ -14,7 +14,7 @@ interface UploadImageProps {
 export async function uploadImage({
 	uri,
 	id,
-}: UploadImageProps): Promise<FileProps> {
+}: UploadProps): Promise<FileProps> {
 	const authorization = await SecureStore.getItemAsync("token");
 
 	const imageData = new FormData();
@@ -58,4 +58,51 @@ export async function uploadImage({
 	} else throw new AppError("unknown_err");
 }
 
-export async function uploadVideo() {}
+export async function uploadVideo({ uri, id }: UploadProps) {
+	const authorization = await SecureStore.getItemAsync("token");
+
+	const videoData = new FormData();
+	videoData.append("file", {
+		name: "video.mp4",
+		type: "video/mp4",
+		uri,
+	} as any);
+
+	const uploadResponse = await api.post<FileProps>(
+		"/upload/video",
+		videoData,
+		{
+			headers: {
+				authorization,
+				"Content-Type": "multipart/form-data",
+			},
+		}
+	);
+
+	let response = uploadResponse.data;
+	if (uploadResponse.status === 200 || uploadResponse.status === 201) {
+		const data = await Storage.findItem("translations", (f) => f.id === id);
+
+		const updateResponse = await api.put<FileProps>(
+			"/translations/edit/" + uploadResponse.data.id,
+			{
+				data,
+			},
+			{
+				headers: {
+					authorization,
+				},
+			}
+		);
+
+		response = updateResponse.data;
+	}
+
+	const res = await Storage.updateItem(
+		"translations",
+		(f) => f.id === id,
+		response
+	);
+
+	return res;
+}

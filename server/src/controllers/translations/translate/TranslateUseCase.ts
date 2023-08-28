@@ -38,6 +38,7 @@ export class TranslateUseCase {
 		// const url = `${protocol}://${hostname}:8000/uploads/${imageName}`;
 		const url = path.resolve(__dirname, "../../../../uploads", imageName);
 		console.log(url);
+		console.log(url);
 
 		const res = await ai.post(
 			"/translate",
