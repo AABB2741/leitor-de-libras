@@ -40,6 +40,8 @@ import Button from "../../components/Button";
 import Empty from "../../components/Empty";
 
 import { UploadedFile, useWatchOptions } from "../../hooks/useWatchOptions";
+import translate from "../../services/translate";
+import { AxiosError } from "axios";
 
 interface WatchProps {
 	navigation: NativeStackNavigationProp<TranslationsParamList, "Watch">;
@@ -144,7 +146,18 @@ export default function Watch({ navigation, route }: WatchProps) {
 
 	async function pushServerFile() {}
 
-	async function translate() {}
+	async function handleTranslate() {
+		try {
+			if (!data) return;
+
+			translate(data.id);
+		} catch (err) {
+			if (err instanceof AxiosError) {
+			} else {
+				setError("unknown_err");
+			}
+		}
+	}
 
 	useEffect(() => {
 		loadFile();
@@ -438,6 +451,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 										label: lang.watch.not_translated_yet
 											.translate,
 										highlight: true,
+										onPress: handleTranslate,
 									},
 								]}
 							/>

@@ -23,6 +23,7 @@ import { api } from "../../../lib/api";
 import { FileProps } from "../../Translations/File";
 import { useUser } from "../../../contexts/user";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { uploadImage } from "../../../services/upload";
 
 interface ImageConfirmProps {
 	pictureSource: CameraCapturedPicture;
@@ -60,58 +61,20 @@ export function ImageConfirm({
 
 		if (token) {
 			try {
-				// Upload da imagem
-				const imageData = new FormData();
-				imageData.append("file", {
-					name: `image.jpg`,
-					type: "image/jpeg",
+				if (!id) return;
+
+				const response = await uploadImage({
 					uri: pictureSource.uri,
-				} as any);
-				const uploadResponse = await api.post<FileProps>(
-					"/upload/image",
-					imageData,
-					{
-						headers: {
-							Authorization: token,
-							"Content-Type": "multipart/form-data",
-						},
-					}
-				);
+					id,
+				});
+				navigation.navigate("Watch", {
+					id: response.id,
+				});
 
-				if (
-					uploadResponse.status === 201 ||
-					uploadResponse.status === 200
-				) {
-					const data = await Storage.findItem(
-						"translations",
-						(f) => f.id === id
-					);
-
-					const updateResponse = await api.put<FileProps>(
-						"/translations/edit/" + uploadResponse.data.id,
-						data,
-						{
-							headers: {
-								Authorization: token,
-							},
-						}
-					);
-
-					await Storage.updateItem(
-						"translations",
-						(f) => f.id === id,
-						updateResponse.data
-					); // Atualizando arquivo local
-
-					navigation.navigate("Watch", {
-						id: updateResponse.data.id,
-					});
-
-					setLoading(false);
-					setConfirmed(false);
-					setPictureSource(null);
-					setId(null);
-				}
+				setLoading(false);
+				setConfirmed(false);
+				setPictureSource(null);
+				setId(null);
 			} catch (err) {
 				setLoading(false);
 				setError("unknown_err");
