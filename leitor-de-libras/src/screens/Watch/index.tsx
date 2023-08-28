@@ -60,6 +60,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 	const [showFullTitle, setShowFullTitle] = useState(false);
 
 	const [detailsVisible, setDetailsVisible] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const { id } = route.params;
 
@@ -121,7 +122,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 					(f) => f.id === route.params.id
 				) ?? null;
 
-			const { data } = await api.get<FileProps>("/watch", {
+			const { data } = await api.get<FileProps>("/translations/watch", {
 				headers: {
 					Authorization: token,
 					id: route.params.id,
@@ -140,6 +141,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 			setData(res);
 			setOutOfSync(false);
 		} catch (err) {
+			console.error("Ocorreu um erro ao fazer upload de arquivo: " + err);
 			setError("unknown_err");
 		}
 	}
@@ -150,7 +152,12 @@ export default function Watch({ navigation, route }: WatchProps) {
 		try {
 			if (!data) return;
 
-			translate(data.id);
+			setLoading(true);
+
+			const translated = await translate(data.id);
+			setData(translated);
+
+			setLoading(false);
 		} catch (err) {
 			if (err instanceof AxiosError) {
 			} else {
@@ -446,6 +453,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 								title={lang.watch.not_translated_yet.title}
 								desc={lang.watch.not_translated_yet.text}
 								icon={(props) => <Translate {...props} />}
+								disabled={loading}
 								options={[
 									{
 										label: lang.watch.not_translated_yet
