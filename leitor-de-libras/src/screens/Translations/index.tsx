@@ -273,43 +273,6 @@ export default function Translations({ navigation }: Props) {
 			checkVisibility: () => selectedFiles.length > 0,
 			onPress: () => setDeleteModalVisible(true),
 		},
-		{
-			icon: (props) => <Star {...props} />,
-			label: lang.translations.options.favorite,
-			checkVisibility: () => selectedFiles.length > 0,
-		},
-		{
-			icon: (props) => <Keyhole {...props} />,
-			label: lang.translations.options.lock,
-			checkVisibility: () => selectedFiles.length > 0,
-		},
-		{
-			icon: (props) => <Download {...props} />,
-			label: lang.translations.options.import,
-		},
-		{
-			icon: (props) => <Export {...props} />,
-			label: lang.translations.options.export,
-			checkVisibility: () => false,
-		},
-		{
-			icon: (props) => <Archive {...props} />,
-			label: lang.translations.options.archive,
-			checkVisibility: () => selectedFiles.length > 0,
-			onPress: handleArchiveFiles,
-		},
-		{
-			icon: (props) => <CloudCheck {...props} />,
-			label: lang.translations.options.load,
-			checkVisibility: () =>
-				selectedFiles.reduce(
-					(ac, v) =>
-						files?.find((f) => f.id === v && !f.uploaded)
-							? ac + 1
-							: ac,
-					0
-				) > 0,
-		},
 	];
 
 	if (!files) {
