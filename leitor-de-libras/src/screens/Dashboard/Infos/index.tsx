@@ -1,10 +1,5 @@
-import { View, Image, TouchableOpacity } from "react-native";
-import {
-	Activity,
-	GearSix,
-	UserCircle,
-	UserCirclePlus,
-} from "phosphor-react-native";
+import { View, TouchableOpacity } from "react-native";
+import { Activity, GearSix, UserCirclePlus } from "phosphor-react-native";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useColors } from "../../../contexts/colors";
