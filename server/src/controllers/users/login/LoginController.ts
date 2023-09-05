@@ -11,6 +11,8 @@ import { SECRET } from "../../../utils/secret";
 
 export class LoginController {
 	async handle(req: RequestBody<UserLoginData>, res: Response) {
+		console.log("Fazendo login");
+
 		const bodySchema = z.object({
 			email: z.string().email(),
 			password: z.string(),

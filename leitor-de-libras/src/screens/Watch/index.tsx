@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
 	Image,
 	ScrollView,
@@ -22,6 +23,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Video } from "expo-av";
 import * as SecureStore from "expo-secure-store";
 import * as Storage from "../../services/Storage";
+import * as Tts from "../../services/Tts";
 
 import { useColors } from "../../contexts/colors";
 import { useLang } from "../../contexts/lang";
@@ -29,15 +31,14 @@ import { api } from "../../lib/api";
 
 import Header from "../../components/Header";
 import Font from "../../components/Font";
-
-import createStyles from "./styles";
-import { FileProps } from "../Translations/File";
-import { RouteProp } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import Popup from "../../components/Popup";
 import Button from "../../components/Button";
 import Empty from "../../components/Empty";
+
+import createStyles from "./styles";
+import { FileProps } from "../Translations/File";
+import { RouteProp } from "@react-navigation/native";
 
 import { UploadedFile, useWatchOptions } from "../../hooks/useWatchOptions";
 import translate from "../../services/translate";
@@ -68,6 +69,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 		data,
 		setDetailsVisible,
 		hasContent: !!data?.content,
+		content: data?.content,
 	});
 
 	async function loadFile() {
@@ -173,6 +175,12 @@ export default function Watch({ navigation, route }: WatchProps) {
 	useEffect(() => {
 		loadFile();
 	}, []);
+
+	useEffect(() => {
+		if (!data?.content) return;
+		console.log("falando");
+		Tts.speak(data.content);
+	}, [data?.content]);
 
 	if (error) {
 		return (

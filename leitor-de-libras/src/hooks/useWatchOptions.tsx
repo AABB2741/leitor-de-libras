@@ -5,8 +5,10 @@ import {
 	Info,
 	PencilSimple,
 	ShareNetwork,
+	SpeakerHigh,
 } from "phosphor-react-native";
 import { useEffect, useState } from "react";
+import * as Tts from "../services/Tts";
 
 import { useLang } from "../contexts/lang";
 
@@ -23,6 +25,7 @@ interface IWatchOptions {
 	data: null | UploadedFile;
 	setDetailsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 	hasContent: boolean;
+	content?: string;
 }
 
 export type UploadedFile = FileProps & { uploaded?: boolean };
@@ -31,10 +34,31 @@ export function useWatchOptions({
 	data,
 	setDetailsVisible,
 	hasContent,
+	content,
 }: IWatchOptions) {
 	const [options, setOptions] = useState<WatchOptionProps[]>([]);
-
+	const [speaking, setSpeaking] = useState(false);
+	console.log("Conteúdo " + content);
 	const lang = useLang();
+
+	function handleSpeak() {
+		if (!content || speaking) return;
+
+		setSpeaking(true);
+
+		Tts.speak(content, {
+			onStart: () => setSpeaking(true),
+			onDone: () => setSpeaking(false),
+			onStopped: () => setSpeaking(false),
+		});
+	}
+
+	function handleStopSpeaking() {
+		if (!content || !speaking) return;
+
+		setSpeaking(false);
+		Tts.stop();
+	}
 
 	useEffect(() => {
 		setOptions([
@@ -63,8 +87,14 @@ export function useWatchOptions({
 				label: lang.watch.options.download,
 				icon: (props) => <DownloadSimple {...props} />,
 			},
+			{
+				label: speaking ? "Parar de falar" : "Falar em voz alta",
+				icon: (props) => <SpeakerHigh {...props} />,
+				onPress: speaking ? handleStopSpeaking : handleSpeak,
+				checkVisibility: () => !!content,
+			},
 		]);
-	}, []);
+	}, [content]);
 
 	return { options, setOptions };
 }
