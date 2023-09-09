@@ -48,7 +48,7 @@ export default function Profile() {
 
 	useEffect(() => {
 		setData(user);
-	}, []);
+	}, [user]);
 
 	useFocusEffect(
 		useCallback(() => {

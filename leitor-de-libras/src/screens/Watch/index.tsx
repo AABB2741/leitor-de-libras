@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
 	Image,
 	ScrollView,
@@ -6,18 +6,7 @@ import {
 	FlatList,
 	TouchableOpacity,
 } from "react-native";
-import {
-	ClipboardText,
-	CloudSlash,
-	DownloadSimple,
-	File,
-	FileDotted,
-	IconProps,
-	Info,
-	PencilSimple,
-	ShareNetwork,
-	Translate,
-} from "phosphor-react-native";
+import { CloudSlash, FileDotted, Translate } from "phosphor-react-native";
 import dayjs from "dayjs";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Video } from "expo-av";
@@ -38,7 +27,7 @@ import Empty from "../../components/Empty";
 
 import createStyles from "./styles";
 import { FileProps } from "../Translations/File";
-import { RouteProp } from "@react-navigation/native";
+import { RouteProp, useFocusEffect } from "@react-navigation/native";
 
 import { UploadedFile, useWatchOptions } from "../../hooks/useWatchOptions";
 import translate from "../../services/translate";
@@ -174,7 +163,7 @@ export default function Watch({ navigation, route }: WatchProps) {
 
 	useEffect(() => {
 		loadFile();
-	}, []);
+	}, [route.params.id]);
 
 	useEffect(() => {
 		if (!data?.content) return;
