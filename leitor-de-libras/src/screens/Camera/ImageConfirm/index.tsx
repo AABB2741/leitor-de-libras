@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Image, View } from "react-native";
 import { CameraCapturedPicture } from "expo-camera";
 import { v4 as uuid } from "uuid";
@@ -17,7 +18,6 @@ import { useColors } from "../../../contexts/colors";
 import Font from "../../../components/Font";
 
 import createStyles from "./styles";
-import { useState } from "react";
 import log from "../../../utils/log";
 import { api } from "../../../lib/api";
 import { FileProps } from "../../Translations/File";
